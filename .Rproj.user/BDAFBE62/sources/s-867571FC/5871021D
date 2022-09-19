@@ -3,19 +3,22 @@
     "path": "~/Documents/GitHub/stat107CourseNotes/_output.yml",
     "project_path": "_output.yml",
     "type": "yaml",
-    "hash": "997389390",
+    "hash": "3820986400",
     "contents": "",
     "dirty": false,
     "created": 1663550125811.0,
     "source_on_save": false,
     "relative_order": 4,
-    "properties": {},
+    "properties": {
+        "cursorPosition": "17,18",
+        "scrollLine": "0"
+    },
     "folds": "",
-    "lastKnownWriteTime": 1663550123,
+    "lastKnownWriteTime": 1663551410,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1663550123,
+    "last_content_update": 1663551410619,
     "read_only": false,
     "read_only_alternatives": []
 }
