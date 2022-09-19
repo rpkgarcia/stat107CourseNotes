@@ -1,9 +1,7 @@
 # Atomic Vectors  
 
 
-```{r, echo = F}
-knitr::opts_chunk$set(tidy.opts = list(width.cutoff = 60), tidy = TRUE)
-```
+
 
 At its core, R is an objected-oriented computational and programming environment. Everything in R is an object with different properties.  In this chapter we will go over vectors, these are the core fundamental objects used in R. A vector in R is a 1-dimensional object.  That is, it contains a sequence of elements in a particular order. For example, `v <- c(2, 6, 5)` is a vector with three elements.  The first element is a 2, the second is a 6, and third is a 5.  An object with just a single element, `w <- 3` is just a vector with only one value.  
 

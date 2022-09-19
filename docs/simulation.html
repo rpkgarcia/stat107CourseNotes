@@ -447,12 +447,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>For example, in Yellowstone National Park, Wyoming there is a famous geyser called Old Faithful. A geyser is a natural hot spring that periodically erupts water. The amount of time (in minutes) the eruption lasts varies each time, but not by a dramatic amount. The eruption time in minutes is the random variable, and the expected value is the average eruption length, and we can measure the variability using a measure of dispersion, like the variance. Below is a histogram of a random sample of eruptions times of 272 different eruptions.</p>
 <div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb580-1"><a href="simulation.html#cb580-1"></a><span class="kw">hist</span>(faithful<span class="op">$</span>eruptions, <span class="dt">main =</span> <span class="st">&quot;Eruption Times of Old Faithful&quot;</span>,</span>
 <span id="cb580-2"><a href="simulation.html#cb580-2"></a>    <span class="dt">xlab =</span> <span class="st">&quot;Time (in minutes)&quot;</span>, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">7</span>, <span class="dt">by =</span> <span class="fl">0.5</span>))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-214-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-212-1.png" width="672" /></p>
 <p>As mentioned previously, random variables generate observations according to some sort of pattern. These patterns are referred to as <strong>densities</strong>, and can be analyzed visually, and analytically (i.e. through formulas). One of the most common ways to look at how often we would expect certain values for data that we find from the “real-world” is to use a histogram. Histogram order observations into mutually exclusive bins, where the height of each bin indicates how common a particular range of values is. For example, in the histogram above each bin is a 30 second (0.5 minute) range, and we can see the frequency of observations within the data set that are in this range on the y-axis. When thinking about random variables though, it is often more helpful to look at the proportion of observed values within a bin, instead of the frequency. We can modify our histogram to accomplish this.</p>
 <div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb581-1"><a href="simulation.html#cb581-1"></a><span class="kw">hist</span>(faithful<span class="op">$</span>eruptions, <span class="dt">main =</span> <span class="st">&quot;Eruption Times of Old Faithful&quot;</span>,</span>
 <span id="cb581-2"><a href="simulation.html#cb581-2"></a>    <span class="dt">xlab =</span> <span class="st">&quot;Time (in minutes)&quot;</span>, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">7</span>, <span class="dt">by =</span> <span class="fl">0.5</span>),</span>
 <span id="cb581-3"><a href="simulation.html#cb581-3"></a>    <span class="dt">freq =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-215-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-213-1.png" width="672" /></p>
 <p>Notice that the y-axis now says “Density”. This is the relative probability that an observed data point will be a particular value. In “real-world” data, we can only estimate the density. We will never know the truth. Hence, we will never know the true expected value, or the true variance. This is why we have statistics!! We have statistics in order to make educated guesses about these values and properties from which the data arises from.</p>
 <p>Analyzing the density or pattern of a random variable visually with histograms is intuitive, but limiting. Using a formula as a representation for a density is much more versatile and useful. For these functions we have <strong>parameters</strong> which are values that let us further customize the function representation of a density to the specific random variable that we have. Let <span class="math inline">\(X\)</span> be a random variable, and <span class="math inline">\(x\)</span> be some observed value. In practice, if <span class="math inline">\(X\)</span> is a random variable that can only take on values that are discrete (usually integers) then we say the probability of observing some a particular value, say <span class="math inline">\(x\)</span>, is denoted <span class="math inline">\(p(x)\)</span>. There are extremely well known discrete densities that random variables tend to follow and that are available in R. A few of them are listed below.</p>
 <ul>
@@ -589,7 +589,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb606-3"><a href="simulation.html#cb606-3"></a>    <span class="dt">freq =</span> <span class="ot">FALSE</span>)</span>
 <span id="cb606-4"><a href="simulation.html#cb606-4"></a></span>
 <span id="cb606-5"><a href="simulation.html#cb606-5"></a><span class="kw">curve</span>(<span class="kw">dnorm</span>(x, <span class="fl">3.5</span>, <span class="fl">1.14</span>), <span class="dt">add =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-224-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-222-1.png" width="672" /></p>
 <p>Now lets generate 272 normal random variables with mean 3.5 and standard deviation of 1.14 and see how well are generated data matches the density function.</p>
 <div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="simulation.html#cb607-1"></a>gen_data &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">272</span>, <span class="dt">mean =</span> <span class="fl">3.5</span>, <span class="dt">sd =</span> <span class="fl">1.14</span>)</span>
 <span id="cb607-2"><a href="simulation.html#cb607-2"></a></span>
@@ -597,11 +597,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb607-4"><a href="simulation.html#cb607-4"></a>    <span class="dv">7</span>, <span class="dt">by =</span> <span class="fl">0.5</span>), <span class="dt">freq =</span> <span class="ot">FALSE</span>)</span>
 <span id="cb607-5"><a href="simulation.html#cb607-5"></a></span>
 <span id="cb607-6"><a href="simulation.html#cb607-6"></a><span class="kw">curve</span>(<span class="kw">dnorm</span>(x, <span class="fl">3.5</span>, <span class="fl">1.14</span>), <span class="dt">add =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-225-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-223-1.png" width="672" /></p>
 <p>We do not see a perfect fit, but this is what happens with random samples. The fit for the simulated data is what we expect approximately if we had a sample with this distribution. It should be approximately the same as the curve, which we see for the simulated data. Our old faithful data is significantly less fitted the simulated data. Thus it appears that the old faithful eruption times is probably not normally distributed with mean 3.5 and standard deviation 1.14. How similar is “similar enough” is not a hard and fast rule, and it is ultimately up to the researcher. The simulated data set gives us a general idea of what is “similar enough”.</p>
 <p>Note that the <code>curve()</code> function does not need to be added to graph but can stand alone.</p>
 <div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb608-1"><a href="simulation.html#cb608-1"></a><span class="kw">curve</span>(<span class="kw">dnorm</span>(x, <span class="fl">3.5</span>, <span class="fl">1.14</span>), <span class="dv">0</span>, <span class="dv">7</span>, <span class="dt">add =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-226-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-224-1.png" width="672" /></p>
 <p>In addition, we can make our own functions to plot using <code>curve()</code>.</p>
 <div class="sourceCode" id="cb609"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb609-1"><a href="simulation.html#cb609-1"></a>my_fun &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
 <span id="cb609-2"><a href="simulation.html#cb609-2"></a>    y =<span class="st"> </span>x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>x <span class="op">-</span><span class="st"> </span><span class="dv">3</span></span>
@@ -609,7 +609,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb609-4"><a href="simulation.html#cb609-4"></a>}</span>
 <span id="cb609-5"><a href="simulation.html#cb609-5"></a></span>
 <span id="cb609-6"><a href="simulation.html#cb609-6"></a><span class="kw">curve</span>(<span class="kw">my_fun</span>(x), <span class="dv">-10</span>, <span class="dv">10</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-227-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-225-1.png" width="672" /></p>
 </div>
 <div id="example-central-limit-theorem-clt" class="section level2 hasAnchor">
 <h2><span class="header-section-number">13.8</span> Example: Central Limit Theorem (CLT)<a href="simulation.html#example-central-limit-theorem-clt" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -653,14 +653,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb610-17"><a href="simulation.html#cb610-17"></a></span>
 <span id="cb610-18"><a href="simulation.html#cb610-18"></a><span class="co"># histogram of results</span></span>
 <span id="cb610-19"><a href="simulation.html#cb610-19"></a><span class="kw">hist</span>(sim_means, <span class="dt">freq =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-228-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-226-1.png" width="672" /></p>
 <p>To add a curve to the graph we need to know the mean and the standard deviation of the data we generated. For a uniform distribution with a minimum of -5 and a maximum of 5, the mean is 0 and the standard deviation is <span class="math inline">\(10/\sqrt{12} \approx 2.89\)</span>. Thus according to CLT, we expect our histogram above to correspond to a normal density with mean 0 and standard deviation <span class="math inline">\(2.89/\sqrt{50} \approx 0.41\)</span>.</p>
 <div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb611-1"><a href="simulation.html#cb611-1"></a><span class="co"># histogram of results</span></span>
 <span id="cb611-2"><a href="simulation.html#cb611-2"></a><span class="kw">hist</span>(sim_means, <span class="dt">freq =</span> <span class="ot">FALSE</span>)</span>
 <span id="cb611-3"><a href="simulation.html#cb611-3"></a></span>
 <span id="cb611-4"><a href="simulation.html#cb611-4"></a><span class="co"># Add normal curve according to CLT</span></span>
 <span id="cb611-5"><a href="simulation.html#cb611-5"></a><span class="kw">curve</span>(<span class="kw">dnorm</span>(x, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="fl">0.41</span>), <span class="dt">add =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-229-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-227-1.png" width="672" /></p>
 
 </div>
 </div>
