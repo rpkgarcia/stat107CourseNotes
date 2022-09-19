@@ -155,6 +155,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="introduction-to-r.html#assignment-operators">Assignment Operators<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#naming-conventions"><i class="fa fa-check"></i><b>1.5</b> Naming Conventions<span></span></a></li>
+<li class="chapter" data-level="1.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#basic-calculations"><i class="fa fa-check"></i><b>1.6</b> Basic Calculations<span></span></a></li>
 <li><a href="introduction-to-r.html#additional-resources">Additional Resources<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="atomic-vectors.html"><a href="atomic-vectors.html"><i class="fa fa-check"></i><b>2</b> Atomic Vectors<span></span></a><ul>
@@ -267,9 +268,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1" data-path="functions.html"><a href="functions.html#build-your-own-function"><i class="fa fa-check"></i><b>7.1</b> Build Your Own Function<span></span></a></li>
 <li class="chapter" data-level="7.2" data-path="functions.html"><a href="functions.html#lexical-scoping"><i class="fa fa-check"></i><b>7.2</b> Lexical Scoping<span></span></a></li>
 <li class="chapter" data-level="7.3" data-path="functions.html"><a href="functions.html#built-in-functions"><i class="fa fa-check"></i><b>7.3</b> Built-In Functions<span></span></a></li>
-<li class="chapter" data-level="7.4" data-path="functions.html"><a href="functions.html#help-files"><i class="fa fa-check"></i><b>7.4</b> Help Files<span></span></a></li>
-<li class="chapter" data-level="7.5" data-path="functions.html"><a href="functions.html#the-argument"><i class="fa fa-check"></i><b>7.5</b> The … Argument<span></span></a></li>
-<li class="chapter" data-level="7.6" data-path="functions.html"><a href="functions.html#generic-functions"><i class="fa fa-check"></i><b>7.6</b> Generic Functions<span></span></a></li>
+<li class="chapter" data-level="7.4" data-path="functions.html"><a href="functions.html#vectorization"><i class="fa fa-check"></i><b>7.4</b> Vectorization<span></span></a></li>
+<li class="chapter" data-level="7.5" data-path="functions.html"><a href="functions.html#help-files"><i class="fa fa-check"></i><b>7.5</b> Help Files<span></span></a></li>
+<li class="chapter" data-level="7.6" data-path="functions.html"><a href="functions.html#the-argument"><i class="fa fa-check"></i><b>7.6</b> The … Argument<span></span></a></li>
+<li class="chapter" data-level="7.7" data-path="functions.html"><a href="functions.html#generic-functions"><i class="fa fa-check"></i><b>7.7</b> Generic Functions<span></span></a></li>
 <li><a href="functions.html#additional-resources-3">Additional Resources<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>8</b> Packages<span></span></a><ul>
@@ -439,10 +441,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">7.1</span> Build Your Own Function<a href="functions.html#build-your-own-function" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To define a function, a name is assigned and the keyword <code>function</code> is used to denote the start of the function and its argument list. Functions are created using the <code>function()</code> directive and are stored as R objects just like anything else. In particular, they are R objects of class <em>function</em>. Functions can be passed as arguments to other functions. Functions can be nested, so that you can define a function inside another function.</p>
 <p>Below is the <strong>general template</strong></p>
-<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="functions.html#cb436-1"></a>function_name &lt;-<span class="st"> </span><span class="cf">function</span>(arg){</span>
-<span id="cb436-2"><a href="functions.html#cb436-2"></a>  <span class="co"># Function Body </span></span>
-<span id="cb436-3"><a href="functions.html#cb436-3"></a>  ....</span>
-<span id="cb436-4"><a href="functions.html#cb436-4"></a>  <span class="kw">return</span>(return_value)</span>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="functions.html#cb436-1"></a>function_name &lt;-<span class="st"> </span><span class="cf">function</span>(arg) {</span>
+<span id="cb436-2"><a href="functions.html#cb436-2"></a>    <span class="co"># Function Body</span></span>
+<span id="cb436-3"><a href="functions.html#cb436-3"></a>    ....</span>
+<span id="cb436-4"><a href="functions.html#cb436-4"></a>    <span class="kw">return</span>(return_value)</span>
 <span id="cb436-5"><a href="functions.html#cb436-5"></a>}</span></code></pre></div>
 <p>In this template we have the following key components</p>
 <ul>
@@ -454,37 +456,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>Below is an example of converting a temperature from Fahrenheit to Celsius.</p>
 <div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="functions.html#cb437-1"></a><span class="co"># Convert temperature from Fahrenheit (F) to Celsius (C)</span></span>
-<span id="cb437-2"><a href="functions.html#cb437-2"></a><span class="co"># ARGUMENTS: temp_F, a numeric vector of length 1 in F units</span></span>
-<span id="cb437-3"><a href="functions.html#cb437-3"></a><span class="co"># RETURNS:   temp_C, a numeric vector of length 1 in C units</span></span>
-<span id="cb437-4"><a href="functions.html#cb437-4"></a>fahrenheit_to_celsius &lt;-<span class="st"> </span><span class="cf">function</span>(temp_F){</span>
-<span id="cb437-5"><a href="functions.html#cb437-5"></a>  temp_C =<span class="st"> </span>(temp_F <span class="op">-</span><span class="st"> </span><span class="dv">32</span>) <span class="op">*</span><span class="st"> </span><span class="dv">5</span> <span class="op">/</span><span class="st"> </span><span class="dv">9</span></span>
-<span id="cb437-6"><a href="functions.html#cb437-6"></a>  <span class="kw">return</span>(temp_C)</span>
-<span id="cb437-7"><a href="functions.html#cb437-7"></a>}</span></code></pre></div>
+<span id="cb437-2"><a href="functions.html#cb437-2"></a><span class="co"># ARGUMENTS: temp_F, a numeric vector of length 1 in F</span></span>
+<span id="cb437-3"><a href="functions.html#cb437-3"></a><span class="co"># units RETURNS: temp_C, a numeric vector of length 1 in C</span></span>
+<span id="cb437-4"><a href="functions.html#cb437-4"></a><span class="co"># units</span></span>
+<span id="cb437-5"><a href="functions.html#cb437-5"></a>fahrenheit_to_celsius &lt;-<span class="st"> </span><span class="cf">function</span>(temp_F) {</span>
+<span id="cb437-6"><a href="functions.html#cb437-6"></a>    temp_C =<span class="st"> </span>(temp_F <span class="op">-</span><span class="st"> </span><span class="dv">32</span>) <span class="op">*</span><span class="st"> </span><span class="dv">5</span><span class="op">/</span><span class="dv">9</span></span>
+<span id="cb437-7"><a href="functions.html#cb437-7"></a>    <span class="kw">return</span>(temp_C)</span>
+<span id="cb437-8"><a href="functions.html#cb437-8"></a>}</span></code></pre></div>
 <p>In this example the function name is <code>fahrenheit_to_celsius</code>, there is only one input or argument, <code>temp_F</code>, and the output is the object <code>temp_C</code>.</p>
 <p>Now if we would like to “call” this function we can simply put into the command console the function name and desired input.</p>
 <div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="functions.html#cb438-1"></a><span class="co"># Convert 87F to Celsius</span></span>
 <span id="cb438-2"><a href="functions.html#cb438-2"></a><span class="kw">fahrenheit_to_celsius</span>(<span class="dt">temp_F =</span> <span class="dv">87</span>)</span></code></pre></div>
 <pre><code>## [1] 30.55556</code></pre>
 <p>What would happen if we tried to call this function without supplying an input? This would result in an error.</p>
-<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="functions.html#cb440-1"></a><span class="co"># temp_F not defined. </span></span>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="functions.html#cb440-1"></a><span class="co"># temp_F not defined.</span></span>
 <span id="cb440-2"><a href="functions.html#cb440-2"></a><span class="kw">fahrenheit_to_celsius</span>()</span></code></pre></div>
 <pre><code>Error in fahrenheit_to_celsius() : 
   argument &quot;temp_F&quot; is missing, with no default</code></pre>
 <p>With functions we can define function arguments to have default values. These default values are used only if the user did not supply an argument value. Observe the example below.</p>
-<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="functions.html#cb442-1"></a><span class="co"># An example function, does simply algebra </span></span>
-<span id="cb442-2"><a href="functions.html#cb442-2"></a><span class="co"># ARGUMENTS: a = 1 (default), a numeric vector of length 1 </span></span>
-<span id="cb442-3"><a href="functions.html#cb442-3"></a><span class="co">#            b, a numeric vector of length 1</span></span>
-<span id="cb442-4"><a href="functions.html#cb442-4"></a><span class="co"># RETURNS:   d, a numeric vector of length 1</span></span>
-<span id="cb442-5"><a href="functions.html#cb442-5"></a>example_func &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">a =</span> <span class="dv">1</span>, b){</span>
-<span id="cb442-6"><a href="functions.html#cb442-6"></a>  c =<span class="st"> </span>a <span class="op">+</span><span class="st"> </span>b</span>
-<span id="cb442-7"><a href="functions.html#cb442-7"></a>  d =<span class="st"> </span>c <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb442-8"><a href="functions.html#cb442-8"></a>  </span>
-<span id="cb442-9"><a href="functions.html#cb442-9"></a>  <span class="co"># returns a+b+1</span></span>
-<span id="cb442-10"><a href="functions.html#cb442-10"></a>  <span class="kw">return</span>(d)</span>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="functions.html#cb442-1"></a><span class="co"># An example function, does simply algebra ARGUMENTS: a = 1</span></span>
+<span id="cb442-2"><a href="functions.html#cb442-2"></a><span class="co"># (default), a numeric vector of length 1 b, a numeric</span></span>
+<span id="cb442-3"><a href="functions.html#cb442-3"></a><span class="co"># vector of length 1 RETURNS: d, a numeric vector of length</span></span>
+<span id="cb442-4"><a href="functions.html#cb442-4"></a><span class="co"># 1</span></span>
+<span id="cb442-5"><a href="functions.html#cb442-5"></a>example_func &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">a =</span> <span class="dv">1</span>, b) {</span>
+<span id="cb442-6"><a href="functions.html#cb442-6"></a>    c =<span class="st"> </span>a <span class="op">+</span><span class="st"> </span>b</span>
+<span id="cb442-7"><a href="functions.html#cb442-7"></a>    d =<span class="st"> </span>c <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb442-8"><a href="functions.html#cb442-8"></a></span>
+<span id="cb442-9"><a href="functions.html#cb442-9"></a>    <span class="co"># returns a+b+1</span></span>
+<span id="cb442-10"><a href="functions.html#cb442-10"></a>    <span class="kw">return</span>(d)</span>
 <span id="cb442-11"><a href="functions.html#cb442-11"></a>}</span>
 <span id="cb442-12"><a href="functions.html#cb442-12"></a></span>
 <span id="cb442-13"><a href="functions.html#cb442-13"></a><span class="co"># Call example function</span></span>
-<span id="cb442-14"><a href="functions.html#cb442-14"></a><span class="kw">example_func</span>(<span class="dt">a=</span> <span class="dv">2</span>, <span class="dt">b=</span> <span class="dv">3</span>)</span></code></pre></div>
+<span id="cb442-14"><a href="functions.html#cb442-14"></a><span class="kw">example_func</span>(<span class="dt">a =</span> <span class="dv">2</span>, <span class="dt">b =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
 <div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="functions.html#cb444-1"></a><span class="kw">example_func</span>(<span class="dt">b =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
@@ -537,7 +540,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><code>sqrt()</code>: If you give it a vector, it returns the square root of each element in the vector. If you give it a single number, it returns the square root of the number.</li>
 </ul>
-<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="functions.html#cb458-1"></a><span class="kw">sqrt</span>(mtcars<span class="op">$</span>mpg) </span></code></pre></div>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="functions.html#cb458-1"></a><span class="kw">sqrt</span>(mtcars<span class="op">$</span>mpg)</span></code></pre></div>
 <pre><code>##  [1] 4.582576 4.582576 4.774935 4.626013 4.324350 4.254409 3.781534 4.939636
 ##  [9] 4.774935 4.381780 4.219005 4.049691 4.159327 3.898718 3.224903 3.224903
 ## [17] 3.834058 5.692100 5.513620 5.822371 4.636809 3.937004 3.898718 3.646917
@@ -556,7 +559,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>quantile()</code>: Takes in a vector as the first argument, and a vector of values between 0 and 1 (any number of values) for the second argument. It will return the corresponding quantiles of the values in the first vector specified by the second vector.</li>
 </ul>
 <p>To get the <span class="math inline">\(10^{th}\)</span> and <span class="math inline">\(90^{th}\)</span> percentiles:</p>
-<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="functions.html#cb464-1"></a><span class="kw">quantile</span>(mtcars<span class="op">$</span>mpg,<span class="kw">c</span>(<span class="fl">0.10</span>,<span class="fl">0.90</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="functions.html#cb464-1"></a><span class="kw">quantile</span>(mtcars<span class="op">$</span>mpg, <span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>))</span></code></pre></div>
 <pre><code>##   10%   90% 
 ## 14.34 30.09</code></pre>
 <ul>
@@ -567,8 +570,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##     4.0    12.0    15.0    15.4    19.0    25.0</code></pre>
 <p>One of the great advantages of using R is that there is a ton of resources available to learn about it. However, this can also be a disadvantage because of the vast amount of information available. The best and first resource you should look at when trying learn more about R functions is the <strong>Help files</strong>.</p>
 </div>
+<div id="vectorization" class="section level2 hasAnchor">
+<h2><span class="header-section-number">7.4</span> Vectorization<a href="functions.html#vectorization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
 <div id="help-files" class="section level2 hasAnchor">
-<h2><span class="header-section-number">7.4</span> Help Files<a href="functions.html#help-files" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">7.5</span> Help Files<a href="functions.html#help-files" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The Help files are in R and can be viewed from the lower right window by clicking the <em>Help</em> tab. Here you can search by function name to read about it. Each built in function has a help files, sometimes similar functions are grouped together in the same file. The R Help Files are typically the best resource to get help.</p>
 <p>The R Help files follow a fairly standard outline. You find most of the following sections in every R Help file:</p>
 <ul>
@@ -583,75 +589,75 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>An alternative way to view a functions help file is by typing <code>?</code> followed by the function name, or by typing <code>help(function_name)</code>.</p>
 <div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="functions.html#cb468-1"></a><span class="co"># Find a help file for the function `rep`</span></span>
-<span id="cb468-2"><a href="functions.html#cb468-2"></a>?rep</span>
+<span id="cb468-2"><a href="functions.html#cb468-2"></a><span class="st">`</span><span class="dt">?</span><span class="st">`</span>(rep)</span>
 <span id="cb468-3"><a href="functions.html#cb468-3"></a><span class="kw">help</span>(rep)</span></code></pre></div>
 <p>If you are not sure exactly which function you want, you can use <code>??</code> followed by what you believe the function name is to look at a list of functions.</p>
-<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="functions.html#cb469-1"></a>??rep</span></code></pre></div>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="functions.html#cb469-1"></a><span class="st">`</span><span class="dt">?</span><span class="st">`</span>(<span class="st">`</span><span class="dt">?</span><span class="st">`</span>(rep))</span></code></pre></div>
 </div>
 <div id="the-argument" class="section level2 hasAnchor">
-<h2><span class="header-section-number">7.5</span> The … Argument<a href="functions.html#the-argument" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">7.6</span> The … Argument<a href="functions.html#the-argument" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>There is a special argument function <code>...</code> that can be used. Sometimes we call a function within a function that has a different set of arguments. We can use the <code>...</code> argument as a general placeholder for passing along any additional arguments in a function call.</p>
-<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="functions.html#cb470-1"></a><span class="co"># An example function, uses the ... argument and calls fun2()</span></span>
-<span id="cb470-2"><a href="functions.html#cb470-2"></a><span class="co"># ARGUMENTS: x , a numeric vector of length 1 </span></span>
-<span id="cb470-3"><a href="functions.html#cb470-3"></a><span class="co">#            ..., all additional arguments to be passed to fun2()</span></span>
-<span id="cb470-4"><a href="functions.html#cb470-4"></a><span class="co"># RETURNS:   z, a numeric vector of length 1</span></span>
-<span id="cb470-5"><a href="functions.html#cb470-5"></a>fun1 &lt;-<span class="st"> </span><span class="cf">function</span>(x, ...){</span>
-<span id="cb470-6"><a href="functions.html#cb470-6"></a>  y =<span class="st"> </span><span class="kw">fun2</span>(...)</span>
-<span id="cb470-7"><a href="functions.html#cb470-7"></a>  z =<span class="st"> </span>x <span class="op">+</span><span class="st"> </span>y </span>
-<span id="cb470-8"><a href="functions.html#cb470-8"></a>  <span class="kw">return</span>(z)</span>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="functions.html#cb470-1"></a><span class="co"># An example function, uses the ... argument and calls</span></span>
+<span id="cb470-2"><a href="functions.html#cb470-2"></a><span class="co"># fun2() ARGUMENTS: x , a numeric vector of length 1 ...,</span></span>
+<span id="cb470-3"><a href="functions.html#cb470-3"></a><span class="co"># all additional arguments to be passed to fun2() RETURNS:</span></span>
+<span id="cb470-4"><a href="functions.html#cb470-4"></a><span class="co"># z, a numeric vector of length 1</span></span>
+<span id="cb470-5"><a href="functions.html#cb470-5"></a>fun1 &lt;-<span class="st"> </span><span class="cf">function</span>(x, ...) {</span>
+<span id="cb470-6"><a href="functions.html#cb470-6"></a>    y =<span class="st"> </span><span class="kw">fun2</span>(...)</span>
+<span id="cb470-7"><a href="functions.html#cb470-7"></a>    z =<span class="st"> </span>x <span class="op">+</span><span class="st"> </span>y</span>
+<span id="cb470-8"><a href="functions.html#cb470-8"></a>    <span class="kw">return</span>(z)</span>
 <span id="cb470-9"><a href="functions.html#cb470-9"></a>}</span>
 <span id="cb470-10"><a href="functions.html#cb470-10"></a></span>
-<span id="cb470-11"><a href="functions.html#cb470-11"></a><span class="co"># Support function for fun1()</span></span>
-<span id="cb470-12"><a href="functions.html#cb470-12"></a><span class="co"># ARGUMENTS: a , a numeric vector of length 1 </span></span>
-<span id="cb470-13"><a href="functions.html#cb470-13"></a><span class="co"># RETURNS:   b, a numeric vector of length 1</span></span>
-<span id="cb470-14"><a href="functions.html#cb470-14"></a>fun2 &lt;-<span class="st"> </span><span class="cf">function</span>(a){</span>
-<span id="cb470-15"><a href="functions.html#cb470-15"></a>  b =<span class="st"> </span>a<span class="op">^</span><span class="dv">2</span></span>
-<span id="cb470-16"><a href="functions.html#cb470-16"></a>  <span class="kw">return</span>(b)</span>
+<span id="cb470-11"><a href="functions.html#cb470-11"></a><span class="co"># Support function for fun1() ARGUMENTS: a , a numeric</span></span>
+<span id="cb470-12"><a href="functions.html#cb470-12"></a><span class="co"># vector of length 1 RETURNS: b, a numeric vector of length</span></span>
+<span id="cb470-13"><a href="functions.html#cb470-13"></a><span class="co"># 1</span></span>
+<span id="cb470-14"><a href="functions.html#cb470-14"></a>fun2 &lt;-<span class="st"> </span><span class="cf">function</span>(a) {</span>
+<span id="cb470-15"><a href="functions.html#cb470-15"></a>    b =<span class="st"> </span>a<span class="op">^</span><span class="dv">2</span></span>
+<span id="cb470-16"><a href="functions.html#cb470-16"></a>    <span class="kw">return</span>(b)</span>
 <span id="cb470-17"><a href="functions.html#cb470-17"></a>}</span>
 <span id="cb470-18"><a href="functions.html#cb470-18"></a></span>
 <span id="cb470-19"><a href="functions.html#cb470-19"></a><span class="co"># Returns 1 + 2^2 = 5</span></span>
 <span id="cb470-20"><a href="functions.html#cb470-20"></a><span class="kw">fun1</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
-<p>We can also use the <code>...</code> arguement in a nested fashion.</p>
-<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="functions.html#cb472-1"></a><span class="co"># An example function, uses the ... argument and calls fun2()</span></span>
-<span id="cb472-2"><a href="functions.html#cb472-2"></a><span class="co"># ARGUMENTS: x , a numeric vector of length 1 </span></span>
-<span id="cb472-3"><a href="functions.html#cb472-3"></a><span class="co">#            ..., all additional arguments to be passed to fun2()</span></span>
-<span id="cb472-4"><a href="functions.html#cb472-4"></a><span class="co"># RETURNS:   z, a numeric vector of length 1</span></span>
-<span id="cb472-5"><a href="functions.html#cb472-5"></a>fun1 &lt;-<span class="st"> </span><span class="cf">function</span>(x, ...){</span>
-<span id="cb472-6"><a href="functions.html#cb472-6"></a>  y =<span class="st"> </span><span class="kw">fun2</span>(...)</span>
-<span id="cb472-7"><a href="functions.html#cb472-7"></a>  z =<span class="st"> </span>x<span class="op">+</span><span class="st"> </span>y</span>
-<span id="cb472-8"><a href="functions.html#cb472-8"></a>  <span class="kw">return</span>(z)</span>
+<p>We can also use the <code>...</code> argument in a nested fashion.</p>
+<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="functions.html#cb472-1"></a><span class="co"># An example function, uses the ... argument and calls</span></span>
+<span id="cb472-2"><a href="functions.html#cb472-2"></a><span class="co"># fun2() ARGUMENTS: x , a numeric vector of length 1 ...,</span></span>
+<span id="cb472-3"><a href="functions.html#cb472-3"></a><span class="co"># all additional arguments to be passed to fun2() RETURNS:</span></span>
+<span id="cb472-4"><a href="functions.html#cb472-4"></a><span class="co"># z, a numeric vector of length 1</span></span>
+<span id="cb472-5"><a href="functions.html#cb472-5"></a>fun1 &lt;-<span class="st"> </span><span class="cf">function</span>(x, ...) {</span>
+<span id="cb472-6"><a href="functions.html#cb472-6"></a>    y =<span class="st"> </span><span class="kw">fun2</span>(...)</span>
+<span id="cb472-7"><a href="functions.html#cb472-7"></a>    z =<span class="st"> </span>x <span class="op">+</span><span class="st"> </span>y</span>
+<span id="cb472-8"><a href="functions.html#cb472-8"></a>    <span class="kw">return</span>(z)</span>
 <span id="cb472-9"><a href="functions.html#cb472-9"></a>}</span>
 <span id="cb472-10"><a href="functions.html#cb472-10"></a></span>
-<span id="cb472-11"><a href="functions.html#cb472-11"></a><span class="co"># Support function for fun1(), calls fun3()</span></span>
-<span id="cb472-12"><a href="functions.html#cb472-12"></a><span class="co"># ARGUMENTS: a , a numeric vector of length 1 </span></span>
-<span id="cb472-13"><a href="functions.html#cb472-13"></a><span class="co">#            ..., all additional arguments to be passed to fun3()</span></span>
-<span id="cb472-14"><a href="functions.html#cb472-14"></a><span class="co"># RETURNS:   c, a numeric vector of length 1</span></span>
-<span id="cb472-15"><a href="functions.html#cb472-15"></a>fun2 &lt;-<span class="st"> </span><span class="cf">function</span>(a, ... ){</span>
-<span id="cb472-16"><a href="functions.html#cb472-16"></a>  b =<span class="st"> </span><span class="kw">fun3</span>(...)</span>
-<span id="cb472-17"><a href="functions.html#cb472-17"></a>  c =<span class="st"> </span>a<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>b </span>
-<span id="cb472-18"><a href="functions.html#cb472-18"></a>  <span class="kw">return</span>(c)</span>
+<span id="cb472-11"><a href="functions.html#cb472-11"></a><span class="co"># Support function for fun1(), calls fun3() ARGUMENTS: a ,</span></span>
+<span id="cb472-12"><a href="functions.html#cb472-12"></a><span class="co"># a numeric vector of length 1 ..., all additional</span></span>
+<span id="cb472-13"><a href="functions.html#cb472-13"></a><span class="co"># arguments to be passed to fun3() RETURNS: c, a numeric</span></span>
+<span id="cb472-14"><a href="functions.html#cb472-14"></a><span class="co"># vector of length 1</span></span>
+<span id="cb472-15"><a href="functions.html#cb472-15"></a>fun2 &lt;-<span class="st"> </span><span class="cf">function</span>(a, ...) {</span>
+<span id="cb472-16"><a href="functions.html#cb472-16"></a>    b =<span class="st"> </span><span class="kw">fun3</span>(...)</span>
+<span id="cb472-17"><a href="functions.html#cb472-17"></a>    c =<span class="st"> </span>a<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>b</span>
+<span id="cb472-18"><a href="functions.html#cb472-18"></a>    <span class="kw">return</span>(c)</span>
 <span id="cb472-19"><a href="functions.html#cb472-19"></a>}</span>
 <span id="cb472-20"><a href="functions.html#cb472-20"></a></span>
 <span id="cb472-21"><a href="functions.html#cb472-21"></a><span class="co"># Support function for fun1() and fun2(), called by fun2()</span></span>
-<span id="cb472-22"><a href="functions.html#cb472-22"></a><span class="co"># ARGUMENTS: n , a numeric vector of length 1 </span></span>
-<span id="cb472-23"><a href="functions.html#cb472-23"></a><span class="co"># RETURNS:   n, a numeric vector of length 1</span></span>
-<span id="cb472-24"><a href="functions.html#cb472-24"></a>fun3 &lt;-<span class="st"> </span><span class="cf">function</span>(n){</span>
-<span id="cb472-25"><a href="functions.html#cb472-25"></a>  n =<span class="st"> </span><span class="kw">sqrt</span>(n)</span>
-<span id="cb472-26"><a href="functions.html#cb472-26"></a>  <span class="kw">return</span>(n)</span>
+<span id="cb472-22"><a href="functions.html#cb472-22"></a><span class="co"># ARGUMENTS: n , a numeric vector of length 1 RETURNS: n, a</span></span>
+<span id="cb472-23"><a href="functions.html#cb472-23"></a><span class="co"># numeric vector of length 1</span></span>
+<span id="cb472-24"><a href="functions.html#cb472-24"></a>fun3 &lt;-<span class="st"> </span><span class="cf">function</span>(n) {</span>
+<span id="cb472-25"><a href="functions.html#cb472-25"></a>    n =<span class="st"> </span><span class="kw">sqrt</span>(n)</span>
+<span id="cb472-26"><a href="functions.html#cb472-26"></a>    <span class="kw">return</span>(n)</span>
 <span id="cb472-27"><a href="functions.html#cb472-27"></a>}</span>
 <span id="cb472-28"><a href="functions.html#cb472-28"></a></span>
-<span id="cb472-29"><a href="functions.html#cb472-29"></a><span class="co">#  Returns:  1 + 2^2 + sqrt(4) = 7 </span></span>
+<span id="cb472-29"><a href="functions.html#cb472-29"></a><span class="co"># Returns: 1 + 2^2 + sqrt(4) = 7</span></span>
 <span id="cb472-30"><a href="functions.html#cb472-30"></a><span class="kw">fun1</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] 7</code></pre>
-<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="functions.html#cb474-1"></a><span class="co"># Returns:  1 + 2^2 + sqrt(4) = 7 </span></span>
-<span id="cb474-2"><a href="functions.html#cb474-2"></a><span class="co"># Define each input explicitly </span></span>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="functions.html#cb474-1"></a><span class="co"># Returns: 1 + 2^2 + sqrt(4) = 7 Define each input</span></span>
+<span id="cb474-2"><a href="functions.html#cb474-2"></a><span class="co"># explicitly</span></span>
 <span id="cb474-3"><a href="functions.html#cb474-3"></a><span class="kw">fun1</span>(<span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">a =</span> <span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] 7</code></pre>
 <p>When using the <code>...</code> argument it is customary to always place <code>...</code> at the end of a function argument list, as it can be difficult for R to determine which arguments are to be passed to the next function. If possible, it is good practice to explicitly define the arguments to avoid an error.</p>
 </div>
 <div id="generic-functions" class="section level2 hasAnchor">
-<h2><span class="header-section-number">7.6</span> Generic Functions<a href="functions.html#generic-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">7.7</span> Generic Functions<a href="functions.html#generic-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In R we have something called <em>generic functions</em> which are functions that behave differently depending on the class type of one of the arguments. Typically generic functions depend on the class of the first argument. The functions <code>mean()</code>, <code>summary()</code>, and <code>plot()</code> are all generic functions. These functions act as a “middle man” or a “dispatcher”. The generic function calls the actual function you desire. For example, when we call <code>summary()</code> and the first argument is a <code>lm</code> object, then the summary function that is actually run is <code>summary.lm()</code> which may have its own help file.</p>
 </div>
 <div id="additional-resources-3" class="section level2 unnumbered hasAnchor">

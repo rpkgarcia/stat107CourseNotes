@@ -155,6 +155,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="introduction-to-r.html#assignment-operators">Assignment Operators<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#naming-conventions"><i class="fa fa-check"></i><b>1.5</b> Naming Conventions<span></span></a></li>
+<li class="chapter" data-level="1.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#basic-calculations"><i class="fa fa-check"></i><b>1.6</b> Basic Calculations<span></span></a></li>
 <li><a href="introduction-to-r.html#additional-resources">Additional Resources<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="atomic-vectors.html"><a href="atomic-vectors.html"><i class="fa fa-check"></i><b>2</b> Atomic Vectors<span></span></a><ul>
@@ -267,9 +268,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1" data-path="functions.html"><a href="functions.html#build-your-own-function"><i class="fa fa-check"></i><b>7.1</b> Build Your Own Function<span></span></a></li>
 <li class="chapter" data-level="7.2" data-path="functions.html"><a href="functions.html#lexical-scoping"><i class="fa fa-check"></i><b>7.2</b> Lexical Scoping<span></span></a></li>
 <li class="chapter" data-level="7.3" data-path="functions.html"><a href="functions.html#built-in-functions"><i class="fa fa-check"></i><b>7.3</b> Built-In Functions<span></span></a></li>
-<li class="chapter" data-level="7.4" data-path="functions.html"><a href="functions.html#help-files"><i class="fa fa-check"></i><b>7.4</b> Help Files<span></span></a></li>
-<li class="chapter" data-level="7.5" data-path="functions.html"><a href="functions.html#the-argument"><i class="fa fa-check"></i><b>7.5</b> The … Argument<span></span></a></li>
-<li class="chapter" data-level="7.6" data-path="functions.html"><a href="functions.html#generic-functions"><i class="fa fa-check"></i><b>7.6</b> Generic Functions<span></span></a></li>
+<li class="chapter" data-level="7.4" data-path="functions.html"><a href="functions.html#vectorization"><i class="fa fa-check"></i><b>7.4</b> Vectorization<span></span></a></li>
+<li class="chapter" data-level="7.5" data-path="functions.html"><a href="functions.html#help-files"><i class="fa fa-check"></i><b>7.5</b> Help Files<span></span></a></li>
+<li class="chapter" data-level="7.6" data-path="functions.html"><a href="functions.html#the-argument"><i class="fa fa-check"></i><b>7.6</b> The … Argument<span></span></a></li>
+<li class="chapter" data-level="7.7" data-path="functions.html"><a href="functions.html#generic-functions"><i class="fa fa-check"></i><b>7.7</b> Generic Functions<span></span></a></li>
 <li><a href="functions.html#additional-resources-3">Additional Resources<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>8</b> Packages<span></span></a><ul>
@@ -444,10 +446,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Below we have an example. The code will only be executed if <code>x</code> is a positive number.</p>
 <div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="if-statements.html#cb487-1"></a>x =<span class="st"> </span><span class="dv">3</span></span>
 <span id="cb487-2"><a href="if-statements.html#cb487-2"></a></span>
-<span id="cb487-3"><a href="if-statements.html#cb487-3"></a><span class="cf">if</span>(x<span class="op">&gt;</span><span class="dv">0</span>){</span>
-<span id="cb487-4"><a href="if-statements.html#cb487-4"></a>  type =<span class="st"> &quot;positive&quot;</span></span>
+<span id="cb487-3"><a href="if-statements.html#cb487-3"></a><span class="cf">if</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) {</span>
+<span id="cb487-4"><a href="if-statements.html#cb487-4"></a>    type =<span class="st"> &quot;positive&quot;</span></span>
 <span id="cb487-5"><a href="if-statements.html#cb487-5"></a>}</span>
-<span id="cb487-6"><a href="if-statements.html#cb487-6"></a>type </span></code></pre></div>
+<span id="cb487-6"><a href="if-statements.html#cb487-6"></a>type</span></code></pre></div>
 <pre><code>## [1] &quot;positive&quot;</code></pre>
 <p>In the example above we have a relational operator which returns a logical value. This logical value was equal to <code>TRUE</code> so the code was executed.</p>
 </div>
@@ -456,10 +458,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We can pair an <code>if</code> statement with an <code>else</code> value. After the <code>else</code> object we can define another sequence of commands inside of <code>{}</code>. The <code>else</code> value is paired with the immediate previous <code>if</code> statement. If this <code>if</code> statement is <code>FALSE</code> then the <code>else</code> code will run. If the <code>if</code> statement is <code>TRUE</code> then the <code>else</code> code will not be executed.</p>
 <div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="if-statements.html#cb489-1"></a>x =<span class="st"> </span><span class="dv">-3</span></span>
 <span id="cb489-2"><a href="if-statements.html#cb489-2"></a></span>
-<span id="cb489-3"><a href="if-statements.html#cb489-3"></a><span class="cf">if</span>(<span class="kw">class</span>(x) <span class="op">==</span><span class="st"> &quot;numeric&quot;</span>){</span>
-<span id="cb489-4"><a href="if-statements.html#cb489-4"></a>  type =<span class="st"> &quot;number&quot;</span></span>
+<span id="cb489-3"><a href="if-statements.html#cb489-3"></a><span class="cf">if</span> (<span class="kw">class</span>(x) <span class="op">==</span><span class="st"> &quot;numeric&quot;</span>) {</span>
+<span id="cb489-4"><a href="if-statements.html#cb489-4"></a>    type =<span class="st"> &quot;number&quot;</span></span>
 <span id="cb489-5"><a href="if-statements.html#cb489-5"></a>} <span class="cf">else</span> {</span>
-<span id="cb489-6"><a href="if-statements.html#cb489-6"></a>  type =<span class="st"> &quot;not a number&quot;</span></span>
+<span id="cb489-6"><a href="if-statements.html#cb489-6"></a>    type =<span class="st"> &quot;not a number&quot;</span></span>
 <span id="cb489-7"><a href="if-statements.html#cb489-7"></a>}</span>
 <span id="cb489-8"><a href="if-statements.html#cb489-8"></a>type</span></code></pre></div>
 <pre><code>## [1] &quot;number&quot;</code></pre>
@@ -470,83 +472,83 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="if-statements.html#cb491-1"></a>x =<span class="st"> </span><span class="dv">-3</span></span>
 <span id="cb491-2"><a href="if-statements.html#cb491-2"></a></span>
 <span id="cb491-3"><a href="if-statements.html#cb491-3"></a></span>
-<span id="cb491-4"><a href="if-statements.html#cb491-4"></a><span class="cf">if</span>(x<span class="op">&gt;</span><span class="dv">0</span>){</span>
+<span id="cb491-4"><a href="if-statements.html#cb491-4"></a><span class="cf">if</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) {</span>
 <span id="cb491-5"><a href="if-statements.html#cb491-5"></a>    type =<span class="st"> &quot;positive&quot;</span></span>
-<span id="cb491-6"><a href="if-statements.html#cb491-6"></a>} <span class="cf">else</span> <span class="cf">if</span> (x <span class="op">&lt;</span><span class="dv">0</span>) {</span>
+<span id="cb491-6"><a href="if-statements.html#cb491-6"></a>} <span class="cf">else</span> <span class="cf">if</span> (x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>) {</span>
 <span id="cb491-7"><a href="if-statements.html#cb491-7"></a>    type =<span class="st"> &quot;negative&quot;</span></span>
-<span id="cb491-8"><a href="if-statements.html#cb491-8"></a>} <span class="cf">else</span> <span class="cf">if</span>(x <span class="op">==</span><span class="st"> </span><span class="dv">0</span>){</span>
+<span id="cb491-8"><a href="if-statements.html#cb491-8"></a>} <span class="cf">else</span> <span class="cf">if</span> (x <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {</span>
 <span id="cb491-9"><a href="if-statements.html#cb491-9"></a>    type =<span class="st"> &quot;zero&quot;</span></span>
 <span id="cb491-10"><a href="if-statements.html#cb491-10"></a>} <span class="cf">else</span> {</span>
 <span id="cb491-11"><a href="if-statements.html#cb491-11"></a>    type =<span class="st"> &quot;Error&quot;</span></span>
 <span id="cb491-12"><a href="if-statements.html#cb491-12"></a>}</span>
 <span id="cb491-13"><a href="if-statements.html#cb491-13"></a></span>
-<span id="cb491-14"><a href="if-statements.html#cb491-14"></a>type </span></code></pre></div>
+<span id="cb491-14"><a href="if-statements.html#cb491-14"></a>type</span></code></pre></div>
 <pre><code>## [1] &quot;negative&quot;</code></pre>
 <p>The command for the <code>if</code> statement will only run if <code>x&gt;0</code>, and the rest of the code will not be implemented.</p>
 <p>The first <code>else if</code> commands will only execute if the first <code>if</code> statement was <code>FALSE</code> and <code>x&lt;0</code>.</p>
 <p>The second <code>else if</code> commands will only execute if the previous <code>else if</code> and <code>if</code> statements were <code>FALSE</code> and <code>x==0</code>.</p>
 <p>If the previous <code>if</code> statement and all previous <code>else if</code> statements are <code>FALSE</code> then the <code>else</code> code will be executed.</p>
 <p>Here is another example with an <code>if else</code> chain.</p>
-<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="if-statements.html#cb493-1"></a>Toyfun &lt;-<span class="st"> </span><span class="cf">function</span>(X,Y,Do){</span>
-<span id="cb493-2"><a href="if-statements.html#cb493-2"></a>  <span class="cf">if</span>(Do <span class="op">==</span><span class="st"> &quot;Add&quot;</span>){</span>
-<span id="cb493-3"><a href="if-statements.html#cb493-3"></a>    Z =<span class="st"> </span>X<span class="op">+</span>Y</span>
+<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="if-statements.html#cb493-1"></a>Toyfun &lt;-<span class="st"> </span><span class="cf">function</span>(X, Y, Do) {</span>
+<span id="cb493-2"><a href="if-statements.html#cb493-2"></a>    <span class="cf">if</span> (Do <span class="op">==</span><span class="st"> &quot;Add&quot;</span>) {</span>
+<span id="cb493-3"><a href="if-statements.html#cb493-3"></a>        Z =<span class="st"> </span>X <span class="op">+</span><span class="st"> </span>Y</span>
 <span id="cb493-4"><a href="if-statements.html#cb493-4"></a></span>
-<span id="cb493-5"><a href="if-statements.html#cb493-5"></a>  }<span class="cf">else</span> <span class="cf">if</span>(Do <span class="op">==</span><span class="st">&quot;Subtract&quot;</span>){</span>
-<span id="cb493-6"><a href="if-statements.html#cb493-6"></a>    Z =<span class="st"> </span>X<span class="op">-</span>Y</span>
+<span id="cb493-5"><a href="if-statements.html#cb493-5"></a>    } <span class="cf">else</span> <span class="cf">if</span> (Do <span class="op">==</span><span class="st"> &quot;Subtract&quot;</span>) {</span>
+<span id="cb493-6"><a href="if-statements.html#cb493-6"></a>        Z =<span class="st"> </span>X <span class="op">-</span><span class="st"> </span>Y</span>
 <span id="cb493-7"><a href="if-statements.html#cb493-7"></a></span>
-<span id="cb493-8"><a href="if-statements.html#cb493-8"></a>  }<span class="cf">else</span> <span class="cf">if</span>(Do <span class="op">==</span><span class="st">&quot;Multiply&quot;</span>){</span>
-<span id="cb493-9"><a href="if-statements.html#cb493-9"></a>    Z =<span class="st"> </span>X<span class="op">*</span>Y</span>
+<span id="cb493-8"><a href="if-statements.html#cb493-8"></a>    } <span class="cf">else</span> <span class="cf">if</span> (Do <span class="op">==</span><span class="st"> &quot;Multiply&quot;</span>) {</span>
+<span id="cb493-9"><a href="if-statements.html#cb493-9"></a>        Z =<span class="st"> </span>X <span class="op">*</span><span class="st"> </span>Y</span>
 <span id="cb493-10"><a href="if-statements.html#cb493-10"></a></span>
-<span id="cb493-11"><a href="if-statements.html#cb493-11"></a>    </span>
-<span id="cb493-12"><a href="if-statements.html#cb493-12"></a>  }<span class="cf">else</span> <span class="cf">if</span>(Do <span class="op">==</span><span class="st">&quot;Penguin&quot;</span>){</span>
-<span id="cb493-13"><a href="if-statements.html#cb493-13"></a>    Z =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;&lt;(&#39;&#39; )&quot;</span>)</span>
-<span id="cb493-14"><a href="if-statements.html#cb493-14"></a>    </span>
-<span id="cb493-15"><a href="if-statements.html#cb493-15"></a>  } <span class="cf">else</span>{</span>
-<span id="cb493-16"><a href="if-statements.html#cb493-16"></a>    Z =<span class="st"> </span><span class="kw">c</span>(X,Y)</span>
-<span id="cb493-17"><a href="if-statements.html#cb493-17"></a>  }</span>
-<span id="cb493-18"><a href="if-statements.html#cb493-18"></a>  </span>
-<span id="cb493-19"><a href="if-statements.html#cb493-19"></a>  <span class="kw">return</span>(Z)</span>
-<span id="cb493-20"><a href="if-statements.html#cb493-20"></a>}</span>
-<span id="cb493-21"><a href="if-statements.html#cb493-21"></a><span class="kw">Toyfun</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="st">&quot;Add&quot;</span>)</span></code></pre></div>
+<span id="cb493-11"><a href="if-statements.html#cb493-11"></a>    } <span class="cf">else</span> <span class="cf">if</span> (Do <span class="op">==</span><span class="st"> &quot;Penguin&quot;</span>) {</span>
+<span id="cb493-12"><a href="if-statements.html#cb493-12"></a>        Z =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;&lt;(&#39;&#39; )&quot;</span>)</span>
+<span id="cb493-13"><a href="if-statements.html#cb493-13"></a></span>
+<span id="cb493-14"><a href="if-statements.html#cb493-14"></a>    } <span class="cf">else</span> {</span>
+<span id="cb493-15"><a href="if-statements.html#cb493-15"></a>        Z =<span class="st"> </span><span class="kw">c</span>(X, Y)</span>
+<span id="cb493-16"><a href="if-statements.html#cb493-16"></a>    }</span>
+<span id="cb493-17"><a href="if-statements.html#cb493-17"></a></span>
+<span id="cb493-18"><a href="if-statements.html#cb493-18"></a>    <span class="kw">return</span>(Z)</span>
+<span id="cb493-19"><a href="if-statements.html#cb493-19"></a>}</span>
+<span id="cb493-20"><a href="if-statements.html#cb493-20"></a><span class="kw">Toyfun</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="st">&quot;Add&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
-<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="if-statements.html#cb495-1"></a><span class="kw">Toyfun</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="st">&quot;Subtract&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="if-statements.html#cb495-1"></a><span class="kw">Toyfun</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="st">&quot;Subtract&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] -2</code></pre>
-<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="if-statements.html#cb497-1"></a><span class="kw">Toyfun</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="st">&quot;Penguin&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="if-statements.html#cb497-1"></a><span class="kw">Toyfun</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="st">&quot;Penguin&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;&lt;(&#39;&#39; )&quot;</code></pre>
-<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="if-statements.html#cb499-1"></a><span class="kw">Toyfun</span>(<span class="dv">2</span>,<span class="dv">4</span>, <span class="st">&quot;Typo&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="if-statements.html#cb499-1"></a><span class="kw">Toyfun</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="st">&quot;Typo&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] 2 4</code></pre>
 </div>
 <div id="ifelse" class="section level2 hasAnchor">
 <h2><span class="header-section-number">9.4</span> Ifelse<a href="if-statements.html#ifelse" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We have a shortcut function that can help us keep our code more succinct using the <code>ifelse()</code> function. The first argument of this function is a logical value. the second and third arguments are what to do if the value is <code>TRUE</code> or <code>FALSE</code>, respectively.</p>
 <div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb501-1"><a href="if-statements.html#cb501-1"></a>x &lt;-<span class="st"> </span><span class="dv">3</span></span>
-<span id="cb501-2"><a href="if-statements.html#cb501-2"></a>type &lt;-<span class="st"> </span><span class="kw">ifelse</span>(x<span class="op">&gt;</span><span class="dv">0</span>,  <span class="st">&quot;positive&quot;</span>, <span class="st">&quot;nonpositive&quot;</span>)</span>
-<span id="cb501-3"><a href="if-statements.html#cb501-3"></a>type </span></code></pre></div>
+<span id="cb501-2"><a href="if-statements.html#cb501-2"></a>type &lt;-<span class="st"> </span><span class="kw">ifelse</span>(x <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, <span class="st">&quot;positive&quot;</span>, <span class="st">&quot;nonpositive&quot;</span>)</span>
+<span id="cb501-3"><a href="if-statements.html#cb501-3"></a>type</span></code></pre></div>
 <pre><code>## [1] &quot;positive&quot;</code></pre>
 <p>We can also pass <code>ifelse()</code> a vector, and it will check the logical condition for each element of the vector. For example, in the <code>mtcars</code> data set, we can find the proportion of cars have <code>mpg &gt; 25</code> and <code>hp &gt; 60</code></p>
-<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="if-statements.html#cb503-1"></a>fast_efficient &lt;-<span class="st"> </span><span class="kw">ifelse</span>(mtcars<span class="op">$</span>mpg <span class="op">&gt;</span><span class="st"> </span><span class="dv">25</span> <span class="op">&amp;</span><span class="st"> </span>mtcars<span class="op">$</span>hp<span class="op">&gt;</span><span class="dv">60</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>)</span>
-<span id="cb503-2"><a href="if-statements.html#cb503-2"></a><span class="kw">sum</span>(fast_efficient)<span class="op">/</span><span class="kw">length</span>(fast_efficient)</span></code></pre></div>
+<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="if-statements.html#cb503-1"></a>fast_efficient &lt;-<span class="st"> </span><span class="kw">ifelse</span>(mtcars<span class="op">$</span>mpg <span class="op">&gt;</span><span class="st"> </span><span class="dv">25</span> <span class="op">&amp;</span><span class="st"> </span>mtcars<span class="op">$</span>hp <span class="op">&gt;</span><span class="st"> </span><span class="dv">60</span>, <span class="ot">TRUE</span>,</span>
+<span id="cb503-2"><a href="if-statements.html#cb503-2"></a>    <span class="ot">FALSE</span>)</span>
+<span id="cb503-3"><a href="if-statements.html#cb503-3"></a><span class="kw">sum</span>(fast_efficient)<span class="op">/</span><span class="kw">length</span>(fast_efficient)</span></code></pre></div>
 <pre><code>## [1] 0.15625</code></pre>
 </div>
 <div id="nested-if-chains" class="section level2 hasAnchor">
 <h2><span class="header-section-number">9.5</span> Nested If Chains<a href="if-statements.html#nested-if-chains" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We can make <code>if-else</code> chains nested within each other.</p>
 <div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="if-statements.html#cb505-1"></a>x &lt;-<span class="st"> </span><span class="dv">105</span></span>
-<span id="cb505-2"><a href="if-statements.html#cb505-2"></a><span class="cf">if</span>(x<span class="op">&gt;</span><span class="dv">0</span>){</span>
-<span id="cb505-3"><a href="if-statements.html#cb505-3"></a>  <span class="cf">if</span>(x<span class="op">&gt;</span><span class="dv">100</span>){</span>
-<span id="cb505-4"><a href="if-statements.html#cb505-4"></a>     type =<span class="st"> &quot;large positive number&quot;</span></span>
-<span id="cb505-5"><a href="if-statements.html#cb505-5"></a>  } <span class="cf">else</span> {</span>
-<span id="cb505-6"><a href="if-statements.html#cb505-6"></a>     type =<span class="st"> &quot;positive number&quot;</span></span>
-<span id="cb505-7"><a href="if-statements.html#cb505-7"></a>  }</span>
-<span id="cb505-8"><a href="if-statements.html#cb505-8"></a>} <span class="cf">else</span> <span class="cf">if</span>(x<span class="op">&lt;</span><span class="dv">0</span>) {</span>
-<span id="cb505-9"><a href="if-statements.html#cb505-9"></a>  type =<span class="st"> &quot;negative number&quot;</span></span>
-<span id="cb505-10"><a href="if-statements.html#cb505-10"></a>} <span class="cf">else</span> <span class="cf">if</span>(x<span class="op">==</span><span class="dv">0</span>){</span>
-<span id="cb505-11"><a href="if-statements.html#cb505-11"></a>  type =<span class="st"> &quot;zero&quot;</span></span>
-<span id="cb505-12"><a href="if-statements.html#cb505-12"></a>}<span class="cf">else</span> {</span>
-<span id="cb505-13"><a href="if-statements.html#cb505-13"></a>  type =<span class="st"> &quot;Error&quot;</span></span>
+<span id="cb505-2"><a href="if-statements.html#cb505-2"></a><span class="cf">if</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) {</span>
+<span id="cb505-3"><a href="if-statements.html#cb505-3"></a>    <span class="cf">if</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="dv">100</span>) {</span>
+<span id="cb505-4"><a href="if-statements.html#cb505-4"></a>        type =<span class="st"> &quot;large positive number&quot;</span></span>
+<span id="cb505-5"><a href="if-statements.html#cb505-5"></a>    } <span class="cf">else</span> {</span>
+<span id="cb505-6"><a href="if-statements.html#cb505-6"></a>        type =<span class="st"> &quot;positive number&quot;</span></span>
+<span id="cb505-7"><a href="if-statements.html#cb505-7"></a>    }</span>
+<span id="cb505-8"><a href="if-statements.html#cb505-8"></a>} <span class="cf">else</span> <span class="cf">if</span> (x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>) {</span>
+<span id="cb505-9"><a href="if-statements.html#cb505-9"></a>    type =<span class="st"> &quot;negative number&quot;</span></span>
+<span id="cb505-10"><a href="if-statements.html#cb505-10"></a>} <span class="cf">else</span> <span class="cf">if</span> (x <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {</span>
+<span id="cb505-11"><a href="if-statements.html#cb505-11"></a>    type =<span class="st"> &quot;zero&quot;</span></span>
+<span id="cb505-12"><a href="if-statements.html#cb505-12"></a>} <span class="cf">else</span> {</span>
+<span id="cb505-13"><a href="if-statements.html#cb505-13"></a>    type =<span class="st"> &quot;Error&quot;</span></span>
 <span id="cb505-14"><a href="if-statements.html#cb505-14"></a>}</span>
 <span id="cb505-15"><a href="if-statements.html#cb505-15"></a></span>
-<span id="cb505-16"><a href="if-statements.html#cb505-16"></a>type </span></code></pre></div>
+<span id="cb505-16"><a href="if-statements.html#cb505-16"></a>type</span></code></pre></div>
 <pre><code>## [1] &quot;large positive number&quot;</code></pre>
 </div>
 <div id="additional-resources-4" class="section level2 unnumbered hasAnchor">

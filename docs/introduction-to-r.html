@@ -155,6 +155,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="introduction-to-r.html#assignment-operators">Assignment Operators<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#naming-conventions"><i class="fa fa-check"></i><b>1.5</b> Naming Conventions<span></span></a></li>
+<li class="chapter" data-level="1.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#basic-calculations"><i class="fa fa-check"></i><b>1.6</b> Basic Calculations<span></span></a></li>
 <li><a href="introduction-to-r.html#additional-resources">Additional Resources<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="atomic-vectors.html"><a href="atomic-vectors.html"><i class="fa fa-check"></i><b>2</b> Atomic Vectors<span></span></a><ul>
@@ -267,9 +268,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1" data-path="functions.html"><a href="functions.html#build-your-own-function"><i class="fa fa-check"></i><b>7.1</b> Build Your Own Function<span></span></a></li>
 <li class="chapter" data-level="7.2" data-path="functions.html"><a href="functions.html#lexical-scoping"><i class="fa fa-check"></i><b>7.2</b> Lexical Scoping<span></span></a></li>
 <li class="chapter" data-level="7.3" data-path="functions.html"><a href="functions.html#built-in-functions"><i class="fa fa-check"></i><b>7.3</b> Built-In Functions<span></span></a></li>
-<li class="chapter" data-level="7.4" data-path="functions.html"><a href="functions.html#help-files"><i class="fa fa-check"></i><b>7.4</b> Help Files<span></span></a></li>
-<li class="chapter" data-level="7.5" data-path="functions.html"><a href="functions.html#the-argument"><i class="fa fa-check"></i><b>7.5</b> The … Argument<span></span></a></li>
-<li class="chapter" data-level="7.6" data-path="functions.html"><a href="functions.html#generic-functions"><i class="fa fa-check"></i><b>7.6</b> Generic Functions<span></span></a></li>
+<li class="chapter" data-level="7.4" data-path="functions.html"><a href="functions.html#vectorization"><i class="fa fa-check"></i><b>7.4</b> Vectorization<span></span></a></li>
+<li class="chapter" data-level="7.5" data-path="functions.html"><a href="functions.html#help-files"><i class="fa fa-check"></i><b>7.5</b> Help Files<span></span></a></li>
+<li class="chapter" data-level="7.6" data-path="functions.html"><a href="functions.html#the-argument"><i class="fa fa-check"></i><b>7.6</b> The … Argument<span></span></a></li>
+<li class="chapter" data-level="7.7" data-path="functions.html"><a href="functions.html#generic-functions"><i class="fa fa-check"></i><b>7.7</b> Generic Functions<span></span></a></li>
 <li><a href="functions.html#additional-resources-3">Additional Resources<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>8</b> Packages<span></span></a><ul>
@@ -466,7 +468,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="bottom-left-pane" class="section level3 unnumbered hasAnchor">
 <h3>Bottom Left Pane<a href="introduction-to-r.html#bottom-left-pane" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s begin with the Console. This is where you type R commands for immediate execution. Click in the Command Console, “&gt;” symbol is the system prompt. You should see a blinking cursor that tells you the console is the current focus of keyboard input. Type:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="introduction-to-r.html#cb1-1"></a><span class="dv">1</span><span class="op">+</span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="introduction-to-r.html#cb1-1"></a><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
 <p>The result tells you that the line begins with the first (and only) element of the result which is the number 3. You can also execute R’s built-in functions (or functions you add). Type the following command.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="introduction-to-r.html#cb3-1"></a><span class="kw">exp</span>(pi)</span></code></pre></div>
@@ -547,10 +549,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="comments" class="section level2 hasAnchor">
 <h2><span class="header-section-number">1.3</span> Comments<a href="introduction-to-r.html#comments" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Often times we will want to add a comment to our script document so we can remember special aspects later, and make the code easier to read and modify in the future. To add a comment start the comment with a <code>#</code> symbol. This will make the remaining characters in a line a comment and R will not try to compile these lines. Go to the script document and type the following. Highlight what you have typed and press “Run”.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="introduction-to-r.html#cb11-1"></a><span class="co"># This is a comment </span></span>
-<span id="cb11-2"><a href="introduction-to-r.html#cb11-2"></a><span class="dv">2</span><span class="op">+</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="introduction-to-r.html#cb11-1"></a><span class="co"># This is a comment</span></span>
+<span id="cb11-2"><a href="introduction-to-r.html#cb11-2"></a><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="introduction-to-r.html#cb13-1"></a><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span> <span class="co"># Comments can also start in the middle of a line. </span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="introduction-to-r.html#cb13-1"></a><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span>  <span class="co"># Comments can also start in the middle of a line. </span></span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
 </div>
 <div id="operators" class="section level2 hasAnchor">
@@ -559,41 +561,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="arithmetic-operators" class="section level3 unnumbered hasAnchor">
 <h3>Arithmetic Operators<a href="introduction-to-r.html#arithmetic-operators" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>R was designed for statistical applications and as a necessity it needs to preform mathematical operations efficiently and effectively. The first operators we discuss are a few of the basic arithmetic operations. These are operations similar to that of a calculator.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="introduction-to-r.html#cb15-1"></a><span class="co"># Addition </span></span>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="introduction-to-r.html#cb15-1"></a><span class="co"># Addition</span></span>
 <span id="cb15-2"><a href="introduction-to-r.html#cb15-2"></a><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span></span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="introduction-to-r.html#cb17-1"></a><span class="co"># Subtraction </span></span>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="introduction-to-r.html#cb17-1"></a><span class="co"># Subtraction</span></span>
 <span id="cb17-2"><a href="introduction-to-r.html#cb17-2"></a><span class="dv">2</span> <span class="op">-</span><span class="st"> </span><span class="dv">3</span></span></code></pre></div>
 <pre><code>## [1] -1</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="introduction-to-r.html#cb19-1"></a><span class="co"># Multiplication </span></span>
-<span id="cb19-2"><a href="introduction-to-r.html#cb19-2"></a><span class="dv">2</span><span class="op">*</span><span class="dv">3</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="introduction-to-r.html#cb19-1"></a><span class="co"># Multiplication</span></span>
+<span id="cb19-2"><a href="introduction-to-r.html#cb19-2"></a><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">3</span></span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="introduction-to-r.html#cb21-1"></a><span class="co"># Division </span></span>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="introduction-to-r.html#cb21-1"></a><span class="co"># Division</span></span>
 <span id="cb21-2"><a href="introduction-to-r.html#cb21-2"></a><span class="dv">2</span><span class="op">/</span><span class="dv">3</span></span></code></pre></div>
 <pre><code>## [1] 0.6666667</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="introduction-to-r.html#cb23-1"></a><span class="co"># Exponent </span></span>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="introduction-to-r.html#cb23-1"></a><span class="co"># Exponent</span></span>
 <span id="cb23-2"><a href="introduction-to-r.html#cb23-2"></a><span class="dv">2</span><span class="op">^</span><span class="dv">3</span></span></code></pre></div>
 <pre><code>## [1] 8</code></pre>
 </div>
 <div id="relational-operators" class="section level3 unnumbered hasAnchor">
 <h3>Relational Operators<a href="introduction-to-r.html#relational-operators" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Relational operators are used to compare two values. When using a relational operation R will return either <code>TRUE</code> or <code>FALSE</code>.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="introduction-to-r.html#cb25-1"></a><span class="co"># Less than </span></span>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="introduction-to-r.html#cb25-1"></a><span class="co"># Less than</span></span>
 <span id="cb25-2"><a href="introduction-to-r.html#cb25-2"></a><span class="dv">2</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="introduction-to-r.html#cb27-1"></a><span class="co"># Greater than </span></span>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="introduction-to-r.html#cb27-1"></a><span class="co"># Greater than</span></span>
 <span id="cb27-2"><a href="introduction-to-r.html#cb27-2"></a><span class="dv">2</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span></span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="introduction-to-r.html#cb29-1"></a><span class="co"># Less than or equal to </span></span>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="introduction-to-r.html#cb29-1"></a><span class="co"># Less than or equal to</span></span>
 <span id="cb29-2"><a href="introduction-to-r.html#cb29-2"></a><span class="dv">2</span> <span class="op">&lt;=</span><span class="st"> </span><span class="dv">3</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="introduction-to-r.html#cb31-1"></a><span class="co"># Greater than or equal to </span></span>
-<span id="cb31-2"><a href="introduction-to-r.html#cb31-2"></a><span class="dv">2</span><span class="op">&gt;=</span><span class="st"> </span><span class="dv">3</span></span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="introduction-to-r.html#cb31-1"></a><span class="co"># Greater than or equal to</span></span>
+<span id="cb31-2"><a href="introduction-to-r.html#cb31-2"></a><span class="dv">2</span> <span class="op">&gt;=</span><span class="st"> </span><span class="dv">3</span></span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="introduction-to-r.html#cb33-1"></a><span class="co"># Not equal to </span></span>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="introduction-to-r.html#cb33-1"></a><span class="co"># Not equal to</span></span>
 <span id="cb33-2"><a href="introduction-to-r.html#cb33-2"></a><span class="dv">2</span> <span class="op">!=</span><span class="st"> </span><span class="dv">3</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="introduction-to-r.html#cb35-1"></a><span class="co"># Equal to </span></span>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="introduction-to-r.html#cb35-1"></a><span class="co"># Equal to</span></span>
 <span id="cb35-2"><a href="introduction-to-r.html#cb35-2"></a><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">3</span></span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <p>We can use all the same operators above if our object contains more than one element. This will preform the above comparisons element by element.</p>
@@ -612,29 +614,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="logical-operators" class="section level3 unnumbered hasAnchor">
 <h3>Logical operators<a href="introduction-to-r.html#logical-operators" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Logical operators are similar to relational operators. They are used to check “AND” and “OR” events. We have the <code>&amp;</code> symbol which returns <code>TRUE</code> only if BOTH conditions are true. We also have the <code>|</code> symbol which returns <code>TRUE</code> if EITHER condition is true.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="introduction-to-r.html#cb44-1"></a><span class="co"># Check if both operations are true. </span></span>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="introduction-to-r.html#cb44-1"></a><span class="co"># Check if both operations are true.</span></span>
 <span id="cb44-2"><a href="introduction-to-r.html#cb44-2"></a>(<span class="dv">2</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span>) <span class="op">&amp;</span><span class="st"> </span>(<span class="dv">5</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="introduction-to-r.html#cb46-1"></a><span class="co"># Check if either operation is true. </span></span>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="introduction-to-r.html#cb46-1"></a><span class="co"># Check if either operation is true.</span></span>
 <span id="cb46-2"><a href="introduction-to-r.html#cb46-2"></a>(<span class="dv">2</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span>) <span class="op">|</span><span class="st"> </span>(<span class="dv">5</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>We can also negate a <code>TRUE</code> or <code>FALSE</code> value using the <code>!</code> symbol.</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="introduction-to-r.html#cb48-1"></a><span class="co"># Negate an operation </span></span>
-<span id="cb48-2"><a href="introduction-to-r.html#cb48-2"></a><span class="op">!</span>(<span class="dv">2</span><span class="op">&lt;</span><span class="dv">3</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="introduction-to-r.html#cb48-1"></a><span class="co"># Negate an operation</span></span>
+<span id="cb48-2"><a href="introduction-to-r.html#cb48-2"></a><span class="op">!</span>(<span class="dv">2</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <p>Like relational operators from before, if we have more than one element the logical operations will be implemented element-by-element.</p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="introduction-to-r.html#cb50-1"></a><span class="co"># AND event, compared element-by-element</span></span>
-<span id="cb50-2"><a href="introduction-to-r.html#cb50-2"></a>(v <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span>) <span class="op">&amp;</span><span class="st"> </span>(<span class="dv">4</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span>) </span></code></pre></div>
+<span id="cb50-2"><a href="introduction-to-r.html#cb50-2"></a>(v <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span>) <span class="op">&amp;</span><span class="st"> </span>(<span class="dv">4</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## [1]  TRUE FALSE FALSE</code></pre>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="introduction-to-r.html#cb52-1"></a><span class="co"># OR event, compared elmeent-by-elment</span></span>
-<span id="cb52-2"><a href="introduction-to-r.html#cb52-2"></a>(v <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span>) <span class="op">|</span><span class="st"> </span>(<span class="dv">4</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span>) </span></code></pre></div>
+<span id="cb52-2"><a href="introduction-to-r.html#cb52-2"></a>(v <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span>) <span class="op">|</span><span class="st"> </span>(<span class="dv">4</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## [1] TRUE TRUE TRUE</code></pre>
 <p>We also have the symbols <code>&amp;&amp;</code> and <code>||</code> which will ensure that only the first element in an object will be compared.</p>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="introduction-to-r.html#cb54-1"></a><span class="co"># AND event, only check the first element</span></span>
-<span id="cb54-2"><a href="introduction-to-r.html#cb54-2"></a>(v <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span>) <span class="op">&amp;&amp;</span><span class="st"> </span>(<span class="dv">4</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span>) </span></code></pre></div>
+<span id="cb54-2"><a href="introduction-to-r.html#cb54-2"></a>(v <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span>) <span class="op">&amp;&amp;</span><span class="st"> </span>(<span class="dv">4</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="introduction-to-r.html#cb56-1"></a><span class="co"># OR event, only check the first element</span></span>
-<span id="cb56-2"><a href="introduction-to-r.html#cb56-2"></a>(v <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span>) <span class="op">||</span><span class="st"> </span>(<span class="dv">4</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span>) </span></code></pre></div>
+<span id="cb56-2"><a href="introduction-to-r.html#cb56-2"></a>(v <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span>) <span class="op">||</span><span class="st"> </span>(<span class="dv">4</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 </div>
 <div id="assignment-operators" class="section level3 unnumbered hasAnchor">
@@ -655,6 +657,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="naming-conventions" class="section level2 hasAnchor">
 <h2><span class="header-section-number">1.5</span> Naming Conventions<a href="introduction-to-r.html#naming-conventions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>R has rules when it comes to naming objects. An object may start with a letter or a <code>.</code>, and the remaining characters may consist of letters, digits, <code>.</code> or <code>_</code>. There are also special types of objects that have already established names in R. For example, <code>NULL</code>, <code>TRUE</code>, <code>FALSE</code>, <code>if</code>, and <code>function</code> should not be used as a new object name. To see a list of these reserved object names type <code>?Reserved</code> in to your console.</p>
+</div>
+<div id="basic-calculations" class="section level2 hasAnchor">
+<h2><span class="header-section-number">1.6</span> Basic Calculations<a href="introduction-to-r.html#basic-calculations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 </div>
 <div id="additional-resources" class="section level2 unnumbered hasAnchor">
 <h2>Additional Resources<a href="introduction-to-r.html#additional-resources" class="anchor-section" aria-label="Anchor link to header"></a></h2>

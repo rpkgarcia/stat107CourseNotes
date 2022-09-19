@@ -4,6 +4,7 @@ the-rstudio-interface
 comments
 operators
 naming-conventions
+basic-calculations
 atomic-vectors
 examples
 basic-features
@@ -68,6 +69,7 @@ functions
 build-your-own-function
 lexical-scoping
 built-in-functions
+vectorization
 help-files
 the-argument
 generic-functions

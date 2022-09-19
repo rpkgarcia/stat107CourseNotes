@@ -155,6 +155,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="introduction-to-r.html#assignment-operators">Assignment Operators<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#naming-conventions"><i class="fa fa-check"></i><b>1.5</b> Naming Conventions<span></span></a></li>
+<li class="chapter" data-level="1.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#basic-calculations"><i class="fa fa-check"></i><b>1.6</b> Basic Calculations<span></span></a></li>
 <li><a href="introduction-to-r.html#additional-resources">Additional Resources<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="atomic-vectors.html"><a href="atomic-vectors.html"><i class="fa fa-check"></i><b>2</b> Atomic Vectors<span></span></a><ul>
@@ -267,9 +268,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1" data-path="functions.html"><a href="functions.html#build-your-own-function"><i class="fa fa-check"></i><b>7.1</b> Build Your Own Function<span></span></a></li>
 <li class="chapter" data-level="7.2" data-path="functions.html"><a href="functions.html#lexical-scoping"><i class="fa fa-check"></i><b>7.2</b> Lexical Scoping<span></span></a></li>
 <li class="chapter" data-level="7.3" data-path="functions.html"><a href="functions.html#built-in-functions"><i class="fa fa-check"></i><b>7.3</b> Built-In Functions<span></span></a></li>
-<li class="chapter" data-level="7.4" data-path="functions.html"><a href="functions.html#help-files"><i class="fa fa-check"></i><b>7.4</b> Help Files<span></span></a></li>
-<li class="chapter" data-level="7.5" data-path="functions.html"><a href="functions.html#the-argument"><i class="fa fa-check"></i><b>7.5</b> The … Argument<span></span></a></li>
-<li class="chapter" data-level="7.6" data-path="functions.html"><a href="functions.html#generic-functions"><i class="fa fa-check"></i><b>7.6</b> Generic Functions<span></span></a></li>
+<li class="chapter" data-level="7.4" data-path="functions.html"><a href="functions.html#vectorization"><i class="fa fa-check"></i><b>7.4</b> Vectorization<span></span></a></li>
+<li class="chapter" data-level="7.5" data-path="functions.html"><a href="functions.html#help-files"><i class="fa fa-check"></i><b>7.5</b> Help Files<span></span></a></li>
+<li class="chapter" data-level="7.6" data-path="functions.html"><a href="functions.html#the-argument"><i class="fa fa-check"></i><b>7.6</b> The … Argument<span></span></a></li>
+<li class="chapter" data-level="7.7" data-path="functions.html"><a href="functions.html#generic-functions"><i class="fa fa-check"></i><b>7.7</b> Generic Functions<span></span></a></li>
 <li><a href="functions.html#additional-resources-3">Additional Resources<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>8</b> Packages<span></span></a><ul>
@@ -455,7 +457,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="atomic-vectors.html#cb65-1"></a>b &lt;-<span class="st"> </span><span class="dv">5</span></span>
 <span id="cb65-2"><a href="atomic-vectors.html#cb65-2"></a><span class="kw">typeof</span>(b)</span></code></pre></div>
 <pre><code>## [1] &quot;double&quot;</code></pre>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="atomic-vectors.html#cb67-1"></a>c &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">12.05</span>, <span class="fl">123e-4</span>)</span>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="atomic-vectors.html#cb67-1"></a>c &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">12.05</span>, <span class="fl">0.0123</span>)</span>
 <span id="cb67-2"><a href="atomic-vectors.html#cb67-2"></a><span class="kw">typeof</span>(c)</span></code></pre></div>
 <pre><code>## [1] &quot;double&quot;</code></pre>
 </div>
@@ -465,7 +467,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="atomic-vectors.html#cb69-1"></a>a &lt;-<span class="st"> </span>5L</span>
 <span id="cb69-2"><a href="atomic-vectors.html#cb69-2"></a><span class="kw">typeof</span>(a)</span></code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="atomic-vectors.html#cb71-1"></a>b &lt;-<span class="kw">c</span>(1L, 2L, 3L)</span>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="atomic-vectors.html#cb71-1"></a>b &lt;-<span class="st"> </span><span class="kw">c</span>(1L, 2L, 3L)</span>
 <span id="cb71-2"><a href="atomic-vectors.html#cb71-2"></a><span class="kw">typeof</span>(b)</span></code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
 <p>Notice that when we define <code>b&lt;-5</code> and <code>b &lt;- 5L</code> and type <code>b</code> into our console it appears the same. That is, to the user the two definitions look the same. However, in R integers and doubles are stored in the computer differently and have different features. For the most part, the difference between integers and doubles is negligable; however, sometimes it can produce strange errors.</p>
@@ -473,10 +475,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="logical" class="section level3 unnumbered hasAnchor">
 <h3>Logical<a href="atomic-vectors.html#logical" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Logical values are either <code>TRUE</code> or <code>FALSE</code> and are created by using logical or relational operators. In other words, they are created by using statements that compare variables. There are several ways to do logical statements as we saw in Section <a href="introduction-to-r.html#operators">1.4</a>.</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="atomic-vectors.html#cb73-1"></a>n &lt;-<span class="st"> </span>(<span class="dv">10</span><span class="op">&lt;</span><span class="dv">11</span>)</span>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="atomic-vectors.html#cb73-1"></a>n &lt;-<span class="st"> </span>(<span class="dv">10</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">11</span>)</span>
 <span id="cb73-2"><a href="atomic-vectors.html#cb73-2"></a><span class="kw">typeof</span>(n)</span></code></pre></div>
 <pre><code>## [1] &quot;logical&quot;</code></pre>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="atomic-vectors.html#cb75-1"></a>m &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span><span class="op">&lt;</span><span class="dv">11</span>, <span class="dv">4</span><span class="op">&gt;</span><span class="dv">5</span>, <span class="dv">3</span><span class="op">!=</span><span class="dv">1</span>)</span>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="atomic-vectors.html#cb75-1"></a>m &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">11</span>, <span class="dv">4</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>, <span class="dv">3</span> <span class="op">!=</span><span class="st"> </span><span class="dv">1</span>)</span>
 <span id="cb75-2"><a href="atomic-vectors.html#cb75-2"></a><span class="kw">typeof</span>(m)</span></code></pre></div>
 <pre><code>## [1] &quot;logical&quot;</code></pre>
 <p>We can also assign a value as <code>TRUE</code> or <code>FALSE</code> manually by setting it equal to <code>TRUE</code> or <code>FALSE</code>, or by using <code>T</code> or <code>F</code>.</p>
@@ -484,7 +486,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb77-2"><a href="atomic-vectors.html#cb77-2"></a><span class="kw">typeof</span>(c)</span></code></pre></div>
 <pre><code>## [1] &quot;logical&quot;</code></pre>
 <div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="atomic-vectors.html#cb79-1"></a><span class="co"># Can mix up TRUE/FALSE and T/F</span></span>
-<span id="cb79-2"><a href="atomic-vectors.html#cb79-2"></a>d &lt;-<span class="kw">c</span>(T, F, <span class="ot">TRUE</span>)</span>
+<span id="cb79-2"><a href="atomic-vectors.html#cb79-2"></a>d &lt;-<span class="st"> </span><span class="kw">c</span>(T, F, <span class="ot">TRUE</span>)</span>
 <span id="cb79-3"><a href="atomic-vectors.html#cb79-3"></a><span class="kw">typeof</span>(d)</span></code></pre></div>
 <pre><code>## [1] &quot;logical&quot;</code></pre>
 </div>
@@ -496,7 +498,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb81-3"><a href="atomic-vectors.html#cb81-3"></a><span class="kw">typeof</span>(first)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="atomic-vectors.html#cb83-1"></a><span class="co"># Single quotes</span></span>
-<span id="cb83-2"><a href="atomic-vectors.html#cb83-2"></a>last &lt;-<span class="st"> &#39;Washington&#39;</span></span>
+<span id="cb83-2"><a href="atomic-vectors.html#cb83-2"></a>last &lt;-<span class="st"> &quot;Washington&quot;</span></span>
 <span id="cb83-3"><a href="atomic-vectors.html#cb83-3"></a><span class="kw">typeof</span>(last)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="atomic-vectors.html#cb85-1"></a>full &lt;-<span class="st"> </span><span class="kw">c</span>(first, last)</span>
@@ -515,7 +517,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [1] &quot;double&quot;</code></pre>
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="atomic-vectors.html#cb89-1"></a><span class="kw">length</span>(v1)</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="atomic-vectors.html#cb91-1"></a>v2 =<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="fl">0.41</span>, <span class="fl">-1.20</span>,  pi)</span>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="atomic-vectors.html#cb91-1"></a>v2 =<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="fl">0.41</span>, <span class="fl">-1.2</span>, pi)</span>
 <span id="cb91-2"><a href="atomic-vectors.html#cb91-2"></a><span class="kw">typeof</span>(v2)</span></code></pre></div>
 <pre><code>## [1] &quot;double&quot;</code></pre>
 <div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="atomic-vectors.html#cb93-1"></a><span class="kw">length</span>(v2)</span></code></pre></div>
@@ -536,7 +538,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="atomic-vectors.html#cb103-1"></a>v1 <span class="op">*</span><span class="st"> </span>v2</span></code></pre></div>
 <pre><code>## [1] -0.41000 -6.00000 18.84956</code></pre>
 <p>Single numbers (scalars) will operate on all the vector elements in an expression.</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="atomic-vectors.html#cb105-1"></a><span class="dv">5</span><span class="op">*</span>v1</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="atomic-vectors.html#cb105-1"></a><span class="dv">5</span> <span class="op">*</span><span class="st"> </span>v1</span></code></pre></div>
 <pre><code>## [1]  5 25 30</code></pre>
 <div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="atomic-vectors.html#cb107-1"></a>v1<span class="op">/</span><span class="dv">3</span></span></code></pre></div>
 <pre><code>## [1] 0.3333333 1.6666667 2.0000000</code></pre>
@@ -544,11 +546,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="atomic-vectors.html#cb109-1"></a>a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">30</span>)</span>
 <span id="cb109-2"><a href="atomic-vectors.html#cb109-2"></a>b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">20</span>)</span>
 <span id="cb109-3"><a href="atomic-vectors.html#cb109-3"></a></span>
-<span id="cb109-4"><a href="atomic-vectors.html#cb109-4"></a>a <span class="op">+</span><span class="st"> </span>b </span></code></pre></div>
+<span id="cb109-4"><a href="atomic-vectors.html#cb109-4"></a>a <span class="op">+</span><span class="st"> </span>b</span></code></pre></div>
 <pre><code>## Warning in a + b: longer object length is not a multiple of shorter object
 ## length</code></pre>
 <pre><code>## [1] 11 22 40</code></pre>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="atomic-vectors.html#cb112-1"></a>a <span class="op">&lt;</span><span class="st"> </span>b </span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="atomic-vectors.html#cb112-1"></a>a <span class="op">&lt;</span><span class="st"> </span>b</span></code></pre></div>
 <pre><code>## Warning in a &lt; b: longer object length is not a multiple of shorter object
 ## length</code></pre>
 <pre><code>## [1]  TRUE  TRUE FALSE</code></pre>
@@ -557,7 +559,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">2.2.3</span> Coercion<a href="atomic-vectors.html#coercion" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>As mentioned above, all elements within a vector must be of the same type. If you attempt to create a vector where some elements are of a different type than the another then R will convert all the elements to be of one type. For example, observe what happens when we try to create a vector with logical and double values.</p>
 <div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="atomic-vectors.html#cb115-1"></a>d &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, F, <span class="ot">TRUE</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">10</span>)</span>
-<span id="cb115-2"><a href="atomic-vectors.html#cb115-2"></a>d </span></code></pre></div>
+<span id="cb115-2"><a href="atomic-vectors.html#cb115-2"></a>d</span></code></pre></div>
 <pre><code>## [1]  1  0  1  5  6 10</code></pre>
 <div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="atomic-vectors.html#cb117-1"></a><span class="kw">typeof</span>(d)</span></code></pre></div>
 <pre><code>## [1] &quot;double&quot;</code></pre>
@@ -585,13 +587,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="testing" class="section level3 hasAnchor">
 <h3><span class="header-section-number">2.2.4</span> Testing<a href="atomic-vectors.html#testing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We can also <em>test</em> what type of object that we have using the <code>is.*()</code> function, where <code>*</code> is replaced by “logical”, “double”, “integer”, or “character”. These function will return <code>TRUE</code> is <code>*</code> matches the <code>typeof()</code> output, and will return <code>FALSE</code> if otherwise.</p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="atomic-vectors.html#cb131-1"></a><span class="co"># Create a double vector </span></span>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="atomic-vectors.html#cb131-1"></a><span class="co"># Create a double vector</span></span>
 <span id="cb131-2"><a href="atomic-vectors.html#cb131-2"></a>a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">30</span>)</span>
 <span id="cb131-3"><a href="atomic-vectors.html#cb131-3"></a><span class="kw">typeof</span>(a)</span></code></pre></div>
 <pre><code>## [1] &quot;double&quot;</code></pre>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="atomic-vectors.html#cb133-1"></a><span class="kw">is.integer</span>(a)   <span class="co"># Returns FALSE</span></span></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="atomic-vectors.html#cb133-1"></a><span class="kw">is.integer</span>(a)  <span class="co"># Returns FALSE</span></span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="atomic-vectors.html#cb135-1"></a><span class="kw">is.double</span>(a)    <span class="co"># Returns TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="atomic-vectors.html#cb135-1"></a><span class="kw">is.double</span>(a)  <span class="co"># Returns TRUE</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 </div>
 <div id="names" class="section level3 hasAnchor">
@@ -603,20 +605,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Inline with <code>setNames()</code></p></li>
 </ol>
 <p>To create a named vector using the first technique we use the <code>=</code> symbol where the name is on the left of the equal sign, and the element binded to that name is on the right. All of the atomic vectors can be defined so their elements are named.</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="atomic-vectors.html#cb137-1"></a><span class="co"># Using Technique 1 for creating a named vector. </span></span>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="atomic-vectors.html#cb137-1"></a><span class="co"># Using Technique 1 for creating a named vector.</span></span>
 <span id="cb137-2"><a href="atomic-vectors.html#cb137-2"></a>named1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">first =</span> <span class="st">&quot;Abraham&quot;</span>, <span class="dt">last =</span> <span class="st">&quot;Lincoln&quot;</span>)</span>
 <span id="cb137-3"><a href="atomic-vectors.html#cb137-3"></a>named1</span></code></pre></div>
 <pre><code>##     first      last 
 ## &quot;Abraham&quot; &quot;Lincoln&quot;</code></pre>
 <p>To create a named vector using the second technique we use the <code>names()</code> function. This is the most common technique.</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="atomic-vectors.html#cb139-1"></a><span class="co"># Using Technique 2 for creating a named  vector</span></span>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="atomic-vectors.html#cb139-1"></a><span class="co"># Using Technique 2 for creating a named vector</span></span>
 <span id="cb139-2"><a href="atomic-vectors.html#cb139-2"></a>named2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
 <span id="cb139-3"><a href="atomic-vectors.html#cb139-3"></a><span class="kw">names</span>(named2) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;first&quot;</span>, <span class="st">&quot;second&quot;</span>, <span class="st">&quot;third&quot;</span>)</span>
 <span id="cb139-4"><a href="atomic-vectors.html#cb139-4"></a>named2</span></code></pre></div>
 <pre><code>##  first second  third 
 ##      1      2      3</code></pre>
 <p>To create a named vector using the third technique we use the <code>setNames()</code> function. This is the least common technique and is hardly used.</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="atomic-vectors.html#cb141-1"></a><span class="co"># Using Technique 3 for creating a named  vector</span></span>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="atomic-vectors.html#cb141-1"></a><span class="co"># Using Technique 3 for creating a named vector</span></span>
 <span id="cb141-2"><a href="atomic-vectors.html#cb141-2"></a>named3 &lt;-<span class="st"> </span><span class="kw">c</span>(T, F, T)</span>
 <span id="cb141-3"><a href="atomic-vectors.html#cb141-3"></a>named3 &lt;-<span class="st"> </span><span class="kw">setNames</span>(named3, <span class="kw">c</span>(<span class="st">&quot;e1&quot;</span>, <span class="st">&quot;e2&quot;</span>, <span class="st">&quot;e3&quot;</span>))</span>
 <span id="cb141-4"><a href="atomic-vectors.html#cb141-4"></a>named3</span></code></pre></div>
@@ -657,8 +659,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="atomic-vectors.html#cb155-1"></a><span class="co"># Get all elements except the first one</span></span>
 <span id="cb155-2"><a href="atomic-vectors.html#cb155-2"></a>v_dbl[<span class="op">-</span><span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## [1] 11 12</code></pre>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="atomic-vectors.html#cb157-1"></a><span class="co"># Get the third and second element </span></span>
-<span id="cb157-2"><a href="atomic-vectors.html#cb157-2"></a>v_dbl[<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">2</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="atomic-vectors.html#cb157-1"></a><span class="co"># Get the third and second element</span></span>
+<span id="cb157-2"><a href="atomic-vectors.html#cb157-2"></a>v_dbl[<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>)]</span></code></pre></div>
 <pre><code>## [1] 12 11</code></pre>
 </div>
 </div>

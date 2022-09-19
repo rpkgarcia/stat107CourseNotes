@@ -155,6 +155,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="introduction-to-r.html#assignment-operators">Assignment Operators<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#naming-conventions"><i class="fa fa-check"></i><b>1.5</b> Naming Conventions<span></span></a></li>
+<li class="chapter" data-level="1.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#basic-calculations"><i class="fa fa-check"></i><b>1.6</b> Basic Calculations<span></span></a></li>
 <li><a href="introduction-to-r.html#additional-resources">Additional Resources<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="atomic-vectors.html"><a href="atomic-vectors.html"><i class="fa fa-check"></i><b>2</b> Atomic Vectors<span></span></a><ul>
@@ -267,9 +268,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1" data-path="functions.html"><a href="functions.html#build-your-own-function"><i class="fa fa-check"></i><b>7.1</b> Build Your Own Function<span></span></a></li>
 <li class="chapter" data-level="7.2" data-path="functions.html"><a href="functions.html#lexical-scoping"><i class="fa fa-check"></i><b>7.2</b> Lexical Scoping<span></span></a></li>
 <li class="chapter" data-level="7.3" data-path="functions.html"><a href="functions.html#built-in-functions"><i class="fa fa-check"></i><b>7.3</b> Built-In Functions<span></span></a></li>
-<li class="chapter" data-level="7.4" data-path="functions.html"><a href="functions.html#help-files"><i class="fa fa-check"></i><b>7.4</b> Help Files<span></span></a></li>
-<li class="chapter" data-level="7.5" data-path="functions.html"><a href="functions.html#the-argument"><i class="fa fa-check"></i><b>7.5</b> The … Argument<span></span></a></li>
-<li class="chapter" data-level="7.6" data-path="functions.html"><a href="functions.html#generic-functions"><i class="fa fa-check"></i><b>7.6</b> Generic Functions<span></span></a></li>
+<li class="chapter" data-level="7.4" data-path="functions.html"><a href="functions.html#vectorization"><i class="fa fa-check"></i><b>7.4</b> Vectorization<span></span></a></li>
+<li class="chapter" data-level="7.5" data-path="functions.html"><a href="functions.html#help-files"><i class="fa fa-check"></i><b>7.5</b> Help Files<span></span></a></li>
+<li class="chapter" data-level="7.6" data-path="functions.html"><a href="functions.html#the-argument"><i class="fa fa-check"></i><b>7.6</b> The … Argument<span></span></a></li>
+<li class="chapter" data-level="7.7" data-path="functions.html"><a href="functions.html#generic-functions"><i class="fa fa-check"></i><b>7.7</b> Generic Functions<span></span></a></li>
 <li><a href="functions.html#additional-resources-3">Additional Resources<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>8</b> Packages<span></span></a><ul>
@@ -438,7 +440,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="factors" class="section level2 hasAnchor">
 <h2><span class="header-section-number">3.1</span> Factors<a href="factors-and-lists.html#factors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In real-world problems, you often encounter data that can be classified in categories. For example, suppose a survey was conducted of a group of seven individuals, who were asked to identify their hair color.</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="factors-and-lists.html#cb159-1"></a>hair &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Blonde&quot;</span>, <span class="st">&quot;Black&quot;</span>, <span class="st">&quot;Black&quot;</span>, <span class="st">&quot;Red&quot;</span>, <span class="st">&quot;Blonde&quot;</span>, <span class="st">&quot;Brown&quot;</span>, <span class="st">&quot;Black&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="factors-and-lists.html#cb159-1"></a>hair &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Blonde&quot;</span>, <span class="st">&quot;Black&quot;</span>, <span class="st">&quot;Black&quot;</span>, <span class="st">&quot;Red&quot;</span>, <span class="st">&quot;Blonde&quot;</span>, <span class="st">&quot;Brown&quot;</span>,</span>
+<span id="cb159-2"><a href="factors-and-lists.html#cb159-2"></a>    <span class="st">&quot;Black&quot;</span>)</span></code></pre></div>
 <p>Here, the hair color is an example of categorical data. For the hair color variable we will typically want to store it as a factor, as opposed to a character vector. The different values that the factor can take are called levels. In R, you can create a factor with the <code>factor()</code>, or the <code>as.factor()</code> functions.</p>
 <div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="factors-and-lists.html#cb160-1"></a>f &lt;-<span class="st"> </span><span class="kw">factor</span>(hair)</span>
 <span id="cb160-2"><a href="factors-and-lists.html#cb160-2"></a>f</span></code></pre></div>
@@ -450,23 +453,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="factors-and-lists.html#cb162-1"></a><span class="kw">levels</span>(f)</span></code></pre></div>
 <pre><code>## [1] &quot;Black&quot;  &quot;Blonde&quot; &quot;Brown&quot;  &quot;Red&quot;</code></pre>
 <p>If your vector contains only a subset of all the possible levels, then R will have an incomplete picture of the possible levels. Consider the following example of a vector consisting of directions. Notice that “South” is noticeably missing.</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="factors-and-lists.html#cb164-1"></a>directions &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;North&quot;</span>, <span class="st">&quot;West&quot;</span>, <span class="st">&quot;North&quot;</span>, <span class="st">&quot;East&quot;</span>, <span class="st">&quot;North&quot;</span>, <span class="st">&quot;West&quot;</span>, <span class="st">&quot;East&quot;</span>)</span>
-<span id="cb164-2"><a href="factors-and-lists.html#cb164-2"></a>f &lt;-<span class="st"> </span><span class="kw">factor</span>(directions)</span>
-<span id="cb164-3"><a href="factors-and-lists.html#cb164-3"></a>f</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="factors-and-lists.html#cb164-1"></a>directions &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;North&quot;</span>, <span class="st">&quot;West&quot;</span>, <span class="st">&quot;North&quot;</span>, <span class="st">&quot;East&quot;</span>, <span class="st">&quot;North&quot;</span>, <span class="st">&quot;West&quot;</span>,</span>
+<span id="cb164-2"><a href="factors-and-lists.html#cb164-2"></a>    <span class="st">&quot;East&quot;</span>)</span>
+<span id="cb164-3"><a href="factors-and-lists.html#cb164-3"></a>f &lt;-<span class="st"> </span><span class="kw">factor</span>(directions)</span>
+<span id="cb164-4"><a href="factors-and-lists.html#cb164-4"></a>f</span></code></pre></div>
 <pre><code>## [1] North West  North East  North West  East 
 ## Levels: East North West</code></pre>
 <p>Notice that the levels of your new factor do not contain the value “South”. R thinks that North, West, and East are the only possible levels. However, in practice, it makes sense to have all the possible directions as levels of your factor. To add all the possible levels explicitly, you specify the <code>levels</code> argument of the function <code>factor()</code>.</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="factors-and-lists.html#cb166-1"></a><span class="co"># Make sure all possible categories are listed using the levels argument</span></span>
-<span id="cb166-2"><a href="factors-and-lists.html#cb166-2"></a>f &lt;-<span class="st"> </span><span class="kw">factor</span>(directions,</span>
-<span id="cb166-3"><a href="factors-and-lists.html#cb166-3"></a>            <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;North&quot;</span>, <span class="st">&quot;East&quot;</span>, <span class="st">&quot;South&quot;</span>, <span class="st">&quot;West&quot;</span>))</span>
-<span id="cb166-4"><a href="factors-and-lists.html#cb166-4"></a>f</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="factors-and-lists.html#cb166-1"></a><span class="co"># Make sure all possible categories are listed using the</span></span>
+<span id="cb166-2"><a href="factors-and-lists.html#cb166-2"></a><span class="co"># levels argument</span></span>
+<span id="cb166-3"><a href="factors-and-lists.html#cb166-3"></a>f &lt;-<span class="st"> </span><span class="kw">factor</span>(directions, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;North&quot;</span>, <span class="st">&quot;East&quot;</span>, <span class="st">&quot;South&quot;</span>,</span>
+<span id="cb166-4"><a href="factors-and-lists.html#cb166-4"></a>    <span class="st">&quot;West&quot;</span>))</span>
+<span id="cb166-5"><a href="factors-and-lists.html#cb166-5"></a>f</span></code></pre></div>
 <pre><code>## [1] North West  North East  North West  East 
 ## Levels: North East South West</code></pre>
 <p>R lets you assign abbreviated names for the levels. You can do this by specifying the <code>labels</code> argument of <code>factor()</code>.</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="factors-and-lists.html#cb168-1"></a>f &lt;-<span class="st"> </span><span class="kw">factor</span>(directions,</span>
-<span id="cb168-2"><a href="factors-and-lists.html#cb168-2"></a>            <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;North&quot;</span>, <span class="st">&quot;East&quot;</span>, <span class="st">&quot;South&quot;</span>, <span class="st">&quot;West&quot;</span>),</span>
-<span id="cb168-3"><a href="factors-and-lists.html#cb168-3"></a>            <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;N&quot;</span>, <span class="st">&quot;E&quot;</span>, <span class="st">&quot;S&quot;</span>, <span class="st">&quot;W&quot;</span>))</span>
-<span id="cb168-4"><a href="factors-and-lists.html#cb168-4"></a>f</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="factors-and-lists.html#cb168-1"></a>f &lt;-<span class="st"> </span><span class="kw">factor</span>(directions, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;North&quot;</span>, <span class="st">&quot;East&quot;</span>, <span class="st">&quot;South&quot;</span>,</span>
+<span id="cb168-2"><a href="factors-and-lists.html#cb168-2"></a>    <span class="st">&quot;West&quot;</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;N&quot;</span>, <span class="st">&quot;E&quot;</span>, <span class="st">&quot;S&quot;</span>, <span class="st">&quot;W&quot;</span>))</span>
+<span id="cb168-3"><a href="factors-and-lists.html#cb168-3"></a>f</span></code></pre></div>
 <pre><code>## [1] N W N E N W E
 ## Levels: N E S W</code></pre>
 </div>
@@ -478,25 +482,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>strongly disagree &lt; disagree &lt; neutral &lt; agree &lt; strongly agree</strong>.</p>
 <p>Such kind of data that is possible to place in order or scale is known as <strong>ordinal data</strong>. We can store ordinal data as an ordered factor. To create an ordered factor, use the <code>factor()</code> function with the argument <code>ordered=TRUE</code>.</p>
 <div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="factors-and-lists.html#cb170-1"></a>record &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;win&quot;</span>, <span class="st">&quot;tie&quot;</span>, <span class="st">&quot;loss&quot;</span>, <span class="st">&quot;tie&quot;</span>, <span class="st">&quot;loss&quot;</span>, <span class="st">&quot;win&quot;</span>, <span class="st">&quot;win&quot;</span>)</span>
-<span id="cb170-2"><a href="factors-and-lists.html#cb170-2"></a>f &lt;-<span class="st"> </span><span class="kw">factor</span>(record, </span>
-<span id="cb170-3"><a href="factors-and-lists.html#cb170-3"></a>            <span class="dt">ordered =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb170-4"><a href="factors-and-lists.html#cb170-4"></a>f</span></code></pre></div>
+<span id="cb170-2"><a href="factors-and-lists.html#cb170-2"></a>f &lt;-<span class="st"> </span><span class="kw">factor</span>(record, <span class="dt">ordered =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb170-3"><a href="factors-and-lists.html#cb170-3"></a>f</span></code></pre></div>
 <pre><code>## [1] win  tie  loss tie  loss win  win 
 ## Levels: loss &lt; tie &lt; win</code></pre>
 <p>You can manually change which levels are lower and higher based on the order that the levels are listed.</p>
 <div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="factors-and-lists.html#cb172-1"></a>record &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;win&quot;</span>, <span class="st">&quot;tie&quot;</span>, <span class="st">&quot;loss&quot;</span>, <span class="st">&quot;tie&quot;</span>, <span class="st">&quot;loss&quot;</span>, <span class="st">&quot;win&quot;</span>, <span class="st">&quot;win&quot;</span>)</span>
-<span id="cb172-2"><a href="factors-and-lists.html#cb172-2"></a>f &lt;-<span class="st"> </span><span class="kw">factor</span>(record, </span>
-<span id="cb172-3"><a href="factors-and-lists.html#cb172-3"></a>           <span class="dt">ordered =</span> <span class="ot">TRUE</span>, </span>
-<span id="cb172-4"><a href="factors-and-lists.html#cb172-4"></a>           <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;win&quot;</span>, <span class="st">&quot;tie&quot;</span>, <span class="st">&quot;loss&quot;</span>))</span>
-<span id="cb172-5"><a href="factors-and-lists.html#cb172-5"></a>f</span></code></pre></div>
+<span id="cb172-2"><a href="factors-and-lists.html#cb172-2"></a>f &lt;-<span class="st"> </span><span class="kw">factor</span>(record, <span class="dt">ordered =</span> <span class="ot">TRUE</span>, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;win&quot;</span>, <span class="st">&quot;tie&quot;</span>,</span>
+<span id="cb172-3"><a href="factors-and-lists.html#cb172-3"></a>    <span class="st">&quot;loss&quot;</span>))</span>
+<span id="cb172-4"><a href="factors-and-lists.html#cb172-4"></a>f</span></code></pre></div>
 <pre><code>## [1] win  tie  loss tie  loss win  win 
 ## Levels: win &lt; tie &lt; loss</code></pre>
 <p>If you have no observations in one of the levels, you can drop it using the <code>droplevels()</code> function.</p>
 <div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="factors-and-lists.html#cb174-1"></a>record =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;win&quot;</span>, <span class="st">&quot;loss&quot;</span>, <span class="st">&quot;loss&quot;</span>, <span class="st">&quot;win&quot;</span>, <span class="st">&quot;loss&quot;</span>, <span class="st">&quot;win&quot;</span>)</span>
-<span id="cb174-2"><a href="factors-and-lists.html#cb174-2"></a>f =<span class="st"> </span><span class="kw">factor</span>(record,</span>
-<span id="cb174-3"><a href="factors-and-lists.html#cb174-3"></a>           <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;loss&quot;</span>, <span class="st">&quot;tie&quot;</span>, <span class="st">&quot;win&quot;</span>))</span>
-<span id="cb174-4"><a href="factors-and-lists.html#cb174-4"></a></span>
-<span id="cb174-5"><a href="factors-and-lists.html#cb174-5"></a><span class="kw">droplevels</span>(f)</span></code></pre></div>
+<span id="cb174-2"><a href="factors-and-lists.html#cb174-2"></a>f =<span class="st"> </span><span class="kw">factor</span>(record, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;loss&quot;</span>, <span class="st">&quot;tie&quot;</span>, <span class="st">&quot;win&quot;</span>))</span>
+<span id="cb174-3"><a href="factors-and-lists.html#cb174-3"></a></span>
+<span id="cb174-4"><a href="factors-and-lists.html#cb174-4"></a><span class="kw">droplevels</span>(f)</span></code></pre></div>
 <pre><code>## [1] win  loss loss win  loss win 
 ## Levels: loss win</code></pre>
 </div>
@@ -518,10 +519,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [1] win  loss loss win  loss win 
 ## Levels: loss win</code></pre>
 <p>To convert a factor object to a non-factor object we still use the <code>as.*()</code> function. In general, it is usually easiest to convert character vectors to factor vectors, and vice versa. When we convert a factor to an integer or double vector the different levels of the factor are converted to integers in order for each level. That is, the first level listed is converted to a 1, the second level listed is converted to a 2, and so on.</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="factors-and-lists.html#cb180-1"></a><span class="co"># Convert to a character vector </span></span>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="factors-and-lists.html#cb180-1"></a><span class="co"># Convert to a character vector</span></span>
 <span id="cb180-2"><a href="factors-and-lists.html#cb180-2"></a><span class="kw">as.character</span>(f)</span></code></pre></div>
 <pre><code>## [1] &quot;win&quot;  &quot;loss&quot; &quot;loss&quot; &quot;win&quot;  &quot;loss&quot; &quot;win&quot;</code></pre>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="factors-and-lists.html#cb182-1"></a><span class="co"># Convert to an integer vector </span></span>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="factors-and-lists.html#cb182-1"></a><span class="co"># Convert to an integer vector</span></span>
 <span id="cb182-2"><a href="factors-and-lists.html#cb182-2"></a><span class="kw">as.integer</span>(f)</span></code></pre></div>
 <pre><code>## [1] 2 1 1 2 1 2</code></pre>
 </div>
@@ -535,25 +536,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb184-5"><a href="factors-and-lists.html#cb184-5"></a><span class="co"># Test if the character vector is a factor</span></span>
 <span id="cb184-6"><a href="factors-and-lists.html#cb184-6"></a><span class="kw">is.factor</span>(record)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="factors-and-lists.html#cb186-1"></a><span class="co"># Test if we have a factor (includes both ordered and not ordered factors)</span></span>
-<span id="cb186-2"><a href="factors-and-lists.html#cb186-2"></a><span class="kw">is.factor</span>(f)</span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="factors-and-lists.html#cb186-1"></a><span class="co"># Test if we have a factor (includes both ordered and not</span></span>
+<span id="cb186-2"><a href="factors-and-lists.html#cb186-2"></a><span class="co"># ordered factors)</span></span>
+<span id="cb186-3"><a href="factors-and-lists.html#cb186-3"></a><span class="kw">is.factor</span>(f)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="factors-and-lists.html#cb188-1"></a><span class="co"># Test if we have an ordered factor (only includes ordered factors)</span></span>
-<span id="cb188-2"><a href="factors-and-lists.html#cb188-2"></a><span class="kw">is.ordered</span>(f)</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="factors-and-lists.html#cb188-1"></a><span class="co"># Test if we have an ordered factor (only includes ordered</span></span>
+<span id="cb188-2"><a href="factors-and-lists.html#cb188-2"></a><span class="co"># factors)</span></span>
+<span id="cb188-3"><a href="factors-and-lists.html#cb188-3"></a><span class="kw">is.ordered</span>(f)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>With all types of objects we can use the <code>class()</code> function. As mentioned in the previous section, this function returns the name of the type of object that you have, unlike <code>typeof()</code> which returns the storage mode. The output of <code>class()</code> returns name of a object with particular properties. For instance, a factor object. A factor object is stored like an integer vector but it has “levels” which can be utilized in special ways.</p>
 <div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="factors-and-lists.html#cb190-1"></a><span class="co"># Returns storage mode (not recommended)</span></span>
 <span id="cb190-2"><a href="factors-and-lists.html#cb190-2"></a><span class="kw">typeof</span>(f)</span></code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="factors-and-lists.html#cb192-1"></a><span class="co"># Returns class, which is the name of a collection of objects with similar properties </span></span>
-<span id="cb192-2"><a href="factors-and-lists.html#cb192-2"></a><span class="co"># (Recommended)</span></span>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="factors-and-lists.html#cb192-1"></a><span class="co"># Returns class, which is the name of a collection of</span></span>
+<span id="cb192-2"><a href="factors-and-lists.html#cb192-2"></a><span class="co"># objects with similar properties (Recommended)</span></span>
 <span id="cb192-3"><a href="factors-and-lists.html#cb192-3"></a><span class="kw">class</span>(f)</span></code></pre></div>
 <pre><code>## [1] &quot;ordered&quot; &quot;factor&quot;</code></pre>
 </div>
 <div id="names-1" class="section level3 hasAnchor">
 <h3><span class="header-section-number">3.2.4</span> Names<a href="factors-and-lists.html#names-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Like standard vectors, we can name the elements in a factor using the same three techniques discussed in <a href="atomic-vectors.html#names">2.2.5</a>.</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="factors-and-lists.html#cb194-1"></a><span class="co"># Using Technique 1 for creating a named vector. </span></span>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="factors-and-lists.html#cb194-1"></a><span class="co"># Using Technique 1 for creating a named vector.</span></span>
 <span id="cb194-2"><a href="factors-and-lists.html#cb194-2"></a>named1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">sally =</span> <span class="st">&quot;win&quot;</span>, <span class="dt">tom =</span> <span class="st">&quot;win&quot;</span>, <span class="dt">ed =</span> <span class="st">&quot;lost&quot;</span>, <span class="dt">jane =</span> <span class="st">&quot;tie&quot;</span>)</span>
 <span id="cb194-3"><a href="factors-and-lists.html#cb194-3"></a>named1 &lt;-<span class="st"> </span><span class="kw">factor</span>(named1)</span>
 <span id="cb194-4"><a href="factors-and-lists.html#cb194-4"></a>named1</span></code></pre></div>
@@ -578,9 +581,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="frequency-tables" class="section level3 hasAnchor">
 <h3><span class="header-section-number">3.2.6</span> Frequency Tables<a href="factors-and-lists.html#frequency-tables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The <code>summary()</code> function will give you a quick overview of the contents of a factor.</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="factors-and-lists.html#cb200-1"></a>hair &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Blonde&quot;</span>, <span class="st">&quot;Black&quot;</span>, <span class="st">&quot;Black&quot;</span>, <span class="st">&quot;Red&quot;</span>, <span class="st">&quot;Blonde&quot;</span>, <span class="st">&quot;Brown&quot;</span>, <span class="st">&quot;Black&quot;</span>)</span>
-<span id="cb200-2"><a href="factors-and-lists.html#cb200-2"></a>hair &lt;-<span class="st"> </span><span class="kw">factor</span>(hair)</span>
-<span id="cb200-3"><a href="factors-and-lists.html#cb200-3"></a><span class="kw">summary</span>(hair)</span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="factors-and-lists.html#cb200-1"></a>hair &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Blonde&quot;</span>, <span class="st">&quot;Black&quot;</span>, <span class="st">&quot;Black&quot;</span>, <span class="st">&quot;Red&quot;</span>, <span class="st">&quot;Blonde&quot;</span>, <span class="st">&quot;Brown&quot;</span>,</span>
+<span id="cb200-2"><a href="factors-and-lists.html#cb200-2"></a>    <span class="st">&quot;Black&quot;</span>)</span>
+<span id="cb200-3"><a href="factors-and-lists.html#cb200-3"></a>hair &lt;-<span class="st"> </span><span class="kw">factor</span>(hair)</span>
+<span id="cb200-4"><a href="factors-and-lists.html#cb200-4"></a><span class="kw">summary</span>(hair)</span></code></pre></div>
 <pre><code>##  Black Blonde  Brown    Red 
 ##      3      2      1      1</code></pre>
 <p>The function <code>table()</code> tabulates observations.</p>
@@ -590,15 +594,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##      3      2      1      1</code></pre>
 <p>We can also use the <code>table()</code> and <code>summary()</code> functions on atomic vectors, and they will operate in a similar way. However, these functions are particularly utilized for factor objects.</p>
 <p>The <code>table()</code> function can also tabulate two-way frequency tables.</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="factors-and-lists.html#cb204-1"></a>hair &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Blonde&quot;</span>, <span class="st">&quot;Black&quot;</span>, <span class="st">&quot;Black&quot;</span>, <span class="st">&quot;Red&quot;</span>, <span class="st">&quot;Blonde&quot;</span>, <span class="st">&quot;Brown&quot;</span>, <span class="st">&quot;Black&quot;</span>)</span>
-<span id="cb204-2"><a href="factors-and-lists.html#cb204-2"></a>own_pets &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>)</span>
-<span id="cb204-3"><a href="factors-and-lists.html#cb204-3"></a></span>
-<span id="cb204-4"><a href="factors-and-lists.html#cb204-4"></a>hair &lt;-<span class="st"> </span><span class="kw">factor</span>(hair)</span>
-<span id="cb204-5"><a href="factors-and-lists.html#cb204-5"></a>own_pets &lt;-<span class="st"> </span><span class="kw">factor</span>(own_pets)</span>
-<span id="cb204-6"><a href="factors-and-lists.html#cb204-6"></a></span>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="factors-and-lists.html#cb204-1"></a>hair &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Blonde&quot;</span>, <span class="st">&quot;Black&quot;</span>, <span class="st">&quot;Black&quot;</span>, <span class="st">&quot;Red&quot;</span>, <span class="st">&quot;Blonde&quot;</span>, <span class="st">&quot;Brown&quot;</span>,</span>
+<span id="cb204-2"><a href="factors-and-lists.html#cb204-2"></a>    <span class="st">&quot;Black&quot;</span>)</span>
+<span id="cb204-3"><a href="factors-and-lists.html#cb204-3"></a>own_pets &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>)</span>
+<span id="cb204-4"><a href="factors-and-lists.html#cb204-4"></a></span>
+<span id="cb204-5"><a href="factors-and-lists.html#cb204-5"></a>hair &lt;-<span class="st"> </span><span class="kw">factor</span>(hair)</span>
+<span id="cb204-6"><a href="factors-and-lists.html#cb204-6"></a>own_pets &lt;-<span class="st"> </span><span class="kw">factor</span>(own_pets)</span>
 <span id="cb204-7"><a href="factors-and-lists.html#cb204-7"></a></span>
-<span id="cb204-8"><a href="factors-and-lists.html#cb204-8"></a><span class="co"># Two way table</span></span>
-<span id="cb204-9"><a href="factors-and-lists.html#cb204-9"></a><span class="kw">table</span>(hair, own_pets)</span></code></pre></div>
+<span id="cb204-8"><a href="factors-and-lists.html#cb204-8"></a></span>
+<span id="cb204-9"><a href="factors-and-lists.html#cb204-9"></a><span class="co"># Two way table</span></span>
+<span id="cb204-10"><a href="factors-and-lists.html#cb204-10"></a><span class="kw">table</span>(hair, own_pets)</span></code></pre></div>
 <pre><code>##         own_pets
 ## hair     FALSE TRUE
 ##   Black      2    1
@@ -640,7 +645,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="nested-lists" class="section level3 hasAnchor">
 <h3><span class="header-section-number">3.3.1</span> Nested Lists<a href="factors-and-lists.html#nested-lists" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A list can contain sublists, which in turn can contain sublists themselves, and so on. This is known as <em>nested list</em> or <em>recursive vectors</em>.</p>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="factors-and-lists.html#cb212-1"></a>lst &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="kw">c</span>(<span class="st">&quot;abc&quot;</span>, <span class="st">&quot;ABC&quot;</span>), <span class="kw">list</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>), <span class="ot">TRUE</span>)</span>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="factors-and-lists.html#cb212-1"></a>lst &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="kw">c</span>(<span class="st">&quot;abc&quot;</span>, <span class="st">&quot;ABC&quot;</span>), <span class="kw">list</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>), <span class="ot">TRUE</span>)</span>
 <span id="cb212-2"><a href="factors-and-lists.html#cb212-2"></a><span class="kw">str</span>(lst)</span></code></pre></div>
 <pre><code>## List of 5
 ##  $ : num 1
@@ -658,12 +663,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="length-2" class="section level3 hasAnchor">
 <h3><span class="header-section-number">3.4.1</span> Length<a href="factors-and-lists.html#length-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Despite looking different and being stored differently than atomic vectors and factors, lists have many of the same properties and features. For example, we still can use the <code>length()</code> function to determine how many elements are in a list.</p>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="factors-and-lists.html#cb214-1"></a>lst &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="kw">c</span>(<span class="st">&quot;abc&quot;</span>, <span class="st">&quot;ABC&quot;</span>), <span class="kw">list</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>), <span class="ot">TRUE</span>)</span>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="factors-and-lists.html#cb214-1"></a>lst &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="kw">c</span>(<span class="st">&quot;abc&quot;</span>, <span class="st">&quot;ABC&quot;</span>), <span class="kw">list</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>), <span class="ot">TRUE</span>)</span>
 <span id="cb214-2"><a href="factors-and-lists.html#cb214-2"></a><span class="kw">length</span>(lst)</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
 <p>In the example of both there are 5 items in a list. The first two elements are double vectors of length 1, the third element is a character vector of length two, the fourth element is a list of length three, and the fifth element is a logical vector of length 1.
 Add elements to a list using <code>c()</code> as we did before with atomic vectors.</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="factors-and-lists.html#cb216-1"></a>lst_char &lt;-<span class="st">  </span><span class="kw">list</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>)</span>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="factors-and-lists.html#cb216-1"></a>lst_char &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>)</span>
 <span id="cb216-2"><a href="factors-and-lists.html#cb216-2"></a>lst_num &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">100</span>, <span class="dv">99</span>, <span class="dv">0</span>)</span>
 <span id="cb216-3"><a href="factors-and-lists.html#cb216-3"></a>lst &lt;-<span class="st"> </span><span class="kw">c</span>(lst_num, lst_char)</span>
 <span id="cb216-4"><a href="factors-and-lists.html#cb216-4"></a><span class="kw">str</span>(lst)</span></code></pre></div>
@@ -724,14 +729,14 @@ Add elements to a list using <code>c()</code> as we did before with atomic vecto
 ## [1] &quot;Abraham&quot;</code></pre>
 <div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="factors-and-lists.html#cb234-1"></a><span class="kw">class</span>(lst[<span class="dv">1</span>])</span></code></pre></div>
 <pre><code>## [1] &quot;list&quot;</code></pre>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="factors-and-lists.html#cb236-1"></a>lst &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="kw">c</span>(<span class="st">&quot;abc&quot;</span>, <span class="st">&quot;ABC&quot;</span>), <span class="kw">list</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>), <span class="ot">TRUE</span>)</span>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="factors-and-lists.html#cb236-1"></a>lst &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="kw">c</span>(<span class="st">&quot;abc&quot;</span>, <span class="st">&quot;ABC&quot;</span>), <span class="kw">list</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>), <span class="ot">TRUE</span>)</span>
 <span id="cb236-2"><a href="factors-and-lists.html#cb236-2"></a>lst[<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">1</span>)]</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] &quot;abc&quot; &quot;ABC&quot;
 ## 
 ## [[2]]
 ## [1] 1</code></pre>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="factors-and-lists.html#cb238-1"></a><span class="kw">class</span>(lst[<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">1</span>)])</span></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="factors-and-lists.html#cb238-1"></a><span class="kw">class</span>(lst[<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">1</span>)])</span></code></pre></div>
 <pre><code>## [1] &quot;list&quot;</code></pre>
 </div>
 </div>

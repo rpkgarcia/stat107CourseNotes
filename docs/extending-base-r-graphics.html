@@ -155,6 +155,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="introduction-to-r.html#assignment-operators">Assignment Operators<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#naming-conventions"><i class="fa fa-check"></i><b>1.5</b> Naming Conventions<span></span></a></li>
+<li class="chapter" data-level="1.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#basic-calculations"><i class="fa fa-check"></i><b>1.6</b> Basic Calculations<span></span></a></li>
 <li><a href="introduction-to-r.html#additional-resources">Additional Resources<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="atomic-vectors.html"><a href="atomic-vectors.html"><i class="fa fa-check"></i><b>2</b> Atomic Vectors<span></span></a><ul>
@@ -267,9 +268,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1" data-path="functions.html"><a href="functions.html#build-your-own-function"><i class="fa fa-check"></i><b>7.1</b> Build Your Own Function<span></span></a></li>
 <li class="chapter" data-level="7.2" data-path="functions.html"><a href="functions.html#lexical-scoping"><i class="fa fa-check"></i><b>7.2</b> Lexical Scoping<span></span></a></li>
 <li class="chapter" data-level="7.3" data-path="functions.html"><a href="functions.html#built-in-functions"><i class="fa fa-check"></i><b>7.3</b> Built-In Functions<span></span></a></li>
-<li class="chapter" data-level="7.4" data-path="functions.html"><a href="functions.html#help-files"><i class="fa fa-check"></i><b>7.4</b> Help Files<span></span></a></li>
-<li class="chapter" data-level="7.5" data-path="functions.html"><a href="functions.html#the-argument"><i class="fa fa-check"></i><b>7.5</b> The … Argument<span></span></a></li>
-<li class="chapter" data-level="7.6" data-path="functions.html"><a href="functions.html#generic-functions"><i class="fa fa-check"></i><b>7.6</b> Generic Functions<span></span></a></li>
+<li class="chapter" data-level="7.4" data-path="functions.html"><a href="functions.html#vectorization"><i class="fa fa-check"></i><b>7.4</b> Vectorization<span></span></a></li>
+<li class="chapter" data-level="7.5" data-path="functions.html"><a href="functions.html#help-files"><i class="fa fa-check"></i><b>7.5</b> Help Files<span></span></a></li>
+<li class="chapter" data-level="7.6" data-path="functions.html"><a href="functions.html#the-argument"><i class="fa fa-check"></i><b>7.6</b> The … Argument<span></span></a></li>
+<li class="chapter" data-level="7.7" data-path="functions.html"><a href="functions.html#generic-functions"><i class="fa fa-check"></i><b>7.7</b> Generic Functions<span></span></a></li>
 <li><a href="functions.html#additional-resources-3">Additional Resources<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>8</b> Packages<span></span></a><ul>
@@ -442,39 +444,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb545-1"><a href="extending-base-r-graphics.html#cb545-1"></a><span class="kw">library</span>(maps)</span></code></pre></div>
 <pre><code>## Warning: package &#39;maps&#39; was built under R version 4.0.2</code></pre>
 <div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="extending-base-r-graphics.html#cb547-1"></a><span class="kw">map</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-190-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-193-1.png" width="672" /></p>
 <p>The first argument for the function <code>map()</code> is called <code>database</code>. This argument is expecting a character vector of length 1. The element in this vector corresponds to the map you want to create. As we saw above, the default for this package is to create a world map, this corresponds to when argument is <code>database= "world"</code>. The values this argument can support are: “world”, “usa”, “state”, and “county”.</p>
 <div class="sourceCode" id="cb548"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb548-1"><a href="extending-base-r-graphics.html#cb548-1"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb548-2"><a href="extending-base-r-graphics.html#cb548-2"></a><span class="co"># world map </span></span>
+<span id="cb548-2"><a href="extending-base-r-graphics.html#cb548-2"></a><span class="co"># world map</span></span>
 <span id="cb548-3"><a href="extending-base-r-graphics.html#cb548-3"></a><span class="kw">map</span>(<span class="st">&quot;world&quot;</span>)</span>
 <span id="cb548-4"><a href="extending-base-r-graphics.html#cb548-4"></a></span>
-<span id="cb548-5"><a href="extending-base-r-graphics.html#cb548-5"></a><span class="co"># USA map </span></span>
+<span id="cb548-5"><a href="extending-base-r-graphics.html#cb548-5"></a><span class="co"># USA map</span></span>
 <span id="cb548-6"><a href="extending-base-r-graphics.html#cb548-6"></a><span class="kw">map</span>(<span class="st">&quot;usa&quot;</span>)</span>
 <span id="cb548-7"><a href="extending-base-r-graphics.html#cb548-7"></a><span class="kw">map</span>(<span class="st">&quot;state&quot;</span>)</span>
 <span id="cb548-8"><a href="extending-base-r-graphics.html#cb548-8"></a><span class="kw">map</span>(<span class="st">&quot;county&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-191-1.png" width="672" /></p>
-<div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb549-1"><a href="extending-base-r-graphics.html#cb549-1"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-194-1.png" width="672" /></p>
+<div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb549-1"><a href="extending-base-r-graphics.html#cb549-1"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
 <p>Within these maps we can specify specific regions that we may want plotted. In general, it supports the names of countries, and states in the US. To specify a region to be plotted we use the <code>region</code> argument, which is the second argument of the function.</p>
-<div class="sourceCode" id="cb550"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb550-1"><a href="extending-base-r-graphics.html#cb550-1"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<div class="sourceCode" id="cb550"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb550-1"><a href="extending-base-r-graphics.html#cb550-1"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
 <span id="cb550-2"><a href="extending-base-r-graphics.html#cb550-2"></a><span class="kw">map</span>(<span class="st">&quot;world&quot;</span>, <span class="dt">regions =</span> <span class="st">&quot;Switzerland&quot;</span>)</span>
 <span id="cb550-3"><a href="extending-base-r-graphics.html#cb550-3"></a><span class="kw">map</span>(<span class="st">&quot;state&quot;</span>, <span class="dt">regions =</span> <span class="st">&quot;oklahoma&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-192-1.png" width="672" /></p>
-<div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb551-1"><a href="extending-base-r-graphics.html#cb551-1"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-195-1.png" width="672" /></p>
+<div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb551-1"><a href="extending-base-r-graphics.html#cb551-1"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
 <p>These functions have some of the same features of our normal Base R functions. For example, we can still add points and lines to these graphs, but now we have to do it in the correct coordinate system.</p>
 <p>For example, we can plot the locations of world cities that are capitals using the data set <code>world.cities</code> which is part of the <code>maps</code> package using the base R plot function <code>points()</code>.</p>
 <div class="sourceCode" id="cb552"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb552-1"><a href="extending-base-r-graphics.html#cb552-1"></a><span class="kw">map</span>(<span class="st">&quot;world&quot;</span>)</span>
-<span id="cb552-2"><a href="extending-base-r-graphics.html#cb552-2"></a>captial_cities =<span class="st"> </span>world.cities[world.cities<span class="op">$</span>capital<span class="op">==</span><span class="dv">1</span>, ]</span>
+<span id="cb552-2"><a href="extending-base-r-graphics.html#cb552-2"></a>captial_cities =<span class="st"> </span>world.cities[world.cities<span class="op">$</span>capital <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, ]</span>
 <span id="cb552-3"><a href="extending-base-r-graphics.html#cb552-3"></a><span class="kw">points</span>(captial_cities<span class="op">$</span>long, captial_cities<span class="op">$</span>lat, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-193-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-196-1.png" width="672" /></p>
 <p>The maps package does not use the standard base R label arguments like <code>main, xlab, ylab</code>. However, if we wish to have a map with labels we can use the function <code>map.text()</code> instead of <code>map()</code>. This is essentially the same function as <code>map()</code>, but it defaults to labeling the graph for us. If we want to add our own custom label we use the <code>labels</code> argument.</p>
-<div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb553-1"><a href="extending-base-r-graphics.html#cb553-1"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb553-2"><a href="extending-base-r-graphics.html#cb553-2"></a><span class="co"># Default Label </span></span>
+<div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb553-1"><a href="extending-base-r-graphics.html#cb553-1"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb553-2"><a href="extending-base-r-graphics.html#cb553-2"></a><span class="co"># Default Label</span></span>
 <span id="cb553-3"><a href="extending-base-r-graphics.html#cb553-3"></a><span class="kw">map.text</span>(<span class="st">&quot;world&quot;</span>, <span class="dt">regions =</span> <span class="st">&quot;Switzerland&quot;</span>)</span>
 <span id="cb553-4"><a href="extending-base-r-graphics.html#cb553-4"></a></span>
-<span id="cb553-5"><a href="extending-base-r-graphics.html#cb553-5"></a><span class="co"># Custom Label </span></span>
+<span id="cb553-5"><a href="extending-base-r-graphics.html#cb553-5"></a><span class="co"># Custom Label</span></span>
 <span id="cb553-6"><a href="extending-base-r-graphics.html#cb553-6"></a><span class="kw">map.text</span>(<span class="st">&quot;state&quot;</span>, <span class="dt">regions =</span> <span class="st">&quot;oklahoma&quot;</span>, <span class="dt">labels =</span> <span class="st">&quot;Custom Label Here&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-194-1.png" width="672" /></p>
-<div class="sourceCode" id="cb554"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb554-1"><a href="extending-base-r-graphics.html#cb554-1"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-197-1.png" width="672" /></p>
+<div class="sourceCode" id="cb554"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb554-1"><a href="extending-base-r-graphics.html#cb554-1"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
 </div>
 <div id="some-additional-packages-to-consider" class="section level2 hasAnchor">
 <h2><span class="header-section-number">11.2</span> Some additional Packages to consider<a href="extending-base-r-graphics.html#some-additional-packages-to-consider" class="anchor-section" aria-label="Anchor link to header"></a></h2>

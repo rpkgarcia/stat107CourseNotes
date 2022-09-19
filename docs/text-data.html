@@ -155,6 +155,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="introduction-to-r.html#assignment-operators">Assignment Operators<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#naming-conventions"><i class="fa fa-check"></i><b>1.5</b> Naming Conventions<span></span></a></li>
+<li class="chapter" data-level="1.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#basic-calculations"><i class="fa fa-check"></i><b>1.6</b> Basic Calculations<span></span></a></li>
 <li><a href="introduction-to-r.html#additional-resources">Additional Resources<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="atomic-vectors.html"><a href="atomic-vectors.html"><i class="fa fa-check"></i><b>2</b> Atomic Vectors<span></span></a><ul>
@@ -267,9 +268,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1" data-path="functions.html"><a href="functions.html#build-your-own-function"><i class="fa fa-check"></i><b>7.1</b> Build Your Own Function<span></span></a></li>
 <li class="chapter" data-level="7.2" data-path="functions.html"><a href="functions.html#lexical-scoping"><i class="fa fa-check"></i><b>7.2</b> Lexical Scoping<span></span></a></li>
 <li class="chapter" data-level="7.3" data-path="functions.html"><a href="functions.html#built-in-functions"><i class="fa fa-check"></i><b>7.3</b> Built-In Functions<span></span></a></li>
-<li class="chapter" data-level="7.4" data-path="functions.html"><a href="functions.html#help-files"><i class="fa fa-check"></i><b>7.4</b> Help Files<span></span></a></li>
-<li class="chapter" data-level="7.5" data-path="functions.html"><a href="functions.html#the-argument"><i class="fa fa-check"></i><b>7.5</b> The … Argument<span></span></a></li>
-<li class="chapter" data-level="7.6" data-path="functions.html"><a href="functions.html#generic-functions"><i class="fa fa-check"></i><b>7.6</b> Generic Functions<span></span></a></li>
+<li class="chapter" data-level="7.4" data-path="functions.html"><a href="functions.html#vectorization"><i class="fa fa-check"></i><b>7.4</b> Vectorization<span></span></a></li>
+<li class="chapter" data-level="7.5" data-path="functions.html"><a href="functions.html#help-files"><i class="fa fa-check"></i><b>7.5</b> Help Files<span></span></a></li>
+<li class="chapter" data-level="7.6" data-path="functions.html"><a href="functions.html#the-argument"><i class="fa fa-check"></i><b>7.6</b> The … Argument<span></span></a></li>
+<li class="chapter" data-level="7.7" data-path="functions.html"><a href="functions.html#generic-functions"><i class="fa fa-check"></i><b>7.7</b> Generic Functions<span></span></a></li>
 <li><a href="functions.html#additional-resources-3">Additional Resources<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>8</b> Packages<span></span></a><ul>
@@ -453,7 +455,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="making-strings" class="section level2 hasAnchor">
 <h2><span class="header-section-number">16.1</span> Making Strings<a href="text-data.html#making-strings" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Use single or double quotes to construct a string, but in general its recommeded to use double quotes. This is because the R console showcases character strings in double quotes regardless of how the string was created, and sometimes we might have single or double quotes in the string itself.</p>
-<div class="sourceCode" id="cb700"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb700-1"><a href="text-data.html#cb700-1"></a><span class="st">&#39;Lincoln&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb700"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb700-1"><a href="text-data.html#cb700-1"></a><span class="st">&quot;Lincoln&quot;</span></span></code></pre></div>
 <pre><code>## [1] &quot;Lincoln&quot;</code></pre>
 <div class="sourceCode" id="cb702"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb702-1"><a href="text-data.html#cb702-1"></a><span class="st">&quot;Lincoln&quot;</span></span></code></pre></div>
 <pre><code>## [1] &quot;Lincoln&quot;</code></pre>
@@ -461,7 +463,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [1] &quot;Abraham Lincoln&#39;s Hat&quot;</code></pre>
 <div class="sourceCode" id="cb706"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb706-1"><a href="text-data.html#cb706-1"></a><span class="st">&quot;As Lincoln never said, &#39;Four score and seven beers ago&#39;&quot;</span></span></code></pre></div>
 <pre><code>## [1] &quot;As Lincoln never said, &#39;Four score and seven beers ago&#39;&quot;</code></pre>
-<div class="sourceCode" id="cb708"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb708-1"><a href="text-data.html#cb708-1"></a><span class="st">&#39;As Lincoln never said, &quot;Four score and seven beers ago&quot;&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb708"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb708-1"><a href="text-data.html#cb708-1"></a><span class="st">&quot;As Lincoln never said, </span><span class="ch">\&quot;</span><span class="st">Four score and seven beers ago</span><span class="ch">\&quot;</span><span class="st">&quot;</span></span></code></pre></div>
 <pre><code>## [1] &quot;As Lincoln never said, \&quot;Four score and seven beers ago\&quot;&quot;</code></pre>
 <p>The space, <code>" "</code> is a character; so are multiple spaces <code>"   "</code> and the empty string, <code>""</code>.</p>
 <p>Some characters are special, so we have “escape characters” to specify them in strings.
@@ -480,7 +482,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb718"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb718-1"><a href="text-data.html#cb718-1"></a><span class="kw">nchar</span>(<span class="kw">c</span>(<span class="st">&quot;Abraham&quot;</span>, <span class="st">&quot;Lincoln&#39;s&quot;</span>, <span class="st">&quot;beard&quot;</span>))</span></code></pre></div>
 <pre><code>## [1] 7 9 5</code></pre>
 <p>We can use <code>print()</code> to display the string, and <code>cat()</code> is used to write the string directly to the console. If you’re debugging, <code>message()</code> is R’s preferred syntax.</p>
-<div class="sourceCode" id="cb720"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb720-1"><a href="text-data.html#cb720-1"></a>presidents =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Fillmore&quot;</span>,<span class="st">&quot;Pierce&quot;</span>,<span class="st">&quot;Buchanan&quot;</span>,<span class="st">&quot;Davis&quot;</span>,<span class="st">&quot;Johnson&quot;</span>)</span>
+<div class="sourceCode" id="cb720"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb720-1"><a href="text-data.html#cb720-1"></a>presidents =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Fillmore&quot;</span>, <span class="st">&quot;Pierce&quot;</span>, <span class="st">&quot;Buchanan&quot;</span>, <span class="st">&quot;Davis&quot;</span>, <span class="st">&quot;Johnson&quot;</span>)</span>
 <span id="cb720-2"><a href="text-data.html#cb720-2"></a></span>
 <span id="cb720-3"><a href="text-data.html#cb720-3"></a><span class="kw">print</span>(<span class="st">&quot;Abraham Lincoln&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Abraham Lincoln&quot;</code></pre>
@@ -496,7 +498,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong><em>Substring</em></strong>: a smaller string from the big string, but still a string in its own right.</p>
 <p>A string is not a vector or a list, so we <strong><em>cannot</em></strong> use subscripts like <code>[[ ]]</code> or <code>[ ]</code> to extract substrings; we use <code>substr()</code> instead.</p>
 <div class="sourceCode" id="cb728"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb728-1"><a href="text-data.html#cb728-1"></a>phrase &lt;-<span class="st"> &quot;Christmas Bonus&quot;</span></span>
-<span id="cb728-2"><a href="text-data.html#cb728-2"></a><span class="kw">substr</span>(phrase, <span class="dt">start=</span><span class="dv">8</span>, <span class="dt">stop=</span><span class="dv">12</span>)</span></code></pre></div>
+<span id="cb728-2"><a href="text-data.html#cb728-2"></a><span class="kw">substr</span>(phrase, <span class="dt">start =</span> <span class="dv">8</span>, <span class="dt">stop =</span> <span class="dv">12</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;as Bo&quot;</code></pre>
 <p>We can also use <code>substr</code> to replace elements:</p>
 <div class="sourceCode" id="cb730"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb730-1"><a href="text-data.html#cb730-1"></a><span class="kw">substr</span>(phrase, <span class="dv">13</span>, <span class="dv">13</span>) =<span class="st"> &quot;g&quot;</span></span>
@@ -506,13 +508,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>substr()</code> vectorizes over all its arguments:</p>
 <div class="sourceCode" id="cb732"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb732-1"><a href="text-data.html#cb732-1"></a>presidents</span></code></pre></div>
 <pre><code>## [1] &quot;Fillmore&quot; &quot;Pierce&quot;   &quot;Buchanan&quot; &quot;Davis&quot;    &quot;Johnson&quot;</code></pre>
-<div class="sourceCode" id="cb734"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb734-1"><a href="text-data.html#cb734-1"></a><span class="kw">substr</span>(presidents,<span class="dv">1</span>,<span class="dv">2</span>)   <span class="co"># First two characters</span></span></code></pre></div>
+<div class="sourceCode" id="cb734"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb734-1"><a href="text-data.html#cb734-1"></a><span class="kw">substr</span>(presidents, <span class="dv">1</span>, <span class="dv">2</span>)  <span class="co"># First two characters</span></span></code></pre></div>
 <pre><code>## [1] &quot;Fi&quot; &quot;Pi&quot; &quot;Bu&quot; &quot;Da&quot; &quot;Jo&quot;</code></pre>
-<div class="sourceCode" id="cb736"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb736-1"><a href="text-data.html#cb736-1"></a><span class="kw">substr</span>(presidents,<span class="kw">nchar</span>(presidents)<span class="op">-</span><span class="dv">1</span>,<span class="kw">nchar</span>(presidents))   <span class="co"># Last two</span></span></code></pre></div>
+<div class="sourceCode" id="cb736"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb736-1"><a href="text-data.html#cb736-1"></a><span class="kw">substr</span>(presidents, <span class="kw">nchar</span>(presidents) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="kw">nchar</span>(presidents))  <span class="co"># Last two</span></span></code></pre></div>
 <pre><code>## [1] &quot;re&quot; &quot;ce&quot; &quot;an&quot; &quot;is&quot; &quot;on&quot;</code></pre>
-<div class="sourceCode" id="cb738"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb738-1"><a href="text-data.html#cb738-1"></a><span class="kw">substr</span>(presidents,<span class="dv">20</span>,<span class="dv">21</span>)    <span class="co"># No such substrings so return the null string</span></span></code></pre></div>
+<div class="sourceCode" id="cb738"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb738-1"><a href="text-data.html#cb738-1"></a><span class="kw">substr</span>(presidents, <span class="dv">20</span>, <span class="dv">21</span>)  <span class="co"># No such substrings so return the null string</span></span></code></pre></div>
 <pre><code>## [1] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot;</code></pre>
-<div class="sourceCode" id="cb740"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb740-1"><a href="text-data.html#cb740-1"></a><span class="kw">substr</span>(presidents,<span class="dv">7</span>,<span class="dv">7</span>)      <span class="co"># Explain!</span></span></code></pre></div>
+<div class="sourceCode" id="cb740"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb740-1"><a href="text-data.html#cb740-1"></a><span class="kw">substr</span>(presidents, <span class="dv">7</span>, <span class="dv">7</span>)  <span class="co"># Explain!</span></span></code></pre></div>
 <pre><code>## [1] &quot;r&quot; &quot;&quot;  &quot;a&quot; &quot;&quot;  &quot;n&quot;</code></pre>
 </div>
 <div id="dividing-strings-into-vectors" class="section level2 hasAnchor">
@@ -526,7 +528,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [[1]]
 ## [1] &quot;parsley&quot;  &quot;sage&quot;     &quot;rosemary&quot; &quot;thyme&quot;</code></pre>
 <p>Pattern is recycled over elements of the input vector:</p>
-<div class="sourceCode" id="cb746"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb746-1"><a href="text-data.html#cb746-1"></a><span class="kw">strsplit</span> (<span class="kw">c</span>(scarborough.fair, <span class="st">&quot;Garfunkel, Oates&quot;</span>, <span class="st">&quot;Clement, McKenzie&quot;</span>), <span class="st">&quot;, &quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb746"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb746-1"><a href="text-data.html#cb746-1"></a><span class="kw">strsplit</span>(<span class="kw">c</span>(scarborough.fair, <span class="st">&quot;Garfunkel, Oates&quot;</span>, <span class="st">&quot;Clement, McKenzie&quot;</span>),</span>
+<span id="cb746-2"><a href="text-data.html#cb746-2"></a>    <span class="st">&quot;, &quot;</span>)</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] &quot;parsley&quot;  &quot;sage&quot;     &quot;rosemary&quot; &quot;thyme&quot;   
 ## 
@@ -540,13 +543,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="converting-objects-into-strings" class="section level2 hasAnchor">
 <h2><span class="header-section-number">16.4</span> Converting Objects into Strings<a href="text-data.html#converting-objects-into-strings" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Explicitly converting one variable type to another is called <strong><em>casting</em></strong>. Notice that the number “7.2e12” is printed as supplied, but “7.2e5” is not. This is because if a number is exceeding large, small, or close to zero, then R will by default use scientific notation for that number.</p>
-<div class="sourceCode" id="cb748"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb748-1"><a href="text-data.html#cb748-1"></a><span class="kw">as.character</span>(<span class="fl">7.2</span>)            <span class="co"># Obvious</span></span></code></pre></div>
+<div class="sourceCode" id="cb748"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb748-1"><a href="text-data.html#cb748-1"></a><span class="kw">as.character</span>(<span class="fl">7.2</span>)  <span class="co"># Obvious</span></span></code></pre></div>
 <pre><code>## [1] &quot;7.2&quot;</code></pre>
-<div class="sourceCode" id="cb750"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb750-1"><a href="text-data.html#cb750-1"></a><span class="kw">as.character</span>(<span class="fl">7.2e12</span>)         <span class="co"># Obvious</span></span></code></pre></div>
+<div class="sourceCode" id="cb750"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb750-1"><a href="text-data.html#cb750-1"></a><span class="kw">as.character</span>(<span class="fl">7.2e+12</span>)  <span class="co"># Obvious</span></span></code></pre></div>
 <pre><code>## [1] &quot;7.2e+12&quot;</code></pre>
-<div class="sourceCode" id="cb752"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb752-1"><a href="text-data.html#cb752-1"></a><span class="kw">as.character</span>(<span class="kw">c</span>(<span class="fl">7.2</span>,<span class="fl">7.2e12</span>))  <span class="co"># Obvious</span></span></code></pre></div>
+<div class="sourceCode" id="cb752"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb752-1"><a href="text-data.html#cb752-1"></a><span class="kw">as.character</span>(<span class="kw">c</span>(<span class="fl">7.2</span>, <span class="fl">7.2e+12</span>))  <span class="co"># Obvious</span></span></code></pre></div>
 <pre><code>## [1] &quot;7.2&quot;     &quot;7.2e+12&quot;</code></pre>
-<div class="sourceCode" id="cb754"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb754-1"><a href="text-data.html#cb754-1"></a><span class="kw">as.character</span>(<span class="fl">7.2e5</span>)          <span class="co"># Not quite so obvious</span></span></code></pre></div>
+<div class="sourceCode" id="cb754"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb754-1"><a href="text-data.html#cb754-1"></a><span class="kw">as.character</span>(<span class="dv">720000</span>)  <span class="co"># Not quite so obvious</span></span></code></pre></div>
 <pre><code>## [1] &quot;720000&quot;</code></pre>
 </div>
 <div id="versatility-of-the-paste-function" class="section level2 hasAnchor">
@@ -555,22 +558,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb756"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb756-1"><a href="text-data.html#cb756-1"></a><span class="kw">paste</span>(<span class="dv">41</span><span class="op">:</span><span class="dv">45</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;41&quot; &quot;42&quot; &quot;43&quot; &quot;44&quot; &quot;45&quot;</code></pre>
 <p>With 2 or more vector arguments, it combines them with recycling.</p>
-<div class="sourceCode" id="cb758"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb758-1"><a href="text-data.html#cb758-1"></a><span class="kw">paste</span>(presidents,<span class="dv">41</span><span class="op">:</span><span class="dv">45</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb758"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb758-1"><a href="text-data.html#cb758-1"></a><span class="kw">paste</span>(presidents, <span class="dv">41</span><span class="op">:</span><span class="dv">45</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Fillmore 41&quot; &quot;Pierce 42&quot;   &quot;Buchanan 43&quot; &quot;Davis 44&quot;    &quot;Johnson 45&quot;</code></pre>
-<div class="sourceCode" id="cb760"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb760-1"><a href="text-data.html#cb760-1"></a><span class="kw">paste</span>(presidents,<span class="kw">c</span>(<span class="st">&quot;R&quot;</span>,<span class="st">&quot;D&quot;</span>))  <span class="co"># Not historically accurate!</span></span></code></pre></div>
+<div class="sourceCode" id="cb760"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb760-1"><a href="text-data.html#cb760-1"></a><span class="kw">paste</span>(presidents, <span class="kw">c</span>(<span class="st">&quot;R&quot;</span>, <span class="st">&quot;D&quot;</span>))  <span class="co"># Not historically accurate!</span></span></code></pre></div>
 <pre><code>## [1] &quot;Fillmore R&quot; &quot;Pierce D&quot;   &quot;Buchanan R&quot; &quot;Davis D&quot;    &quot;Johnson R&quot;</code></pre>
-<div class="sourceCode" id="cb762"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb762-1"><a href="text-data.html#cb762-1"></a><span class="kw">paste</span>(presidents,<span class="st">&quot;(&quot;</span>,<span class="kw">c</span>(<span class="st">&quot;R&quot;</span>,<span class="st">&quot;D&quot;</span>),<span class="dv">41</span><span class="op">:</span><span class="dv">45</span>,<span class="st">&quot;)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb762"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb762-1"><a href="text-data.html#cb762-1"></a><span class="kw">paste</span>(presidents, <span class="st">&quot;(&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;R&quot;</span>, <span class="st">&quot;D&quot;</span>), <span class="dv">41</span><span class="op">:</span><span class="dv">45</span>, <span class="st">&quot;)&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Fillmore ( R 41 )&quot; &quot;Pierce ( D 42 )&quot;   &quot;Buchanan ( R 43 )&quot;
 ## [4] &quot;Davis ( D 44 )&quot;    &quot;Johnson ( R 45 )&quot;</code></pre>
 <p>We can changing the separator between pasted-together terms.</p>
-<div class="sourceCode" id="cb764"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb764-1"><a href="text-data.html#cb764-1"></a><span class="kw">paste</span>(presidents, <span class="st">&quot; (&quot;</span>, <span class="dv">41</span><span class="op">:</span><span class="dv">45</span>, <span class="st">&quot;)&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;_&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb764"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb764-1"><a href="text-data.html#cb764-1"></a><span class="kw">paste</span>(presidents, <span class="st">&quot; (&quot;</span>, <span class="dv">41</span><span class="op">:</span><span class="dv">45</span>, <span class="st">&quot;)&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Fillmore_ (_41_)&quot; &quot;Pierce_ (_42_)&quot;   &quot;Buchanan_ (_43_)&quot; &quot;Davis_ (_44_)&quot;   
 ## [5] &quot;Johnson_ (_45_)&quot;</code></pre>
-<div class="sourceCode" id="cb766"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb766-1"><a href="text-data.html#cb766-1"></a><span class="kw">paste</span>(presidents, <span class="st">&quot; (&quot;</span>, <span class="dv">41</span><span class="op">:</span><span class="dv">45</span>, <span class="st">&quot;)&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb766"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb766-1"><a href="text-data.html#cb766-1"></a><span class="kw">paste</span>(presidents, <span class="st">&quot; (&quot;</span>, <span class="dv">41</span><span class="op">:</span><span class="dv">45</span>, <span class="st">&quot;)&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Fillmore (41)&quot; &quot;Pierce (42)&quot;   &quot;Buchanan (43)&quot; &quot;Davis (44)&quot;   
 ## [5] &quot;Johnson (45)&quot;</code></pre>
 <p>We can also condense multiple strings together using the <code>collapse</code> argument.</p>
-<div class="sourceCode" id="cb768"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb768-1"><a href="text-data.html#cb768-1"></a><span class="kw">paste</span>(presidents, <span class="st">&quot; (&quot;</span>, <span class="dv">41</span><span class="op">:</span><span class="dv">45</span>, <span class="st">&quot;)&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>, <span class="dt">collapse=</span><span class="st">&quot;; &quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb768"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb768-1"><a href="text-data.html#cb768-1"></a><span class="kw">paste</span>(presidents, <span class="st">&quot; (&quot;</span>, <span class="dv">41</span><span class="op">:</span><span class="dv">45</span>, <span class="st">&quot;)&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>, <span class="dt">collapse =</span> <span class="st">&quot;; &quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Fillmore (41); Pierce (42); Buchanan (43); Davis (44); Johnson (45)&quot;</code></pre>
 <p>Default value of <code>collapse</code> is <code>NULL</code> – that is, it won’t use it.</p>
 </div>
@@ -600,7 +603,7 @@ altogether."</p>
 <div class="sourceCode" id="cb770"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb770-1"><a href="text-data.html#cb770-1"></a>the_url &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/rpkgarcia/LearnRBook/main/data_sets/al1.txt&quot;</span></span>
 <span id="cb770-2"><a href="text-data.html#cb770-2"></a>al1 &lt;-<span class="st"> </span><span class="kw">readLines</span>(the_url, <span class="dt">warn =</span> <span class="ot">FALSE</span>)</span>
 <span id="cb770-3"><a href="text-data.html#cb770-3"></a></span>
-<span id="cb770-4"><a href="text-data.html#cb770-4"></a><span class="co"># How many lines in the file </span></span>
+<span id="cb770-4"><a href="text-data.html#cb770-4"></a><span class="co"># How many lines in the file</span></span>
 <span id="cb770-5"><a href="text-data.html#cb770-5"></a><span class="kw">length</span>(al1)</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <div class="sourceCode" id="cb772"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb772-1"><a href="text-data.html#cb772-1"></a><span class="co"># See the object</span></span>
@@ -608,7 +611,7 @@ altogether."</p>
 <pre><code>## [1] &quot;If we shall suppose that American slavery is one of those offenses which, in the providence of God, must needs come, but which, having continued through His appointed time, He now wills to remove, and that He gives to both North and South this terrible war as the woe due to those by whom the offense came, shall we discern therein any departure from those divine attributes which the believers in a living God always ascribe to Him? Fondly do we hope, fervently do we pray, that this mighty scourge of war may speedily pass away. Yet, if God wills that it continue until all the wealth piled by the bondsman’s two hundred and fifty years of unrequited toil shall be sunk, and until every drop of blood drawn with the lash shall be paid by another drawn with the sword, as was said three thousand years ago, so still it must be said “the judgments of the Lord are true and righteous altogether”.&quot;</code></pre>
 <p>Lets create a new vector where each element is a portion of text seperated by a comman “,”.</p>
 <div class="sourceCode" id="cb774"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb774-1"><a href="text-data.html#cb774-1"></a>al1.phrases &lt;-<span class="st"> </span><span class="kw">strsplit</span>(al1, <span class="st">&quot;,&quot;</span>)[[<span class="dv">1</span>]]</span>
-<span id="cb774-2"><a href="text-data.html#cb774-2"></a>al1.phrases </span></code></pre></div>
+<span id="cb774-2"><a href="text-data.html#cb774-2"></a>al1.phrases</span></code></pre></div>
 <pre><code>##  [1] &quot;If we shall suppose that American slavery is one of those offenses which&quot;                                                                         
 ##  [2] &quot; in the providence of God&quot;                                                                                                                        
 ##  [3] &quot; must needs come&quot;                                                                                                                                 
@@ -628,14 +631,15 @@ altogether."</p>
 <h2><span class="header-section-number">16.8</span> Search<a href="text-data.html#search" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We can search through text strings for certain patterns. Some particularly helpful functions for doing this are <code>grep()</code> and <code>grepl()</code>. The <code>grep()</code> function</p>
 <p>Narrowing down entries: use <code>grep()</code> to find which strings have a matching search term</p>
-<div class="sourceCode" id="cb776"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb776-1"><a href="text-data.html#cb776-1"></a><span class="co"># Returns indices for which element in al1 has the term &quot;God&quot;</span></span>
-<span id="cb776-2"><a href="text-data.html#cb776-2"></a><span class="kw">grep</span>(<span class="st">&quot;God&quot;</span>, al1.phrases)</span></code></pre></div>
+<div class="sourceCode" id="cb776"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb776-1"><a href="text-data.html#cb776-1"></a><span class="co"># Returns indices for which element in al1 has the term</span></span>
+<span id="cb776-2"><a href="text-data.html#cb776-2"></a><span class="co"># &#39;God&#39;</span></span>
+<span id="cb776-3"><a href="text-data.html#cb776-3"></a><span class="kw">grep</span>(<span class="st">&quot;God&quot;</span>, al1.phrases)</span></code></pre></div>
 <pre><code>## [1]  2  8 11</code></pre>
-<div class="sourceCode" id="cb778"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb778-1"><a href="text-data.html#cb778-1"></a><span class="co"># Returns T/F values for which indices have the term &quot;God&quot; </span></span>
+<div class="sourceCode" id="cb778"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb778-1"><a href="text-data.html#cb778-1"></a><span class="co"># Returns T/F values for which indices have the term &#39;God&#39;</span></span>
 <span id="cb778-2"><a href="text-data.html#cb778-2"></a><span class="kw">grepl</span>(<span class="st">&quot;God&quot;</span>, al1.phrases)</span></code></pre></div>
 <pre><code>##  [1] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE
 ## [13] FALSE FALSE</code></pre>
-<div class="sourceCode" id="cb780"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb780-1"><a href="text-data.html#cb780-1"></a><span class="co"># Returns the the elements in al1 that have the term &quot;God&quot; </span></span>
+<div class="sourceCode" id="cb780"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb780-1"><a href="text-data.html#cb780-1"></a><span class="co"># Returns the the elements in al1 that have the term &#39;God&#39;</span></span>
 <span id="cb780-2"><a href="text-data.html#cb780-2"></a>al1.phrases[<span class="kw">grep</span>(<span class="st">&quot;God&quot;</span>, al1.phrases)]</span></code></pre></div>
 <pre><code>## [1] &quot; in the providence of God&quot;                                                                                                                        
 ## [2] &quot; shall we discern therein any departure from those divine attributes which the believers in a living God always ascribe to Him? Fondly do we hope&quot;
@@ -644,12 +648,12 @@ altogether."</p>
 <div id="word-count-tables" class="section level2 hasAnchor">
 <h2><span class="header-section-number">16.9</span> Word Count Tables<a href="text-data.html#word-count-tables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now lets break up the data set by spaces. We do this in hopes that it will separate each word as an element.</p>
-<div class="sourceCode" id="cb782"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb782-1"><a href="text-data.html#cb782-1"></a>al1.words &lt;-<span class="st"> </span><span class="kw">strsplit</span>(al1, <span class="dt">split=</span><span class="st">&quot; &quot;</span>)[[<span class="dv">1</span>]]</span>
+<div class="sourceCode" id="cb782"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb782-1"><a href="text-data.html#cb782-1"></a>al1.words &lt;-<span class="st"> </span><span class="kw">strsplit</span>(al1, <span class="dt">split =</span> <span class="st">&quot; &quot;</span>)[[<span class="dv">1</span>]]</span>
 <span id="cb782-2"><a href="text-data.html#cb782-2"></a><span class="kw">head</span>(al1.words)</span></code></pre></div>
 <pre><code>## [1] &quot;If&quot;       &quot;we&quot;       &quot;shall&quot;    &quot;suppose&quot;  &quot;that&quot;     &quot;American&quot;</code></pre>
 <p>We can now tabulate how often each word appears using the <code>table()</code> function. Then we can sort the frequencies in order using <code>sort()</code>.</p>
 <div class="sourceCode" id="cb784"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb784-1"><a href="text-data.html#cb784-1"></a>wc &lt;-<span class="st"> </span><span class="kw">table</span>(al1.words)</span>
-<span id="cb784-2"><a href="text-data.html#cb784-2"></a>wc &lt;-<span class="st"> </span><span class="kw">sort</span>(wc, <span class="dt">decreasing=</span><span class="ot">TRUE</span>)</span>
+<span id="cb784-2"><a href="text-data.html#cb784-2"></a>wc &lt;-<span class="st"> </span><span class="kw">sort</span>(wc, <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb784-3"><a href="text-data.html#cb784-3"></a><span class="kw">head</span>(wc, <span class="dv">250</span>)</span></code></pre></div>
 <pre><code>## al1.words
 ##          the           of          and        shall         that           to 
@@ -692,17 +696,17 @@ altogether."</p>
 ##            1            1            1            1            1</code></pre>
 <p>Notice that punctuation using these methods is still present.</p>
 <div class="sourceCode" id="cb786"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb786-1"><a href="text-data.html#cb786-1"></a><span class="co"># These are different</span></span>
-<span id="cb786-2"><a href="text-data.html#cb786-2"></a>wc[<span class="st">&quot;He&quot;</span>] <span class="co"># exists</span></span></code></pre></div>
+<span id="cb786-2"><a href="text-data.html#cb786-2"></a>wc[<span class="st">&quot;He&quot;</span>]  <span class="co"># exists</span></span></code></pre></div>
 <pre><code>## He 
 ##  2</code></pre>
-<div class="sourceCode" id="cb788"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb788-1"><a href="text-data.html#cb788-1"></a>wc[<span class="st">&quot;he&quot;</span>] <span class="co"># does not exist</span></span></code></pre></div>
+<div class="sourceCode" id="cb788"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb788-1"><a href="text-data.html#cb788-1"></a>wc[<span class="st">&quot;he&quot;</span>]  <span class="co"># does not exist</span></span></code></pre></div>
 <pre><code>## &lt;NA&gt; 
 ##   NA</code></pre>
 <p>In addition, all our words and string subsets are case sensitive.</p>
-<div class="sourceCode" id="cb790"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb790-1"><a href="text-data.html#cb790-1"></a><span class="co"># What happens when we look for a word that is not in our </span></span>
-<span id="cb790-2"><a href="text-data.html#cb790-2"></a><span class="co"># word count table? </span></span>
+<div class="sourceCode" id="cb790"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb790-1"><a href="text-data.html#cb790-1"></a><span class="co"># What happens when we look for a word that is not in our</span></span>
+<span id="cb790-2"><a href="text-data.html#cb790-2"></a><span class="co"># word count table?</span></span>
 <span id="cb790-3"><a href="text-data.html#cb790-3"></a></span>
-<span id="cb790-4"><a href="text-data.html#cb790-4"></a><span class="kw">which</span>(<span class="kw">names</span>(wc)  <span class="op">==</span><span class="st"> &quot;That&quot;</span>)</span></code></pre></div>
+<span id="cb790-4"><a href="text-data.html#cb790-4"></a><span class="kw">which</span>(<span class="kw">names</span>(wc) <span class="op">==</span><span class="st"> &quot;That&quot;</span>)</span></code></pre></div>
 <pre><code>## integer(0)</code></pre>
 <div class="sourceCode" id="cb792"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb792-1"><a href="text-data.html#cb792-1"></a>wc[<span class="st">&quot;That&quot;</span>]</span></code></pre></div>
 <pre><code>## &lt;NA&gt; 
