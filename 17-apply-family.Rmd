@@ -255,10 +255,14 @@ replicate(n = 5, sample(c("red", "blue")))
 
 It can be difficult at first to decide which of these apply function you may want to use. In general, we can use the flow chart below as a quick guide. 
 
-```{r, echo = F, message=FALSE, warning=FALSE, fig.align='center'}
-library(knitr)
-knitr::include_graphics("images/ApplyFlowChart.png")
-```
+<!-- # ```{r, echo = F, message=FALSE, warning=FALSE, fig.align='center'} -->
+<!-- # library(knitr) -->
+<!-- # knitr::include_graphics("images/ApplyFlowChart.png") -->
+<!-- # ``` -->
+
+![](images/apply_flowchart.png){hieght=200%}
+
+
 
 
 ## More Examples

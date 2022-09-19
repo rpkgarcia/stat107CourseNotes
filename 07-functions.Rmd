@@ -185,6 +185,10 @@ summary(cars$speed)
 
 One of the great advantages of using R is that there is a ton of resources available to learn about it.  However, this can also be a disadvantage because of the vast amount of information available. The best and first resource you should look at when trying learn more about R functions is the **Help files**.
 
+## Vectorization 
+
+
+
 ## Help Files 
 
 The Help files are in R and can be viewed from the lower right window by clicking the *Help* tab.  Here you can search by function name to read about it. Each built in function has a help files, sometimes similar functions are grouped together in the same file. The R Help Files are typically the best resource to get help. 
@@ -255,7 +259,7 @@ fun1(1, 2)
 ```
 
 
-We can also use the `...` arguement in a nested fashion. 
+We can also use the `...` argument in a nested fashion. 
 
 ```{r}
 

@@ -269,6 +269,10 @@ In this line of code the object `c(6, 2 ,5)` is binded to the name `v`.  That is
 R has rules when it comes to naming objects.  An object may start with a letter or a `.`, and the remaining characters may consist of letters, digits, `.` or `_`.  There are also special types of objects that have already established names in R. For example, `NULL`, `TRUE`, `FALSE`, `if`, and `function` should not be used as a new object name.  To see a list of these reserved object names type `?Reserved` in to your console. 
 
 
+## Basic Calculations
+
+
+
 
 ## Additional Resources {-}
 
