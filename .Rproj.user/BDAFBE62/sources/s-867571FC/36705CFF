@@ -3,22 +3,22 @@
     "path": "~/Documents/GitHub/stat107CourseNotes/_bookdown.yml",
     "project_path": "_bookdown.yml",
     "type": "yaml",
-    "hash": "1628902739",
+    "hash": "2929246348",
     "contents": "",
     "dirty": false,
     "created": 1663550125727.0,
     "source_on_save": false,
     "relative_order": 3,
     "properties": {
-        "cursorPosition": "1,18",
+        "cursorPosition": "4,18",
         "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1663550622,
+    "lastKnownWriteTime": 1663551600,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1663550622007,
+    "last_content_update": 1663551600968,
     "read_only": false,
     "read_only_alternatives": []
 }
