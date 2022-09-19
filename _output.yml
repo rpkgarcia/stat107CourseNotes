@@ -1,11 +1,12 @@
 bookdown::gitbook:
-  css: style.css
+  css:
+    - assets/style.css
   config:
     toc:
       before: |
-        <li><a href="./">STAT 107 Outline of Class Notes</a></li>
+        <li><a href="./">STAT 107 Notes</a></li>
       after: |
-        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+        <li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
     edit: https://github.com/USERNAME/REPO/edit/BRANCH/%s
     download: ["pdf", "epub"]
 bookdown::pdf_book:
@@ -15,14 +16,8 @@ bookdown::pdf_book:
   citation_package: natbib
   keep_tex: yes
 bookdown::epub_book: default
-# output:
-#   bookdown::pdf_document2:
-#     latex_engine: lualatex
-#   tufte::tufte_handout:
-#     latex_engine: xelatex
-# bookdown::pdf_document2:
-#     fig_caption: yes
-#     latex_engine: xelatex
-#     number_sections: true
-#     toc: yes
-#     toc_depth: 2
+#bookdown::pdf_book:
+#  includes:
+#    in_header: _preamble.tex
+#  latex_engine: xelatex
+#  keep_tex: no

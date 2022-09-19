@@ -1,0 +1,94 @@
+p.caption {
+  color: #777;
+  margin-top: 10px;
+}
+p code {
+  white-space: inherit;
+}
+pre {
+  word-break: normal;
+  word-wrap: normal;
+}
+pre code {
+  white-space: inherit;
+}
+
+
+/* The next two rules make the horizontal line go straight across in top navbar */
+
+.summary > li:first-child {
+    height: 50px;
+    padding-top: 10px;
+    border-bottom: 1px solid rgba(0,0,0,.07);
+}
+
+.book .book-summary ul.summary li.divider {
+    height: 0px;
+}
+
+
+
+/*--- LOGO ---*/
+
+.toc-logo {
+  width: 150px !important;
+  object-fit: contain;
+  margin: 0 auto;
+  display: block;
+}
+
+.toc-logo img {
+  max-width: 100%;
+  margin-bottom: 10px;
+}
+
+.summary > li:first-child {
+  height: auto !important; 
+}
+
+
+
+
+
+/*--- Boxes of Text  ---*/
+/*https://www.webnots.com/how-to-create-custom-css-text-boxes/*/
+
+
+.webnots-notification-box {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  color: black;
+  font-family: verdana, 'open sans', sans-serif;
+  margin-bottom: 25px;
+  padding: 10px 14px 10px 44px;
+  position: relative;
+  box-shadow: 0px 1px 5px #999;
+}
+.webnots-notification-box:before {
+  font-family: FontAwesome;
+  font-size: 21px;
+  left: 14px;
+  position: absolute;
+}
+.webnots-information {
+  background-color: #3498db;
+}
+.webnots-information:before {
+  content: "\f129";
+  margin-left: 4px;
+}
+.webnots-question {
+  background-color: rgba(241, 196, 15, 0.3);
+}
+.webnots-question:before {
+  content: "\f128";
+  margin-left: 2px;
+}
+.webnots-tip {
+  background-color: #16a085;
+}
+.webnots-tip:before {
+  content: "\f0eb";
+  margin-left: 2px;
+}
