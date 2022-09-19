@@ -1,0 +1,227 @@
+\contentsline {chapter}{Welcome}{7}{chapter*.2}%
+\contentsline {chapter}{\numberline {1}Introduction to R}{9}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Download and Install R and Rstudio}{9}{section.1.1}%
+\contentsline {section}{\numberline {1.2}The \textbf {RStudio} Interface}{10}{section.1.2}%
+\contentsline {subsection}{Bottom Left Pane}{12}{section*.3}%
+\contentsline {subsection}{Bottom Right Pane}{12}{section*.4}%
+\contentsline {subsection}{Top Right Pane}{13}{section*.5}%
+\contentsline {subsection}{Top Left Pane}{14}{section*.6}%
+\contentsline {section}{\numberline {1.3}Comments}{15}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Operators}{15}{section.1.4}%
+\contentsline {subsection}{Arithmetic Operators}{15}{section*.7}%
+\contentsline {subsection}{Relational Operators}{16}{section*.8}%
+\contentsline {subsection}{Logical operators}{17}{section*.9}%
+\contentsline {subsection}{Assignment Operators}{18}{section*.10}%
+\contentsline {section}{\numberline {1.5}Naming Conventions}{19}{section.1.5}%
+\contentsline {section}{Additional Resources}{19}{section*.11}%
+\contentsline {chapter}{\numberline {2}Atomic Vectors}{21}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Examples}{22}{section.2.1}%
+\contentsline {subsection}{Double}{22}{section*.12}%
+\contentsline {subsection}{Integer}{22}{section*.13}%
+\contentsline {subsection}{Logical}{23}{section*.14}%
+\contentsline {subsection}{Character}{23}{section*.15}%
+\contentsline {section}{\numberline {2.2}Basic Features}{24}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Length}{24}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Vectorized Operations and Recylcing}{25}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Coercion}{26}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}Testing}{27}{subsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.2.5}Names}{27}{subsection.2.2.5}%
+\contentsline {subsection}{\numberline {2.2.6}typeof() and class()}{29}{subsection.2.2.6}%
+\contentsline {subsection}{\numberline {2.2.7}Accessing Elements of a Vector}{29}{subsection.2.2.7}%
+\contentsline {section}{Summary}{30}{section*.16}%
+\contentsline {section}{Additional Resources}{31}{section*.17}%
+\contentsline {chapter}{\numberline {3}Factors and Lists}{33}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Factors}{33}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Levels}{33}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Ordered Factor}{34}{subsection.3.1.2}%
+\contentsline {section}{\numberline {3.2}Factors - Basic Features}{35}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Length}{35}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Coercion}{36}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Testing/Class}{36}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}Names}{37}{subsection.3.2.4}%
+\contentsline {subsection}{\numberline {3.2.5}Accessing Elements}{37}{subsection.3.2.5}%
+\contentsline {subsection}{\numberline {3.2.6}Frequency Tables}{38}{subsection.3.2.6}%
+\contentsline {section}{\numberline {3.3}Lists}{39}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Nested Lists}{40}{subsection.3.3.1}%
+\contentsline {section}{\numberline {3.4}List - Basic Features}{40}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Length}{40}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Coercion}{41}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}Testing/Class}{41}{subsection.3.4.3}%
+\contentsline {subsection}{\numberline {3.4.4}Names}{42}{subsection.3.4.4}%
+\contentsline {subsection}{\numberline {3.4.5}Accessing Elements}{42}{subsection.3.4.5}%
+\contentsline {section}{Summary}{43}{section*.18}%
+\contentsline {section}{Additional Resources}{44}{section*.19}%
+\contentsline {chapter}{\numberline {4}Matrices, Data Frames, and More}{45}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Matrices}{45}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Vectorized Operations}{46}{subsection.4.1.1}%
+\contentsline {section}{\numberline {4.2}Data Frames}{46}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Column Names}{47}{subsection.4.2.1}%
+\contentsline {section}{\numberline {4.3}Basic Features of Matrices/Data-Frames}{47}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Dimensions}{47}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Accesing Elements}{48}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Coercion}{48}{subsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.3.4}Testing/Class}{49}{subsection.4.3.4}%
+\contentsline {subsection}{\numberline {4.3.5}Names}{49}{subsection.4.3.5}%
+\contentsline {section}{\numberline {4.4}Other Object Types and the Global Environment}{50}{section.4.4}%
+\contentsline {section}{Summary}{51}{section*.20}%
+\contentsline {chapter}{\numberline {5}Indexing}{53}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Atomic Vectors and Factors}{53}{section.5.1}%
+\contentsline {subsection}{Example: Positive Integers}{54}{section*.21}%
+\contentsline {subsection}{Example: Negative Integers}{55}{section*.22}%
+\contentsline {subsection}{Example: Logical Values}{55}{section*.23}%
+\contentsline {subsection}{Example: Names}{55}{section*.24}%
+\contentsline {section}{\numberline {5.2}Lists}{56}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Double Brackets}{56}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Dollar Sign}{57}{subsection.5.2.2}%
+\contentsline {section}{\numberline {5.3}Matrices}{57}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Two Vectors}{57}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Single Vector}{58}{subsection.5.3.2}%
+\contentsline {section}{\numberline {5.4}Data frames}{59}{section.5.4}%
+\contentsline {subsection}{Example: Double brackets}{59}{section*.25}%
+\contentsline {subsection}{Example: Dollar Sign}{60}{section*.26}%
+\contentsline {section}{\numberline {5.5}Features and Applications}{61}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}Indexing and Reassignment}{61}{subsection.5.5.1}%
+\contentsline {subsection}{\numberline {5.5.2}Ordering/Integer Indexing}{62}{subsection.5.5.2}%
+\contentsline {subsection}{\numberline {5.5.3}Adding Elements/Rows/Columns}{64}{subsection.5.5.3}%
+\contentsline {subsection}{\numberline {5.5.4}Delete Elements/Rows/Columns}{65}{subsection.5.5.4}%
+\contentsline {subsection}{\numberline {5.5.5}Select Based on Condition}{66}{subsection.5.5.5}%
+\contentsline {subsection}{\numberline {5.5.6}Convert Indexing Techniques}{68}{subsection.5.5.6}%
+\contentsline {section}{Summary}{68}{section*.27}%
+\contentsline {chapter}{\numberline {6}Working with Data Sets}{71}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Getting Data Sets in Our Working Environment}{71}{section.6.1}%
+\contentsline {subsection}{Built-In Data}{71}{section*.28}%
+\contentsline {subsection}{Importing From Your Computer}{72}{section*.29}%
+\contentsline {subsection}{Import From Online}{72}{section*.30}%
+\contentsline {section}{\numberline {6.2}Basic Data Manipulation}{73}{section.6.2}%
+\contentsline {subsection}{Subset}{74}{section*.31}%
+\contentsline {subsection}{Adding Columns}{75}{section*.32}%
+\contentsline {subsection}{NA values}{75}{section*.33}%
+\contentsline {subsection}{NULL}{76}{section*.34}%
+\contentsline {subsection}{Adding Rows}{76}{section*.35}%
+\contentsline {section}{Summary}{77}{section*.36}%
+\contentsline {chapter}{\numberline {7}Functions}{79}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Build Your Own Function}{79}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Lexical Scoping}{81}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Built-In Functions}{84}{section.7.3}%
+\contentsline {section}{\numberline {7.4}Help Files}{85}{section.7.4}%
+\contentsline {section}{\numberline {7.5}The \ldots {} Argument}{86}{section.7.5}%
+\contentsline {section}{\numberline {7.6}Generic Functions}{88}{section.7.6}%
+\contentsline {section}{Additional Resources}{88}{section*.37}%
+\contentsline {chapter}{\numberline {8}Packages}{89}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Namespace Collisions}{90}{section.8.1}%
+\contentsline {chapter}{\numberline {9}If Statements}{93}{chapter.9}%
+\contentsline {section}{\numberline {9.1}If}{93}{section.9.1}%
+\contentsline {section}{\numberline {9.2}If Else}{94}{section.9.2}%
+\contentsline {section}{\numberline {9.3}Else If}{94}{section.9.3}%
+\contentsline {section}{\numberline {9.4}Ifelse}{95}{section.9.4}%
+\contentsline {section}{\numberline {9.5}Nested If Chains}{96}{section.9.5}%
+\contentsline {section}{Additional Resources}{96}{section*.38}%
+\contentsline {chapter}{\numberline {10}Base R Plotting}{99}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Load A Big Data Set}{99}{section.10.1}%
+\contentsline {section}{\numberline {10.2}Histograms}{101}{section.10.2}%
+\contentsline {section}{\numberline {10.3}Boxplot}{107}{section.10.3}%
+\contentsline {section}{\numberline {10.4}Scatter Plot}{109}{section.10.4}%
+\contentsline {section}{\numberline {10.5}Pie Charts}{112}{section.10.5}%
+\contentsline {section}{\numberline {10.6}Adding Straight Lines}{114}{section.10.6}%
+\contentsline {section}{\numberline {10.7}Adding Lines Between Points}{116}{section.10.7}%
+\contentsline {section}{\numberline {10.8}Adding Individual Points}{117}{section.10.8}%
+\contentsline {section}{\numberline {10.9}The par() Help File}{118}{section.10.9}%
+\contentsline {section}{\numberline {10.10}Adding Legends}{119}{section.10.10}%
+\contentsline {section}{\numberline {10.11}What makes a good plot?}{121}{section.10.11}%
+\contentsline {chapter}{\numberline {11}Extending Base R Graphics}{125}{chapter.11}%
+\contentsline {section}{\numberline {11.1}The ``maps'' Package}{125}{section.11.1}%
+\contentsline {section}{\numberline {11.2}Some additional Packages to consider}{130}{section.11.2}%
+\contentsline {chapter}{\numberline {12}Loops}{133}{chapter.12}%
+\contentsline {section}{\numberline {12.1}While Loop}{133}{section.12.1}%
+\contentsline {section}{\numberline {12.2}For Loops}{135}{section.12.2}%
+\contentsline {section}{\numberline {12.3}Break}{136}{section.12.3}%
+\contentsline {section}{\numberline {12.4}Next}{137}{section.12.4}%
+\contentsline {section}{\numberline {12.5}Nested Loops}{138}{section.12.5}%
+\contentsline {section}{\numberline {12.6}Examples}{139}{section.12.6}%
+\contentsline {subsection}{\numberline {12.6.1}Example 1}{139}{subsection.12.6.1}%
+\contentsline {subsection}{\numberline {12.6.2}Example 2}{140}{subsection.12.6.2}%
+\contentsline {section}{\numberline {12.7}Additional Resources}{141}{section.12.7}%
+\contentsline {chapter}{\numberline {13}Simulation}{143}{chapter.13}%
+\contentsline {section}{\numberline {13.1}What Are Simulation Studies}{143}{section.13.1}%
+\contentsline {section}{\numberline {13.2}Review Random Variables}{144}{section.13.2}%
+\contentsline {section}{\numberline {13.3}Generating Random Variables}{147}{section.13.3}%
+\contentsline {section}{\numberline {13.4}Setting a Seed}{149}{section.13.4}%
+\contentsline {section}{\numberline {13.5}sample()}{149}{section.13.5}%
+\contentsline {section}{\numberline {13.6}replicate()}{150}{section.13.6}%
+\contentsline {section}{\numberline {13.7}Adding curves to graphs}{151}{section.13.7}%
+\contentsline {section}{\numberline {13.8}Example: Central Limit Theorem (CLT)}{155}{section.13.8}%
+\contentsline {subsection}{\numberline {13.8.1}Recall CLT}{155}{subsection.13.8.1}%
+\contentsline {subsection}{\numberline {13.8.2}Assumption Violations of CLT}{156}{subsection.13.8.2}%
+\contentsline {subsection}{\numberline {13.8.3}The Data}{156}{subsection.13.8.3}%
+\contentsline {chapter}{\numberline {14}Tidyverse}{159}{chapter.14}%
+\contentsline {section}{\numberline {14.1}Piping Operator}{159}{section.14.1}%
+\contentsline {section}{\numberline {14.2}Tibbles vs Data Frames}{160}{section.14.2}%
+\contentsline {section}{\numberline {14.3}Key Functions}{161}{section.14.3}%
+\contentsline {subsection}{\numberline {14.3.1}General properties}{162}{subsection.14.3.1}%
+\contentsline {subsection}{\numberline {14.3.2}select()}{162}{subsection.14.3.2}%
+\contentsline {subsection}{\numberline {14.3.3}filter()}{164}{subsection.14.3.3}%
+\contentsline {subsection}{\numberline {14.3.4}arrange()}{165}{subsection.14.3.4}%
+\contentsline {subsection}{\numberline {14.3.5}rename()}{165}{subsection.14.3.5}%
+\contentsline {subsection}{\numberline {14.3.6}mutate()}{166}{subsection.14.3.6}%
+\contentsline {subsection}{\numberline {14.3.7}group\_by()}{168}{subsection.14.3.7}%
+\contentsline {subsection}{\numberline {14.3.8}summarize()/summarise()}{168}{subsection.14.3.8}%
+\contentsline {section}{\numberline {14.4}Examples}{169}{section.14.4}%
+\contentsline {subsection}{\numberline {14.4.1}Example 1}{169}{subsection.14.4.1}%
+\contentsline {subsection}{\numberline {14.4.2}Example 2}{170}{subsection.14.4.2}%
+\contentsline {subsection}{\numberline {14.4.3}Example 3}{170}{subsection.14.4.3}%
+\contentsline {section}{Additional Resources}{171}{section*.39}%
+\contentsline {chapter}{\numberline {15}ggplot2}{173}{chapter.15}%
+\contentsline {section}{\numberline {15.1}Tidyverse and ggplot2}{173}{section.15.1}%
+\contentsline {section}{\numberline {15.2}Intro to ggplot2}{173}{section.15.2}%
+\contentsline {subsection}{What is the grammar of graphics?}{173}{section*.40}%
+\contentsline {subsection}{ggplot2 versus other R Graphics}{174}{section*.41}%
+\contentsline {section}{\numberline {15.3}Getting started: Kep Components}{174}{section.15.3}%
+\contentsline {section}{\numberline {15.4}Adjust aesthetic attributes by variable}{175}{section.15.4}%
+\contentsline {section}{\numberline {15.5}Adjust aesthetic attributes for the entire plot}{178}{section.15.5}%
+\contentsline {section}{\numberline {15.6}Faceting}{180}{section.15.6}%
+\contentsline {section}{\numberline {15.7}Some example plots}{181}{section.15.7}%
+\contentsline {section}{\numberline {15.8}Where can I learn more?}{188}{section.15.8}%
+\contentsline {chapter}{\numberline {16}Text Data}{189}{chapter.16}%
+\contentsline {section}{\numberline {16.1}Making Strings}{190}{section.16.1}%
+\contentsline {section}{\numberline {16.2}Substring Operations}{191}{section.16.2}%
+\contentsline {section}{\numberline {16.3}Dividing Strings into Vectors}{192}{section.16.3}%
+\contentsline {section}{\numberline {16.4}Converting Objects into Strings}{193}{section.16.4}%
+\contentsline {section}{\numberline {16.5}Versatility of the paste() Function}{193}{section.16.5}%
+\contentsline {section}{\numberline {16.6}gsub , sub}{194}{section.16.6}%
+\contentsline {section}{\numberline {16.7}Text of Some Importance}{194}{section.16.7}%
+\contentsline {section}{\numberline {16.8}Search}{195}{section.16.8}%
+\contentsline {section}{\numberline {16.9}Word Count Tables}{196}{section.16.9}%
+\contentsline {chapter}{\numberline {17}Apply Family of Functions}{199}{chapter.17}%
+\contentsline {section}{\numberline {17.1}apply()}{200}{section.17.1}%
+\contentsline {subsection}{Example: Built In Function}{200}{section*.42}%
+\contentsline {subsection}{Example: User Defined Function}{201}{section*.43}%
+\contentsline {subsection}{\numberline {17.1.1}Returned Objects}{201}{subsection.17.1.1}%
+\contentsline {subsection}{\numberline {17.1.2}Example: Extra Arguments, Array Output}{201}{subsection.17.1.2}%
+\contentsline {subsection}{\numberline {17.1.3}Example: List Output}{202}{subsection.17.1.3}%
+\contentsline {section}{\numberline {17.2}lapply()}{202}{section.17.2}%
+\contentsline {section}{\numberline {17.3}sapply()}{205}{section.17.3}%
+\contentsline {section}{\numberline {17.4}tapply()}{206}{section.17.4}%
+\contentsline {section}{\numberline {17.5}mapply()}{207}{section.17.5}%
+\contentsline {section}{\numberline {17.6}replicate()}{207}{section.17.6}%
+\contentsline {section}{\numberline {17.7}How to Pick a Method}{208}{section.17.7}%
+\contentsline {section}{\numberline {17.8}More Examples}{210}{section.17.8}%
+\contentsline {subsection}{\numberline {17.8.1}Create a New Variable}{214}{subsection.17.8.1}%
+\contentsline {section}{Additional Resources}{215}{section*.44}%
+\contentsline {chapter}{\numberline {18}Debugging}{217}{chapter.18}%
+\contentsline {section}{\numberline {18.1}Debugging Background (History, Types of Bugs, Challenges to Consider)}{217}{section.18.1}%
+\contentsline {subsection}{Types of bugs}{218}{section*.45}%
+\contentsline {subsection}{Debugging Process Difficulties}{218}{section*.46}%
+\contentsline {section}{\numberline {18.2}Debugging Strategies In General}{219}{section.18.2}%
+\contentsline {subsection}{\numberline {18.2.1}Example of the Binary Search Algorithm}{220}{subsection.18.2.1}%
+\contentsline {section}{\numberline {18.3}Using Debuggers}{222}{section.18.3}%
+\contentsline {subsection}{\numberline {18.3.1}traceback()}{222}{subsection.18.3.1}%
+\contentsline {subsection}{Example with traceback()}{223}{section*.47}%
+\contentsline {subsection}{Unfamiliar function with traceback()}{223}{section*.48}%
+\contentsline {subsection}{\numberline {18.3.2}browswer()}{223}{subsection.18.3.2}%
+\contentsline {subsection}{\numberline {18.3.3}debug()}{223}{subsection.18.3.3}%
+\contentsline {section}{\numberline {18.4}More options to consider}{223}{section.18.4}%
+\contentsline {section}{\numberline {18.5}Important Takeaways}{223}{section.18.5}%
+\contentsline {subsection}{Tips for Writing good code}{224}{section*.49}%
+\contentsline {subsection}{Steps to Reduce the Number of Bugs}{224}{section*.50}%
+\contentsline {subsection}{After You Located the Error}{225}{section*.51}%
+\contentsline {section}{\numberline {18.6}Resources}{225}{section.18.6}%

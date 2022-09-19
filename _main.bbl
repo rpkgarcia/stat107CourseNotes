@@ -1,0 +1,39 @@
+\begin{thebibliography}{5}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[{ Dr. Robert Desharnais}(2020)]{Desharnais2020}
+{ Dr. Robert Desharnais}.
+\newblock \emph{Biology3000}.
+\newblock California State University, Los Angeles, Los Angeles, CA, 2020.
+
+\bibitem[de~Vries and Meys(2015)]{dummies2015}
+Andrie de~Vries and Joris Meys.
+\newblock \emph{R for dummies}.
+\newblock John Wiley \& Sons, Inc, Hoboken, New Jersey, 2015.
+\newblock URL
+  \url{https://www.dummies.com/programming/r/how-to-use-the-r-help-files/}.
+\newblock ISBN 978-1119055808.
+
+\bibitem[Diez et~al.(2020)Diez, Cetinkaya-Rundel, and Barr]{OpenIntro}
+David Diez, Mine Cetinkaya-Rundel, and Christopher~D Barr.
+\newblock \emph{OpenIntro Statistics, Fourth Edition}.
+\newblock OpenIntro, 2020.
+\newblock URL \url{https://www.openintro.org/book/os/}.
+
+\bibitem[{John Blischak, Daniel Chen, Harriet Dashnow, and Denis
+  Haine}(2016)]{r-func}
+{John Blischak, Daniel Chen, Harriet Dashnow, and Denis Haine}.
+\newblock Software carpentry: Programming with r.version 2016.06, 2016.
+\newblock URL
+  \url{https://swcarpentry.github.io/r-novice-inflammation/02-func-R/index.html}.
+
+\bibitem[Wickham et~al.(2009)]{wickham2009elegant}
+Hadley Wickham et~al.
+\newblock Elegant graphics for data analysis.
+\newblock \emph{Media}, 35\penalty0 (211):\penalty0 10--1007, 2009.
+
+\end{thebibliography}
