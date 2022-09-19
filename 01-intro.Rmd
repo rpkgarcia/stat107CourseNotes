@@ -1,5 +1,11 @@
 # Introduction to R
 
+<!-- # ```{r, echo = F, message = F, comment = F, warning = F} -->
+<!-- #  -->
+<!-- # # This might be a problem  -->
+<!-- # library(knitr) -->
+<!-- # opts_chunk$set(tidy.opts=list(width.cutoff=20),tidy=TRUE) -->
+<!-- # ``` -->
 
 
 In this chapter we introduce R and RStudio, which you’ll be using throughout this course to learn how to analyze real data and come to informed conclusions. To straighten out which is which: R is the name of the programming language itself, and RStudio is a convenient interface for using R.
