@@ -5,6 +5,7 @@ comments
 operators
 naming-conventions
 basic-calculations
+floating-point-error
 atomic-vectors
 examples
 basic-features

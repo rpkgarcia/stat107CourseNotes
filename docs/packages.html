@@ -24,7 +24,7 @@
 <meta name="author" content="Rebecca Kurtz-Garcia" />
 
 
-<meta name="date" content="2022-09-18" />
+<meta name="date" content="2022-09-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -156,6 +156,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#naming-conventions"><i class="fa fa-check"></i><b>1.5</b> Naming Conventions<span></span></a></li>
 <li class="chapter" data-level="1.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#basic-calculations"><i class="fa fa-check"></i><b>1.6</b> Basic Calculations<span></span></a></li>
+<li class="chapter" data-level="1.7" data-path="introduction-to-r.html"><a href="introduction-to-r.html#floating-point-error"><i class="fa fa-check"></i><b>1.7</b> Floating Point Error<span></span></a></li>
 <li><a href="introduction-to-r.html#additional-resources">Additional Resources<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="atomic-vectors.html"><a href="atomic-vectors.html"><i class="fa fa-check"></i><b>2</b> Atomic Vectors<span></span></a><ul>
@@ -439,35 +440,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>R</code> packages are a collection of <code>R</code> functions, complied code and sample data. They are stored under a directory called “library” in the <code>R</code> environment. By default, <code>R</code> installs a set of packages during installation. More packages are added later, when they are needed for some specific purpose. When we start the <code>R</code> console, only the default packages are available by default. Other packages which are already installed have to be loaded explicitly to be used by the <code>R</code> program that is going to use them.</p>
 <p>All the packages available in <code>R</code> language are listed at <a href="https://cran.r-project.org/web/packages/available_packages_by_name.html">R Packages</a>.</p>
 <p>To see a list of all packages installed on your device.</p>
-<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="packages.html#cb476-1"></a><span class="kw">library</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="packages.html#cb479-1"></a><span class="kw">library</span>()</span></code></pre></div>
 <p>To see a list of all packages that are currently loaded (note that yours will likely look different).</p>
-<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="packages.html#cb477-1"></a><span class="kw">search</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="packages.html#cb480-1"></a><span class="kw">search</span>()</span></code></pre></div>
 <pre><code>##  [1] &quot;.GlobalEnv&quot;        &quot;package:knitr&quot;     &quot;package:stats&quot;    
 ##  [4] &quot;package:graphics&quot;  &quot;package:grDevices&quot; &quot;package:utils&quot;    
 ##  [7] &quot;package:datasets&quot;  &quot;package:methods&quot;   &quot;Autoloads&quot;        
 ## [10] &quot;package:base&quot;</code></pre>
 <p>When adding a new package to our library we only have to install it once. We can do so with the following command.</p>
-<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="packages.html#cb479-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;library name&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="packages.html#cb482-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;library name&quot;</span>)</span></code></pre></div>
 <p>Alternatively, we can also go to the lower left hand window and select the <em>Packages</em> tab. Then hit the button <strong>Install</strong>. A dropdown menu will appear where we can search for the package name.</p>
 <p>Before a package can be used in the code, it must be loaded to the current R environment. You also need to load a package that is already installed previously but not available in the current environment.</p>
-<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="packages.html#cb480-1"></a><span class="kw">library</span>(<span class="st">&quot;library name&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="packages.html#cb483-1"></a><span class="kw">library</span>(<span class="st">&quot;library name&quot;</span>)</span></code></pre></div>
 <p>For example, suppose we wanted to install and load the package “ggplot2”, (a very popular package for making plots). We would type the following commands.</p>
-<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="packages.html#cb481-1"></a><span class="co"># Install package (only need to do this once)</span></span>
-<span id="cb481-2"><a href="packages.html#cb481-2"></a><span class="kw">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
-<span id="cb481-3"><a href="packages.html#cb481-3"></a></span>
-<span id="cb481-4"><a href="packages.html#cb481-4"></a><span class="co"># Load into working environment (need to do this for each</span></span>
-<span id="cb481-5"><a href="packages.html#cb481-5"></a><span class="co"># new R session)</span></span>
-<span id="cb481-6"><a href="packages.html#cb481-6"></a><span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="packages.html#cb484-1"></a><span class="co"># Install package (only need to do this once)</span></span>
+<span id="cb484-2"><a href="packages.html#cb484-2"></a><span class="kw">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
+<span id="cb484-3"><a href="packages.html#cb484-3"></a></span>
+<span id="cb484-4"><a href="packages.html#cb484-4"></a><span class="co"># Load into working environment (need to do this for each</span></span>
+<span id="cb484-5"><a href="packages.html#cb484-5"></a><span class="co"># new R session)</span></span>
+<span id="cb484-6"><a href="packages.html#cb484-6"></a><span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
 <p>It might seem strange to (1) have to download packages tto use features and (2) have to load these packages each time we wish to use them; however, there are several good reasons for doing packages in this way, and this system is considered a feature. We don’t have all possible packages available to us at all times because that is a lot of information that R would need to store at once which could make our computer lag. These packages are also always being updated at different rates with different features. Most users will only utilize packages in CRAN, so having to update R each session for features you may never use would be tedious. Furthermore, there are several packages which contain objects and functions with the same name.</p>
 <div id="namespace-collisions" class="section level2 hasAnchor">
 <h2><span class="header-section-number">8.1</span> Namespace Collisions<a href="packages.html#namespace-collisions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Every time we load a package into our environment the results for the <code>search()</code> function changes. The most recently added package is always listed after the global environment, followed by the second most recent, and so on.
 The <code>search()</code> function tells us how R searches for an object that we called. For example, consider the following command.</p>
-<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="packages.html#cb482-1"></a>v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb482-2"><a href="packages.html#cb482-2"></a><span class="kw">mean</span>(v)</span></code></pre></div>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="packages.html#cb485-1"></a>v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb485-2"><a href="packages.html#cb485-2"></a><span class="kw">mean</span>(v)</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 <p>In this case R is searching for the function mean first in the global environment, and then in the package in the order that appears in the output of the <code>search()</code> function. The package <code>base</code> is always last. In our case the function <code>mean()</code> is only defined in the base package. If you want to call a function from a specific package explicitly and want to be sure there is no confusion you can type the package name followed by <code>::</code> and the desired command.</p>
-<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="packages.html#cb484-1"></a>base<span class="op">::</span><span class="kw">mean</span>(v)</span></code></pre></div>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="packages.html#cb487-1"></a>base<span class="op">::</span><span class="kw">mean</span>(v)</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 <p>This can be useful, but is not usually necessary.</p>
 

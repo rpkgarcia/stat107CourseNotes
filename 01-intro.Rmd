@@ -7,6 +7,7 @@
 <!-- # opts_chunk$set(tidy.opts=list(width.cutoff=20),tidy=TRUE) -->
 <!-- # ``` -->
 
+[Videos for this chapter are here!](https://drive.google.com/drive/folders/1wqLcBREQ3wahLH6Z7tAZEjxz11cFkgN2?usp=sharing)
 
 In this chapter we introduce R and RStudio, which you’ll be using throughout this course to learn how to analyze real data and come to informed conclusions. To straighten out which is which: R is the name of the programming language itself, and RStudio is a convenient interface for using R.
 
@@ -32,6 +33,7 @@ The details for downloading and installing these software packages varies depend
 
 
 ## The **RStudio** Interface 
+
 
 We will begin by looking at the RStudio software interface. The RStudio program is referred to the window, and each section in the interface is a pane. 
 
@@ -132,6 +134,7 @@ The columns are labeled with the names of the variables and the rows are labeled
 
 ## Comments 
 
+
 Often times we will want to add a comment to our script document so we can remember special aspects later, and make the code easier to read and modify in the future.  To add a comment start the comment with a `#` symbol. This will make the remaining characters in a line a comment and R will not try to compile these lines. Go to the script document and type the following.  Highlight what you have typed and press "Run". 
 
 ```{r}
@@ -143,6 +146,8 @@ Often times we will want to add a comment to our script document so we can remem
 
 
 ## Operators {#operators}
+
+
 
 An operator is a symbol that tells the compiler to preform a specific task.  There are several types of operators, some preform mathematical tasks, logical checks, and create new objects.  We will review a few of the basic operators here.  We will continue to discuss and introduce operators throughout this document. 
 
@@ -278,6 +283,73 @@ R has rules when it comes to naming objects.  An object may start with a letter 
 
 
 ## Basic Calculations
+
+There are many functions in R that work similarly to how we would see in excel, or in a calculator.  Most of these calculator-like functions take in a vector as input.  Vectors can have a single element, or multiple elements.  We call these **vectorized** functions.  There are in general two types of vectorized functions, **single element** functions, and **multiple element** functions. Single element functions take a vector as an input and applies the function to each element of this vector automatically. Examples include `exp()`, `log()` and `abs()`. Multiple element functions take a vector as an input and returns an object based on the entire vector.  Examples include `mean()`, `prod()`, and `sd()`. 
+
+* `abs()`: Takes in a vector, and returns the absolute value of each element in the vector.
+
+* `sum()`: Takes in a vector, and returns the sum of all element in the vector. 
+
+* `prod()`: Takes in a vector, and returns the product of all elements in the vector. 
+
+* `exp()`: Takes in a vector, and returns $e$ to the power of each element in that vector (i.e. $e^x$)
+
+* `log()`: Takes in a vector, and returns the NATURAL LOG of each element in the vector. 
+
+* `log10()`: Takes in a vector, and returns the log (base ten) of each element in the vector. 
+
+* `mean()`: Takes in a vector, and returns the mean of the values in the vector.
+
+* `median()`: Takes in a vector, and returns the median of the values in the vector.
+
+* `var()`: Takes in a vector, and returns the variance of the values in the vector.
+
+* `sqrt()`: If you give it a vector, it returns the square root of each element in the vector.  If you give it a single number, it returns the square root of the number.
+
+* `sd()`: Takes in a vector, and returns the standard deviation of the values in the vector.
+
+* `range()`: Takes in a vector, and returns the minimum AND maximum of the values in the vector.
+
+Notice also that these functions take a single **vector** as input.  Consider the following two examples. 
+
+```{r, collapse=TRUE}
+
+# Example 1: Three vectors of length 1 as input.  
+# Only the first vector (i.e. 1) is used to calculate the mean
+mean(1, 2, 3)
+
+# Example 2: One vector of length 3 as input.
+# All three numbers are used to calculate the mean. 
+mean(c(1, 2, 3))
+```
+
+In the first function call three vectors, each of length 1, where supplied as input.  However, this function only uses a single vector as input.  Instead we need to make a vector, `c(1,2,3)`, so that all three numbers are considered when calculating the mean.  Sometimes these functions will automatically combine all data supplied in the function call into a single vector for you to combat this problem.  This is not always the case though!  Be sure to arrange the data in the correct way when calling your functions. 
+
+## Floating Point Error 
+
+Many programming languages calculate values using high level approximations of mathematical operations, instead of doing the mathematical operations directly.  R might show you a number that is an approximation or rounded version of what it tried to calculate.  However, R can keep track of more levels of decimal places than it is showing you.  For example, consider the built in object `pi`. 
+
+```{r, collapse=TRUE}
+# Built in object
+pi
+
+# My pi
+my_pi <- 3.141593
+
+# Are these equal?
+pi == my_pi
+```
+
+To us these numbers look identical, but that is not the case for the computer.  The built-in object `pi` actually has a lot more decimal places that the computer is not showing us.  This can happen with computations sometimes, even when formulas are mathematically equivalent.  To combat this problem, there are several things we can do.  One of which is to use the `round(x, d)` function. Here `x` is the numeber to round, and `d` is the amount of decimal points to round to. 
+
+```{r, collapse=TRUE}
+pi_new <- round(pi, 3)
+
+my_pi_new <- round(my_pi, 3)
+
+pi_new == my_pi_new
+
+```
 
 
 

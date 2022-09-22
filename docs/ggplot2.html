@@ -24,7 +24,7 @@
 <meta name="author" content="Rebecca Kurtz-Garcia" />
 
 
-<meta name="date" content="2022-09-18" />
+<meta name="date" content="2022-09-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -156,6 +156,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#naming-conventions"><i class="fa fa-check"></i><b>1.5</b> Naming Conventions<span></span></a></li>
 <li class="chapter" data-level="1.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#basic-calculations"><i class="fa fa-check"></i><b>1.6</b> Basic Calculations<span></span></a></li>
+<li class="chapter" data-level="1.7" data-path="introduction-to-r.html"><a href="introduction-to-r.html#floating-point-error"><i class="fa fa-check"></i><b>1.7</b> Floating Point Error<span></span></a></li>
 <li><a href="introduction-to-r.html#additional-resources">Additional Resources<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="atomic-vectors.html"><a href="atomic-vectors.html"><i class="fa fa-check"></i><b>2</b> Atomic Vectors<span></span></a><ul>
@@ -439,7 +440,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="tidyverse-and-ggplot2" class="section level2 hasAnchor">
 <h2><span class="header-section-number">15.1</span> Tidyverse and ggplot2<a href="ggplot2.html#tidyverse-and-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>For this document you will need to install and load the package <code>ggplot2</code> which is part of <code>tidyverse</code>. To install the package refer to Section <a href="packages.html#packages">8</a>.</p>
-<div class="sourceCode" id="cb665"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb665-1"><a href="ggplot2.html#cb665-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb668"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb668-1"><a href="ggplot2.html#cb668-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
 <p>The tidyverse is a collection of packages that share a unique underlying philosophy, frame work, and syntax. There are approximately 20 tidyverse packages, but the core ones are <code>ggplot2</code>, <code>dplyr</code>, <code>tidyr</code>, <code>readr</code>, <code>purr</code>, <code>tibble</code>, <code>stringr</code>, and <code>forcats</code>. You can install these packages individually or all at once using by simply using the command <code>install.packages("tidyverse")</code>.</p>
 <p>We will be focusing on the <code>ggplot2</code> package for now. The functions and topics that we that we will be covering can be found in <span class="citation">Wickham and others (<a href="#ref-wickham2009elegant" role="doc-biblioref">2009</a>)</span>.</p>
 </div>
@@ -493,117 +494,117 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>At least one layer which described how to render each observation. Layers are usually created with a <strong>geom</strong> function.</p></li>
 </ol>
 <p>A Basic Example:</p>
-<div class="sourceCode" id="cb666"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb666-1"><a href="ggplot2.html#cb666-1"></a><span class="kw">ggplot</span>(mpg,                        <span class="co"># Data</span></span>
-<span id="cb666-2"><a href="ggplot2.html#cb666-2"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy))<span class="op">+</span><span class="st">   </span><span class="co"># aesthetic mapping</span></span>
-<span id="cb666-3"><a href="ggplot2.html#cb666-3"></a><span class="st">  </span><span class="kw">geom_point</span>()                     <span class="co"># geom layer </span></span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-250-1.png" width="672" /></p>
+<div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb669-1"><a href="ggplot2.html#cb669-1"></a><span class="kw">ggplot</span>(mpg,                        <span class="co"># Data</span></span>
+<span id="cb669-2"><a href="ggplot2.html#cb669-2"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy))<span class="op">+</span><span class="st">   </span><span class="co"># aesthetic mapping</span></span>
+<span id="cb669-3"><a href="ggplot2.html#cb669-3"></a><span class="st">  </span><span class="kw">geom_point</span>()                     <span class="co"># geom layer </span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-253-1.png" width="672" /></p>
 </div>
 <div id="adjust-aesthetic-attributes-by-variable" class="section level2 hasAnchor">
 <h2><span class="header-section-number">15.4</span> Adjust aesthetic attributes by variable<a href="ggplot2.html#adjust-aesthetic-attributes-by-variable" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We can adjust aesthetic attributes by variable using the <code>aes()</code> function and the <code>mapping</code> argument.</p>
-<div class="sourceCode" id="cb667"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb667-1"><a href="ggplot2.html#cb667-1"></a><span class="co"># Adjust the color for each point by class</span></span>
-<span id="cb667-2"><a href="ggplot2.html#cb667-2"></a><span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">color =</span> class)</span>
-<span id="cb667-3"><a href="ggplot2.html#cb667-3"></a></span>
-<span id="cb667-4"><a href="ggplot2.html#cb667-4"></a><span class="co"># Adjust the shape for each point by drv</span></span>
-<span id="cb667-5"><a href="ggplot2.html#cb667-5"></a><span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">shape =</span> drv)</span>
-<span id="cb667-6"><a href="ggplot2.html#cb667-6"></a></span>
-<span id="cb667-7"><a href="ggplot2.html#cb667-7"></a><span class="co"># Adjust the size of each point by cyl</span></span>
-<span id="cb667-8"><a href="ggplot2.html#cb667-8"></a><span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">shape =</span> cyl)</span></code></pre></div>
-<div class="sourceCode" id="cb668"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb668-1"><a href="ggplot2.html#cb668-1"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">color =</span> class)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-252-1.png" width="672" /></p>
-<div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb669-1"><a href="ggplot2.html#cb669-1"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">shape =</span> drv)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-252-2.png" width="672" /></p>
-<div class="sourceCode" id="cb670"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb670-1"><a href="ggplot2.html#cb670-1"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">shape =</span> <span class="kw">factor</span>(cyl))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-252-3.png" width="672" /></p>
+<div class="sourceCode" id="cb670"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb670-1"><a href="ggplot2.html#cb670-1"></a><span class="co"># Adjust the color for each point by class</span></span>
+<span id="cb670-2"><a href="ggplot2.html#cb670-2"></a><span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">color =</span> class)</span>
+<span id="cb670-3"><a href="ggplot2.html#cb670-3"></a></span>
+<span id="cb670-4"><a href="ggplot2.html#cb670-4"></a><span class="co"># Adjust the shape for each point by drv</span></span>
+<span id="cb670-5"><a href="ggplot2.html#cb670-5"></a><span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">shape =</span> drv)</span>
+<span id="cb670-6"><a href="ggplot2.html#cb670-6"></a></span>
+<span id="cb670-7"><a href="ggplot2.html#cb670-7"></a><span class="co"># Adjust the size of each point by cyl</span></span>
+<span id="cb670-8"><a href="ggplot2.html#cb670-8"></a><span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">shape =</span> cyl)</span></code></pre></div>
+<div class="sourceCode" id="cb671"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb671-1"><a href="ggplot2.html#cb671-1"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">color =</span> class)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-255-1.png" width="672" /></p>
+<div class="sourceCode" id="cb672"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb672-1"><a href="ggplot2.html#cb672-1"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">shape =</span> drv)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-255-2.png" width="672" /></p>
+<div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="ggplot2.html#cb673-1"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">shape =</span> <span class="kw">factor</span>(cyl))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-255-3.png" width="672" /></p>
 </div>
 <div id="adjust-aesthetic-attributes-for-the-entire-plot" class="section level2 hasAnchor">
 <h2><span class="header-section-number">15.5</span> Adjust aesthetic attributes for the entire plot<a href="ggplot2.html#adjust-aesthetic-attributes-for-the-entire-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Notice that the plot changes based on if the <code>color</code> is assigned outside or inside of the <code>aes()</code> function. This is because the <code>aes()</code> function is used to map the data to an aesthetic property of the map. Inside of <code>aes()</code> we let the aesthetic argument (color, shape, etc) equal a variable in the data set. The different values for that variable control what happens to that aesthetic. If we assign aesthetic value outside of the <code>aes()</code> function then we are just assigning a value for the entire data set and do not use column names of the data.</p>
-<div class="sourceCode" id="cb671"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb671-1"><a href="ggplot2.html#cb671-1"></a><span class="co"># Change aesthetic attributes according to some variable</span></span>
-<span id="cb671-2"><a href="ggplot2.html#cb671-2"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(displ, hwy)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> class))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-253-1.png" width="672" /></p>
-<div class="sourceCode" id="cb672"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb672-1"><a href="ggplot2.html#cb672-1"></a><span class="co"># Attempt to change all points to blue Will not run</span></span>
-<span id="cb672-2"><a href="ggplot2.html#cb672-2"></a><span class="co"># correctly because colour = &#39;blue&#39; is inside aes()</span></span>
-<span id="cb672-3"><a href="ggplot2.html#cb672-3"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(displ, hwy)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-253-2.png" width="672" /></p>
-<div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="ggplot2.html#cb673-1"></a><span class="co"># Change all points to blue, works correctly</span></span>
-<span id="cb673-2"><a href="ggplot2.html#cb673-2"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(displ, hwy)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-253-3.png" width="672" /></p>
+<div class="sourceCode" id="cb674"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb674-1"><a href="ggplot2.html#cb674-1"></a><span class="co"># Change aesthetic attributes according to some variable</span></span>
+<span id="cb674-2"><a href="ggplot2.html#cb674-2"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(displ, hwy)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> class))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-256-1.png" width="672" /></p>
+<div class="sourceCode" id="cb675"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb675-1"><a href="ggplot2.html#cb675-1"></a><span class="co"># Attempt to change all points to blue Will not run</span></span>
+<span id="cb675-2"><a href="ggplot2.html#cb675-2"></a><span class="co"># correctly because colour = &#39;blue&#39; is inside aes()</span></span>
+<span id="cb675-3"><a href="ggplot2.html#cb675-3"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(displ, hwy)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-256-2.png" width="672" /></p>
+<div class="sourceCode" id="cb676"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb676-1"><a href="ggplot2.html#cb676-1"></a><span class="co"># Change all points to blue, works correctly</span></span>
+<span id="cb676-2"><a href="ggplot2.html#cb676-2"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(displ, hwy)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-256-3.png" width="672" /></p>
 </div>
 <div id="faceting" class="section level2 hasAnchor">
 <h2><span class="header-section-number">15.6</span> Faceting<a href="ggplot2.html#faceting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Faceting creates tables of graphics by splitting the data into subsets and displaying the same graph for each subset. You can faceting using <code>facet_wrap()</code> which is more flexible and automatically determines how to organize the data. Or, you can manually determine the facet structure using <code>facet_grid()</code>.</p>
-<div class="sourceCode" id="cb674"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb674-1"><a href="ggplot2.html#cb674-1"></a><span class="co"># Facet Wrap: Let ggplot decide how many rows and columns</span></span>
-<span id="cb674-2"><a href="ggplot2.html#cb674-2"></a><span class="co"># to make Only give one variable to break data up by ~</span></span>
-<span id="cb674-3"><a href="ggplot2.html#cb674-3"></a><span class="co"># Variable</span></span>
-<span id="cb674-4"><a href="ggplot2.html#cb674-4"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(displ, hwy)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>class)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-254-1.png" width="672" /></p>
-<div class="sourceCode" id="cb675"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb675-1"><a href="ggplot2.html#cb675-1"></a><span class="co"># Facet Grid: Number of rows and columns by number of</span></span>
-<span id="cb675-2"><a href="ggplot2.html#cb675-2"></a><span class="co"># unique values for variable 1 and variable 2 Row variable</span></span>
-<span id="cb675-3"><a href="ggplot2.html#cb675-3"></a><span class="co"># ~ Column variable.</span></span>
-<span id="cb675-4"><a href="ggplot2.html#cb675-4"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(displ, hwy)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid</span>(drv <span class="op">~</span></span>
-<span id="cb675-5"><a href="ggplot2.html#cb675-5"></a><span class="st">    </span>class)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-254-2.png" width="672" /></p>
+<div class="sourceCode" id="cb677"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb677-1"><a href="ggplot2.html#cb677-1"></a><span class="co"># Facet Wrap: Let ggplot decide how many rows and columns</span></span>
+<span id="cb677-2"><a href="ggplot2.html#cb677-2"></a><span class="co"># to make Only give one variable to break data up by ~</span></span>
+<span id="cb677-3"><a href="ggplot2.html#cb677-3"></a><span class="co"># Variable</span></span>
+<span id="cb677-4"><a href="ggplot2.html#cb677-4"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(displ, hwy)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>class)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-257-1.png" width="672" /></p>
+<div class="sourceCode" id="cb678"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb678-1"><a href="ggplot2.html#cb678-1"></a><span class="co"># Facet Grid: Number of rows and columns by number of</span></span>
+<span id="cb678-2"><a href="ggplot2.html#cb678-2"></a><span class="co"># unique values for variable 1 and variable 2 Row variable</span></span>
+<span id="cb678-3"><a href="ggplot2.html#cb678-3"></a><span class="co"># ~ Column variable.</span></span>
+<span id="cb678-4"><a href="ggplot2.html#cb678-4"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(displ, hwy)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid</span>(drv <span class="op">~</span></span>
+<span id="cb678-5"><a href="ggplot2.html#cb678-5"></a><span class="st">    </span>class)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-257-2.png" width="672" /></p>
 </div>
 <div id="some-example-plots" class="section level2 hasAnchor">
 <h2><span class="header-section-number">15.7</span> Some example plots<a href="ggplot2.html#some-example-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb676"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb676-1"><a href="ggplot2.html#cb676-1"></a><span class="co"># Example 1</span></span>
-<span id="cb676-2"><a href="ggplot2.html#cb676-2"></a><span class="kw">ggplot</span>(diamonds) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">y =</span> price, <span class="dt">x =</span> cut,</span>
-<span id="cb676-3"><a href="ggplot2.html#cb676-3"></a>    <span class="dt">color =</span> cut))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-255-1.png" width="672" /></p>
-<div class="sourceCode" id="cb677"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb677-1"><a href="ggplot2.html#cb677-1"></a><span class="co"># Example 2</span></span>
-<span id="cb677-2"><a href="ggplot2.html#cb677-2"></a><span class="kw">ggplot</span>(diamonds) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">y =</span> price, <span class="dt">x =</span> depth,</span>
-<span id="cb677-3"><a href="ggplot2.html#cb677-3"></a>    <span class="dt">size =</span> carat, <span class="dt">color =</span> cut), <span class="dt">pch =</span> <span class="dv">1</span>) <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;A Title is On This Plot&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-255-2.png" width="672" /></p>
-<div class="sourceCode" id="cb678"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb678-1"><a href="ggplot2.html#cb678-1"></a><span class="co"># Example 3</span></span>
-<span id="cb678-2"><a href="ggplot2.html#cb678-2"></a>subgroups_diamonds &lt;-<span class="st"> </span>diamonds <span class="op">%&gt;%</span></span>
-<span id="cb678-3"><a href="ggplot2.html#cb678-3"></a><span class="st">    </span><span class="kw">group_by</span>(cut, clarity) <span class="op">%&gt;%</span></span>
-<span id="cb678-4"><a href="ggplot2.html#cb678-4"></a><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">n =</span> <span class="kw">length</span>(cut))</span></code></pre></div>
-<pre><code>## `summarise()` regrouping output by &#39;cut&#39; (override with `.groups` argument)</code></pre>
-<div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb680-1"><a href="ggplot2.html#cb680-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> subgroups_diamonds) <span class="op">+</span><span class="st"> </span><span class="kw">geom_tile</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> cut,</span>
-<span id="cb680-2"><a href="ggplot2.html#cb680-2"></a>    <span class="dt">y =</span> clarity, <span class="dt">fill =</span> n)) <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low =</span> <span class="st">&quot;white&quot;</span>,</span>
-<span id="cb680-3"><a href="ggplot2.html#cb680-3"></a>    <span class="dt">high =</span> <span class="st">&quot;purple&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-255-3.png" width="672" /></p>
-<div class="sourceCode" id="cb681"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb681-1"><a href="ggplot2.html#cb681-1"></a><span class="co"># Example 4: Method 1</span></span>
-<span id="cb681-2"><a href="ggplot2.html#cb681-2"></a>subgroups_diamonds2 &lt;-<span class="st"> </span>diamonds <span class="op">%&gt;%</span></span>
-<span id="cb681-3"><a href="ggplot2.html#cb681-3"></a><span class="st">    </span><span class="kw">group_by</span>(cut, color) <span class="op">%&gt;%</span></span>
+<div class="sourceCode" id="cb679"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb679-1"><a href="ggplot2.html#cb679-1"></a><span class="co"># Example 1</span></span>
+<span id="cb679-2"><a href="ggplot2.html#cb679-2"></a><span class="kw">ggplot</span>(diamonds) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">y =</span> price, <span class="dt">x =</span> cut,</span>
+<span id="cb679-3"><a href="ggplot2.html#cb679-3"></a>    <span class="dt">color =</span> cut))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-258-1.png" width="672" /></p>
+<div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb680-1"><a href="ggplot2.html#cb680-1"></a><span class="co"># Example 2</span></span>
+<span id="cb680-2"><a href="ggplot2.html#cb680-2"></a><span class="kw">ggplot</span>(diamonds) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">y =</span> price, <span class="dt">x =</span> depth,</span>
+<span id="cb680-3"><a href="ggplot2.html#cb680-3"></a>    <span class="dt">size =</span> carat, <span class="dt">color =</span> cut), <span class="dt">pch =</span> <span class="dv">1</span>) <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;A Title is On This Plot&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-258-2.png" width="672" /></p>
+<div class="sourceCode" id="cb681"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb681-1"><a href="ggplot2.html#cb681-1"></a><span class="co"># Example 3</span></span>
+<span id="cb681-2"><a href="ggplot2.html#cb681-2"></a>subgroups_diamonds &lt;-<span class="st"> </span>diamonds <span class="op">%&gt;%</span></span>
+<span id="cb681-3"><a href="ggplot2.html#cb681-3"></a><span class="st">    </span><span class="kw">group_by</span>(cut, clarity) <span class="op">%&gt;%</span></span>
 <span id="cb681-4"><a href="ggplot2.html#cb681-4"></a><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">n =</span> <span class="kw">length</span>(cut))</span></code></pre></div>
 <pre><code>## `summarise()` regrouping output by &#39;cut&#39; (override with `.groups` argument)</code></pre>
-<div class="sourceCode" id="cb683"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb683-1"><a href="ggplot2.html#cb683-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> subgroups_diamonds2) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> cut,</span>
-<span id="cb683-2"><a href="ggplot2.html#cb683-2"></a>    <span class="dt">y =</span> n, <span class="dt">fill =</span> color), <span class="dt">position =</span> <span class="st">&quot;fill&quot;</span>, <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-255-4.png" width="672" /></p>
-<div class="sourceCode" id="cb684"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb684-1"><a href="ggplot2.html#cb684-1"></a><span class="co"># Example 4: Method 2</span></span>
-<span id="cb684-2"><a href="ggplot2.html#cb684-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> diamonds) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> cut, <span class="dt">fill =</span> color),</span>
-<span id="cb684-3"><a href="ggplot2.html#cb684-3"></a>    <span class="dt">position =</span> <span class="st">&quot;fill&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-255-5.png" width="672" /></p>
-<div class="sourceCode" id="cb685"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb685-1"><a href="ggplot2.html#cb685-1"></a><span class="co"># Example 5</span></span>
-<span id="cb685-2"><a href="ggplot2.html#cb685-2"></a>plot_data &lt;-<span class="st"> </span>diamonds <span class="op">%&gt;%</span></span>
-<span id="cb685-3"><a href="ggplot2.html#cb685-3"></a><span class="st">    </span><span class="kw">group_by</span>(clarity) <span class="op">%&gt;%</span></span>
-<span id="cb685-4"><a href="ggplot2.html#cb685-4"></a><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">m =</span> <span class="kw">mean</span>(price))</span></code></pre></div>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
-<div class="sourceCode" id="cb687"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb687-1"><a href="ggplot2.html#cb687-1"></a><span class="kw">ggplot</span>(plot_data, <span class="kw">aes</span>(<span class="dt">x =</span> clarity, <span class="dt">y =</span> m)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>,</span>
-<span id="cb687-2"><a href="ggplot2.html#cb687-2"></a>    <span class="dt">show.legend =</span> <span class="ot">FALSE</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-255-6.png" width="672" /></p>
-<div class="sourceCode" id="cb688"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb688-1"><a href="ggplot2.html#cb688-1"></a><span class="co"># Example 6</span></span>
-<span id="cb688-2"><a href="ggplot2.html#cb688-2"></a><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(<span class="dt">x =</span> clarity, <span class="dt">group =</span> cut, <span class="dt">fill =</span> cut)) <span class="op">+</span></span>
-<span id="cb688-3"><a href="ggplot2.html#cb688-3"></a><span class="st">    </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-255-7.png" width="672" /></p>
-<div class="sourceCode" id="cb689"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb689-1"><a href="ggplot2.html#cb689-1"></a><span class="co"># Example 7 creating dataset #1</span></span>
-<span id="cb689-2"><a href="ggplot2.html#cb689-2"></a>data1 &lt;-<span class="st"> </span>diamonds <span class="op">%&gt;%</span></span>
-<span id="cb689-3"><a href="ggplot2.html#cb689-3"></a><span class="st">    </span><span class="kw">group_by</span>(clarity) <span class="op">%&gt;%</span></span>
-<span id="cb689-4"><a href="ggplot2.html#cb689-4"></a><span class="st">    </span><span class="kw">summarise</span>(<span class="dt">m =</span> <span class="kw">mean</span>(price))</span></code></pre></div>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
-<div class="sourceCode" id="cb691"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb691-1"><a href="ggplot2.html#cb691-1"></a><span class="co">## creating dataset #2</span></span>
-<span id="cb691-2"><a href="ggplot2.html#cb691-2"></a>data2 &lt;-<span class="st"> </span>diamonds <span class="op">%&gt;%</span></span>
-<span id="cb691-3"><a href="ggplot2.html#cb691-3"></a><span class="st">    </span><span class="kw">group_by</span>(cut, clarity) <span class="op">%&gt;%</span></span>
-<span id="cb691-4"><a href="ggplot2.html#cb691-4"></a><span class="st">    </span><span class="kw">summarise</span>(<span class="dt">m =</span> <span class="kw">mean</span>(price))</span></code></pre></div>
+<div class="sourceCode" id="cb683"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb683-1"><a href="ggplot2.html#cb683-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> subgroups_diamonds) <span class="op">+</span><span class="st"> </span><span class="kw">geom_tile</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> cut,</span>
+<span id="cb683-2"><a href="ggplot2.html#cb683-2"></a>    <span class="dt">y =</span> clarity, <span class="dt">fill =</span> n)) <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low =</span> <span class="st">&quot;white&quot;</span>,</span>
+<span id="cb683-3"><a href="ggplot2.html#cb683-3"></a>    <span class="dt">high =</span> <span class="st">&quot;purple&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-258-3.png" width="672" /></p>
+<div class="sourceCode" id="cb684"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb684-1"><a href="ggplot2.html#cb684-1"></a><span class="co"># Example 4: Method 1</span></span>
+<span id="cb684-2"><a href="ggplot2.html#cb684-2"></a>subgroups_diamonds2 &lt;-<span class="st"> </span>diamonds <span class="op">%&gt;%</span></span>
+<span id="cb684-3"><a href="ggplot2.html#cb684-3"></a><span class="st">    </span><span class="kw">group_by</span>(cut, color) <span class="op">%&gt;%</span></span>
+<span id="cb684-4"><a href="ggplot2.html#cb684-4"></a><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">n =</span> <span class="kw">length</span>(cut))</span></code></pre></div>
 <pre><code>## `summarise()` regrouping output by &#39;cut&#39; (override with `.groups` argument)</code></pre>
-<div class="sourceCode" id="cb693"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb693-1"><a href="ggplot2.html#cb693-1"></a><span class="co">## graphing data points from 2 different datasets on one</span></span>
-<span id="cb693-2"><a href="ggplot2.html#cb693-2"></a><span class="co">## graph</span></span>
-<span id="cb693-3"><a href="ggplot2.html#cb693-3"></a><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">data =</span> data1, <span class="kw">aes</span>(<span class="dt">x =</span> clarity, <span class="dt">y =</span> m),</span>
-<span id="cb693-4"><a href="ggplot2.html#cb693-4"></a>    <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">pch =</span> <span class="dv">8</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">data =</span> data2, <span class="kw">aes</span>(<span class="dt">x =</span> clarity,</span>
-<span id="cb693-5"><a href="ggplot2.html#cb693-5"></a>    <span class="dt">y =</span> m), <span class="dt">pch =</span> <span class="dv">1</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-255-8.png" width="672" /></p>
+<div class="sourceCode" id="cb686"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb686-1"><a href="ggplot2.html#cb686-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> subgroups_diamonds2) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> cut,</span>
+<span id="cb686-2"><a href="ggplot2.html#cb686-2"></a>    <span class="dt">y =</span> n, <span class="dt">fill =</span> color), <span class="dt">position =</span> <span class="st">&quot;fill&quot;</span>, <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-258-4.png" width="672" /></p>
+<div class="sourceCode" id="cb687"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb687-1"><a href="ggplot2.html#cb687-1"></a><span class="co"># Example 4: Method 2</span></span>
+<span id="cb687-2"><a href="ggplot2.html#cb687-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> diamonds) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> cut, <span class="dt">fill =</span> color),</span>
+<span id="cb687-3"><a href="ggplot2.html#cb687-3"></a>    <span class="dt">position =</span> <span class="st">&quot;fill&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-258-5.png" width="672" /></p>
+<div class="sourceCode" id="cb688"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb688-1"><a href="ggplot2.html#cb688-1"></a><span class="co"># Example 5</span></span>
+<span id="cb688-2"><a href="ggplot2.html#cb688-2"></a>plot_data &lt;-<span class="st"> </span>diamonds <span class="op">%&gt;%</span></span>
+<span id="cb688-3"><a href="ggplot2.html#cb688-3"></a><span class="st">    </span><span class="kw">group_by</span>(clarity) <span class="op">%&gt;%</span></span>
+<span id="cb688-4"><a href="ggplot2.html#cb688-4"></a><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">m =</span> <span class="kw">mean</span>(price))</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb690"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb690-1"><a href="ggplot2.html#cb690-1"></a><span class="kw">ggplot</span>(plot_data, <span class="kw">aes</span>(<span class="dt">x =</span> clarity, <span class="dt">y =</span> m)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>,</span>
+<span id="cb690-2"><a href="ggplot2.html#cb690-2"></a>    <span class="dt">show.legend =</span> <span class="ot">FALSE</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-258-6.png" width="672" /></p>
+<div class="sourceCode" id="cb691"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb691-1"><a href="ggplot2.html#cb691-1"></a><span class="co"># Example 6</span></span>
+<span id="cb691-2"><a href="ggplot2.html#cb691-2"></a><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(<span class="dt">x =</span> clarity, <span class="dt">group =</span> cut, <span class="dt">fill =</span> cut)) <span class="op">+</span></span>
+<span id="cb691-3"><a href="ggplot2.html#cb691-3"></a><span class="st">    </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-258-7.png" width="672" /></p>
+<div class="sourceCode" id="cb692"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb692-1"><a href="ggplot2.html#cb692-1"></a><span class="co"># Example 7 creating dataset #1</span></span>
+<span id="cb692-2"><a href="ggplot2.html#cb692-2"></a>data1 &lt;-<span class="st"> </span>diamonds <span class="op">%&gt;%</span></span>
+<span id="cb692-3"><a href="ggplot2.html#cb692-3"></a><span class="st">    </span><span class="kw">group_by</span>(clarity) <span class="op">%&gt;%</span></span>
+<span id="cb692-4"><a href="ggplot2.html#cb692-4"></a><span class="st">    </span><span class="kw">summarise</span>(<span class="dt">m =</span> <span class="kw">mean</span>(price))</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb694"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb694-1"><a href="ggplot2.html#cb694-1"></a><span class="co">## creating dataset #2</span></span>
+<span id="cb694-2"><a href="ggplot2.html#cb694-2"></a>data2 &lt;-<span class="st"> </span>diamonds <span class="op">%&gt;%</span></span>
+<span id="cb694-3"><a href="ggplot2.html#cb694-3"></a><span class="st">    </span><span class="kw">group_by</span>(cut, clarity) <span class="op">%&gt;%</span></span>
+<span id="cb694-4"><a href="ggplot2.html#cb694-4"></a><span class="st">    </span><span class="kw">summarise</span>(<span class="dt">m =</span> <span class="kw">mean</span>(price))</span></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;cut&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb696"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb696-1"><a href="ggplot2.html#cb696-1"></a><span class="co">## graphing data points from 2 different datasets on one</span></span>
+<span id="cb696-2"><a href="ggplot2.html#cb696-2"></a><span class="co">## graph</span></span>
+<span id="cb696-3"><a href="ggplot2.html#cb696-3"></a><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">data =</span> data1, <span class="kw">aes</span>(<span class="dt">x =</span> clarity, <span class="dt">y =</span> m),</span>
+<span id="cb696-4"><a href="ggplot2.html#cb696-4"></a>    <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">pch =</span> <span class="dv">8</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">data =</span> data2, <span class="kw">aes</span>(<span class="dt">x =</span> clarity,</span>
+<span id="cb696-5"><a href="ggplot2.html#cb696-5"></a>    <span class="dt">y =</span> m), <span class="dt">pch =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-258-8.png" width="672" /></p>
 </div>
 <div id="where-can-i-learn-more" class="section level2 hasAnchor">
 <h2><span class="header-section-number">15.8</span> Where can I learn more?<a href="ggplot2.html#where-can-i-learn-more" class="anchor-section" aria-label="Anchor link to header"></a></h2>

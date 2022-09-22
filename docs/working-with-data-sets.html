@@ -24,7 +24,7 @@
 <meta name="author" content="Rebecca Kurtz-Garcia" />
 
 
-<meta name="date" content="2022-09-18" />
+<meta name="date" content="2022-09-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -156,6 +156,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#naming-conventions"><i class="fa fa-check"></i><b>1.5</b> Naming Conventions<span></span></a></li>
 <li class="chapter" data-level="1.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#basic-calculations"><i class="fa fa-check"></i><b>1.6</b> Basic Calculations<span></span></a></li>
+<li class="chapter" data-level="1.7" data-path="introduction-to-r.html"><a href="introduction-to-r.html#floating-point-error"><i class="fa fa-check"></i><b>1.7</b> Floating Point Error<span></span></a></li>
 <li><a href="introduction-to-r.html#additional-resources">Additional Resources<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="atomic-vectors.html"><a href="atomic-vectors.html"><i class="fa fa-check"></i><b>2</b> Atomic Vectors<span></span></a><ul>
@@ -445,11 +446,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>To see a list of built in data sets type in the console:</li>
 </ol>
-<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="working-with-data-sets.html#cb399-1"></a><span class="kw">data</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="working-with-data-sets.html#cb402-1"></a><span class="kw">data</span>()</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>These data sets can be used even if they are not listed in the global environment. For example, if you would like to load the data set  in the global environment, run the following command:</li>
 </ol>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="working-with-data-sets.html#cb400-1"></a><span class="kw">data</span>(<span class="st">&quot;cars&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="working-with-data-sets.html#cb403-1"></a><span class="kw">data</span>(<span class="st">&quot;cars&quot;</span>)</span></code></pre></div>
 </div>
 <div id="importing-from-your-computer" class="section level3 unnumbered hasAnchor">
 <h3>Importing From Your Computer<a href="working-with-data-sets.html#importing-from-your-computer" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -473,20 +474,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="import-from-online" class="section level3 unnumbered hasAnchor">
 <h3>Import From Online<a href="working-with-data-sets.html#import-from-online" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We can also download data sets from online in a variety of different ways. Below is one option. With this method we are using the same <code>InsectData.csv</code> file, but it has been posted online. We feed the url of where the data set has been posted into the <code>read.csv()</code> function in order to open the file.</p>
-<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="working-with-data-sets.html#cb401-1"></a>the_url &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/rpkgarcia/LearnRBook/main/data_sets/InsectData.csv&quot;</span></span>
-<span id="cb401-2"><a href="working-with-data-sets.html#cb401-2"></a>the_data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(the_url)</span></code></pre></div>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="working-with-data-sets.html#cb404-1"></a>the_url &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/rpkgarcia/LearnRBook/main/data_sets/InsectData.csv&quot;</span></span>
+<span id="cb404-2"><a href="working-with-data-sets.html#cb404-2"></a>the_data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(the_url)</span></code></pre></div>
 </div>
 </div>
 <div id="basic-data-manipulation" class="section level2 hasAnchor">
 <h2><span class="header-section-number">6.2</span> Basic Data Manipulation<a href="working-with-data-sets.html#basic-data-manipulation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Lets recall a few useful things about data frames. As we learned already, data sets are contained in an object called a data frame. One can view this as a specialized table or matrix of rows and columns, where each column is a data variable, such as height or age, and each row is a single observation. All of the values within a column must be the same data type (numeric,factor, logical, etc.). Data frames can be created or called within R, imported from text or spreadsheet files, or imported from the web.</p>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="working-with-data-sets.html#cb402-1"></a>group &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;G1&quot;</span>, <span class="st">&quot;G2&quot;</span>, <span class="st">&quot;G1&quot;</span>, <span class="st">&quot;G1&quot;</span>, <span class="st">&quot;G2&quot;</span>)</span>
-<span id="cb402-2"><a href="working-with-data-sets.html#cb402-2"></a>age &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">35</span>, <span class="dv">30</span>, <span class="dv">31</span>, <span class="dv">28</span>, <span class="dv">40</span>)</span>
-<span id="cb402-3"><a href="working-with-data-sets.html#cb402-3"></a>height &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">65</span>, <span class="dv">70</span>, <span class="dv">60</span>, <span class="dv">72</span>, <span class="dv">68</span>)</span>
-<span id="cb402-4"><a href="working-with-data-sets.html#cb402-4"></a>pets &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>)</span>
-<span id="cb402-5"><a href="working-with-data-sets.html#cb402-5"></a></span>
-<span id="cb402-6"><a href="working-with-data-sets.html#cb402-6"></a>mydata &lt;-<span class="st"> </span><span class="kw">data.frame</span>(group, age, height, pets)</span>
-<span id="cb402-7"><a href="working-with-data-sets.html#cb402-7"></a>mydata</span></code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="working-with-data-sets.html#cb405-1"></a>group &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;G1&quot;</span>, <span class="st">&quot;G2&quot;</span>, <span class="st">&quot;G1&quot;</span>, <span class="st">&quot;G1&quot;</span>, <span class="st">&quot;G2&quot;</span>)</span>
+<span id="cb405-2"><a href="working-with-data-sets.html#cb405-2"></a>age &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">35</span>, <span class="dv">30</span>, <span class="dv">31</span>, <span class="dv">28</span>, <span class="dv">40</span>)</span>
+<span id="cb405-3"><a href="working-with-data-sets.html#cb405-3"></a>height &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">65</span>, <span class="dv">70</span>, <span class="dv">60</span>, <span class="dv">72</span>, <span class="dv">68</span>)</span>
+<span id="cb405-4"><a href="working-with-data-sets.html#cb405-4"></a>pets &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>)</span>
+<span id="cb405-5"><a href="working-with-data-sets.html#cb405-5"></a></span>
+<span id="cb405-6"><a href="working-with-data-sets.html#cb405-6"></a>mydata &lt;-<span class="st"> </span><span class="kw">data.frame</span>(group, age, height, pets)</span>
+<span id="cb405-7"><a href="working-with-data-sets.html#cb405-7"></a>mydata</span></code></pre></div>
 <pre><code>##   group age height  pets
 ## 1    G1  35     65  TRUE
 ## 2    G2  30     70  TRUE
@@ -494,7 +495,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4    G1  28     72 FALSE
 ## 5    G2  40     68  TRUE</code></pre>
 <p>The <code>summary()</code> function is a powerful command that gives you some summary statistics about the variables in the data frame.</p>
-<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="working-with-data-sets.html#cb404-1"></a><span class="kw">summary</span>(mydata)</span></code></pre></div>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="working-with-data-sets.html#cb407-1"></a><span class="kw">summary</span>(mydata)</span></code></pre></div>
 <pre><code>##     group                age           height      pets        
 ##  Length:5           Min.   :28.0   Min.   :60   Mode :logical  
 ##  Class :character   1st Qu.:30.0   1st Qu.:65   FALSE:2        
@@ -504,12 +505,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##                     Max.   :40.0   Max.   :72</code></pre>
 <p>The summary statistics are listed below the names of the variables. Since pets is a logical variable, R gives you the frequencies of each unique value. In this example there are three values of <code>TRUE</code> and two values of <code>FALSE</code>. Since age and weight are numeric, R computes and returns the minimum, 1st quartile (25th percentile), median, mean, 3rd quartile (75th percentile), and maximum values. If you have many data values, this is a quick way to get a feel for how the data are distributed.</p>
 <p>Just like we did for vectors, we can also use the <code>table()</code> to cross-tabulate categorical data. Let’s create a frequency table for the different groups.</p>
-<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="working-with-data-sets.html#cb406-1"></a><span class="kw">table</span>(mydata<span class="op">$</span>group)</span></code></pre></div>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="working-with-data-sets.html#cb409-1"></a><span class="kw">table</span>(mydata<span class="op">$</span>group)</span></code></pre></div>
 <pre><code>## 
 ## G1 G2 
 ##  3  2</code></pre>
 <p>We can also create a frequency table of pet status for both groups.</p>
-<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="working-with-data-sets.html#cb408-1"></a><span class="kw">table</span>(mydata<span class="op">$</span>group, mydata<span class="op">$</span>pets)</span></code></pre></div>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="working-with-data-sets.html#cb411-1"></a><span class="kw">table</span>(mydata<span class="op">$</span>group, mydata<span class="op">$</span>pets)</span></code></pre></div>
 <pre><code>##     
 ##      FALSE TRUE
 ##   G1     2    1
@@ -517,15 +518,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="subset" class="section level3 unnumbered hasAnchor">
 <h3>Subset<a href="working-with-data-sets.html#subset" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We already discussed how powerful indexing techniques can be, and various different ways to use indexing to subset a data set. We also have the <code>subset()</code> function which accomplishes much of the same tasks, and can be used as an alternative to many indexing operations. For example, we can subset a data frame by isolating all rows that belong to group “G1”.</p>
-<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="working-with-data-sets.html#cb410-1"></a>group1 &lt;-<span class="st"> </span><span class="kw">subset</span>(mydata, mydata<span class="op">$</span>group <span class="op">==</span><span class="st"> &quot;G1&quot;</span>)</span>
-<span id="cb410-2"><a href="working-with-data-sets.html#cb410-2"></a>group1</span></code></pre></div>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="working-with-data-sets.html#cb413-1"></a>group1 &lt;-<span class="st"> </span><span class="kw">subset</span>(mydata, mydata<span class="op">$</span>group <span class="op">==</span><span class="st"> &quot;G1&quot;</span>)</span>
+<span id="cb413-2"><a href="working-with-data-sets.html#cb413-2"></a>group1</span></code></pre></div>
 <pre><code>##   group age height  pets
 ## 1    G1  35     65  TRUE
 ## 3    G1  31     60 FALSE
 ## 4    G1  28     72 FALSE</code></pre>
 <p>To subset by all values which are NOT equal to a condition we can use the logical operator <code>!=</code>.</p>
-<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="working-with-data-sets.html#cb412-1"></a>group2 &lt;-<span class="st"> </span><span class="kw">subset</span>(mydata, mydata<span class="op">$</span>group <span class="op">!=</span><span class="st"> &quot;G1&quot;</span>)</span>
-<span id="cb412-2"><a href="working-with-data-sets.html#cb412-2"></a>group2</span></code></pre></div>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="working-with-data-sets.html#cb415-1"></a>group2 &lt;-<span class="st"> </span><span class="kw">subset</span>(mydata, mydata<span class="op">$</span>group <span class="op">!=</span><span class="st"> &quot;G1&quot;</span>)</span>
+<span id="cb415-2"><a href="working-with-data-sets.html#cb415-2"></a>group2</span></code></pre></div>
 <pre><code>##   group age height pets
 ## 2    G2  30     70 TRUE
 ## 5    G2  40     68 TRUE</code></pre>
@@ -533,11 +534,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="adding-columns" class="section level3 unnumbered hasAnchor">
 <h3>Adding Columns<a href="working-with-data-sets.html#adding-columns" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>One can add a new variable (column) to a data frame by defining a new variable and assigning values to it. Below we add a <code>weight</code> variable to the data frame.</p>
-<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="working-with-data-sets.html#cb414-1"></a>wghts &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">169</span>, <span class="dv">161</span>, <span class="dv">149</span>, <span class="dv">165</span>, <span class="dv">155</span>)</span>
-<span id="cb414-2"><a href="working-with-data-sets.html#cb414-2"></a>wghts</span></code></pre></div>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="working-with-data-sets.html#cb417-1"></a>wghts &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">169</span>, <span class="dv">161</span>, <span class="dv">149</span>, <span class="dv">165</span>, <span class="dv">155</span>)</span>
+<span id="cb417-2"><a href="working-with-data-sets.html#cb417-2"></a>wghts</span></code></pre></div>
 <pre><code>## [1] 169 161 149 165 155</code></pre>
-<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="working-with-data-sets.html#cb416-1"></a>mydata<span class="op">$</span>weight &lt;-<span class="st"> </span>wghts</span>
-<span id="cb416-2"><a href="working-with-data-sets.html#cb416-2"></a>mydata</span></code></pre></div>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="working-with-data-sets.html#cb419-1"></a>mydata<span class="op">$</span>weight &lt;-<span class="st"> </span>wghts</span>
+<span id="cb419-2"><a href="working-with-data-sets.html#cb419-2"></a>mydata</span></code></pre></div>
 <pre><code>##   group age height  pets weight
 ## 1    G1  35     65  TRUE    169
 ## 2    G2  30     70  TRUE    161
@@ -545,8 +546,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4    G1  28     72 FALSE    165
 ## 5    G2  40     68  TRUE    155</code></pre>
 <p>We can also add a new column using the <code>cbind()</code> function.</p>
-<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="working-with-data-sets.html#cb418-1"></a>mydata &lt;-<span class="st"> </span><span class="kw">cbind</span>(mydata, wghts)</span>
-<span id="cb418-2"><a href="working-with-data-sets.html#cb418-2"></a>mydata</span></code></pre></div>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="working-with-data-sets.html#cb421-1"></a>mydata &lt;-<span class="st"> </span><span class="kw">cbind</span>(mydata, wghts)</span>
+<span id="cb421-2"><a href="working-with-data-sets.html#cb421-2"></a>mydata</span></code></pre></div>
 <pre><code>##   group age height  pets weight wghts
 ## 1    G1  35     65  TRUE    169   169
 ## 2    G2  30     70  TRUE    161   161
@@ -557,10 +558,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="na-values" class="section level3 unnumbered hasAnchor">
 <h3>NA values<a href="working-with-data-sets.html#na-values" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In addition, if we have a missing value, or a blank value, we can use the object <code>NA</code> to indicate the lack of a value.</p>
-<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="working-with-data-sets.html#cb420-1"></a>fav_color &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Red&quot;</span>, <span class="ot">NA</span>, <span class="st">&quot;Purple&quot;</span>, <span class="ot">NA</span>, <span class="st">&quot;Red&quot;</span>)</span>
-<span id="cb420-2"><a href="working-with-data-sets.html#cb420-2"></a></span>
-<span id="cb420-3"><a href="working-with-data-sets.html#cb420-3"></a>mydata &lt;-<span class="st"> </span><span class="kw">cbind</span>(mydata, fav_color)</span>
-<span id="cb420-4"><a href="working-with-data-sets.html#cb420-4"></a>mydata</span></code></pre></div>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="working-with-data-sets.html#cb423-1"></a>fav_color &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Red&quot;</span>, <span class="ot">NA</span>, <span class="st">&quot;Purple&quot;</span>, <span class="ot">NA</span>, <span class="st">&quot;Red&quot;</span>)</span>
+<span id="cb423-2"><a href="working-with-data-sets.html#cb423-2"></a></span>
+<span id="cb423-3"><a href="working-with-data-sets.html#cb423-3"></a>mydata &lt;-<span class="st"> </span><span class="kw">cbind</span>(mydata, fav_color)</span>
+<span id="cb423-4"><a href="working-with-data-sets.html#cb423-4"></a>mydata</span></code></pre></div>
 <pre><code>##   group age height  pets weight wghts fav_color
 ## 1    G1  35     65  TRUE    169   169       Red
 ## 2    G2  30     70  TRUE    161   161      &lt;NA&gt;
@@ -568,7 +569,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4    G1  28     72 FALSE    165   165      &lt;NA&gt;
 ## 5    G2  40     68  TRUE    155   155       Red</code></pre>
 <p>We can drop check for <code>NA</code> values using the <code>is.na()</code> function.</p>
-<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="working-with-data-sets.html#cb422-1"></a><span class="kw">is.na</span>(mydata)</span></code></pre></div>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="working-with-data-sets.html#cb425-1"></a><span class="kw">is.na</span>(mydata)</span></code></pre></div>
 <pre><code>##      group   age height  pets weight wghts fav_color
 ## [1,] FALSE FALSE  FALSE FALSE  FALSE FALSE     FALSE
 ## [2,] FALSE FALSE  FALSE FALSE  FALSE FALSE      TRUE
@@ -576,7 +577,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [4,] FALSE FALSE  FALSE FALSE  FALSE FALSE      TRUE
 ## [5,] FALSE FALSE  FALSE FALSE  FALSE FALSE     FALSE</code></pre>
 <p>We can remove all rows with <code>NA</code> values using <code>na.omit()</code>.</p>
-<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="working-with-data-sets.html#cb424-1"></a><span class="kw">na.omit</span>(mydata)</span></code></pre></div>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="working-with-data-sets.html#cb427-1"></a><span class="kw">na.omit</span>(mydata)</span></code></pre></div>
 <pre><code>##   group age height  pets weight wghts fav_color
 ## 1    G1  35     65  TRUE    169   169       Red
 ## 3    G1  31     60 FALSE    149   149    Purple
@@ -585,8 +586,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="null" class="section level3 unnumbered hasAnchor">
 <h3>NULL<a href="working-with-data-sets.html#null" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>One can drop a variable (column) by setting it equal to the <code>R</code> value <code>NULL</code>.</p>
-<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="working-with-data-sets.html#cb426-1"></a>mydata<span class="op">$</span>wghts &lt;-<span class="st"> </span><span class="ot">NULL</span></span>
-<span id="cb426-2"><a href="working-with-data-sets.html#cb426-2"></a>mydata</span></code></pre></div>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="working-with-data-sets.html#cb429-1"></a>mydata<span class="op">$</span>wghts &lt;-<span class="st"> </span><span class="ot">NULL</span></span>
+<span id="cb429-2"><a href="working-with-data-sets.html#cb429-2"></a>mydata</span></code></pre></div>
 <pre><code>##   group age height  pets weight fav_color
 ## 1    G1  35     65  TRUE    169       Red
 ## 2    G2  30     70  TRUE    161      &lt;NA&gt;
@@ -598,9 +599,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="adding-rows" class="section level3 unnumbered hasAnchor">
 <h3>Adding Rows<a href="working-with-data-sets.html#adding-rows" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Rows can be added to a data frame using the <code>rbind()</code> (row bind) function. Because our columns have different data types, we will create a list object and then add it as a new row.</p>
-<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="working-with-data-sets.html#cb428-1"></a>newobs &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;G1&quot;</span>, <span class="dv">23</span>, <span class="dv">62</span>, <span class="ot">FALSE</span>, <span class="dv">160</span>, <span class="st">&quot;Blue&quot;</span>)</span>
-<span id="cb428-2"><a href="working-with-data-sets.html#cb428-2"></a>newdata &lt;-<span class="st"> </span><span class="kw">rbind</span>(mydata, newobs)</span>
-<span id="cb428-3"><a href="working-with-data-sets.html#cb428-3"></a>newdata</span></code></pre></div>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="working-with-data-sets.html#cb431-1"></a>newobs &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;G1&quot;</span>, <span class="dv">23</span>, <span class="dv">62</span>, <span class="ot">FALSE</span>, <span class="dv">160</span>, <span class="st">&quot;Blue&quot;</span>)</span>
+<span id="cb431-2"><a href="working-with-data-sets.html#cb431-2"></a>newdata &lt;-<span class="st"> </span><span class="kw">rbind</span>(mydata, newobs)</span>
+<span id="cb431-3"><a href="working-with-data-sets.html#cb431-3"></a>newdata</span></code></pre></div>
 <pre><code>##   group age height  pets weight fav_color
 ## 1    G1  35     65  TRUE    169       Red
 ## 2    G2  30     70  TRUE    161      &lt;NA&gt;
@@ -609,16 +610,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5    G2  40     68  TRUE    155       Red
 ## 6    G1  23     62 FALSE    160      Blue</code></pre>
 <p>We can also use <code>rbind()</code> to append one data frame to another. We can do this with the variables <code>group1</code> and <code>group2</code> created above still exist in your R environment.</p>
-<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="working-with-data-sets.html#cb430-1"></a>group1</span></code></pre></div>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="working-with-data-sets.html#cb433-1"></a>group1</span></code></pre></div>
 <pre><code>##   group age height  pets
 ## 1    G1  35     65  TRUE
 ## 3    G1  31     60 FALSE
 ## 4    G1  28     72 FALSE</code></pre>
-<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="working-with-data-sets.html#cb432-1"></a>group2</span></code></pre></div>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="working-with-data-sets.html#cb435-1"></a>group2</span></code></pre></div>
 <pre><code>##   group age height pets
 ## 2    G2  30     70 TRUE
 ## 5    G2  40     68 TRUE</code></pre>
-<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="working-with-data-sets.html#cb434-1"></a><span class="kw">rbind</span>(group1, group2)</span></code></pre></div>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="working-with-data-sets.html#cb437-1"></a><span class="kw">rbind</span>(group1, group2)</span></code></pre></div>
 <pre><code>##   group age height  pets
 ## 1    G1  35     65  TRUE
 ## 3    G1  31     60 FALSE
