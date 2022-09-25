@@ -684,38 +684,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><code>range()</code>: Takes in a vector, and returns the minimum AND maximum of the values in the vector.</p></li>
 </ul>
 <p>Notice also that these functions take a single <strong>vector</strong> as input. Consider the following two examples.</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="introduction-to-r.html#cb63-1"></a></span>
-<span id="cb63-2"><a href="introduction-to-r.html#cb63-2"></a><span class="co"># Example 1: Three vectors of length 1 as input.  Only the</span></span>
-<span id="cb63-3"><a href="introduction-to-r.html#cb63-3"></a><span class="co"># first vector (i.e. 1) is used to calculate the mean</span></span>
-<span id="cb63-4"><a href="introduction-to-r.html#cb63-4"></a><span class="kw">mean</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb63-5"><a href="introduction-to-r.html#cb63-5"></a><span class="co">## [1] 1</span></span>
-<span id="cb63-6"><a href="introduction-to-r.html#cb63-6"></a></span>
-<span id="cb63-7"><a href="introduction-to-r.html#cb63-7"></a><span class="co"># Example 2: One vector of length 3 as input.  All three</span></span>
-<span id="cb63-8"><a href="introduction-to-r.html#cb63-8"></a><span class="co"># numbers are used to calculate the mean.</span></span>
-<span id="cb63-9"><a href="introduction-to-r.html#cb63-9"></a><span class="kw">mean</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>))</span>
-<span id="cb63-10"><a href="introduction-to-r.html#cb63-10"></a><span class="co">## [1] 2</span></span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="introduction-to-r.html#cb63-1"></a><span class="co"># Example 1: Three vectors of length 1 as input.  Only the</span></span>
+<span id="cb63-2"><a href="introduction-to-r.html#cb63-2"></a><span class="co"># first vector (i.e. 1) is used to calculate the mean</span></span>
+<span id="cb63-3"><a href="introduction-to-r.html#cb63-3"></a><span class="kw">mean</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="introduction-to-r.html#cb65-1"></a><span class="co"># Example 2: One vector of length 3 as input.  All three</span></span>
+<span id="cb65-2"><a href="introduction-to-r.html#cb65-2"></a><span class="co"># numbers are used to calculate the mean.</span></span>
+<span id="cb65-3"><a href="introduction-to-r.html#cb65-3"></a><span class="kw">mean</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>))</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
 <p>In the first function call three vectors, each of length 1, where supplied as input. However, this function only uses a single vector as input. Instead we need to make a vector, <code>c(1,2,3)</code>, so that all three numbers are considered when calculating the mean. Sometimes these functions will automatically combine all data supplied in the function call into a single vector for you to combat this problem. This is not always the case though! Be sure to arrange the data in the correct way when calling your functions.</p>
 </div>
 <div id="floating-point-error" class="section level2 hasAnchor">
 <h2><span class="header-section-number">1.7</span> Floating Point Error<a href="introduction-to-r.html#floating-point-error" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Many programming languages calculate values using high level approximations of mathematical operations, instead of doing the mathematical operations directly. R might show you a number that is an approximation or rounded version of what it tried to calculate. However, R can keep track of more levels of decimal places than it is showing you. For example, consider the built in object <code>pi</code>.</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="introduction-to-r.html#cb64-1"></a><span class="co"># Built in object</span></span>
-<span id="cb64-2"><a href="introduction-to-r.html#cb64-2"></a>pi</span>
-<span id="cb64-3"><a href="introduction-to-r.html#cb64-3"></a><span class="co">## [1] 3.141593</span></span>
-<span id="cb64-4"><a href="introduction-to-r.html#cb64-4"></a></span>
-<span id="cb64-5"><a href="introduction-to-r.html#cb64-5"></a><span class="co"># My pi</span></span>
-<span id="cb64-6"><a href="introduction-to-r.html#cb64-6"></a>my_pi &lt;-<span class="st"> </span><span class="fl">3.141593</span></span>
-<span id="cb64-7"><a href="introduction-to-r.html#cb64-7"></a></span>
-<span id="cb64-8"><a href="introduction-to-r.html#cb64-8"></a><span class="co"># Are these equal?</span></span>
-<span id="cb64-9"><a href="introduction-to-r.html#cb64-9"></a>pi <span class="op">==</span><span class="st"> </span>my_pi</span>
-<span id="cb64-10"><a href="introduction-to-r.html#cb64-10"></a><span class="co">## [1] FALSE</span></span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="introduction-to-r.html#cb67-1"></a><span class="co"># Built in object</span></span>
+<span id="cb67-2"><a href="introduction-to-r.html#cb67-2"></a>pi</span></code></pre></div>
+<pre><code>## [1] 3.141593</code></pre>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="introduction-to-r.html#cb69-1"></a><span class="co"># My pi</span></span>
+<span id="cb69-2"><a href="introduction-to-r.html#cb69-2"></a>my_pi &lt;-<span class="st"> </span><span class="fl">3.141593</span></span>
+<span id="cb69-3"><a href="introduction-to-r.html#cb69-3"></a></span>
+<span id="cb69-4"><a href="introduction-to-r.html#cb69-4"></a><span class="co"># Are these equal?</span></span>
+<span id="cb69-5"><a href="introduction-to-r.html#cb69-5"></a>pi <span class="op">==</span><span class="st"> </span>my_pi</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
 <p>To us these numbers look identical, but that is not the case for the computer. The built-in object <code>pi</code> actually has a lot more decimal places that the computer is not showing us. This can happen with computations sometimes, even when formulas are mathematically equivalent. To combat this problem, there are several things we can do. One of which is to use the <code>round(x, d)</code> function. Here <code>x</code> is the numeber to round, and <code>d</code> is the amount of decimal points to round to.</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="introduction-to-r.html#cb65-1"></a>pi_new &lt;-<span class="st"> </span><span class="kw">round</span>(pi, <span class="dv">3</span>)</span>
-<span id="cb65-2"><a href="introduction-to-r.html#cb65-2"></a></span>
-<span id="cb65-3"><a href="introduction-to-r.html#cb65-3"></a>my_pi_new &lt;-<span class="st"> </span><span class="kw">round</span>(my_pi, <span class="dv">3</span>)</span>
-<span id="cb65-4"><a href="introduction-to-r.html#cb65-4"></a></span>
-<span id="cb65-5"><a href="introduction-to-r.html#cb65-5"></a>pi_new <span class="op">==</span><span class="st"> </span>my_pi_new</span>
-<span id="cb65-6"><a href="introduction-to-r.html#cb65-6"></a><span class="co">## [1] TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="introduction-to-r.html#cb71-1"></a>pi_new &lt;-<span class="st"> </span><span class="kw">round</span>(pi, <span class="dv">3</span>)</span>
+<span id="cb71-2"><a href="introduction-to-r.html#cb71-2"></a></span>
+<span id="cb71-3"><a href="introduction-to-r.html#cb71-3"></a>my_pi_new &lt;-<span class="st"> </span><span class="kw">round</span>(my_pi, <span class="dv">3</span>)</span>
+<span id="cb71-4"><a href="introduction-to-r.html#cb71-4"></a></span>
+<span id="cb71-5"><a href="introduction-to-r.html#cb71-5"></a>pi_new <span class="op">==</span><span class="st"> </span>my_pi_new</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
 </div>
 <div id="additional-resources" class="section level2 unnumbered hasAnchor">
 <h2>Additional Resources<a href="introduction-to-r.html#additional-resources" class="anchor-section" aria-label="Anchor link to header"></a></h2>

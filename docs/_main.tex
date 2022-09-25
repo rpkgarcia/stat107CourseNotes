@@ -710,18 +710,27 @@ Notice also that these functions take a single \textbf{vector} as input. Conside
 
 \begin{Shaded}
 \begin{Highlighting}[]
-
 \CommentTok{# Example 1: Three vectors of length 1 as input.  Only the}
 \CommentTok{# first vector (i.e. 1) is used to calculate the mean}
 \KeywordTok{mean}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{)}
-\CommentTok{## [1] 1}
+\end{Highlighting}
+\end{Shaded}
 
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \CommentTok{# Example 2: One vector of length 3 as input.  All three}
 \CommentTok{# numbers are used to calculate the mean.}
 \KeywordTok{mean}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{))}
-\CommentTok{## [1] 2}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
 
 In the first function call three vectors, each of length 1, where supplied as input. However, this function only uses a single vector as input. Instead we need to make a vector, \texttt{c(1,2,3)}, so that all three numbers are considered when calculating the mean. Sometimes these functions will automatically combine all data supplied in the function call into a single vector for you to combat this problem. This is not always the case though! Be sure to arrange the data in the correct way when calling your functions.
 
@@ -734,16 +743,26 @@ Many programming languages calculate values using high level approximations of m
 \begin{Highlighting}[]
 \CommentTok{# Built in object}
 \NormalTok{pi}
-\CommentTok{## [1] 3.141593}
+\end{Highlighting}
+\end{Shaded}
 
+\begin{verbatim}
+## [1] 3.141593
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \CommentTok{# My pi}
 \NormalTok{my_pi <-}\StringTok{ }\FloatTok{3.141593}
 
 \CommentTok{# Are these equal?}
 \NormalTok{pi }\OperatorTok{==}\StringTok{ }\NormalTok{my_pi}
-\CommentTok{## [1] FALSE}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
 
 To us these numbers look identical, but that is not the case for the computer. The built-in object \texttt{pi} actually has a lot more decimal places that the computer is not showing us. This can happen with computations sometimes, even when formulas are mathematically equivalent. To combat this problem, there are several things we can do. One of which is to use the \texttt{round(x,\ d)} function. Here \texttt{x} is the numeber to round, and \texttt{d} is the amount of decimal points to round to.
 
@@ -754,9 +773,12 @@ To us these numbers look identical, but that is not the case for the computer. T
 \NormalTok{my_pi_new <-}\StringTok{ }\KeywordTok{round}\NormalTok{(my_pi, }\DecValTok{3}\NormalTok{)}
 
 \NormalTok{pi_new }\OperatorTok{==}\StringTok{ }\NormalTok{my_pi_new}
-\CommentTok{## [1] TRUE}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
 
 \hypertarget{additional-resources}{%
 \section*{Additional Resources}\label{additional-resources}}

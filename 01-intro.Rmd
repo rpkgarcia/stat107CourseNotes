@@ -312,7 +312,7 @@ There are many functions in R that work similarly to how we would see in excel, 
 
 Notice also that these functions take a single **vector** as input.  Consider the following two examples. 
 
-```{r, collapse=TRUE}
+```{r}
 
 # Example 1: Three vectors of length 1 as input.  
 # Only the first vector (i.e. 1) is used to calculate the mean
@@ -329,7 +329,7 @@ In the first function call three vectors, each of length 1, where supplied as in
 
 Many programming languages calculate values using high level approximations of mathematical operations, instead of doing the mathematical operations directly.  R might show you a number that is an approximation or rounded version of what it tried to calculate.  However, R can keep track of more levels of decimal places than it is showing you.  For example, consider the built in object `pi`. 
 
-```{r, collapse=TRUE}
+```{r}
 # Built in object
 pi
 
@@ -342,7 +342,7 @@ pi == my_pi
 
 To us these numbers look identical, but that is not the case for the computer.  The built-in object `pi` actually has a lot more decimal places that the computer is not showing us.  This can happen with computations sometimes, even when formulas are mathematically equivalent.  To combat this problem, there are several things we can do.  One of which is to use the `round(x, d)` function. Here `x` is the numeber to round, and `d` is the amount of decimal points to round to. 
 
-```{r, collapse=TRUE}
+```{r}
 pi_new <- round(pi, 3)
 
 my_pi_new <- round(my_pi, 3)
