@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 18 Debugging | STAT 107 Outline of Class Notes</title>
+  <title>Chapter 19 Debugging | STAT 107 Outline of Class Notes</title>
   <meta name="description" content="Course notes for UCR’s STAT 107. An introduction to programming in R." />
   <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 18 Debugging | STAT 107 Outline of Class Notes" />
+  <meta property="og:title" content="Chapter 19 Debugging | STAT 107 Outline of Class Notes" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://rpkgarcia.github.io/stat107_summer2022notes/" />
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 18 Debugging | STAT 107 Outline of Class Notes" />
+  <meta name="twitter:title" content="Chapter 19 Debugging | STAT 107 Outline of Class Notes" />
   
   <meta name="twitter:description" content="Course notes for UCR’s STAT 107. An introduction to programming in R." />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Rebecca Kurtz-Garcia" />
 
 
-<meta name="date" content="2022-09-25" />
+<meta name="date" content="2022-10-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -168,7 +168,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="atomic-vectors.html"><a href="atomic-vectors.html#basic-features"><i class="fa fa-check"></i><b>2.2</b> Basic Features<span></span></a><ul>
 <li class="chapter" data-level="2.2.1" data-path="atomic-vectors.html"><a href="atomic-vectors.html#length"><i class="fa fa-check"></i><b>2.2.1</b> Length<span></span></a></li>
-<li class="chapter" data-level="2.2.2" data-path="atomic-vectors.html"><a href="atomic-vectors.html#vectorized-operations-and-recylcing"><i class="fa fa-check"></i><b>2.2.2</b> Vectorized Operations and Recylcing<span></span></a></li>
+<li class="chapter" data-level="2.2.2" data-path="atomic-vectors.html"><a href="atomic-vectors.html#vecoperators"><i class="fa fa-check"></i><b>2.2.2</b> Vectorized Operations and Recylcing<span></span></a></li>
 <li class="chapter" data-level="2.2.3" data-path="atomic-vectors.html"><a href="atomic-vectors.html#coercion"><i class="fa fa-check"></i><b>2.2.3</b> Coercion<span></span></a></li>
 <li class="chapter" data-level="2.2.4" data-path="atomic-vectors.html"><a href="atomic-vectors.html#testing"><i class="fa fa-check"></i><b>2.2.4</b> Testing<span></span></a></li>
 <li class="chapter" data-level="2.2.5" data-path="atomic-vectors.html"><a href="atomic-vectors.html#names"><i class="fa fa-check"></i><b>2.2.5</b> Names<span></span></a></li>
@@ -275,145 +275,157 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.7" data-path="functions.html"><a href="functions.html#generic-functions"><i class="fa fa-check"></i><b>7.7</b> Generic Functions<span></span></a></li>
 <li><a href="functions.html#additional-resources-3">Additional Resources<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>8</b> Packages<span></span></a><ul>
-<li class="chapter" data-level="8.1" data-path="packages.html"><a href="packages.html#namespace-collisions"><i class="fa fa-check"></i><b>8.1</b> Namespace Collisions<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="if-statements.html"><a href="if-statements.html"><i class="fa fa-check"></i><b>9</b> If Statements<span></span></a><ul>
-<li class="chapter" data-level="9.1" data-path="if-statements.html"><a href="if-statements.html#if"><i class="fa fa-check"></i><b>9.1</b> If<span></span></a></li>
-<li class="chapter" data-level="9.2" data-path="if-statements.html"><a href="if-statements.html#if-else"><i class="fa fa-check"></i><b>9.2</b> If Else<span></span></a></li>
-<li class="chapter" data-level="9.3" data-path="if-statements.html"><a href="if-statements.html#else-if"><i class="fa fa-check"></i><b>9.3</b> Else If<span></span></a></li>
-<li class="chapter" data-level="9.4" data-path="if-statements.html"><a href="if-statements.html#ifelse"><i class="fa fa-check"></i><b>9.4</b> Ifelse<span></span></a></li>
-<li class="chapter" data-level="9.5" data-path="if-statements.html"><a href="if-statements.html#nested-if-chains"><i class="fa fa-check"></i><b>9.5</b> Nested If Chains<span></span></a></li>
+<li class="chapter" data-level="8" data-path="if-statements.html"><a href="if-statements.html"><i class="fa fa-check"></i><b>8</b> If Statements<span></span></a><ul>
+<li class="chapter" data-level="8.1" data-path="if-statements.html"><a href="if-statements.html#if"><i class="fa fa-check"></i><b>8.1</b> If<span></span></a></li>
+<li class="chapter" data-level="8.2" data-path="if-statements.html"><a href="if-statements.html#if-else"><i class="fa fa-check"></i><b>8.2</b> If Else<span></span></a></li>
+<li class="chapter" data-level="8.3" data-path="if-statements.html"><a href="if-statements.html#else-if"><i class="fa fa-check"></i><b>8.3</b> Else If<span></span></a></li>
+<li class="chapter" data-level="8.4" data-path="if-statements.html"><a href="if-statements.html#nested-if-chains"><i class="fa fa-check"></i><b>8.4</b> Nested If Chains<span></span></a></li>
+<li class="chapter" data-level="8.5" data-path="if-statements.html"><a href="if-statements.html#ifelse"><i class="fa fa-check"></i><b>8.5</b> Ifelse<span></span></a></li>
+<li class="chapter" data-level="8.6" data-path="if-statements.html"><a href="if-statements.html#vectorizing-if-statments"><i class="fa fa-check"></i><b>8.6</b> Vectorizing If-Statments<span></span></a></li>
 <li><a href="if-statements.html#additional-resources-4">Additional Resources<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="base-r-plotting.html"><a href="base-r-plotting.html"><i class="fa fa-check"></i><b>10</b> Base R Plotting<span></span></a><ul>
-<li class="chapter" data-level="10.1" data-path="base-r-plotting.html"><a href="base-r-plotting.html#load-a-big-data-set"><i class="fa fa-check"></i><b>10.1</b> Load A Big Data Set<span></span></a></li>
-<li class="chapter" data-level="10.2" data-path="base-r-plotting.html"><a href="base-r-plotting.html#histograms"><i class="fa fa-check"></i><b>10.2</b> Histograms<span></span></a></li>
-<li class="chapter" data-level="10.3" data-path="base-r-plotting.html"><a href="base-r-plotting.html#boxplot"><i class="fa fa-check"></i><b>10.3</b> Boxplot<span></span></a></li>
-<li class="chapter" data-level="10.4" data-path="base-r-plotting.html"><a href="base-r-plotting.html#scatter-plot"><i class="fa fa-check"></i><b>10.4</b> Scatter Plot<span></span></a></li>
-<li class="chapter" data-level="10.5" data-path="base-r-plotting.html"><a href="base-r-plotting.html#pie-charts"><i class="fa fa-check"></i><b>10.5</b> Pie Charts<span></span></a></li>
-<li class="chapter" data-level="10.6" data-path="base-r-plotting.html"><a href="base-r-plotting.html#adding-straight-lines"><i class="fa fa-check"></i><b>10.6</b> Adding Straight Lines<span></span></a></li>
-<li class="chapter" data-level="10.7" data-path="base-r-plotting.html"><a href="base-r-plotting.html#adding-lines-between-points"><i class="fa fa-check"></i><b>10.7</b> Adding Lines Between Points<span></span></a></li>
-<li class="chapter" data-level="10.8" data-path="base-r-plotting.html"><a href="base-r-plotting.html#adding-individual-points"><i class="fa fa-check"></i><b>10.8</b> Adding Individual Points<span></span></a></li>
-<li class="chapter" data-level="10.9" data-path="base-r-plotting.html"><a href="base-r-plotting.html#the-par-help-file"><i class="fa fa-check"></i><b>10.9</b> The par() Help File<span></span></a></li>
-<li class="chapter" data-level="10.10" data-path="base-r-plotting.html"><a href="base-r-plotting.html#adding-legends"><i class="fa fa-check"></i><b>10.10</b> Adding Legends<span></span></a></li>
-<li class="chapter" data-level="10.11" data-path="base-r-plotting.html"><a href="base-r-plotting.html#what-makes-a-good-plot"><i class="fa fa-check"></i><b>10.11</b> What makes a good plot?<span></span></a></li>
+<li class="chapter" data-level="9" data-path="text-data.html"><a href="text-data.html"><i class="fa fa-check"></i><b>9</b> Text Data<span></span></a><ul>
+<li class="chapter" data-level="9.1" data-path="text-data.html"><a href="text-data.html#making-strings"><i class="fa fa-check"></i><b>9.1</b> Making Strings<span></span></a></li>
+<li class="chapter" data-level="9.2" data-path="text-data.html"><a href="text-data.html#substring-operations"><i class="fa fa-check"></i><b>9.2</b> Substring Operations<span></span></a></li>
+<li class="chapter" data-level="9.3" data-path="text-data.html"><a href="text-data.html#dividing-strings-into-vectors"><i class="fa fa-check"></i><b>9.3</b> Dividing Strings into Vectors<span></span></a></li>
+<li class="chapter" data-level="9.4" data-path="text-data.html"><a href="text-data.html#converting-objects-into-strings"><i class="fa fa-check"></i><b>9.4</b> Converting Objects into Strings<span></span></a></li>
+<li class="chapter" data-level="9.5" data-path="text-data.html"><a href="text-data.html#versatility-of-the-paste-function"><i class="fa fa-check"></i><b>9.5</b> Versatility of the paste() Function<span></span></a></li>
+<li class="chapter" data-level="9.6" data-path="text-data.html"><a href="text-data.html#gsub-sub"><i class="fa fa-check"></i><b>9.6</b> gsub , sub<span></span></a></li>
+<li class="chapter" data-level="9.7" data-path="text-data.html"><a href="text-data.html#text-of-some-importance"><i class="fa fa-check"></i><b>9.7</b> Text of Some Importance<span></span></a></li>
+<li class="chapter" data-level="9.8" data-path="text-data.html"><a href="text-data.html#search"><i class="fa fa-check"></i><b>9.8</b> Search<span></span></a></li>
+<li class="chapter" data-level="9.9" data-path="text-data.html"><a href="text-data.html#word-count-tables"><i class="fa fa-check"></i><b>9.9</b> Word Count Tables<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="extending-base-r-graphics.html"><a href="extending-base-r-graphics.html"><i class="fa fa-check"></i><b>11</b> Extending Base R Graphics<span></span></a><ul>
-<li class="chapter" data-level="11.1" data-path="extending-base-r-graphics.html"><a href="extending-base-r-graphics.html#the-maps-package"><i class="fa fa-check"></i><b>11.1</b> The “maps” Package<span></span></a></li>
-<li class="chapter" data-level="11.2" data-path="extending-base-r-graphics.html"><a href="extending-base-r-graphics.html#some-additional-packages-to-consider"><i class="fa fa-check"></i><b>11.2</b> Some additional Packages to consider<span></span></a></li>
+<li class="chapter" data-level="10" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>10</b> Packages<span></span></a><ul>
+<li class="chapter" data-level="10.1" data-path="packages.html"><a href="packages.html#namespace-collisions"><i class="fa fa-check"></i><b>10.1</b> Namespace Collisions<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>12</b> Loops<span></span></a><ul>
-<li class="chapter" data-level="12.1" data-path="loops.html"><a href="loops.html#while-loop"><i class="fa fa-check"></i><b>12.1</b> While Loop<span></span></a></li>
-<li class="chapter" data-level="12.2" data-path="loops.html"><a href="loops.html#for-loops"><i class="fa fa-check"></i><b>12.2</b> For Loops<span></span></a></li>
-<li class="chapter" data-level="12.3" data-path="loops.html"><a href="loops.html#break"><i class="fa fa-check"></i><b>12.3</b> Break<span></span></a></li>
-<li class="chapter" data-level="12.4" data-path="loops.html"><a href="loops.html#next"><i class="fa fa-check"></i><b>12.4</b> Next<span></span></a></li>
-<li class="chapter" data-level="12.5" data-path="loops.html"><a href="loops.html#nested-loops"><i class="fa fa-check"></i><b>12.5</b> Nested Loops<span></span></a></li>
-<li class="chapter" data-level="12.6" data-path="loops.html"><a href="loops.html#examples-1"><i class="fa fa-check"></i><b>12.6</b> Examples<span></span></a><ul>
-<li class="chapter" data-level="12.6.1" data-path="loops.html"><a href="loops.html#example-1"><i class="fa fa-check"></i><b>12.6.1</b> Example 1<span></span></a></li>
-<li class="chapter" data-level="12.6.2" data-path="loops.html"><a href="loops.html#example-2"><i class="fa fa-check"></i><b>12.6.2</b> Example 2<span></span></a></li>
+<li class="chapter" data-level="11" data-path="regular-expressions.html"><a href="regular-expressions.html"><i class="fa fa-check"></i><b>11</b> Regular Expressions<span></span></a><ul>
+<li class="chapter" data-level="11.1" data-path="regular-expressions.html"><a href="regular-expressions.html#ranges-escaping"><i class="fa fa-check"></i><b>11.1</b> Ranges, Escaping<span></span></a></li>
+<li class="chapter" data-level="11.2" data-path="regular-expressions.html"><a href="regular-expressions.html#metacharacters"><i class="fa fa-check"></i><b>11.2</b> Metacharacters<span></span></a></li>
+<li class="chapter" data-level="11.3" data-path="regular-expressions.html"><a href="regular-expressions.html#quantifiers"><i class="fa fa-check"></i><b>11.3</b> Quantifiers<span></span></a></li>
+<li class="chapter" data-level="11.4" data-path="regular-expressions.html"><a href="regular-expressions.html#anchoring"><i class="fa fa-check"></i><b>11.4</b> Anchoring<span></span></a></li>
+<li class="chapter" data-level="11.5" data-path="regular-expressions.html"><a href="regular-expressions.html#splitting-on-a-regexp"><i class="fa fa-check"></i><b>11.5</b> Splitting on a Regexp<span></span></a></li>
+<li class="chapter" data-level="11.6" data-path="regular-expressions.html"><a href="regular-expressions.html#stringr-package"><i class="fa fa-check"></i><b>11.6</b> Stringr Package<span></span></a></li>
+<li class="chapter" data-level="11.7" data-path="regular-expressions.html"><a href="regular-expressions.html#wordcloud-package"><i class="fa fa-check"></i><b>11.7</b> Wordcloud Package<span></span></a></li>
+<li class="chapter" data-level="11.8" data-path="regular-expressions.html"><a href="regular-expressions.html#replacements"><i class="fa fa-check"></i><b>11.8</b> Replacements<span></span></a></li>
+<li><a href="regular-expressions.html#additional-resources-5">Additional Resources<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="12.7" data-path="loops.html"><a href="loops.html#additional-resources-5"><i class="fa fa-check"></i><b>12.7</b> Additional Resources<span></span></a></li>
+<li class="chapter" data-level="12" data-path="base-r-plotting.html"><a href="base-r-plotting.html"><i class="fa fa-check"></i><b>12</b> Base R Plotting<span></span></a><ul>
+<li class="chapter" data-level="12.1" data-path="base-r-plotting.html"><a href="base-r-plotting.html#load-a-big-data-set"><i class="fa fa-check"></i><b>12.1</b> Load A Big Data Set<span></span></a></li>
+<li class="chapter" data-level="12.2" data-path="base-r-plotting.html"><a href="base-r-plotting.html#histograms"><i class="fa fa-check"></i><b>12.2</b> Histograms<span></span></a></li>
+<li class="chapter" data-level="12.3" data-path="base-r-plotting.html"><a href="base-r-plotting.html#boxplot"><i class="fa fa-check"></i><b>12.3</b> Boxplot<span></span></a></li>
+<li class="chapter" data-level="12.4" data-path="base-r-plotting.html"><a href="base-r-plotting.html#scatter-plot"><i class="fa fa-check"></i><b>12.4</b> Scatter Plot<span></span></a></li>
+<li class="chapter" data-level="12.5" data-path="base-r-plotting.html"><a href="base-r-plotting.html#pie-charts"><i class="fa fa-check"></i><b>12.5</b> Pie Charts<span></span></a></li>
+<li class="chapter" data-level="12.6" data-path="base-r-plotting.html"><a href="base-r-plotting.html#adding-straight-lines"><i class="fa fa-check"></i><b>12.6</b> Adding Straight Lines<span></span></a></li>
+<li class="chapter" data-level="12.7" data-path="base-r-plotting.html"><a href="base-r-plotting.html#adding-lines-between-points"><i class="fa fa-check"></i><b>12.7</b> Adding Lines Between Points<span></span></a></li>
+<li class="chapter" data-level="12.8" data-path="base-r-plotting.html"><a href="base-r-plotting.html#adding-individual-points"><i class="fa fa-check"></i><b>12.8</b> Adding Individual Points<span></span></a></li>
+<li class="chapter" data-level="12.9" data-path="base-r-plotting.html"><a href="base-r-plotting.html#the-par-help-file"><i class="fa fa-check"></i><b>12.9</b> The par() Help File<span></span></a></li>
+<li class="chapter" data-level="12.10" data-path="base-r-plotting.html"><a href="base-r-plotting.html#adding-legends"><i class="fa fa-check"></i><b>12.10</b> Adding Legends<span></span></a></li>
+<li class="chapter" data-level="12.11" data-path="base-r-plotting.html"><a href="base-r-plotting.html#what-makes-a-good-plot"><i class="fa fa-check"></i><b>12.11</b> What makes a good plot?<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="simulation.html"><a href="simulation.html"><i class="fa fa-check"></i><b>13</b> Simulation<span></span></a><ul>
-<li class="chapter" data-level="13.1" data-path="simulation.html"><a href="simulation.html#what-are-simulation-studies"><i class="fa fa-check"></i><b>13.1</b> What Are Simulation Studies<span></span></a></li>
-<li class="chapter" data-level="13.2" data-path="simulation.html"><a href="simulation.html#review-random-variables"><i class="fa fa-check"></i><b>13.2</b> Review Random Variables<span></span></a></li>
-<li class="chapter" data-level="13.3" data-path="simulation.html"><a href="simulation.html#generating-random-variables"><i class="fa fa-check"></i><b>13.3</b> Generating Random Variables<span></span></a></li>
-<li class="chapter" data-level="13.4" data-path="simulation.html"><a href="simulation.html#setting-a-seed"><i class="fa fa-check"></i><b>13.4</b> Setting a Seed<span></span></a></li>
-<li class="chapter" data-level="13.5" data-path="simulation.html"><a href="simulation.html#sample"><i class="fa fa-check"></i><b>13.5</b> sample()<span></span></a></li>
-<li class="chapter" data-level="13.6" data-path="simulation.html"><a href="simulation.html#replicate"><i class="fa fa-check"></i><b>13.6</b> replicate()<span></span></a></li>
-<li class="chapter" data-level="13.7" data-path="simulation.html"><a href="simulation.html#adding-curves-to-graphs"><i class="fa fa-check"></i><b>13.7</b> Adding curves to graphs<span></span></a></li>
-<li class="chapter" data-level="13.8" data-path="simulation.html"><a href="simulation.html#example-central-limit-theorem-clt"><i class="fa fa-check"></i><b>13.8</b> Example: Central Limit Theorem (CLT)<span></span></a><ul>
-<li class="chapter" data-level="13.8.1" data-path="simulation.html"><a href="simulation.html#recall-clt"><i class="fa fa-check"></i><b>13.8.1</b> Recall CLT<span></span></a></li>
-<li class="chapter" data-level="13.8.2" data-path="simulation.html"><a href="simulation.html#assumption-violations-of-clt"><i class="fa fa-check"></i><b>13.8.2</b> Assumption Violations of CLT<span></span></a></li>
-<li class="chapter" data-level="13.8.3" data-path="simulation.html"><a href="simulation.html#the-data"><i class="fa fa-check"></i><b>13.8.3</b> The Data<span></span></a></li>
+<li class="chapter" data-level="13" data-path="extending-base-r-graphics.html"><a href="extending-base-r-graphics.html"><i class="fa fa-check"></i><b>13</b> Extending Base R Graphics<span></span></a><ul>
+<li class="chapter" data-level="13.1" data-path="extending-base-r-graphics.html"><a href="extending-base-r-graphics.html#the-maps-package"><i class="fa fa-check"></i><b>13.1</b> The “maps” Package<span></span></a></li>
+<li class="chapter" data-level="13.2" data-path="extending-base-r-graphics.html"><a href="extending-base-r-graphics.html#some-additional-packages-to-consider"><i class="fa fa-check"></i><b>13.2</b> Some additional Packages to consider<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>14</b> Loops<span></span></a><ul>
+<li class="chapter" data-level="14.1" data-path="loops.html"><a href="loops.html#while-loop"><i class="fa fa-check"></i><b>14.1</b> While Loop<span></span></a></li>
+<li class="chapter" data-level="14.2" data-path="loops.html"><a href="loops.html#for-loops"><i class="fa fa-check"></i><b>14.2</b> For Loops<span></span></a></li>
+<li class="chapter" data-level="14.3" data-path="loops.html"><a href="loops.html#break"><i class="fa fa-check"></i><b>14.3</b> Break<span></span></a></li>
+<li class="chapter" data-level="14.4" data-path="loops.html"><a href="loops.html#next"><i class="fa fa-check"></i><b>14.4</b> Next<span></span></a></li>
+<li class="chapter" data-level="14.5" data-path="loops.html"><a href="loops.html#nested-loops"><i class="fa fa-check"></i><b>14.5</b> Nested Loops<span></span></a></li>
+<li class="chapter" data-level="14.6" data-path="loops.html"><a href="loops.html#examples-1"><i class="fa fa-check"></i><b>14.6</b> Examples<span></span></a><ul>
+<li class="chapter" data-level="14.6.1" data-path="loops.html"><a href="loops.html#example-1"><i class="fa fa-check"></i><b>14.6.1</b> Example 1<span></span></a></li>
+<li class="chapter" data-level="14.6.2" data-path="loops.html"><a href="loops.html#example-2"><i class="fa fa-check"></i><b>14.6.2</b> Example 2<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="14.7" data-path="loops.html"><a href="loops.html#additional-resources-6"><i class="fa fa-check"></i><b>14.7</b> Additional Resources<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="simulation.html"><a href="simulation.html"><i class="fa fa-check"></i><b>15</b> Simulation<span></span></a><ul>
+<li class="chapter" data-level="15.1" data-path="simulation.html"><a href="simulation.html#what-are-simulation-studies"><i class="fa fa-check"></i><b>15.1</b> What Are Simulation Studies<span></span></a></li>
+<li class="chapter" data-level="15.2" data-path="simulation.html"><a href="simulation.html#review-random-variables"><i class="fa fa-check"></i><b>15.2</b> Review Random Variables<span></span></a></li>
+<li class="chapter" data-level="15.3" data-path="simulation.html"><a href="simulation.html#generating-random-variables"><i class="fa fa-check"></i><b>15.3</b> Generating Random Variables<span></span></a></li>
+<li class="chapter" data-level="15.4" data-path="simulation.html"><a href="simulation.html#setting-a-seed"><i class="fa fa-check"></i><b>15.4</b> Setting a Seed<span></span></a></li>
+<li class="chapter" data-level="15.5" data-path="simulation.html"><a href="simulation.html#sample"><i class="fa fa-check"></i><b>15.5</b> sample()<span></span></a></li>
+<li class="chapter" data-level="15.6" data-path="simulation.html"><a href="simulation.html#replicate"><i class="fa fa-check"></i><b>15.6</b> replicate()<span></span></a></li>
+<li class="chapter" data-level="15.7" data-path="simulation.html"><a href="simulation.html#adding-curves-to-graphs"><i class="fa fa-check"></i><b>15.7</b> Adding curves to graphs<span></span></a></li>
+<li class="chapter" data-level="15.8" data-path="simulation.html"><a href="simulation.html#example-central-limit-theorem-clt"><i class="fa fa-check"></i><b>15.8</b> Example: Central Limit Theorem (CLT)<span></span></a><ul>
+<li class="chapter" data-level="15.8.1" data-path="simulation.html"><a href="simulation.html#recall-clt"><i class="fa fa-check"></i><b>15.8.1</b> Recall CLT<span></span></a></li>
+<li class="chapter" data-level="15.8.2" data-path="simulation.html"><a href="simulation.html#assumption-violations-of-clt"><i class="fa fa-check"></i><b>15.8.2</b> Assumption Violations of CLT<span></span></a></li>
+<li class="chapter" data-level="15.8.3" data-path="simulation.html"><a href="simulation.html#the-data"><i class="fa fa-check"></i><b>15.8.3</b> The Data<span></span></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>14</b> Tidyverse<span></span></a><ul>
-<li class="chapter" data-level="14.1" data-path="tidyverse.html"><a href="tidyverse.html#piping-operator"><i class="fa fa-check"></i><b>14.1</b> Piping Operator<span></span></a></li>
-<li class="chapter" data-level="14.2" data-path="tidyverse.html"><a href="tidyverse.html#tibbles-vs-data-frames"><i class="fa fa-check"></i><b>14.2</b> Tibbles vs Data Frames<span></span></a></li>
-<li class="chapter" data-level="14.3" data-path="tidyverse.html"><a href="tidyverse.html#key-functions"><i class="fa fa-check"></i><b>14.3</b> Key Functions<span></span></a><ul>
-<li class="chapter" data-level="14.3.1" data-path="tidyverse.html"><a href="tidyverse.html#general-properties"><i class="fa fa-check"></i><b>14.3.1</b> General properties<span></span></a></li>
-<li class="chapter" data-level="14.3.2" data-path="tidyverse.html"><a href="tidyverse.html#select"><i class="fa fa-check"></i><b>14.3.2</b> select()<span></span></a></li>
-<li class="chapter" data-level="14.3.3" data-path="tidyverse.html"><a href="tidyverse.html#filter"><i class="fa fa-check"></i><b>14.3.3</b> filter()<span></span></a></li>
-<li class="chapter" data-level="14.3.4" data-path="tidyverse.html"><a href="tidyverse.html#arrange"><i class="fa fa-check"></i><b>14.3.4</b> arrange()<span></span></a></li>
-<li class="chapter" data-level="14.3.5" data-path="tidyverse.html"><a href="tidyverse.html#rename"><i class="fa fa-check"></i><b>14.3.5</b> rename()<span></span></a></li>
-<li class="chapter" data-level="14.3.6" data-path="tidyverse.html"><a href="tidyverse.html#mutate"><i class="fa fa-check"></i><b>14.3.6</b> mutate()<span></span></a></li>
-<li class="chapter" data-level="14.3.7" data-path="tidyverse.html"><a href="tidyverse.html#group_by"><i class="fa fa-check"></i><b>14.3.7</b> group_by()<span></span></a></li>
-<li class="chapter" data-level="14.3.8" data-path="tidyverse.html"><a href="tidyverse.html#summarizesummarise"><i class="fa fa-check"></i><b>14.3.8</b> summarize()/summarise()<span></span></a></li>
+<li class="chapter" data-level="16" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>16</b> Tidyverse<span></span></a><ul>
+<li class="chapter" data-level="16.1" data-path="tidyverse.html"><a href="tidyverse.html#piping-operator"><i class="fa fa-check"></i><b>16.1</b> Piping Operator<span></span></a></li>
+<li class="chapter" data-level="16.2" data-path="tidyverse.html"><a href="tidyverse.html#tibbles-vs-data-frames"><i class="fa fa-check"></i><b>16.2</b> Tibbles vs Data Frames<span></span></a></li>
+<li class="chapter" data-level="16.3" data-path="tidyverse.html"><a href="tidyverse.html#key-functions"><i class="fa fa-check"></i><b>16.3</b> Key Functions<span></span></a><ul>
+<li class="chapter" data-level="16.3.1" data-path="tidyverse.html"><a href="tidyverse.html#general-properties"><i class="fa fa-check"></i><b>16.3.1</b> General properties<span></span></a></li>
+<li class="chapter" data-level="16.3.2" data-path="tidyverse.html"><a href="tidyverse.html#select"><i class="fa fa-check"></i><b>16.3.2</b> select()<span></span></a></li>
+<li class="chapter" data-level="16.3.3" data-path="tidyverse.html"><a href="tidyverse.html#filter"><i class="fa fa-check"></i><b>16.3.3</b> filter()<span></span></a></li>
+<li class="chapter" data-level="16.3.4" data-path="tidyverse.html"><a href="tidyverse.html#arrange"><i class="fa fa-check"></i><b>16.3.4</b> arrange()<span></span></a></li>
+<li class="chapter" data-level="16.3.5" data-path="tidyverse.html"><a href="tidyverse.html#rename"><i class="fa fa-check"></i><b>16.3.5</b> rename()<span></span></a></li>
+<li class="chapter" data-level="16.3.6" data-path="tidyverse.html"><a href="tidyverse.html#mutate"><i class="fa fa-check"></i><b>16.3.6</b> mutate()<span></span></a></li>
+<li class="chapter" data-level="16.3.7" data-path="tidyverse.html"><a href="tidyverse.html#group_by"><i class="fa fa-check"></i><b>16.3.7</b> group_by()<span></span></a></li>
+<li class="chapter" data-level="16.3.8" data-path="tidyverse.html"><a href="tidyverse.html#summarizesummarise"><i class="fa fa-check"></i><b>16.3.8</b> summarize()/summarise()<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="14.4" data-path="tidyverse.html"><a href="tidyverse.html#examples-2"><i class="fa fa-check"></i><b>14.4</b> Examples<span></span></a><ul>
-<li class="chapter" data-level="14.4.1" data-path="tidyverse.html"><a href="tidyverse.html#example-1-1"><i class="fa fa-check"></i><b>14.4.1</b> Example 1<span></span></a></li>
-<li class="chapter" data-level="14.4.2" data-path="tidyverse.html"><a href="tidyverse.html#example-2-1"><i class="fa fa-check"></i><b>14.4.2</b> Example 2<span></span></a></li>
-<li class="chapter" data-level="14.4.3" data-path="tidyverse.html"><a href="tidyverse.html#example-3"><i class="fa fa-check"></i><b>14.4.3</b> Example 3<span></span></a></li>
+<li class="chapter" data-level="16.4" data-path="tidyverse.html"><a href="tidyverse.html#examples-2"><i class="fa fa-check"></i><b>16.4</b> Examples<span></span></a><ul>
+<li class="chapter" data-level="16.4.1" data-path="tidyverse.html"><a href="tidyverse.html#example-1-1"><i class="fa fa-check"></i><b>16.4.1</b> Example 1<span></span></a></li>
+<li class="chapter" data-level="16.4.2" data-path="tidyverse.html"><a href="tidyverse.html#example-2-1"><i class="fa fa-check"></i><b>16.4.2</b> Example 2<span></span></a></li>
+<li class="chapter" data-level="16.4.3" data-path="tidyverse.html"><a href="tidyverse.html#example-3"><i class="fa fa-check"></i><b>16.4.3</b> Example 3<span></span></a></li>
 </ul></li>
-<li><a href="tidyverse.html#additional-resources-6">Additional Resources<span></span></a></li>
+<li><a href="tidyverse.html#additional-resources-7">Additional Resources<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>15</b> ggplot2<span></span></a><ul>
-<li class="chapter" data-level="15.1" data-path="ggplot2.html"><a href="ggplot2.html#tidyverse-and-ggplot2"><i class="fa fa-check"></i><b>15.1</b> Tidyverse and ggplot2<span></span></a></li>
-<li class="chapter" data-level="15.2" data-path="ggplot2.html"><a href="ggplot2.html#intro-to-ggplot2"><i class="fa fa-check"></i><b>15.2</b> Intro to ggplot2<span></span></a><ul>
+<li class="chapter" data-level="17" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>17</b> ggplot2<span></span></a><ul>
+<li class="chapter" data-level="17.1" data-path="ggplot2.html"><a href="ggplot2.html#tidyverse-and-ggplot2"><i class="fa fa-check"></i><b>17.1</b> Tidyverse and ggplot2<span></span></a></li>
+<li class="chapter" data-level="17.2" data-path="ggplot2.html"><a href="ggplot2.html#intro-to-ggplot2"><i class="fa fa-check"></i><b>17.2</b> Intro to ggplot2<span></span></a><ul>
 <li><a href="ggplot2.html#what-is-the-grammar-of-graphics">What is the grammar of graphics?<span></span></a></li>
 <li><a href="ggplot2.html#ggplot2-versus-other-r-graphics">ggplot2 versus other R Graphics<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="15.3" data-path="ggplot2.html"><a href="ggplot2.html#getting-started-kep-components"><i class="fa fa-check"></i><b>15.3</b> Getting started: Kep Components<span></span></a></li>
-<li class="chapter" data-level="15.4" data-path="ggplot2.html"><a href="ggplot2.html#adjust-aesthetic-attributes-by-variable"><i class="fa fa-check"></i><b>15.4</b> Adjust aesthetic attributes by variable<span></span></a></li>
-<li class="chapter" data-level="15.5" data-path="ggplot2.html"><a href="ggplot2.html#adjust-aesthetic-attributes-for-the-entire-plot"><i class="fa fa-check"></i><b>15.5</b> Adjust aesthetic attributes for the entire plot<span></span></a></li>
-<li class="chapter" data-level="15.6" data-path="ggplot2.html"><a href="ggplot2.html#faceting"><i class="fa fa-check"></i><b>15.6</b> Faceting<span></span></a></li>
-<li class="chapter" data-level="15.7" data-path="ggplot2.html"><a href="ggplot2.html#some-example-plots"><i class="fa fa-check"></i><b>15.7</b> Some example plots<span></span></a></li>
-<li class="chapter" data-level="15.8" data-path="ggplot2.html"><a href="ggplot2.html#where-can-i-learn-more"><i class="fa fa-check"></i><b>15.8</b> Where can I learn more?<span></span></a></li>
+<li class="chapter" data-level="17.3" data-path="ggplot2.html"><a href="ggplot2.html#getting-started-kep-components"><i class="fa fa-check"></i><b>17.3</b> Getting started: Kep Components<span></span></a></li>
+<li class="chapter" data-level="17.4" data-path="ggplot2.html"><a href="ggplot2.html#adjust-aesthetic-attributes-by-variable"><i class="fa fa-check"></i><b>17.4</b> Adjust aesthetic attributes by variable<span></span></a></li>
+<li class="chapter" data-level="17.5" data-path="ggplot2.html"><a href="ggplot2.html#adjust-aesthetic-attributes-for-the-entire-plot"><i class="fa fa-check"></i><b>17.5</b> Adjust aesthetic attributes for the entire plot<span></span></a></li>
+<li class="chapter" data-level="17.6" data-path="ggplot2.html"><a href="ggplot2.html#faceting"><i class="fa fa-check"></i><b>17.6</b> Faceting<span></span></a></li>
+<li class="chapter" data-level="17.7" data-path="ggplot2.html"><a href="ggplot2.html#some-example-plots"><i class="fa fa-check"></i><b>17.7</b> Some example plots<span></span></a></li>
+<li class="chapter" data-level="17.8" data-path="ggplot2.html"><a href="ggplot2.html#where-can-i-learn-more"><i class="fa fa-check"></i><b>17.8</b> Where can I learn more?<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="text-data.html"><a href="text-data.html"><i class="fa fa-check"></i><b>16</b> Text Data<span></span></a><ul>
-<li class="chapter" data-level="16.1" data-path="text-data.html"><a href="text-data.html#making-strings"><i class="fa fa-check"></i><b>16.1</b> Making Strings<span></span></a></li>
-<li class="chapter" data-level="16.2" data-path="text-data.html"><a href="text-data.html#substring-operations"><i class="fa fa-check"></i><b>16.2</b> Substring Operations<span></span></a></li>
-<li class="chapter" data-level="16.3" data-path="text-data.html"><a href="text-data.html#dividing-strings-into-vectors"><i class="fa fa-check"></i><b>16.3</b> Dividing Strings into Vectors<span></span></a></li>
-<li class="chapter" data-level="16.4" data-path="text-data.html"><a href="text-data.html#converting-objects-into-strings"><i class="fa fa-check"></i><b>16.4</b> Converting Objects into Strings<span></span></a></li>
-<li class="chapter" data-level="16.5" data-path="text-data.html"><a href="text-data.html#versatility-of-the-paste-function"><i class="fa fa-check"></i><b>16.5</b> Versatility of the paste() Function<span></span></a></li>
-<li class="chapter" data-level="16.6" data-path="text-data.html"><a href="text-data.html#gsub-sub"><i class="fa fa-check"></i><b>16.6</b> gsub , sub<span></span></a></li>
-<li class="chapter" data-level="16.7" data-path="text-data.html"><a href="text-data.html#text-of-some-importance"><i class="fa fa-check"></i><b>16.7</b> Text of Some Importance<span></span></a></li>
-<li class="chapter" data-level="16.8" data-path="text-data.html"><a href="text-data.html#search"><i class="fa fa-check"></i><b>16.8</b> Search<span></span></a></li>
-<li class="chapter" data-level="16.9" data-path="text-data.html"><a href="text-data.html#word-count-tables"><i class="fa fa-check"></i><b>16.9</b> Word Count Tables<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="17" data-path="apply.html"><a href="apply.html"><i class="fa fa-check"></i><b>17</b> Apply Family of Functions<span></span></a><ul>
-<li class="chapter" data-level="17.1" data-path="apply.html"><a href="apply.html#apply-1"><i class="fa fa-check"></i><b>17.1</b> apply()<span></span></a><ul>
+<li class="chapter" data-level="18" data-path="apply.html"><a href="apply.html"><i class="fa fa-check"></i><b>18</b> Apply Family of Functions<span></span></a><ul>
+<li class="chapter" data-level="18.1" data-path="apply.html"><a href="apply.html#apply-1"><i class="fa fa-check"></i><b>18.1</b> apply()<span></span></a><ul>
 <li><a href="apply.html#example-built-in-function">Example: Built In Function<span></span></a></li>
 <li><a href="apply.html#example-user-defined-function">Example: User Defined Function<span></span></a></li>
-<li class="chapter" data-level="17.1.1" data-path="apply.html"><a href="apply.html#returned-objects"><i class="fa fa-check"></i><b>17.1.1</b> Returned Objects<span></span></a></li>
-<li class="chapter" data-level="17.1.2" data-path="apply.html"><a href="apply.html#example-extra-arguments-array-output"><i class="fa fa-check"></i><b>17.1.2</b> Example: Extra Arguments, Array Output<span></span></a></li>
-<li class="chapter" data-level="17.1.3" data-path="apply.html"><a href="apply.html#example-list-output"><i class="fa fa-check"></i><b>17.1.3</b> Example: List Output<span></span></a></li>
+<li class="chapter" data-level="18.1.1" data-path="apply.html"><a href="apply.html#returned-objects"><i class="fa fa-check"></i><b>18.1.1</b> Returned Objects<span></span></a></li>
+<li class="chapter" data-level="18.1.2" data-path="apply.html"><a href="apply.html#example-extra-arguments-array-output"><i class="fa fa-check"></i><b>18.1.2</b> Example: Extra Arguments, Array Output<span></span></a></li>
+<li class="chapter" data-level="18.1.3" data-path="apply.html"><a href="apply.html#example-list-output"><i class="fa fa-check"></i><b>18.1.3</b> Example: List Output<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="17.2" data-path="apply.html"><a href="apply.html#lapply"><i class="fa fa-check"></i><b>17.2</b> lapply()<span></span></a></li>
-<li class="chapter" data-level="17.3" data-path="apply.html"><a href="apply.html#sapply"><i class="fa fa-check"></i><b>17.3</b> sapply()<span></span></a></li>
-<li class="chapter" data-level="17.4" data-path="apply.html"><a href="apply.html#tapply"><i class="fa fa-check"></i><b>17.4</b> tapply()<span></span></a></li>
-<li class="chapter" data-level="17.5" data-path="apply.html"><a href="apply.html#mapply"><i class="fa fa-check"></i><b>17.5</b> mapply()<span></span></a></li>
-<li class="chapter" data-level="17.6" data-path="apply.html"><a href="apply.html#replicate-1"><i class="fa fa-check"></i><b>17.6</b> replicate()<span></span></a></li>
-<li class="chapter" data-level="17.7" data-path="apply.html"><a href="apply.html#how-to-pick-a-method"><i class="fa fa-check"></i><b>17.7</b> How to Pick a Method<span></span></a></li>
-<li class="chapter" data-level="17.8" data-path="apply.html"><a href="apply.html#more-examples"><i class="fa fa-check"></i><b>17.8</b> More Examples<span></span></a><ul>
-<li class="chapter" data-level="17.8.1" data-path="apply.html"><a href="apply.html#create-a-new-variable"><i class="fa fa-check"></i><b>17.8.1</b> Create a New Variable<span></span></a></li>
+<li class="chapter" data-level="18.2" data-path="apply.html"><a href="apply.html#lapply"><i class="fa fa-check"></i><b>18.2</b> lapply()<span></span></a></li>
+<li class="chapter" data-level="18.3" data-path="apply.html"><a href="apply.html#sapply"><i class="fa fa-check"></i><b>18.3</b> sapply()<span></span></a></li>
+<li class="chapter" data-level="18.4" data-path="apply.html"><a href="apply.html#tapply"><i class="fa fa-check"></i><b>18.4</b> tapply()<span></span></a></li>
+<li class="chapter" data-level="18.5" data-path="apply.html"><a href="apply.html#mapply"><i class="fa fa-check"></i><b>18.5</b> mapply()<span></span></a></li>
+<li class="chapter" data-level="18.6" data-path="apply.html"><a href="apply.html#replicate-1"><i class="fa fa-check"></i><b>18.6</b> replicate()<span></span></a></li>
+<li class="chapter" data-level="18.7" data-path="apply.html"><a href="apply.html#how-to-pick-a-method"><i class="fa fa-check"></i><b>18.7</b> How to Pick a Method<span></span></a></li>
+<li class="chapter" data-level="18.8" data-path="apply.html"><a href="apply.html#more-examples"><i class="fa fa-check"></i><b>18.8</b> More Examples<span></span></a><ul>
+<li class="chapter" data-level="18.8.1" data-path="apply.html"><a href="apply.html#create-a-new-variable"><i class="fa fa-check"></i><b>18.8.1</b> Create a New Variable<span></span></a></li>
 </ul></li>
-<li><a href="apply.html#additional-resources-7">Additional Resources<span></span></a></li>
+<li><a href="apply.html#additional-resources-8">Additional Resources<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="debugging.html"><a href="debugging.html"><i class="fa fa-check"></i><b>18</b> Debugging<span></span></a><ul>
-<li class="chapter" data-level="18.1" data-path="debugging.html"><a href="debugging.html#debugging-background-history-types-of-bugs-challenges-to-consider"><i class="fa fa-check"></i><b>18.1</b> Debugging Background (History, Types of Bugs, Challenges to Consider)<span></span></a><ul>
+<li class="chapter" data-level="19" data-path="debugging.html"><a href="debugging.html"><i class="fa fa-check"></i><b>19</b> Debugging<span></span></a><ul>
+<li class="chapter" data-level="19.1" data-path="debugging.html"><a href="debugging.html#debugging-background-history-types-of-bugs-challenges-to-consider"><i class="fa fa-check"></i><b>19.1</b> Debugging Background (History, Types of Bugs, Challenges to Consider)<span></span></a><ul>
 <li><a href="debugging.html#types-of-bugs">Types of bugs<span></span></a></li>
 <li><a href="debugging.html#debugging-process-difficulties">Debugging Process Difficulties<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="18.2" data-path="debugging.html"><a href="debugging.html#debugging-strategies-in-general"><i class="fa fa-check"></i><b>18.2</b> Debugging Strategies In General<span></span></a><ul>
-<li class="chapter" data-level="18.2.1" data-path="debugging.html"><a href="debugging.html#example-of-the-binary-search-algorithm"><i class="fa fa-check"></i><b>18.2.1</b> Example of the Binary Search Algorithm<span></span></a></li>
+<li class="chapter" data-level="19.2" data-path="debugging.html"><a href="debugging.html#debugging-strategies-in-general"><i class="fa fa-check"></i><b>19.2</b> Debugging Strategies In General<span></span></a><ul>
+<li class="chapter" data-level="19.2.1" data-path="debugging.html"><a href="debugging.html#example-of-the-binary-search-algorithm"><i class="fa fa-check"></i><b>19.2.1</b> Example of the Binary Search Algorithm<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="18.3" data-path="debugging.html"><a href="debugging.html#using-debuggers"><i class="fa fa-check"></i><b>18.3</b> Using Debuggers<span></span></a><ul>
-<li class="chapter" data-level="18.3.1" data-path="debugging.html"><a href="debugging.html#traceback"><i class="fa fa-check"></i><b>18.3.1</b> traceback()<span></span></a></li>
+<li class="chapter" data-level="19.3" data-path="debugging.html"><a href="debugging.html#using-debuggers"><i class="fa fa-check"></i><b>19.3</b> Using Debuggers<span></span></a><ul>
+<li class="chapter" data-level="19.3.1" data-path="debugging.html"><a href="debugging.html#traceback"><i class="fa fa-check"></i><b>19.3.1</b> traceback()<span></span></a></li>
 <li><a href="debugging.html#example-with-traceback">Example with traceback()<span></span></a></li>
 <li><a href="debugging.html#unfamiliar-function-with-traceback">Unfamiliar function with traceback()<span></span></a></li>
-<li class="chapter" data-level="18.3.2" data-path="debugging.html"><a href="debugging.html#browswer"><i class="fa fa-check"></i><b>18.3.2</b> browswer()<span></span></a></li>
-<li class="chapter" data-level="18.3.3" data-path="debugging.html"><a href="debugging.html#debug"><i class="fa fa-check"></i><b>18.3.3</b> debug()<span></span></a></li>
+<li class="chapter" data-level="19.3.2" data-path="debugging.html"><a href="debugging.html#browswer"><i class="fa fa-check"></i><b>19.3.2</b> browswer()<span></span></a></li>
+<li class="chapter" data-level="19.3.3" data-path="debugging.html"><a href="debugging.html#debug"><i class="fa fa-check"></i><b>19.3.3</b> debug()<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="18.4" data-path="debugging.html"><a href="debugging.html#more-options-to-consider"><i class="fa fa-check"></i><b>18.4</b> More options to consider<span></span></a></li>
-<li class="chapter" data-level="18.5" data-path="debugging.html"><a href="debugging.html#important-takeaways"><i class="fa fa-check"></i><b>18.5</b> Important Takeaways<span></span></a><ul>
+<li class="chapter" data-level="19.4" data-path="debugging.html"><a href="debugging.html#more-options-to-consider"><i class="fa fa-check"></i><b>19.4</b> More options to consider<span></span></a></li>
+<li class="chapter" data-level="19.5" data-path="debugging.html"><a href="debugging.html#important-takeaways"><i class="fa fa-check"></i><b>19.5</b> Important Takeaways<span></span></a><ul>
 <li><a href="debugging.html#tips-for-writing-good-code">Tips for Writing good code<span></span></a></li>
 <li><a href="debugging.html#steps-to-reduce-the-number-of-bugs">Steps to Reduce the Number of Bugs<span></span></a></li>
 <li><a href="debugging.html#after-you-located-the-error">After You Located the Error<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="18.6" data-path="debugging.html"><a href="debugging.html#resources"><i class="fa fa-check"></i><b>18.6</b> Resources<span></span></a></li>
+<li class="chapter" data-level="19.6" data-path="debugging.html"><a href="debugging.html#resources"><i class="fa fa-check"></i><b>19.6</b> Resources<span></span></a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
@@ -436,10 +448,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="debugging" class="section level1 hasAnchor">
-<h1><span class="header-section-number">Chapter 18</span> Debugging<a href="debugging.html#debugging" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<h1><span class="header-section-number">Chapter 19</span> Debugging<a href="debugging.html#debugging" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><img src="images/moth.png" width="25%" style="display: block; margin: auto;" /></p>
 <div id="debugging-background-history-types-of-bugs-challenges-to-consider" class="section level2 hasAnchor">
-<h2><span class="header-section-number">18.1</span> Debugging Background (History, Types of Bugs, Challenges to Consider)<a href="debugging.html#debugging-background-history-types-of-bugs-challenges-to-consider" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">19.1</span> Debugging Background (History, Types of Bugs, Challenges to Consider)<a href="debugging.html#debugging-background-history-types-of-bugs-challenges-to-consider" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Debugging is the process of finding and resolving defects or problems within a computer program that prevent correct operation of computer software or a system.</p>
 <p>History of the term:</p>
 <ul>
@@ -470,7 +482,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div id="debugging-strategies-in-general" class="section level2 hasAnchor">
-<h2><span class="header-section-number">18.2</span> Debugging Strategies In General<a href="debugging.html#debugging-strategies-in-general" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">19.2</span> Debugging Strategies In General<a href="debugging.html#debugging-strategies-in-general" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>What to do when a bug is suspected:</p>
 <ol style="list-style-type: decimal">
 <li>Find where the bug is.</li>
@@ -487,114 +499,114 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><strong>“Wolf fence” algorithm/Binary Search</strong>: Put a print statement in the middle of the code with a custom message. If the code runs and prints the statement, then it is likely your error is in the bottom 50% of your code. If the print statement never gets printed, then it is likely your problem is in the top half. If you conclude that the error is in the bottom half then add another print statment that seperates the bottom 25% of your code, from the top 75% of your code. If this print statement is not present, then you can conlude that the problem is most likely between the bottom 50% -75% of your code. You can keep adding print statements further splitting the data in halfs in order to isolate the problem further. This method is helpful for determining where the problem is.</p></li>
 </ul>
 <div id="example-of-the-binary-search-algorithm" class="section level3 hasAnchor">
-<h3><span class="header-section-number">18.2.1</span> Example of the Binary Search Algorithm<a href="debugging.html#example-of-the-binary-search-algorithm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">19.2.1</span> Example of the Binary Search Algorithm<a href="debugging.html#example-of-the-binary-search-algorithm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Below is an example of the binary search algorithm. For this example, one of the lines of code in the <code>LongComplexFunction()</code> will generate an error. We will pretend that we do not know where the error is.</p>
-<div class="sourceCode" id="cb868"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb868-1"><a href="debugging.html#cb868-1"></a>SimpleFun_Plus =<span class="st"> </span><span class="cf">function</span>(y) {</span>
-<span id="cb868-2"><a href="debugging.html#cb868-2"></a>    y =<span class="st"> </span>y <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb868-3"><a href="debugging.html#cb868-3"></a>    <span class="kw">return</span>(y)</span>
-<span id="cb868-4"><a href="debugging.html#cb868-4"></a>}</span>
-<span id="cb868-5"><a href="debugging.html#cb868-5"></a>SimpleFun_Minus =<span class="st"> </span><span class="cf">function</span>(y) {</span>
-<span id="cb868-6"><a href="debugging.html#cb868-6"></a>    y =<span class="st"> </span>y <span class="op">-</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb868-7"><a href="debugging.html#cb868-7"></a>    <span class="kw">return</span>(y)</span>
-<span id="cb868-8"><a href="debugging.html#cb868-8"></a>}</span>
-<span id="cb868-9"><a href="debugging.html#cb868-9"></a>SimpleFun_A &lt;-<span class="st"> </span><span class="cf">function</span>(y) {</span>
-<span id="cb868-10"><a href="debugging.html#cb868-10"></a>    y =<span class="st"> </span>y <span class="op">+</span><span class="st"> &quot;a&quot;</span></span>
-<span id="cb868-11"><a href="debugging.html#cb868-11"></a>    <span class="kw">return</span>(y)</span>
-<span id="cb868-12"><a href="debugging.html#cb868-12"></a>}</span>
-<span id="cb868-13"><a href="debugging.html#cb868-13"></a></span>
-<span id="cb868-14"><a href="debugging.html#cb868-14"></a></span>
-<span id="cb868-15"><a href="debugging.html#cb868-15"></a></span>
-<span id="cb868-16"><a href="debugging.html#cb868-16"></a><span class="co"># Hypothetical long complicated function</span></span>
-<span id="cb868-17"><a href="debugging.html#cb868-17"></a>LongComplexFunction =<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb868-18"><a href="debugging.html#cb868-18"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
-<span id="cb868-19"><a href="debugging.html#cb868-19"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb868-20"><a href="debugging.html#cb868-20"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
-<span id="cb868-21"><a href="debugging.html#cb868-21"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb868-22"><a href="debugging.html#cb868-22"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
-<span id="cb868-23"><a href="debugging.html#cb868-23"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb868-24"><a href="debugging.html#cb868-24"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
-<span id="cb868-25"><a href="debugging.html#cb868-25"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb868-26"><a href="debugging.html#cb868-26"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_A</span>(x)  <span class="co"># The Problem </span></span>
-<span id="cb868-27"><a href="debugging.html#cb868-27"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb868-28"><a href="debugging.html#cb868-28"></a>    <span class="kw">return</span>(x)</span>
-<span id="cb868-29"><a href="debugging.html#cb868-29"></a>}</span>
-<span id="cb868-30"><a href="debugging.html#cb868-30"></a></span>
-<span id="cb868-31"><a href="debugging.html#cb868-31"></a><span class="co"># Function call produces an error</span></span>
-<span id="cb868-32"><a href="debugging.html#cb868-32"></a><span class="kw">LongComplexFunction</span>(<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb968"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb968-1"><a href="debugging.html#cb968-1"></a>SimpleFun_Plus =<span class="st"> </span><span class="cf">function</span>(y) {</span>
+<span id="cb968-2"><a href="debugging.html#cb968-2"></a>    y =<span class="st"> </span>y <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb968-3"><a href="debugging.html#cb968-3"></a>    <span class="kw">return</span>(y)</span>
+<span id="cb968-4"><a href="debugging.html#cb968-4"></a>}</span>
+<span id="cb968-5"><a href="debugging.html#cb968-5"></a>SimpleFun_Minus =<span class="st"> </span><span class="cf">function</span>(y) {</span>
+<span id="cb968-6"><a href="debugging.html#cb968-6"></a>    y =<span class="st"> </span>y <span class="op">-</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb968-7"><a href="debugging.html#cb968-7"></a>    <span class="kw">return</span>(y)</span>
+<span id="cb968-8"><a href="debugging.html#cb968-8"></a>}</span>
+<span id="cb968-9"><a href="debugging.html#cb968-9"></a>SimpleFun_A &lt;-<span class="st"> </span><span class="cf">function</span>(y) {</span>
+<span id="cb968-10"><a href="debugging.html#cb968-10"></a>    y =<span class="st"> </span>y <span class="op">+</span><span class="st"> &quot;a&quot;</span></span>
+<span id="cb968-11"><a href="debugging.html#cb968-11"></a>    <span class="kw">return</span>(y)</span>
+<span id="cb968-12"><a href="debugging.html#cb968-12"></a>}</span>
+<span id="cb968-13"><a href="debugging.html#cb968-13"></a></span>
+<span id="cb968-14"><a href="debugging.html#cb968-14"></a></span>
+<span id="cb968-15"><a href="debugging.html#cb968-15"></a></span>
+<span id="cb968-16"><a href="debugging.html#cb968-16"></a><span class="co"># Hypothetical long complicated function</span></span>
+<span id="cb968-17"><a href="debugging.html#cb968-17"></a>LongComplexFunction =<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb968-18"><a href="debugging.html#cb968-18"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb968-19"><a href="debugging.html#cb968-19"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb968-20"><a href="debugging.html#cb968-20"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb968-21"><a href="debugging.html#cb968-21"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb968-22"><a href="debugging.html#cb968-22"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb968-23"><a href="debugging.html#cb968-23"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb968-24"><a href="debugging.html#cb968-24"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb968-25"><a href="debugging.html#cb968-25"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb968-26"><a href="debugging.html#cb968-26"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_A</span>(x)  <span class="co"># The Problem </span></span>
+<span id="cb968-27"><a href="debugging.html#cb968-27"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb968-28"><a href="debugging.html#cb968-28"></a>    <span class="kw">return</span>(x)</span>
+<span id="cb968-29"><a href="debugging.html#cb968-29"></a>}</span>
+<span id="cb968-30"><a href="debugging.html#cb968-30"></a></span>
+<span id="cb968-31"><a href="debugging.html#cb968-31"></a><span class="co"># Function call produces an error</span></span>
+<span id="cb968-32"><a href="debugging.html#cb968-32"></a><span class="kw">LongComplexFunction</span>(<span class="dv">1</span>)</span></code></pre></div>
 <p>The first step is to add a print statement half way through the program of function that is producing the error message. Then we call the function again and see if it produces the print statement before the error is generated.</p>
-<div class="sourceCode" id="cb869"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb869-1"><a href="debugging.html#cb869-1"></a>LongComplexFunction =<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb869-2"><a href="debugging.html#cb869-2"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
-<span id="cb869-3"><a href="debugging.html#cb869-3"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb869-4"><a href="debugging.html#cb869-4"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
-<span id="cb869-5"><a href="debugging.html#cb869-5"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb869-6"><a href="debugging.html#cb869-6"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
-<span id="cb869-7"><a href="debugging.html#cb869-7"></a></span>
-<span id="cb869-8"><a href="debugging.html#cb869-8"></a>    <span class="kw">print</span>(<span class="st">&quot;50%-ish through the function&quot;</span>)</span>
-<span id="cb869-9"><a href="debugging.html#cb869-9"></a></span>
-<span id="cb869-10"><a href="debugging.html#cb869-10"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb869-11"><a href="debugging.html#cb869-11"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
-<span id="cb869-12"><a href="debugging.html#cb869-12"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb869-13"><a href="debugging.html#cb869-13"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_A</span>(x)  <span class="co"># The Problem </span></span>
-<span id="cb869-14"><a href="debugging.html#cb869-14"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb869-15"><a href="debugging.html#cb869-15"></a>    <span class="kw">return</span>(x)</span>
-<span id="cb869-16"><a href="debugging.html#cb869-16"></a>}</span>
-<span id="cb869-17"><a href="debugging.html#cb869-17"></a></span>
-<span id="cb869-18"><a href="debugging.html#cb869-18"></a><span class="co"># Call the function again</span></span>
-<span id="cb869-19"><a href="debugging.html#cb869-19"></a><span class="kw">LongComplexFunction</span>(<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb969"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb969-1"><a href="debugging.html#cb969-1"></a>LongComplexFunction =<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb969-2"><a href="debugging.html#cb969-2"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb969-3"><a href="debugging.html#cb969-3"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb969-4"><a href="debugging.html#cb969-4"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb969-5"><a href="debugging.html#cb969-5"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb969-6"><a href="debugging.html#cb969-6"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb969-7"><a href="debugging.html#cb969-7"></a></span>
+<span id="cb969-8"><a href="debugging.html#cb969-8"></a>    <span class="kw">print</span>(<span class="st">&quot;50%-ish through the function&quot;</span>)</span>
+<span id="cb969-9"><a href="debugging.html#cb969-9"></a></span>
+<span id="cb969-10"><a href="debugging.html#cb969-10"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb969-11"><a href="debugging.html#cb969-11"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb969-12"><a href="debugging.html#cb969-12"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb969-13"><a href="debugging.html#cb969-13"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_A</span>(x)  <span class="co"># The Problem </span></span>
+<span id="cb969-14"><a href="debugging.html#cb969-14"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb969-15"><a href="debugging.html#cb969-15"></a>    <span class="kw">return</span>(x)</span>
+<span id="cb969-16"><a href="debugging.html#cb969-16"></a>}</span>
+<span id="cb969-17"><a href="debugging.html#cb969-17"></a></span>
+<span id="cb969-18"><a href="debugging.html#cb969-18"></a><span class="co"># Call the function again</span></span>
+<span id="cb969-19"><a href="debugging.html#cb969-19"></a><span class="kw">LongComplexFunction</span>(<span class="dv">1</span>)</span></code></pre></div>
 <p>The print statement was produced, so we conclude that the top 50% of the code was likely fine and focus on the bottom half. We add another print statement that splits the end of the function in half.</p>
-<div class="sourceCode" id="cb870"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb870-1"><a href="debugging.html#cb870-1"></a>LongComplexFunction =<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb870-2"><a href="debugging.html#cb870-2"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
-<span id="cb870-3"><a href="debugging.html#cb870-3"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb870-4"><a href="debugging.html#cb870-4"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
-<span id="cb870-5"><a href="debugging.html#cb870-5"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb870-6"><a href="debugging.html#cb870-6"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
-<span id="cb870-7"><a href="debugging.html#cb870-7"></a></span>
-<span id="cb870-8"><a href="debugging.html#cb870-8"></a>    <span class="kw">print</span>(<span class="st">&quot;50%-ish through the function&quot;</span>)</span>
-<span id="cb870-9"><a href="debugging.html#cb870-9"></a></span>
-<span id="cb870-10"><a href="debugging.html#cb870-10"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb870-11"><a href="debugging.html#cb870-11"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
-<span id="cb870-12"><a href="debugging.html#cb870-12"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb870-13"><a href="debugging.html#cb870-13"></a></span>
-<span id="cb870-14"><a href="debugging.html#cb870-14"></a>    <span class="kw">print</span>(<span class="st">&quot;75%-ish through the function&quot;</span>)</span>
-<span id="cb870-15"><a href="debugging.html#cb870-15"></a></span>
-<span id="cb870-16"><a href="debugging.html#cb870-16"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_A</span>(x)  <span class="co"># The Problem </span></span>
-<span id="cb870-17"><a href="debugging.html#cb870-17"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb870-18"><a href="debugging.html#cb870-18"></a>    <span class="kw">return</span>(x)</span>
-<span id="cb870-19"><a href="debugging.html#cb870-19"></a>}</span>
-<span id="cb870-20"><a href="debugging.html#cb870-20"></a></span>
-<span id="cb870-21"><a href="debugging.html#cb870-21"></a><span class="co"># Call the function again</span></span>
-<span id="cb870-22"><a href="debugging.html#cb870-22"></a><span class="kw">LongComplexFunction</span>(<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb970"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb970-1"><a href="debugging.html#cb970-1"></a>LongComplexFunction =<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb970-2"><a href="debugging.html#cb970-2"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb970-3"><a href="debugging.html#cb970-3"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb970-4"><a href="debugging.html#cb970-4"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb970-5"><a href="debugging.html#cb970-5"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb970-6"><a href="debugging.html#cb970-6"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb970-7"><a href="debugging.html#cb970-7"></a></span>
+<span id="cb970-8"><a href="debugging.html#cb970-8"></a>    <span class="kw">print</span>(<span class="st">&quot;50%-ish through the function&quot;</span>)</span>
+<span id="cb970-9"><a href="debugging.html#cb970-9"></a></span>
+<span id="cb970-10"><a href="debugging.html#cb970-10"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb970-11"><a href="debugging.html#cb970-11"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb970-12"><a href="debugging.html#cb970-12"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb970-13"><a href="debugging.html#cb970-13"></a></span>
+<span id="cb970-14"><a href="debugging.html#cb970-14"></a>    <span class="kw">print</span>(<span class="st">&quot;75%-ish through the function&quot;</span>)</span>
+<span id="cb970-15"><a href="debugging.html#cb970-15"></a></span>
+<span id="cb970-16"><a href="debugging.html#cb970-16"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_A</span>(x)  <span class="co"># The Problem </span></span>
+<span id="cb970-17"><a href="debugging.html#cb970-17"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb970-18"><a href="debugging.html#cb970-18"></a>    <span class="kw">return</span>(x)</span>
+<span id="cb970-19"><a href="debugging.html#cb970-19"></a>}</span>
+<span id="cb970-20"><a href="debugging.html#cb970-20"></a></span>
+<span id="cb970-21"><a href="debugging.html#cb970-21"></a><span class="co"># Call the function again</span></span>
+<span id="cb970-22"><a href="debugging.html#cb970-22"></a><span class="kw">LongComplexFunction</span>(<span class="dv">1</span>)</span></code></pre></div>
 <p>Again the print statement was produced, so we conclude that the top 75% of the code was likely fine and focus on the bottom 25%. We can add another print statement that splits this portion in half.</p>
-<div class="sourceCode" id="cb871"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb871-1"><a href="debugging.html#cb871-1"></a>LongComplexFunction =<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb871-2"><a href="debugging.html#cb871-2"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
-<span id="cb871-3"><a href="debugging.html#cb871-3"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb871-4"><a href="debugging.html#cb871-4"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
-<span id="cb871-5"><a href="debugging.html#cb871-5"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb871-6"><a href="debugging.html#cb871-6"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
-<span id="cb871-7"><a href="debugging.html#cb871-7"></a></span>
-<span id="cb871-8"><a href="debugging.html#cb871-8"></a>    <span class="kw">print</span>(<span class="st">&quot;50%-ish through the function&quot;</span>)</span>
-<span id="cb871-9"><a href="debugging.html#cb871-9"></a></span>
-<span id="cb871-10"><a href="debugging.html#cb871-10"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb871-11"><a href="debugging.html#cb871-11"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
-<span id="cb871-12"><a href="debugging.html#cb871-12"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb871-13"><a href="debugging.html#cb871-13"></a></span>
-<span id="cb871-14"><a href="debugging.html#cb871-14"></a>    <span class="kw">print</span>(<span class="st">&quot;75%-ish through the function&quot;</span>)</span>
-<span id="cb871-15"><a href="debugging.html#cb871-15"></a></span>
-<span id="cb871-16"><a href="debugging.html#cb871-16"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_A</span>(x)  <span class="co"># The Problem </span></span>
-<span id="cb871-17"><a href="debugging.html#cb871-17"></a></span>
-<span id="cb871-18"><a href="debugging.html#cb871-18"></a>    <span class="kw">print</span>(<span class="st">&quot;90%-ish through the function&quot;</span>)</span>
-<span id="cb871-19"><a href="debugging.html#cb871-19"></a></span>
-<span id="cb871-20"><a href="debugging.html#cb871-20"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb871-21"><a href="debugging.html#cb871-21"></a>    <span class="kw">return</span>(x)</span>
-<span id="cb871-22"><a href="debugging.html#cb871-22"></a>}</span>
-<span id="cb871-23"><a href="debugging.html#cb871-23"></a></span>
-<span id="cb871-24"><a href="debugging.html#cb871-24"></a><span class="co"># Call the function again</span></span>
-<span id="cb871-25"><a href="debugging.html#cb871-25"></a><span class="kw">LongComplexFunction</span>(<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb971"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb971-1"><a href="debugging.html#cb971-1"></a>LongComplexFunction =<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb971-2"><a href="debugging.html#cb971-2"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb971-3"><a href="debugging.html#cb971-3"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb971-4"><a href="debugging.html#cb971-4"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb971-5"><a href="debugging.html#cb971-5"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb971-6"><a href="debugging.html#cb971-6"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb971-7"><a href="debugging.html#cb971-7"></a></span>
+<span id="cb971-8"><a href="debugging.html#cb971-8"></a>    <span class="kw">print</span>(<span class="st">&quot;50%-ish through the function&quot;</span>)</span>
+<span id="cb971-9"><a href="debugging.html#cb971-9"></a></span>
+<span id="cb971-10"><a href="debugging.html#cb971-10"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb971-11"><a href="debugging.html#cb971-11"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb971-12"><a href="debugging.html#cb971-12"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb971-13"><a href="debugging.html#cb971-13"></a></span>
+<span id="cb971-14"><a href="debugging.html#cb971-14"></a>    <span class="kw">print</span>(<span class="st">&quot;75%-ish through the function&quot;</span>)</span>
+<span id="cb971-15"><a href="debugging.html#cb971-15"></a></span>
+<span id="cb971-16"><a href="debugging.html#cb971-16"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_A</span>(x)  <span class="co"># The Problem </span></span>
+<span id="cb971-17"><a href="debugging.html#cb971-17"></a></span>
+<span id="cb971-18"><a href="debugging.html#cb971-18"></a>    <span class="kw">print</span>(<span class="st">&quot;90%-ish through the function&quot;</span>)</span>
+<span id="cb971-19"><a href="debugging.html#cb971-19"></a></span>
+<span id="cb971-20"><a href="debugging.html#cb971-20"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb971-21"><a href="debugging.html#cb971-21"></a>    <span class="kw">return</span>(x)</span>
+<span id="cb971-22"><a href="debugging.html#cb971-22"></a>}</span>
+<span id="cb971-23"><a href="debugging.html#cb971-23"></a></span>
+<span id="cb971-24"><a href="debugging.html#cb971-24"></a><span class="co"># Call the function again</span></span>
+<span id="cb971-25"><a href="debugging.html#cb971-25"></a><span class="kw">LongComplexFunction</span>(<span class="dv">1</span>)</span></code></pre></div>
 <p>The last print statement was not produced before the error was generated, we have isolated a section of the function for where to look for the error.</p>
 </div>
 </div>
 <div id="using-debuggers" class="section level2 hasAnchor">
-<h2><span class="header-section-number">18.3</span> Using Debuggers<a href="debugging.html#using-debuggers" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">19.3</span> Using Debuggers<a href="debugging.html#using-debuggers" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Some popular debuggers in R:</p>
 <ul>
 <li><code>traceback()</code></li>
@@ -602,44 +614,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>debug()</code></li>
 </ul>
 <div id="traceback" class="section level3 hasAnchor">
-<h3><span class="header-section-number">18.3.1</span> traceback()<a href="debugging.html#traceback" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">19.3.1</span> traceback()<a href="debugging.html#traceback" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The <code>traceback()</code> function is useful to see where a error occurred within a function and when we call functions within functions. It is not particularly helpful for functions that are self-contained. It prints the sequence of calls that lead to the error. It is useful when an error occurs with an unidentifiable error message, or a large series of error messages is produced after calling a function.</p>
 </div>
 <div id="example-with-traceback" class="section level3 unnumbered hasAnchor">
 <h3>Example with traceback()<a href="debugging.html#example-with-traceback" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Run the following chunk of code and observe the output in your console. The command <code>func1(7)</code> results in an error, but we will pretend we do not know where the error occurred.
 We type <code>traceback()</code> in the console to see where this error happened, and what the last function call was.</p>
-<div class="sourceCode" id="cb872"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb872-1"><a href="debugging.html#cb872-1"></a>func1 =<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb872-2"><a href="debugging.html#cb872-2"></a>    <span class="kw">func2</span>(x)</span>
-<span id="cb872-3"><a href="debugging.html#cb872-3"></a>}</span>
-<span id="cb872-4"><a href="debugging.html#cb872-4"></a>func2 =<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb872-5"><a href="debugging.html#cb872-5"></a>    <span class="kw">func3</span>(x <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</span>
-<span id="cb872-6"><a href="debugging.html#cb872-6"></a>}</span>
-<span id="cb872-7"><a href="debugging.html#cb872-7"></a>func3 =<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb872-8"><a href="debugging.html#cb872-8"></a>    <span class="kw">func4</span>(x <span class="op">+</span><span class="st"> </span><span class="dv">4</span>)</span>
-<span id="cb872-9"><a href="debugging.html#cb872-9"></a>}</span>
-<span id="cb872-10"><a href="debugging.html#cb872-10"></a>func4 =<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb872-11"><a href="debugging.html#cb872-11"></a>    y =<span class="st"> &quot;a&quot;</span></span>
-<span id="cb872-12"><a href="debugging.html#cb872-12"></a>    x =<span class="st"> </span>x <span class="op">+</span><span class="st"> </span>y</span>
-<span id="cb872-13"><a href="debugging.html#cb872-13"></a>    <span class="kw">return</span>(x)</span>
-<span id="cb872-14"><a href="debugging.html#cb872-14"></a>}</span>
-<span id="cb872-15"><a href="debugging.html#cb872-15"></a></span>
-<span id="cb872-16"><a href="debugging.html#cb872-16"></a><span class="kw">func1</span>(<span class="dv">7</span>)</span>
-<span id="cb872-17"><a href="debugging.html#cb872-17"></a><span class="kw">traceback</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb972"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb972-1"><a href="debugging.html#cb972-1"></a>func1 =<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb972-2"><a href="debugging.html#cb972-2"></a>    <span class="kw">func2</span>(x)</span>
+<span id="cb972-3"><a href="debugging.html#cb972-3"></a>}</span>
+<span id="cb972-4"><a href="debugging.html#cb972-4"></a>func2 =<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb972-5"><a href="debugging.html#cb972-5"></a>    <span class="kw">func3</span>(x <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</span>
+<span id="cb972-6"><a href="debugging.html#cb972-6"></a>}</span>
+<span id="cb972-7"><a href="debugging.html#cb972-7"></a>func3 =<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb972-8"><a href="debugging.html#cb972-8"></a>    <span class="kw">func4</span>(x <span class="op">+</span><span class="st"> </span><span class="dv">4</span>)</span>
+<span id="cb972-9"><a href="debugging.html#cb972-9"></a>}</span>
+<span id="cb972-10"><a href="debugging.html#cb972-10"></a>func4 =<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb972-11"><a href="debugging.html#cb972-11"></a>    y =<span class="st"> &quot;a&quot;</span></span>
+<span id="cb972-12"><a href="debugging.html#cb972-12"></a>    x =<span class="st"> </span>x <span class="op">+</span><span class="st"> </span>y</span>
+<span id="cb972-13"><a href="debugging.html#cb972-13"></a>    <span class="kw">return</span>(x)</span>
+<span id="cb972-14"><a href="debugging.html#cb972-14"></a>}</span>
+<span id="cb972-15"><a href="debugging.html#cb972-15"></a></span>
+<span id="cb972-16"><a href="debugging.html#cb972-16"></a><span class="kw">func1</span>(<span class="dv">7</span>)</span>
+<span id="cb972-17"><a href="debugging.html#cb972-17"></a><span class="kw">traceback</span>()</span></code></pre></div>
 <p>The function <code>traceback()</code> tells us that the last function called was <code>func4(x + 4)</code>, so we conclude that the error must be in that function.</p>
 </div>
 <div id="unfamiliar-function-with-traceback" class="section level3 unnumbered hasAnchor">
 <h3>Unfamiliar function with traceback()<a href="debugging.html#unfamiliar-function-with-traceback" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 </div>
 <div id="browswer" class="section level3 hasAnchor">
-<h3><span class="header-section-number">18.3.2</span> browswer()<a href="debugging.html#browswer" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">19.3.2</span> browswer()<a href="debugging.html#browswer" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 </div>
 <div id="debug" class="section level3 hasAnchor">
-<h3><span class="header-section-number">18.3.3</span> debug()<a href="debugging.html#debug" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">19.3.3</span> debug()<a href="debugging.html#debug" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 </div>
 </div>
 <div id="more-options-to-consider" class="section level2 hasAnchor">
-<h2><span class="header-section-number">18.4</span> More options to consider<a href="debugging.html#more-options-to-consider" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">19.4</span> More options to consider<a href="debugging.html#more-options-to-consider" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>R has even more functions and tools to help us “examine” the program to “diagnose” the problem. Here are some other features that can be explored.</p>
 <ul>
 <li><code>Breakpoints</code></li>
@@ -649,7 +661,7 @@ We type <code>traceback()</code> in the console to see where this error happened
 </ul>
 </div>
 <div id="important-takeaways" class="section level2 hasAnchor">
-<h2><span class="header-section-number">18.5</span> Important Takeaways<a href="debugging.html#important-takeaways" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">19.5</span> Important Takeaways<a href="debugging.html#important-takeaways" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Debugging can take longer then writing the program itself.</p>
 <ul>
 <li><p><strong>Primary Goal</strong>: Do not have bugs in the first place.</p></li>
@@ -692,7 +704,7 @@ We type <code>traceback()</code> in the console to see where this error happened
 </div>
 </div>
 <div id="resources" class="section level2 hasAnchor">
-<h2><span class="header-section-number">18.6</span> Resources<a href="debugging.html#resources" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">19.6</span> Resources<a href="debugging.html#resources" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><p><a href="http://www.cs.cornell.edu/courses/cs312/2006fa/lectures/lec26.html" class="uri">http://www.cs.cornell.edu/courses/cs312/2006fa/lectures/lec26.html</a></p></li>
 <li><p><a href="https://en.wikipedia.org/wiki/Debugging" class="uri">https://en.wikipedia.org/wiki/Debugging</a></p></li>
@@ -761,7 +773,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/18-debugging.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/19-debugging.Rmd",
 "text": "Edit"
 },
 "history": {

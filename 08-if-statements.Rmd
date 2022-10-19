@@ -1,0 +1,259 @@
+# If Statements
+
+If statements are a type of control flow structure.  Control structures help us control how many times code is executed, and when it will be executed.  This is helpful because sometime we only want our program to run if certain conditions are met.  
+
+## If 
+
+In R we can also execute commands only if certain conditions are met using the `if` operator.  This feature in R checks a logical value (`<value>`) and if it is `TRUE` then a sequence of commands within `{}` will be ran.  If `<value>` is `FALSE`, then the commands inside of `{}` will not be ran. 
+
+
+```{r, eval = FALSE}
+if(<value>){
+  # Commands 
+}
+
+```
+
+
+Below we have an example. The code will only be executed if `x` is a positive number. 
+
+```{r}
+x = 3
+
+if(x>0){
+  type = "positive"
+}
+type 
+```
+
+In the example above we have a relational operator which returns a logical value. This logical value was equal to `TRUE` so the code was executed. 
+
+## If Else 
+
+We can pair an  `if` statement with an `else` value.  After the `else` object we can define another sequence of commands inside of `{}`.  The `else` value is paired with the immediate previous `if` statement.  If this `if` statement is `FALSE` then the `else` code will run.  If the `if` statement is `TRUE` then the `else` code will not be executed. 
+
+```{r}
+x = -3
+
+if(class(x) == "numeric"){
+  type = "number"
+} else {
+  type = "not a number"
+}
+type
+```
+
+## Else If 
+
+Sometimes we will want to do a sequence of checks that are all related, and we will only want code to run if the previous `if` statements were `FALSE` and another criteria is `TRUE`.  We can use `else if` to implement these rules. 
+
+```{r}
+x = -3
+
+
+if(x>0){
+    type = "positive"
+} else if (x <0) {
+    type = "negative"
+} else if(x == 0){
+    type = "zero"
+} else {
+    type = "Error"
+}
+
+type 
+```
+
+The command for the `if` statement will only run if `x>0`, and the rest of the code will not be implemented. 
+
+The first `else if` commands will only execute if the first `if` statement was `FALSE` and `x<0`. 
+
+The second `else if` commands will only execute if the previous `else if` and `if` statements were `FALSE` and `x==0`.  
+
+If the previous `if` statement and all previous `else if` statements are `FALSE` then the `else` code will be executed. 
+
+
+Here is another example with an `if else` chain.
+```{r}
+Toyfun <- function(X,Y,Do){
+  if(Do == "Add"){
+    Z = X+Y
+
+  }else if(Do =="Subtract"){
+    Z = X-Y
+
+  }else if(Do =="Multiply"){
+    Z = X*Y
+
+    
+  }else if(Do =="Penguin"){
+    Z = c("<('' )")
+    
+  } else{
+    Z = c(X,Y)
+  }
+  
+  return(Z)
+}
+Toyfun(2,4,"Add")
+Toyfun(2,4,"Subtract")
+Toyfun(2,4,"Penguin")
+Toyfun(2,4, "Typo")
+```
+
+
+
+## Nested If Chains
+
+We can make `if-else` chains nested within each other. 
+
+```{r}
+x <- 105
+if(x>0){
+  if(x>100){
+     type = "large positive number"
+  } else {
+     type = "positive number"
+  }
+} else if(x<0) {
+  type = "negative number"
+} else if(x==0){
+  type = "zero"
+}else {
+  type = "Error"
+}
+
+type 
+```
+
+
+
+
+## Ifelse
+
+One of the critical things about if-statements is that they require that we use only ONE `TRUE\FALSE` value inside the condition that is checked.  For example, consider the following: 
+
+```{r}
+x <- -3:3
+
+if(x > 0){
+  type <- "positive"
+} else{
+  type <- "non-negative"
+}
+
+type
+```
+
+
+When we run the above line of code we obtain a "Warning" message.  Recall that warning messages are given when R compiled an expression, but the program suspects that the result was not the user wanted.  A "Error" message is when the expression could not be compiled. In this case the expression `x>0` produces a vector of logical values that has length greater than 1, when the condition for an if-statement is expecting a logical vector of length 1. If-statements are one of the few things in base R that are not automatically **vectorized**. 
+
+In R we are used to **vectorized functions and operations**.  We say that a function or operation is vectorized when we can use the function or operation to every element in a vector in an efficient way.  We saw a few examples of vectorized operations already in  \@ref(vecoperators).  Below we have an example of using a vectorized approach with a function, and non-vectorized approach. 
+
+```{r}
+# Non-vectorized
+c(log(1), log(2), log(3))
+
+# Vectorized
+log(1:3)
+```
+
+
+In the the second call the function `log()` is efficiently applied to each element of the vector that is used as the input.  The vectorized approach is efficiently computationally, and it is also efficient in typing.  For much larger vectors it would be (human) time consuming to apply the log function to each element. 
+
+When we want to do a vectorized approach for if-statements we generally have two options.  The first, and simplest, option is the `ifelse()` function. The first argument of this function is a logical value, the second and third arguments are what to do if the value is `TRUE` or `FALSE`, respectively. Be sure to check out the help file for this function!
+
+```{r}
+x <- -3:3
+type <- ifelse(x>0,  "positive", "non-positive")
+type 
+```
+
+
+Here is a more complicated example that we can use to find all cars in the `mtcars` data set that have a high horsepower and are fuel efficient, i.e. cars have `mpg > 25` and `hp > 60`.
+
+```{r}
+fast_efficient <- ifelse(mtcars$mpg > 25 & mtcars$hp>60, TRUE, FALSE)
+sum(fast_efficient)/length(fast_efficient)
+```
+
+
+
+## Vectorizing If-Statments
+
+The `ifelse()` function is useful when we are vectorizing a simple if-else statment.  When we have something more complicated we either need to do a combination of `ifelse()` functions that are nested together, which can be hard to read, or we need to consider another option.  
+
+Are second option is to use one of the `*apply` functions, which we will be discussed in more detail in a later chapter.  The `*apply` functions are used to vectorized functions in R and make them more efficient.  The `*apply` functions are technically **functionals**.  A **functional** in mathematics (and programming) is a function that accepts another function as an input.  There are many different types of apply functions, for now we will just focus on the most common one, the `sapply()` function.  
+
+
+Let us consider a more complicated example where we might want to consider an `*apply` function. In the below example we want to find each value of `x` that is an even positive number, odd positive number, and non-positive number 
+
+```{r}
+
+x<- -3:3
+
+if(x >0){
+  if(x%%2 ==0){
+    type <- "even positive"
+  } else {
+    type <- "odd positive"
+  } 
+} else {
+  type <- "non-positive"
+}
+```
+
+
+Again, we have an error message because if-statements can only accept logical vectors of length 1, and our expression is generating a logical vector of length greater than 1.  To use `sapply()` to vectorized this operation we need to change this chain if-statements into a function. 
+
+```{r}
+EvenOdd <- function(num){
+  if(num > 0){
+    if(num %% 2 == 0){
+      type <- "even positive"
+    } else {
+      type <- "odd positive"
+    } 
+  } else {
+    type <- "non-positive"
+  }
+  return(type)
+}
+```
+
+
+This will still generate an error message if we call `EvenOdd(x)` because our input is still a vector greater than 1.  To use `sapply()` we can do the following:
+
+```{r}
+x<- -3:3
+sapply( x, EvenOdd)
+```
+
+
+The first argument, labeled as `X` in the help file, is the object that contains the elements we want to apply the function to.  The second argument, labeled as `FUN` in the help file, is the function that is applied to each element of `X`.  We can make much more complicated if-statement changes and apply them to vectors using `sapply()`. 
+
+If we wanted to vectorize a function that had multiple inputs like the `Toyfun` function above we can do that with another `*apply` function, `mapply()`.  This function iterates over mutltiple inputs simultaneously.  Consider the following vectors 
+
+```{r}
+X_input <- c(1, 2, 3)
+Y_input <- c(100, 50, 25)
+Do_input <- c("Add", "Subtract", "Multiply")
+```
+
+Suppose we wish to add the first elements of `X_input` and `Y_input`, subtract the second elements `X_input` and `Y_input`, and multiply the last elements of `X_input` and `Y_input`.  We can do this iteratively all at once with `mapply()`. If we look at the `mapply()` help file the first two arguments are `FUN` and `...`.  The `FUN` arguement is the function we wish to apply, and the `...` represents the inputted values we want to iterative over.  The vectors supplied in `...` will all be called one at a time.  That is, the first elements of all the vectors passed via `...` will be called first, followed by the second elements, and so on. 
+
+```{r}
+mapply(Toyfun, X = X_input, Y = Y_input, Do = Do_input)
+```
+
+
+
+## Additional Resources {-}
+
+- [Chapter 13 of "R for Programming in Data Science"](https://bookdown.org/rdpeng/rprogdatascience/functions.html#the-...-argument) 
+- Videos:
+    + [Control Flow 1 | if Statements](https://ucr.yuja.com/V/Video?v=2369005&node=8488277&a=1089164180&autoplay=1)
+    + [Control Flow 2 | if else Statements](https://ucr.yuja.com/V/Video?v=2369004&node=8488276&a=68950775&autoplay=1)
+    + [Control Flow 3 | else if Statements](https://ucr.yuja.com/V/Video?v=2369003&node=8488275&a=577245814&autoplay=1)
+    + [Control Flow 4 | ifelse Function](https://ucr.yuja.com/V/Video?v=2369002&node=8488274&a=2043700498&autoplay=1)
+    + [Control Flow 5 | switch Function](https://ucr.yuja.com/V/Video?v=2369001&node=8488273&a=523725749&autoplay=1)

@@ -122,7 +122,7 @@ v
 ```
 
 
-### Vectorized Operations and Recylcing
+### Vectorized Operations and Recylcing {#vecoperators}
 
 Vectors can be used in arithmetic computations. If the two vectors are of the same length, the computations are performed element-by-element.
 
