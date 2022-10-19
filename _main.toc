@@ -118,18 +118,18 @@
 \contentsline {section}{\numberline {8.5}Ifelse}{94}{section.8.5}%
 \contentsline {section}{\numberline {8.6}Vectorizing If-Statments}{95}{section.8.6}%
 \contentsline {section}{Additional Resources}{97}{section*.38}%
-\contentsline {chapter}{\numberline {9}Text Data}{99}{chapter.9}%
-\contentsline {section}{\numberline {9.1}Making Strings}{100}{section.9.1}%
-\contentsline {section}{\numberline {9.2}Substring Operations}{101}{section.9.2}%
-\contentsline {section}{\numberline {9.3}Dividing Strings into Vectors}{102}{section.9.3}%
-\contentsline {section}{\numberline {9.4}Converting Objects into Strings}{103}{section.9.4}%
-\contentsline {section}{\numberline {9.5}Versatility of the paste() Function}{103}{section.9.5}%
-\contentsline {section}{\numberline {9.6}gsub , sub}{104}{section.9.6}%
-\contentsline {section}{\numberline {9.7}Text of Some Importance}{104}{section.9.7}%
-\contentsline {section}{\numberline {9.8}Search}{105}{section.9.8}%
-\contentsline {section}{\numberline {9.9}Word Count Tables}{106}{section.9.9}%
-\contentsline {chapter}{\numberline {10}Packages}{109}{chapter.10}%
-\contentsline {section}{\numberline {10.1}Namespace Collisions}{110}{section.10.1}%
+\contentsline {chapter}{\numberline {9}Packages}{99}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Namespace Collisions}{100}{section.9.1}%
+\contentsline {chapter}{\numberline {10}Text Data}{103}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Making Strings}{104}{section.10.1}%
+\contentsline {section}{\numberline {10.2}Substring Operations}{105}{section.10.2}%
+\contentsline {section}{\numberline {10.3}Dividing Strings into Vectors}{106}{section.10.3}%
+\contentsline {section}{\numberline {10.4}Converting Objects into Strings}{107}{section.10.4}%
+\contentsline {section}{\numberline {10.5}Versatility of the paste() Function}{107}{section.10.5}%
+\contentsline {section}{\numberline {10.6}gsub , sub}{108}{section.10.6}%
+\contentsline {section}{\numberline {10.7}Text of Some Importance}{108}{section.10.7}%
+\contentsline {section}{\numberline {10.8}Search}{109}{section.10.8}%
+\contentsline {section}{\numberline {10.9}Word Count Tables}{110}{section.10.9}%
 \contentsline {chapter}{\numberline {11}Regular Expressions}{113}{chapter.11}%
 \contentsline {section}{\numberline {11.1}Ranges, Escaping}{115}{section.11.1}%
 \contentsline {section}{\numberline {11.2}Metacharacters}{116}{section.11.2}%

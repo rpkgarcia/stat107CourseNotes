@@ -4910,8 +4910,8 @@ Again, we have an error message because if-statements can only accept logical ve
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{EvenOdd <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(num) \{}
-    \ControlFlowTok{if}\NormalTok{ (x }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{) \{}
-        \ControlFlowTok{if}\NormalTok{ (x}\OperatorTok{%%}\DecValTok{2} \OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{) \{}
+    \ControlFlowTok{if}\NormalTok{ (num }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{) \{}
+        \ControlFlowTok{if}\NormalTok{ (num}\OperatorTok{%%}\DecValTok{2} \OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{) \{}
 \NormalTok{            type <-}\StringTok{ "even positive"}
 \NormalTok{        \} }\ControlFlowTok{else}\NormalTok{ \{}
 \NormalTok{            type <-}\StringTok{ "odd positive"}
@@ -4929,39 +4929,38 @@ This will still generate an error message if we call \texttt{EvenOdd(x)} because
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{x <-}\StringTok{ }\DecValTok{-3}\OperatorTok{:}\DecValTok{3}
-\KeywordTok{sapply}\NormalTok{(}\DataTypeTok{X =}\NormalTok{ x, }\DataTypeTok{FUN =}\NormalTok{ EvenOdd)}
+\KeywordTok{sapply}\NormalTok{(x, EvenOdd)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in if (x > 0) {: the condition has length > 1 and only the first element
-## will be used
-
-## Warning in if (x > 0) {: the condition has length > 1 and only the first element
-## will be used
-
-## Warning in if (x > 0) {: the condition has length > 1 and only the first element
-## will be used
-
-## Warning in if (x > 0) {: the condition has length > 1 and only the first element
-## will be used
-
-## Warning in if (x > 0) {: the condition has length > 1 and only the first element
-## will be used
-
-## Warning in if (x > 0) {: the condition has length > 1 and only the first element
-## will be used
-
-## Warning in if (x > 0) {: the condition has length > 1 and only the first element
-## will be used
-\end{verbatim}
-
-\begin{verbatim}
-## [1] "non-positive" "non-positive" "non-positive" "non-positive" "non-positive"
-## [6] "non-positive" "non-positive"
+## [1] "non-positive"  "non-positive"  "non-positive"  "non-positive" 
+## [5] "odd positive"  "even positive" "odd positive"
 \end{verbatim}
 
 The first argument, labeled as \texttt{X} in the help file, is the object that contains the elements we want to apply the function to. The second argument, labeled as \texttt{FUN} in the help file, is the function that is applied to each element of \texttt{X}. We can make much more complicated if-statement changes and apply them to vectors using \texttt{sapply()}.
+
+If we wanted to vectorize a function that had multiple inputs like the \texttt{Toyfun} function above we can do that with another \texttt{*apply} function, \texttt{mapply()}. This function iterates over mutltiple inputs simultaneously. Consider the following vectors
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X_input <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\NormalTok{Y_input <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{100}\NormalTok{, }\DecValTok{50}\NormalTok{, }\DecValTok{25}\NormalTok{)}
+\NormalTok{Do_input <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Add"}\NormalTok{, }\StringTok{"Subtract"}\NormalTok{, }\StringTok{"Multiply"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Suppose we wish to add the first elements of \texttt{X\_input} and \texttt{Y\_input}, subtract the second elements \texttt{X\_input} and \texttt{Y\_input}, and multiply the last elements of \texttt{X\_input} and \texttt{Y\_input}. We can do this iteratively all at once with \texttt{mapply()}. If we look at the \texttt{mapply()} help file the first two arguments are \texttt{FUN} and \texttt{...}. The \texttt{FUN} arguement is the function we wish to apply, and the \texttt{...} represents the inputted values we want to iterative over. The vectors supplied in \texttt{...} will all be called one at a time. That is, the first elements of all the vectors passed via \texttt{...} will be called first, followed by the second elements, and so on.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mapply}\NormalTok{(Toyfun, }\DataTypeTok{X =}\NormalTok{ X_input, }\DataTypeTok{Y =}\NormalTok{ Y_input, }\DataTypeTok{Do =}\NormalTok{ Do_input)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 101 -48  75
+\end{verbatim}
 
 \hypertarget{additional-resources-4}{%
 \section*{Additional Resources}\label{additional-resources-4}}
@@ -4988,6 +4987,100 @@ The first argument, labeled as \texttt{X} in the help file, is the object that c
     \href{https://ucr.yuja.com/V/Video?v=2369001\&node=8488273\&a=523725749\&autoplay=1}{Control Flow 5 \textbar{} switch Function}
   \end{itemize}
 \end{itemize}
+
+\hypertarget{packages}{%
+\chapter{Packages}\label{packages}}
+
+\texttt{R} packages are a collection of \texttt{R} functions, complied code and sample data. They are stored under a directory called ``library'' in the \texttt{R} environment. By default, \texttt{R} installs a set of packages during installation. More packages are added later, when they are needed for some specific purpose. When we start the \texttt{R} console, only the default packages are available by default. Other packages which are already installed have to be loaded explicitly to be used by the \texttt{R} program that is going to use them.
+
+All the packages available in \texttt{R} language are listed at \href{https://cran.r-project.org/web/packages/available_packages_by_name.html}{R Packages}.
+
+To see a list of all packages installed on your device.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+To see a list of all packages that are currently loaded (note that yours will likely look different).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{search}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] ".GlobalEnv"        "package:knitr"     "package:stats"    
+##  [4] "package:graphics"  "package:grDevices" "package:utils"    
+##  [7] "package:datasets"  "package:methods"   "Autoloads"        
+## [10] "package:base"
+\end{verbatim}
+
+When adding a new package to our library we only have to install it once. We can do so with the following command.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"library name"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Alternatively, we can also go to the lower left hand window and select the \emph{Packages} tab. Then hit the button \textbf{Install}. A dropdown menu will appear where we can search for the package name.
+
+Before a package can be used in the code, it must be loaded to the current R environment. You also need to load a package that is already installed previously but not available in the current environment.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(}\StringTok{"library name"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+For example, suppose we wanted to install and load the package ``ggplot2'', (a very popular package for making plots). We would type the following commands.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Install package (only need to do this once)}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"ggplot2"}\NormalTok{)}
+
+\CommentTok{# Load into working environment (need to do this for each}
+\CommentTok{# new R session)}
+\KeywordTok{library}\NormalTok{(}\StringTok{"ggplot2"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+It might seem strange to (1) have to download packages tto use features and (2) have to load these packages each time we wish to use them; however, there are several good reasons for doing packages in this way, and this system is considered a feature. We don't have all possible packages available to us at all times because that is a lot of information that R would need to store at once which could make our computer lag. These packages are also always being updated at different rates with different features. Most users will only utilize packages in CRAN, so having to update R each session for features you may never use would be tedious. Furthermore, there are several packages which contain objects and functions with the same name.
+
+\hypertarget{namespace-collisions}{%
+\section{Namespace Collisions}\label{namespace-collisions}}
+
+Every time we load a package into our environment the results for the \texttt{search()} function changes. The most recently added package is always listed after the global environment, followed by the second most recent, and so on.
+The \texttt{search()} function tells us how R searches for an object that we called. For example, consider the following command.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\KeywordTok{mean}\NormalTok{(v)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+In this case R is searching for the function mean first in the global environment, and then in the package in the order that appears in the output of the \texttt{search()} function. The package \texttt{base} is always last. In our case the function \texttt{mean()} is only defined in the base package. If you want to call a function from a specific package explicitly and want to be sure there is no confusion you can type the package name followed by \texttt{::} and the desired command.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{base}\OperatorTok{::}\KeywordTok{mean}\NormalTok{(v)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+This can be useful, but is not usually necessary.
 
 \hypertarget{text-data}{%
 \chapter{Text Data}\label{text-data}}
@@ -5706,100 +5799,6 @@ In addition, all our words and string subsets are case sensitive.
 ##   NA
 \end{verbatim}
 
-\hypertarget{packages}{%
-\chapter{Packages}\label{packages}}
-
-\texttt{R} packages are a collection of \texttt{R} functions, complied code and sample data. They are stored under a directory called ``library'' in the \texttt{R} environment. By default, \texttt{R} installs a set of packages during installation. More packages are added later, when they are needed for some specific purpose. When we start the \texttt{R} console, only the default packages are available by default. Other packages which are already installed have to be loaded explicitly to be used by the \texttt{R} program that is going to use them.
-
-All the packages available in \texttt{R} language are listed at \href{https://cran.r-project.org/web/packages/available_packages_by_name.html}{R Packages}.
-
-To see a list of all packages installed on your device.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-To see a list of all packages that are currently loaded (note that yours will likely look different).
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{search}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  [1] ".GlobalEnv"        "package:knitr"     "package:stats"    
-##  [4] "package:graphics"  "package:grDevices" "package:utils"    
-##  [7] "package:datasets"  "package:methods"   "Autoloads"        
-## [10] "package:base"
-\end{verbatim}
-
-When adding a new package to our library we only have to install it once. We can do so with the following command.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"library name"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-Alternatively, we can also go to the lower left hand window and select the \emph{Packages} tab. Then hit the button \textbf{Install}. A dropdown menu will appear where we can search for the package name.
-
-Before a package can be used in the code, it must be loaded to the current R environment. You also need to load a package that is already installed previously but not available in the current environment.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(}\StringTok{"library name"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-For example, suppose we wanted to install and load the package ``ggplot2'', (a very popular package for making plots). We would type the following commands.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Install package (only need to do this once)}
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"ggplot2"}\NormalTok{)}
-
-\CommentTok{# Load into working environment (need to do this for each}
-\CommentTok{# new R session)}
-\KeywordTok{library}\NormalTok{(}\StringTok{"ggplot2"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-It might seem strange to (1) have to download packages tto use features and (2) have to load these packages each time we wish to use them; however, there are several good reasons for doing packages in this way, and this system is considered a feature. We don't have all possible packages available to us at all times because that is a lot of information that R would need to store at once which could make our computer lag. These packages are also always being updated at different rates with different features. Most users will only utilize packages in CRAN, so having to update R each session for features you may never use would be tedious. Furthermore, there are several packages which contain objects and functions with the same name.
-
-\hypertarget{namespace-collisions}{%
-\section{Namespace Collisions}\label{namespace-collisions}}
-
-Every time we load a package into our environment the results for the \texttt{search()} function changes. The most recently added package is always listed after the global environment, followed by the second most recent, and so on.
-The \texttt{search()} function tells us how R searches for an object that we called. For example, consider the following command.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{v <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{)}
-\KeywordTok{mean}\NormalTok{(v)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 2
-\end{verbatim}
-
-In this case R is searching for the function mean first in the global environment, and then in the package in the order that appears in the output of the \texttt{search()} function. The package \texttt{base} is always last. In our case the function \texttt{mean()} is only defined in the base package. If you want to call a function from a specific package explicitly and want to be sure there is no confusion you can type the package name followed by \texttt{::} and the desired command.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{base}\OperatorTok{::}\KeywordTok{mean}\NormalTok{(v)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 2
-\end{verbatim}
-
-This can be useful, but is not usually necessary.
-
 \hypertarget{regular-expressions}{%
 \chapter{Regular Expressions}\label{regular-expressions}}
 
@@ -6484,7 +6483,7 @@ Lets use the same Abraham Lincoln speech from the previous section. This time we
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-215-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-217-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6495,7 +6494,7 @@ Lets use the same Abraham Lincoln speech from the previous section. This time we
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-215-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-217-2.pdf}
 
 \hypertarget{replacements}{%
 \section{Replacements}\label{replacements}}
@@ -6616,7 +6615,7 @@ Most of the basic R plots have default settings. For example, the x-axis, y-axis
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-219-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-221-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6624,7 +6623,7 @@ Most of the basic R plots have default settings. For example, the x-axis, y-axis
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-219-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-221-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6632,7 +6631,7 @@ Most of the basic R plots have default settings. For example, the x-axis, y-axis
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-219-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-221-3.pdf}
 
 The output appears in the \emph{Plots} panel of \emph{RStudio}. You can use the arrows to the left of the \emph{Zoom} button the switch among the three plots.
 
@@ -6644,7 +6643,7 @@ There are several settings in base R plots that are similar. For example, in bas
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-220-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-222-1.pdf}
 
 There are also function specific arguments. For example, we can control the number of bins to create.
 
@@ -6655,7 +6654,7 @@ There are also function specific arguments. For example, we can control the numb
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-221-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-223-1.pdf}
 
 Use \texttt{col} argument to change the colors used for the bars. By using the \texttt{border} argument, you can even change the color used for the border of the bars.
 
@@ -6666,7 +6665,7 @@ Use \texttt{col} argument to change the colors used for the bars. By using the \
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-222-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-224-1.pdf}
 
 There are several ways we can add \textbf{colors} to \texttt{R}.
 
@@ -6690,7 +6689,7 @@ You can also place values on top of bars; which will help you interpret the grap
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-223-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-225-1.pdf}
 
 Often you want to compare the distributions of different variables within your data. You can overlay the histograms by setting the \texttt{add} argument of the second histogram to \texttt{TRUE}.
 
@@ -6706,7 +6705,7 @@ Often you want to compare the distributions of different variables within your d
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-224-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-226-1.pdf}
 
 For more options, look up ``hist'' in the \emph{Help} panel of \emph{RStudio}.
 
@@ -6727,7 +6726,7 @@ Let's produce a boxplot for the first 1000 values of the height variable.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-226-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-228-1.pdf}
 
 The line in the center is the median. The bottom and top of the box are drawn at the first (\(Q_1\)) and third (\(Q_3\)) quartiles (same as the 25th and 75th percentiles). The difference between the third and first quartiles is called the interquartile range (\(Q_3-Q_1\)). This is the height of the box. The lines above and below the box are called the whiskers. The upper whisker is either the third quartile plus 1.5 times the interquartile range, \(Q3 +1.5(Q_3-Q_1)\), or the largest data value, whichever is smallest. Similarly, the lower whisker is either the first quartile minus 1.5 times the interquartile range, \(Q1-1.5(Q_3-Q_1)\), or the smallest data value, whichever is largest. If data values exceed the whiskers, they are considered outliers (according to the \(IQR\) method, see Homework 2) and are plotted as circles. Boxplots are often used to represent numeric data.
 
@@ -6739,7 +6738,7 @@ One can use boxplots to compare different groups using \texttt{\textasciitilde{}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-227-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-229-1.pdf}
 
 \hypertarget{scatter-plot}{%
 \section{Scatter Plot}\label{scatter-plot}}
@@ -6774,7 +6773,7 @@ We can create a scatter plot using the \texttt{plot()} function in R. This is ge
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-228-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-230-1.pdf}
 
 Notice that this help file has many of the same arguments as we saw with the \texttt{hist()} function. For example, \texttt{xlab}, \texttt{ylab}, \texttt{main}, and \texttt{col}. A lot of Base R plotting functions are related and use the same techniques and arguments.
 
@@ -6786,7 +6785,7 @@ Notice that this help file has many of the same arguments as we saw with the \te
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-229-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-231-1.pdf}
 Other interesting features we may want to consider is having different colors points on our plot. We can supple the \texttt{col} argument for a vector the colors we want plotted. If the vector of is the same length as the number of rows in our data set, then the index of the vector of colors corresponds to the index of the point being plotted. If the vector of colors is not the size, then colors are generated using recycling. For example, below only two colors were supplied. This means every other point in the data set had a different color.
 
 \begin{Shaded}
@@ -6797,7 +6796,7 @@ Other interesting features we may want to consider is having different colors po
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-230-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-232-1.pdf}
 There are lots of other features we can change. Consider changing \texttt{cex}, \texttt{type}, \texttt{bg}, \texttt{pch}, \texttt{ylim}, \texttt{xlim}.
 
 \hypertarget{pie-charts}{%
@@ -6839,7 +6838,7 @@ Pie charts are also used for categorical data. Options are also available for th
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-233-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-235-1.pdf}
 
 Options are also available for the pie() function.
 
@@ -6850,7 +6849,7 @@ Options are also available for the pie() function.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-234-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-236-1.pdf}
 
 \hypertarget{adding-straight-lines}{%
 \section{Adding Straight Lines}\label{adding-straight-lines}}
@@ -6867,7 +6866,7 @@ Often you want to draw attention to specific values or observations in your grap
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-235-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-237-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6883,7 +6882,7 @@ Often you want to draw attention to specific values or observations in your grap
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-236-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-238-1.pdf}
 
 \hypertarget{adding-lines-between-points}{%
 \section{Adding Lines Between Points}\label{adding-lines-between-points}}
@@ -6905,7 +6904,7 @@ Sometimes, we would rather add a line connecting two points, rather than a conti
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-237-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-239-1.pdf}
 
 \hypertarget{adding-individual-points}{%
 \section{Adding Individual Points}\label{adding-individual-points}}
@@ -6929,7 +6928,7 @@ Similarly we can also add points to any base R graph using the \texttt{points()}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-238-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-240-1.pdf}
 
 In the \texttt{points()} help file we can see a separate section called \texttt{pch\ values} which contains the different types of points that Base R can create.
 
@@ -6954,7 +6953,7 @@ It is also a function that can adjust global plotting window parameters. For exa
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-239-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-241-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6983,7 +6982,7 @@ We control were the legend goes by using the first argument. This first argument
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-240-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-242-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7010,7 +7009,7 @@ We control were the legend goes by using the first argument. This first argument
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-241-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-243-1.pdf}
 
 \hypertarget{what-makes-a-good-plot}{%
 \section{What makes a good plot?}\label{what-makes-a-good-plot}}
@@ -7046,7 +7045,7 @@ This is not an exhaustive list, but contains a general quick check list of items
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-242-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-244-1.pdf}
 
 \hypertarget{extending-base-r-graphics}{%
 \chapter{Extending Base R Graphics}\label{extending-base-r-graphics}}
@@ -7087,7 +7086,7 @@ We specifically consider the \texttt{maps} package which lets us create differen
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-243-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-245-1.pdf}
 
 The first argument for the function \texttt{map()} is called \texttt{database}. This argument is expecting a character vector of length 1. The element in this vector corresponds to the map you want to create. As we saw above, the default for this package is to create a world map, this corresponds to when argument is \texttt{database=\ "world"}. The values this argument can support are: ``world'', ``usa'', ``state'', and ``county''.
 
@@ -7104,7 +7103,7 @@ The first argument for the function \texttt{map()} is called \texttt{database}. 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-244-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-246-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7122,7 +7121,7 @@ Within these maps we can specify specific regions that we may want plotted. In g
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-245-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-247-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7142,7 +7141,7 @@ For example, we can plot the locations of world cities that are capitals using t
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-246-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-248-1.pdf}
 
 The maps package does not use the standard base R label arguments like \texttt{main,\ xlab,\ ylab}. However, if we wish to have a map with labels we can use the function \texttt{map.text()} instead of \texttt{map()}. This is essentially the same function as \texttt{map()}, but it defaults to labeling the graph for us. If we want to add our own custom label we use the \texttt{labels} argument.
 
@@ -7157,7 +7156,7 @@ The maps package does not use the standard base R label arguments like \texttt{m
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-247-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-249-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7615,7 +7614,7 @@ For example, in Yellowstone National Park, Wyoming there is a famous geyser call
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-264-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-266-1.pdf}
 
 As mentioned previously, random variables generate observations according to some sort of pattern. These patterns are referred to as \textbf{densities}, and can be analyzed visually, and analytically (i.e.~through formulas). One of the most common ways to look at how often we would expect certain values for data that we find from the ``real-world'' is to use a histogram. Histogram order observations into mutually exclusive bins, where the height of each bin indicates how common a particular range of values is. For example, in the histogram above each bin is a 30 second (0.5 minute) range, and we can see the frequency of observations within the data set that are in this range on the y-axis. When thinking about random variables though, it is often more helpful to look at the proportion of observed values within a bin, instead of the frequency. We can modify our histogram to accomplish this.
 
@@ -7627,7 +7626,7 @@ As mentioned previously, random variables generate observations according to som
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-265-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-267-1.pdf}
 
 Notice that the y-axis now says ``Density''. This is the relative probability that an observed data point will be a particular value. In ``real-world'' data, we can only estimate the density. We will never know the truth. Hence, we will never know the true expected value, or the true variance. This is why we have statistics!! We have statistics in order to make educated guesses about these values and properties from which the data arises from.
 
@@ -7905,7 +7904,7 @@ Often times when generating data or using a real-world data set we might want to
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-274-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-276-1.pdf}
 
 Now lets generate 272 normal random variables with mean 3.5 and standard deviation of 1.14 and see how well are generated data matches the density function.
 
@@ -7920,7 +7919,7 @@ Now lets generate 272 normal random variables with mean 3.5 and standard deviati
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-275-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-277-1.pdf}
 
 We do not see a perfect fit, but this is what happens with random samples. The fit for the simulated data is what we expect approximately if we had a sample with this distribution. It should be approximately the same as the curve, which we see for the simulated data. Our old faithful data is significantly less fitted the simulated data. Thus it appears that the old faithful eruption times is probably not normally distributed with mean 3.5 and standard deviation 1.14. How similar is ``similar enough'' is not a hard and fast rule, and it is ultimately up to the researcher. The simulated data set gives us a general idea of what is ``similar enough''.
 
@@ -7932,7 +7931,7 @@ Note that the \texttt{curve()} function does not need to be added to graph but c
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-276-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-278-1.pdf}
 
 In addition, we can make our own functions to plot using \texttt{curve()}.
 
@@ -7947,7 +7946,7 @@ In addition, we can make our own functions to plot using \texttt{curve()}.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-277-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-279-1.pdf}
 
 \hypertarget{example-central-limit-theorem-clt}{%
 \section{Example: Central Limit Theorem (CLT)}\label{example-central-limit-theorem-clt}}
@@ -8010,7 +8009,7 @@ We will see how well the CLT theorem applies to a data set that has a uniform di
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-278-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-280-1.pdf}
 
 To add a curve to the graph we need to know the mean and the standard deviation of the data we generated. For a uniform distribution with a minimum of -5 and a maximum of 5, the mean is 0 and the standard deviation is \(10/\sqrt{12} \approx 2.89\). Thus according to CLT, we expect our histogram above to correspond to a normal density with mean 0 and standard deviation \(2.89/\sqrt{50} \approx 0.41\).
 
@@ -8024,7 +8023,7 @@ To add a curve to the graph we need to know the mean and the standard deviation 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-279-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-281-1.pdf}
 
 \hypertarget{tidyverse}{%
 \chapter{Tidyverse}\label{tidyverse}}
@@ -8827,7 +8826,7 @@ A Basic Example:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-302-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-304-1.pdf}
 
 \hypertarget{adjust-aesthetic-attributes-by-variable}{%
 \section{Adjust aesthetic attributes by variable}\label{adjust-aesthetic-attributes-by-variable}}
@@ -8853,7 +8852,7 @@ We can adjust aesthetic attributes by variable using the \texttt{aes()} function
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-304-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-306-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8861,7 +8860,7 @@ We can adjust aesthetic attributes by variable using the \texttt{aes()} function
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-304-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-306-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8869,7 +8868,7 @@ We can adjust aesthetic attributes by variable using the \texttt{aes()} function
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-304-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-306-3.pdf}
 
 \hypertarget{adjust-aesthetic-attributes-for-the-entire-plot}{%
 \section{Adjust aesthetic attributes for the entire plot}\label{adjust-aesthetic-attributes-for-the-entire-plot}}
@@ -8883,7 +8882,7 @@ Notice that the plot changes based on if the \texttt{color} is assigned outside 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-305-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-307-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8893,7 +8892,7 @@ Notice that the plot changes based on if the \texttt{color} is assigned outside 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-305-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-307-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8902,7 +8901,7 @@ Notice that the plot changes based on if the \texttt{color} is assigned outside 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-305-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-307-3.pdf}
 
 \hypertarget{faceting}{%
 \section{Faceting}\label{faceting}}
@@ -8918,7 +8917,7 @@ Faceting creates tables of graphics by splitting the data into subsets and displ
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-306-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-308-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8930,7 +8929,7 @@ Faceting creates tables of graphics by splitting the data into subsets and displ
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-306-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-308-2.pdf}
 
 \hypertarget{some-example-plots}{%
 \section{Some example plots}\label{some-example-plots}}
@@ -8943,7 +8942,7 @@ Faceting creates tables of graphics by splitting the data into subsets and displ
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-307-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-309-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8953,7 +8952,7 @@ Faceting creates tables of graphics by splitting the data into subsets and displ
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-307-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-309-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8976,7 +8975,7 @@ Faceting creates tables of graphics by splitting the data into subsets and displ
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-307-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-309-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8998,7 +8997,7 @@ Faceting creates tables of graphics by splitting the data into subsets and displ
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-307-4.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-309-4.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9008,7 +9007,7 @@ Faceting creates tables of graphics by splitting the data into subsets and displ
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-307-5.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-309-5.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9030,7 +9029,7 @@ Faceting creates tables of graphics by splitting the data into subsets and displ
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-307-6.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-309-6.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9040,7 +9039,7 @@ Faceting creates tables of graphics by splitting the data into subsets and displ
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-307-7.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-309-7.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9078,7 +9077,7 @@ Faceting creates tables of graphics by splitting the data into subsets and displ
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-307-8.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-309-8.pdf}
 
 \hypertarget{where-can-i-learn-more}{%
 \section{Where can I learn more?}\label{where-can-i-learn-more}}
@@ -9793,7 +9792,7 @@ Make a plot of the sepal width and sepal length. Make the points differ dependin
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-326-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-328-1.pdf}
 
 \begin{verbatim}
 ## NULL
@@ -9830,7 +9829,7 @@ Make a plot of the sepal width and sepal length. Make the points differ dependin
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-327-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-329-1.pdf}
 
 \begin{verbatim}
 ## $setosa
