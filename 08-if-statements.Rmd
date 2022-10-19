@@ -129,7 +129,7 @@ type
 
 
 
-## Ifelse
+## Ifelse {#ifelse}
 
 One of the critical things about if-statements is that they require that we use only ONE `TRUE\FALSE` value inside the condition that is checked.  For example, consider the following: 
 
@@ -179,7 +179,8 @@ sum(fast_efficient)/length(fast_efficient)
 
 
 
-## Vectorizing If-Statments
+## Vectorizing If-Statments {#vectorizeifelse}
+
 
 The `ifelse()` function is useful when we are vectorizing a simple if-else statment.  When we have something more complicated we either need to do a combination of `ifelse()` functions that are nested together, which can be hard to read, or we need to consider another option.  
 

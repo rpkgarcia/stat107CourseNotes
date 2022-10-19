@@ -72,7 +72,7 @@ lexical-scoping
 built-in-functions
 vectorization
 help-files
-the-argument
+dots
 generic-functions
 if-statements
 if
@@ -80,7 +80,7 @@ if-else
 else-if
 nested-if-chains
 ifelse
-vectorizing-if-statments
+vectorizeifelse
 packages
 namespace-collisions
 text-data
@@ -89,11 +89,13 @@ substring-operations
 dividing-strings-into-vectors
 converting-objects-into-strings
 versatility-of-the-paste-function
-gsub-sub
+substitution
 text-of-some-importance
 search
-word-count-tables
+vectorizing-text-functions
 regular-expressions
+word-count-tables
+Regex
 ranges-escaping
 metacharacters
 quantifiers

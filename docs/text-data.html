@@ -24,7 +24,7 @@
 <meta name="author" content="Rebecca Kurtz-Garcia" />
 
 
-<meta name="date" content="2022-10-18" />
+<meta name="date" content="2022-10-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="packages.html"/>
-<link rel="next" href="regular-expressions.html"/>
+<link rel="next" href="Regex.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -271,7 +271,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3" data-path="functions.html"><a href="functions.html#built-in-functions"><i class="fa fa-check"></i><b>7.3</b> Built-In Functions<span></span></a></li>
 <li class="chapter" data-level="7.4" data-path="functions.html"><a href="functions.html#vectorization"><i class="fa fa-check"></i><b>7.4</b> Vectorization<span></span></a></li>
 <li class="chapter" data-level="7.5" data-path="functions.html"><a href="functions.html#help-files"><i class="fa fa-check"></i><b>7.5</b> Help Files<span></span></a></li>
-<li class="chapter" data-level="7.6" data-path="functions.html"><a href="functions.html#the-argument"><i class="fa fa-check"></i><b>7.6</b> The … Argument<span></span></a></li>
+<li class="chapter" data-level="7.6" data-path="functions.html"><a href="functions.html#dots"><i class="fa fa-check"></i><b>7.6</b> The … Argument<span></span></a></li>
 <li class="chapter" data-level="7.7" data-path="functions.html"><a href="functions.html#generic-functions"><i class="fa fa-check"></i><b>7.7</b> Generic Functions<span></span></a></li>
 <li><a href="functions.html#additional-resources-3">Additional Resources<span></span></a></li>
 </ul></li>
@@ -281,7 +281,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3" data-path="if-statements.html"><a href="if-statements.html#else-if"><i class="fa fa-check"></i><b>8.3</b> Else If<span></span></a></li>
 <li class="chapter" data-level="8.4" data-path="if-statements.html"><a href="if-statements.html#nested-if-chains"><i class="fa fa-check"></i><b>8.4</b> Nested If Chains<span></span></a></li>
 <li class="chapter" data-level="8.5" data-path="if-statements.html"><a href="if-statements.html#ifelse"><i class="fa fa-check"></i><b>8.5</b> Ifelse<span></span></a></li>
-<li class="chapter" data-level="8.6" data-path="if-statements.html"><a href="if-statements.html#vectorizing-if-statments"><i class="fa fa-check"></i><b>8.6</b> Vectorizing If-Statments<span></span></a></li>
+<li class="chapter" data-level="8.6" data-path="if-statements.html"><a href="if-statements.html#vectorizeifelse"><i class="fa fa-check"></i><b>8.6</b> Vectorizing If-Statments<span></span></a></li>
 <li><a href="if-statements.html#additional-resources-4">Additional Resources<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>9</b> Packages<span></span></a><ul>
@@ -293,21 +293,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.3" data-path="text-data.html"><a href="text-data.html#dividing-strings-into-vectors"><i class="fa fa-check"></i><b>10.3</b> Dividing Strings into Vectors<span></span></a></li>
 <li class="chapter" data-level="10.4" data-path="text-data.html"><a href="text-data.html#converting-objects-into-strings"><i class="fa fa-check"></i><b>10.4</b> Converting Objects into Strings<span></span></a></li>
 <li class="chapter" data-level="10.5" data-path="text-data.html"><a href="text-data.html#versatility-of-the-paste-function"><i class="fa fa-check"></i><b>10.5</b> Versatility of the paste() Function<span></span></a></li>
-<li class="chapter" data-level="10.6" data-path="text-data.html"><a href="text-data.html#gsub-sub"><i class="fa fa-check"></i><b>10.6</b> gsub , sub<span></span></a></li>
+<li class="chapter" data-level="10.6" data-path="text-data.html"><a href="text-data.html#substitution"><i class="fa fa-check"></i><b>10.6</b> Substitution<span></span></a></li>
 <li class="chapter" data-level="10.7" data-path="text-data.html"><a href="text-data.html#text-of-some-importance"><i class="fa fa-check"></i><b>10.7</b> Text of Some Importance<span></span></a></li>
 <li class="chapter" data-level="10.8" data-path="text-data.html"><a href="text-data.html#search"><i class="fa fa-check"></i><b>10.8</b> Search<span></span></a></li>
-<li class="chapter" data-level="10.9" data-path="text-data.html"><a href="text-data.html#word-count-tables"><i class="fa fa-check"></i><b>10.9</b> Word Count Tables<span></span></a></li>
+<li class="chapter" data-level="10.9" data-path="text-data.html"><a href="text-data.html#vectorizing-text-functions"><i class="fa fa-check"></i><b>10.9</b> Vectorizing Text Functions<span></span></a></li>
+<li class="chapter" data-level="10.10" data-path="text-data.html"><a href="text-data.html#regular-expressions"><i class="fa fa-check"></i><b>10.10</b> Regular Expressions<span></span></a></li>
+<li class="chapter" data-level="10.11" data-path="text-data.html"><a href="text-data.html#word-count-tables"><i class="fa fa-check"></i><b>10.11</b> Word Count Tables<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="regular-expressions.html"><a href="regular-expressions.html"><i class="fa fa-check"></i><b>11</b> Regular Expressions<span></span></a><ul>
-<li class="chapter" data-level="11.1" data-path="regular-expressions.html"><a href="regular-expressions.html#ranges-escaping"><i class="fa fa-check"></i><b>11.1</b> Ranges, Escaping<span></span></a></li>
-<li class="chapter" data-level="11.2" data-path="regular-expressions.html"><a href="regular-expressions.html#metacharacters"><i class="fa fa-check"></i><b>11.2</b> Metacharacters<span></span></a></li>
-<li class="chapter" data-level="11.3" data-path="regular-expressions.html"><a href="regular-expressions.html#quantifiers"><i class="fa fa-check"></i><b>11.3</b> Quantifiers<span></span></a></li>
-<li class="chapter" data-level="11.4" data-path="regular-expressions.html"><a href="regular-expressions.html#anchoring"><i class="fa fa-check"></i><b>11.4</b> Anchoring<span></span></a></li>
-<li class="chapter" data-level="11.5" data-path="regular-expressions.html"><a href="regular-expressions.html#splitting-on-a-regexp"><i class="fa fa-check"></i><b>11.5</b> Splitting on a Regexp<span></span></a></li>
-<li class="chapter" data-level="11.6" data-path="regular-expressions.html"><a href="regular-expressions.html#stringr-package"><i class="fa fa-check"></i><b>11.6</b> Stringr Package<span></span></a></li>
-<li class="chapter" data-level="11.7" data-path="regular-expressions.html"><a href="regular-expressions.html#wordcloud-package"><i class="fa fa-check"></i><b>11.7</b> Wordcloud Package<span></span></a></li>
-<li class="chapter" data-level="11.8" data-path="regular-expressions.html"><a href="regular-expressions.html#replacements"><i class="fa fa-check"></i><b>11.8</b> Replacements<span></span></a></li>
-<li><a href="regular-expressions.html#additional-resources-5">Additional Resources<span></span></a></li>
+<li class="chapter" data-level="11" data-path="Regex.html"><a href="Regex.html"><i class="fa fa-check"></i><b>11</b> Regular Expressions<span></span></a><ul>
+<li class="chapter" data-level="11.1" data-path="Regex.html"><a href="Regex.html#ranges-escaping"><i class="fa fa-check"></i><b>11.1</b> Ranges, Escaping<span></span></a></li>
+<li class="chapter" data-level="11.2" data-path="Regex.html"><a href="Regex.html#metacharacters"><i class="fa fa-check"></i><b>11.2</b> Metacharacters<span></span></a></li>
+<li class="chapter" data-level="11.3" data-path="Regex.html"><a href="Regex.html#quantifiers"><i class="fa fa-check"></i><b>11.3</b> Quantifiers<span></span></a></li>
+<li class="chapter" data-level="11.4" data-path="Regex.html"><a href="Regex.html#anchoring"><i class="fa fa-check"></i><b>11.4</b> Anchoring<span></span></a></li>
+<li class="chapter" data-level="11.5" data-path="Regex.html"><a href="Regex.html#splitting-on-a-regexp"><i class="fa fa-check"></i><b>11.5</b> Splitting on a Regexp<span></span></a></li>
+<li class="chapter" data-level="11.6" data-path="Regex.html"><a href="Regex.html#stringr-package"><i class="fa fa-check"></i><b>11.6</b> Stringr Package<span></span></a></li>
+<li class="chapter" data-level="11.7" data-path="Regex.html"><a href="Regex.html#wordcloud-package"><i class="fa fa-check"></i><b>11.7</b> Wordcloud Package<span></span></a></li>
+<li class="chapter" data-level="11.8" data-path="Regex.html"><a href="Regex.html#replacements"><i class="fa fa-check"></i><b>11.8</b> Replacements<span></span></a></li>
+<li><a href="Regex.html#additional-resources-5">Additional Resources<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="base-r-plotting.html"><a href="base-r-plotting.html"><i class="fa fa-check"></i><b>12</b> Base R Plotting<span></span></a><ul>
 <li class="chapter" data-level="12.1" data-path="base-r-plotting.html"><a href="base-r-plotting.html#load-a-big-data-set"><i class="fa fa-check"></i><b>12.1</b> Load A Big Data Set<span></span></a></li>
@@ -495,7 +497,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb557-1"><a href="text-data.html#cb557-1"></a><span class="kw">nchar</span>(<span class="kw">c</span>(<span class="st">&quot;Abraham&quot;</span>, <span class="st">&quot;Lincoln&#39;s&quot;</span>, <span class="st">&quot;beard&quot;</span>))</span></code></pre></div>
 <pre><code>## [1] 7 9 5</code></pre>
 <p>We can use <code>print()</code> to display the string, and <code>cat()</code> is used to write the string directly to the console. If you’re debugging, <code>message()</code> is R’s preferred syntax.</p>
-<div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb559-1"><a href="text-data.html#cb559-1"></a>presidents =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Fillmore&quot;</span>, <span class="st">&quot;Pierce&quot;</span>, <span class="st">&quot;Buchanan&quot;</span>, <span class="st">&quot;Davis&quot;</span>, <span class="st">&quot;Johnson&quot;</span>)</span>
+<div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb559-1"><a href="text-data.html#cb559-1"></a>presidents &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Fillmore&quot;</span>, <span class="st">&quot;Pierce&quot;</span>, <span class="st">&quot;Buchanan&quot;</span>, <span class="st">&quot;Davis&quot;</span>, <span class="st">&quot;Johnson&quot;</span>)</span>
 <span id="cb559-2"><a href="text-data.html#cb559-2"></a></span>
 <span id="cb559-3"><a href="text-data.html#cb559-3"></a><span class="kw">print</span>(<span class="st">&quot;Abraham Lincoln&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Abraham Lincoln&quot;</code></pre>
@@ -590,9 +592,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [1] &quot;Fillmore (41); Pierce (42); Buchanan (43); Davis (44); Johnson (45)&quot;</code></pre>
 <p>Default value of <code>collapse</code> is <code>NULL</code> – that is, it won’t use it.</p>
 </div>
-<div id="gsub-sub" class="section level2 hasAnchor">
-<h2><span class="header-section-number">10.6</span> gsub , sub<a href="text-data.html#gsub-sub" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>gsub is all occurances, and sub is first occurance.</p>
+<div id="substitution" class="section level2 hasAnchor">
+<h2><span class="header-section-number">10.6</span> Substitution<a href="text-data.html#substitution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The functions <code>gsub()</code> and <code>sub()</code> are used to searcch for a pattern, and then substitue the matches. The function <code>gsub()</code> finds and replaces all matches, and the <code>sub()</code> finds and replaces only the first match.</p>
+<div class="sourceCode" id="cb609"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb609-1"><a href="text-data.html#cb609-1"></a>scarborough.fair &lt;-<span class="st"> &quot;parsley, sage, rosemary, thyme&quot;</span></span>
+<span id="cb609-2"><a href="text-data.html#cb609-2"></a></span>
+<span id="cb609-3"><a href="text-data.html#cb609-3"></a><span class="kw">gsub</span>(<span class="st">&quot;, &quot;</span>, <span class="st">&quot;-&quot;</span>, scarborough.fair)  <span class="co"># replace all matches </span></span></code></pre></div>
+<pre><code>## [1] &quot;parsley-sage-rosemary-thyme&quot;</code></pre>
+<div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb611-1"><a href="text-data.html#cb611-1"></a><span class="kw">sub</span>(<span class="st">&quot;, &quot;</span>, <span class="st">&quot;-&quot;</span>, scarborough.fair)  <span class="co"># replace one match </span></span></code></pre></div>
+<pre><code>## [1] &quot;parsley-sage, rosemary, thyme&quot;</code></pre>
 </div>
 <div id="text-of-some-importance" class="section level2 hasAnchor">
 <h2><span class="header-section-number">10.7</span> Text of Some Importance<a href="text-data.html#text-of-some-importance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -613,18 +621,18 @@ it must be said”the judgments of the Lord are true and righteous
 altogether."</p>
 </blockquote>
 <p>We can read in the file with the following commands.</p>
-<div class="sourceCode" id="cb609"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb609-1"><a href="text-data.html#cb609-1"></a>the_url &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/rpkgarcia/LearnRBook/main/data_sets/al1.txt&quot;</span></span>
-<span id="cb609-2"><a href="text-data.html#cb609-2"></a>al1 &lt;-<span class="st"> </span><span class="kw">readLines</span>(the_url, <span class="dt">warn =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb609-3"><a href="text-data.html#cb609-3"></a></span>
-<span id="cb609-4"><a href="text-data.html#cb609-4"></a><span class="co"># How many lines in the file</span></span>
-<span id="cb609-5"><a href="text-data.html#cb609-5"></a><span class="kw">length</span>(al1)</span></code></pre></div>
+<div class="sourceCode" id="cb613"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb613-1"><a href="text-data.html#cb613-1"></a>the_url &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/rpkgarcia/LearnRBook/main/data_sets/al1.txt&quot;</span></span>
+<span id="cb613-2"><a href="text-data.html#cb613-2"></a>al1 &lt;-<span class="st"> </span><span class="kw">readLines</span>(the_url, <span class="dt">warn =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb613-3"><a href="text-data.html#cb613-3"></a></span>
+<span id="cb613-4"><a href="text-data.html#cb613-4"></a><span class="co"># How many lines in the file</span></span>
+<span id="cb613-5"><a href="text-data.html#cb613-5"></a><span class="kw">length</span>(al1)</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb611-1"><a href="text-data.html#cb611-1"></a><span class="co"># See the object</span></span>
-<span id="cb611-2"><a href="text-data.html#cb611-2"></a>al1</span></code></pre></div>
+<div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb615-1"><a href="text-data.html#cb615-1"></a><span class="co"># See the object</span></span>
+<span id="cb615-2"><a href="text-data.html#cb615-2"></a>al1</span></code></pre></div>
 <pre><code>## [1] &quot;If we shall suppose that American slavery is one of those offenses which, in the providence of God, must needs come, but which, having continued through His appointed time, He now wills to remove, and that He gives to both North and South this terrible war as the woe due to those by whom the offense came, shall we discern therein any departure from those divine attributes which the believers in a living God always ascribe to Him? Fondly do we hope, fervently do we pray, that this mighty scourge of war may speedily pass away. Yet, if God wills that it continue until all the wealth piled by the bondsman’s two hundred and fifty years of unrequited toil shall be sunk, and until every drop of blood drawn with the lash shall be paid by another drawn with the sword, as was said three thousand years ago, so still it must be said “the judgments of the Lord are true and righteous altogether”.&quot;</code></pre>
 <p>Lets create a new vector where each element is a portion of text seperated by a comman “,”.</p>
-<div class="sourceCode" id="cb613"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb613-1"><a href="text-data.html#cb613-1"></a>al1.phrases &lt;-<span class="st"> </span><span class="kw">strsplit</span>(al1, <span class="st">&quot;,&quot;</span>)[[<span class="dv">1</span>]]</span>
-<span id="cb613-2"><a href="text-data.html#cb613-2"></a>al1.phrases</span></code></pre></div>
+<div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb617-1"><a href="text-data.html#cb617-1"></a>al1.phrases &lt;-<span class="st"> </span><span class="kw">strsplit</span>(al1, <span class="st">&quot;,&quot;</span>)[[<span class="dv">1</span>]]</span>
+<span id="cb617-2"><a href="text-data.html#cb617-2"></a>al1.phrases</span></code></pre></div>
 <pre><code>##  [1] &quot;If we shall suppose that American slavery is one of those offenses which&quot;                                                                         
 ##  [2] &quot; in the providence of God&quot;                                                                                                                        
 ##  [3] &quot; must needs come&quot;                                                                                                                                 
@@ -644,30 +652,82 @@ altogether."</p>
 <h2><span class="header-section-number">10.8</span> Search<a href="text-data.html#search" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We can search through text strings for certain patterns. Some particularly helpful functions for doing this are <code>grep()</code> and <code>grepl()</code>. The <code>grep()</code> function</p>
 <p>Narrowing down entries: use <code>grep()</code> to find which strings have a matching search term</p>
-<div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb615-1"><a href="text-data.html#cb615-1"></a><span class="co"># Returns indices for which element in al1 has the term</span></span>
-<span id="cb615-2"><a href="text-data.html#cb615-2"></a><span class="co"># &#39;God&#39;</span></span>
-<span id="cb615-3"><a href="text-data.html#cb615-3"></a><span class="kw">grep</span>(<span class="st">&quot;God&quot;</span>, al1.phrases)</span></code></pre></div>
+<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="text-data.html#cb619-1"></a><span class="co"># Returns indices for which element in al1 has the term</span></span>
+<span id="cb619-2"><a href="text-data.html#cb619-2"></a><span class="co"># &#39;God&#39;</span></span>
+<span id="cb619-3"><a href="text-data.html#cb619-3"></a><span class="kw">grep</span>(<span class="st">&quot;God&quot;</span>, al1.phrases)</span></code></pre></div>
 <pre><code>## [1]  2  8 11</code></pre>
-<div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb617-1"><a href="text-data.html#cb617-1"></a><span class="co"># Returns T/F values for which indices have the term &#39;God&#39;</span></span>
-<span id="cb617-2"><a href="text-data.html#cb617-2"></a><span class="kw">grepl</span>(<span class="st">&quot;God&quot;</span>, al1.phrases)</span></code></pre></div>
+<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb621-1"><a href="text-data.html#cb621-1"></a><span class="co"># Returns T/F values for which indices have the term &#39;God&#39;</span></span>
+<span id="cb621-2"><a href="text-data.html#cb621-2"></a><span class="kw">grepl</span>(<span class="st">&quot;God&quot;</span>, al1.phrases)</span></code></pre></div>
 <pre><code>##  [1] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE
 ## [13] FALSE FALSE</code></pre>
-<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="text-data.html#cb619-1"></a><span class="co"># Returns the the elements in al1 that have the term &#39;God&#39;</span></span>
-<span id="cb619-2"><a href="text-data.html#cb619-2"></a>al1.phrases[<span class="kw">grep</span>(<span class="st">&quot;God&quot;</span>, al1.phrases)]</span></code></pre></div>
+<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb623-1"><a href="text-data.html#cb623-1"></a><span class="co"># Returns the the elements in al1 that have the term &#39;God&#39;</span></span>
+<span id="cb623-2"><a href="text-data.html#cb623-2"></a>al1.phrases[<span class="kw">grep</span>(<span class="st">&quot;God&quot;</span>, al1.phrases)]</span></code></pre></div>
 <pre><code>## [1] &quot; in the providence of God&quot;                                                                                                                        
 ## [2] &quot; shall we discern therein any departure from those divine attributes which the believers in a living God always ascribe to Him? Fondly do we hope&quot;
 ## [3] &quot; if God wills that it continue until all the wealth piled by the bondsman’s two hundred and fifty years of unrequited toil shall be sunk&quot;</code></pre>
 </div>
+<div id="vectorizing-text-functions" class="section level2 hasAnchor">
+<h2><span class="header-section-number">10.9</span> Vectorizing Text Functions<a href="text-data.html#vectorizing-text-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>An important note about a lot of the text functions we above is that some of these functions can only search or use one pattern at a time. For example, consider a situation in which we want to find all occurrences of the letters “a”, “b”, and “c” for the <code>presidents</code> vector.</p>
+<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="text-data.html#cb625-1"></a>presidents &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Fillmore&quot;</span>, <span class="st">&quot;Pierce&quot;</span>, <span class="st">&quot;Buchanan&quot;</span>, <span class="st">&quot;Davis&quot;</span>, <span class="st">&quot;Johnson&quot;</span>)</span>
+<span id="cb625-2"><a href="text-data.html#cb625-2"></a>abc &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>)</span>
+<span id="cb625-3"><a href="text-data.html#cb625-3"></a></span>
+<span id="cb625-4"><a href="text-data.html#cb625-4"></a></span>
+<span id="cb625-5"><a href="text-data.html#cb625-5"></a><span class="kw">grepl</span>(abc, presidents)</span></code></pre></div>
+<pre><code>## Warning in grepl(abc, presidents): argument &#39;pattern&#39; has length &gt; 1 and only
+## the first element will be used</code></pre>
+<pre><code>## [1] FALSE FALSE  TRUE  TRUE FALSE</code></pre>
+<p>We can only search for one pattern at a time. To make this search more versatile we either have to do multiple searches, use regular expressions (see Chapter <a href="Regex.html#Regex">11</a>), or use some of the <code>*apply</code> functions. We saw examples of vectorizing functions that we created in Section <a href="if-statements.html#vectorizeifelse">8.6</a>. We can also apply these functions to built in functions in R. Lets consider the example above again, but this time we will use <code>sapply()</code>. Notice that we have several arguments that we are using for <code>grepl()</code>. If we want to apply a function to multiple elements in a vector but this function has several arguments that is not a problem with <code>sapply()</code>. The function <code>sapply()</code> has a <code>...</code> argument which we learned about in Section <a href="functions.html#dots">7.6</a>. The extra arguments are passed on to the function call because of this <code>...</code> argument.</p>
+<div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb628-1"><a href="text-data.html#cb628-1"></a>presidents_abc &lt;-<span class="st"> </span><span class="kw">sapply</span>(abc, grepl, <span class="dt">x =</span> presidents)</span>
+<span id="cb628-2"><a href="text-data.html#cb628-2"></a>presidents_abc</span></code></pre></div>
+<pre><code>##          a     b     c
+## [1,] FALSE FALSE FALSE
+## [2,] FALSE FALSE  TRUE
+## [3,]  TRUE FALSE  TRUE
+## [4,]  TRUE FALSE FALSE
+## [5,] FALSE FALSE FALSE</code></pre>
+<p>Each row corresponds to an element in the vector <code>presidents</code>, and each column contains <code>TRUE\FALSE</code> values depending on if the particular letter was present for that row.</p>
+<p>We can use <code>any()</code> and <code>all()</code> functions to determine if the <em>any</em> or <em>all</em> of the letters “a”, “b” and “c” are present, respectively. We can do this with the <code>apply()</code> function. The <code>apply()</code> function iterate over a matrix instead of a vector. This function has three key arguments: <code>X</code>- the matrix we are iterating over, <code>MARGIN</code>- indicates if we iterate over rows (1) or columns (2), and <code>FUN</code>- the function to apply to each row or column of <code>X</code>. For instance, if we want to see which president has <em>any</em> of the letters present, we can do this individually for each row.</p>
+<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="text-data.html#cb630-1"></a><span class="kw">any</span>(presidents_abc[<span class="dv">1</span>, ])</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb632-1"><a href="text-data.html#cb632-1"></a><span class="kw">any</span>(presidents_abc[<span class="dv">2</span>, ])</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb634-1"><a href="text-data.html#cb634-1"></a><span class="kw">any</span>(presidents_abc[<span class="dv">3</span>, ])</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb636"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb636-1"><a href="text-data.html#cb636-1"></a><span class="kw">any</span>(presidents_abc[<span class="dv">4</span>, ])</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb638"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb638-1"><a href="text-data.html#cb638-1"></a><span class="kw">any</span>(presidents_abc[<span class="dv">5</span>, ])</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<p>This is inefficient, messy, and takes up space in our code. To instead, we can <em>apply</em> the <em>any</em> function to each row of our matrix. This returns the same values as above.</p>
+<div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb640-1"><a href="text-data.html#cb640-1"></a><span class="co"># Do the president names have the letters &#39;a&#39;, &#39;b&#39; OR &#39;c&#39;</span></span>
+<span id="cb640-2"><a href="text-data.html#cb640-2"></a><span class="kw">apply</span>(presidents_abc, <span class="dv">1</span>, any)</span></code></pre></div>
+<pre><code>## [1] FALSE  TRUE  TRUE  TRUE FALSE</code></pre>
+<p>Similarly, for the <code>all()</code> function we can check if the presidents have the letters “a”, “b”, AND “c”.</p>
+<div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb642-1"><a href="text-data.html#cb642-1"></a><span class="co"># Do the president names have the letters &#39;a&#39;, &#39;b&#39; AND &#39;c&#39;</span></span>
+<span id="cb642-2"><a href="text-data.html#cb642-2"></a><span class="kw">apply</span>(presidents_abc, <span class="dv">1</span>, all)</span></code></pre></div>
+<pre><code>## [1] FALSE FALSE FALSE FALSE FALSE</code></pre>
+</div>
+<div id="regular-expressions" class="section level2 hasAnchor">
+<h2><span class="header-section-number">10.10</span> Regular Expressions<a href="text-data.html#regular-expressions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We will cover regular expressions more thoroughly in Chapter <a href="Regex.html#Regex">11</a>, however, there are some important notes we should mention now. Most of the functions we discussed are not searching for simple strings of text, instead they are searching for something called “regular expressions”. These are strings of text where some symbols and characters have special meanings. The symbols that have special meanings are: .  | ( ) [ { ^ $ * + ?. We call these <em>metacharacters</em>, and they are not treated like normal characters. For example, the “.” charcter is treated as a “any” character. If we try to use <code>grep()</code>, grepl()<code>,</code>gsub()<code>or</code>sub()` with a “.” we will not get what we are expecting.</p>
+<div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb644-1"><a href="text-data.html#cb644-1"></a>string &lt;-<span class="st"> &quot;Hello neighbor.&quot;</span></span>
+<span id="cb644-2"><a href="text-data.html#cb644-2"></a><span class="kw">gsub</span>(<span class="st">&quot;.&quot;</span>, <span class="st">&quot;PERIOD&quot;</span>, string)</span></code></pre></div>
+<pre><code>## [1] &quot;PERIODPERIODPERIODPERIODPERIODPERIODPERIODPERIODPERIODPERIODPERIODPERIODPERIODPERIODPERIOD&quot;</code></pre>
+<p>If we want to use one of the metacharacters <em>without the special meaning</em> we need to use an escape key <code>\\</code>.</p>
+<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="text-data.html#cb646-1"></a><span class="kw">gsub</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">.&quot;</span>, <span class="st">&quot;PERIOD&quot;</span>, string)</span></code></pre></div>
+<pre><code>## [1] &quot;Hello neighborPERIOD&quot;</code></pre>
+<p>This escape key removes the special property, and works for all metacharacters.</p>
+</div>
 <div id="word-count-tables" class="section level2 hasAnchor">
-<h2><span class="header-section-number">10.9</span> Word Count Tables<a href="text-data.html#word-count-tables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">10.11</span> Word Count Tables<a href="text-data.html#word-count-tables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now lets break up the data set by spaces. We do this in hopes that it will separate each word as an element.</p>
-<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb621-1"><a href="text-data.html#cb621-1"></a>al1.words &lt;-<span class="st"> </span><span class="kw">strsplit</span>(al1, <span class="dt">split =</span> <span class="st">&quot; &quot;</span>)[[<span class="dv">1</span>]]</span>
-<span id="cb621-2"><a href="text-data.html#cb621-2"></a><span class="kw">head</span>(al1.words)</span></code></pre></div>
+<div class="sourceCode" id="cb648"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb648-1"><a href="text-data.html#cb648-1"></a>al1.words &lt;-<span class="st"> </span><span class="kw">strsplit</span>(al1, <span class="dt">split =</span> <span class="st">&quot; &quot;</span>)[[<span class="dv">1</span>]]</span>
+<span id="cb648-2"><a href="text-data.html#cb648-2"></a><span class="kw">head</span>(al1.words)</span></code></pre></div>
 <pre><code>## [1] &quot;If&quot;       &quot;we&quot;       &quot;shall&quot;    &quot;suppose&quot;  &quot;that&quot;     &quot;American&quot;</code></pre>
 <p>We can now tabulate how often each word appears using the <code>table()</code> function. Then we can sort the frequencies in order using <code>sort()</code>.</p>
-<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb623-1"><a href="text-data.html#cb623-1"></a>wc &lt;-<span class="st"> </span><span class="kw">table</span>(al1.words)</span>
-<span id="cb623-2"><a href="text-data.html#cb623-2"></a>wc &lt;-<span class="st"> </span><span class="kw">sort</span>(wc, <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb623-3"><a href="text-data.html#cb623-3"></a><span class="kw">head</span>(wc, <span class="dv">250</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb650"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb650-1"><a href="text-data.html#cb650-1"></a>wc &lt;-<span class="st"> </span><span class="kw">table</span>(al1.words)</span>
+<span id="cb650-2"><a href="text-data.html#cb650-2"></a>wc &lt;-<span class="st"> </span><span class="kw">sort</span>(wc, <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb650-3"><a href="text-data.html#cb650-3"></a><span class="kw">head</span>(wc, <span class="dv">250</span>)</span></code></pre></div>
 <pre><code>## al1.words
 ##          the           of          and        shall         that           to 
 ##            9            6            5            4            4            4 
@@ -708,20 +768,20 @@ altogether."</p>
 ##       wealth        which         whom          woe         Yet, 
 ##            1            1            1            1            1</code></pre>
 <p>Notice that punctuation using these methods is still present.</p>
-<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="text-data.html#cb625-1"></a><span class="co"># These are different</span></span>
-<span id="cb625-2"><a href="text-data.html#cb625-2"></a>wc[<span class="st">&quot;He&quot;</span>]  <span class="co"># exists</span></span></code></pre></div>
+<div class="sourceCode" id="cb652"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb652-1"><a href="text-data.html#cb652-1"></a><span class="co"># These are different</span></span>
+<span id="cb652-2"><a href="text-data.html#cb652-2"></a>wc[<span class="st">&quot;He&quot;</span>]  <span class="co"># exists</span></span></code></pre></div>
 <pre><code>## He 
 ##  2</code></pre>
-<div class="sourceCode" id="cb627"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb627-1"><a href="text-data.html#cb627-1"></a>wc[<span class="st">&quot;he&quot;</span>]  <span class="co"># does not exist</span></span></code></pre></div>
+<div class="sourceCode" id="cb654"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb654-1"><a href="text-data.html#cb654-1"></a>wc[<span class="st">&quot;he&quot;</span>]  <span class="co"># does not exist</span></span></code></pre></div>
 <pre><code>## &lt;NA&gt; 
 ##   NA</code></pre>
 <p>In addition, all our words and string subsets are case sensitive.</p>
-<div class="sourceCode" id="cb629"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb629-1"><a href="text-data.html#cb629-1"></a><span class="co"># What happens when we look for a word that is not in our</span></span>
-<span id="cb629-2"><a href="text-data.html#cb629-2"></a><span class="co"># word count table?</span></span>
-<span id="cb629-3"><a href="text-data.html#cb629-3"></a></span>
-<span id="cb629-4"><a href="text-data.html#cb629-4"></a><span class="kw">which</span>(<span class="kw">names</span>(wc) <span class="op">==</span><span class="st"> &quot;That&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb656"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb656-1"><a href="text-data.html#cb656-1"></a><span class="co"># What happens when we look for a word that is not in our</span></span>
+<span id="cb656-2"><a href="text-data.html#cb656-2"></a><span class="co"># word count table?</span></span>
+<span id="cb656-3"><a href="text-data.html#cb656-3"></a></span>
+<span id="cb656-4"><a href="text-data.html#cb656-4"></a><span class="kw">which</span>(<span class="kw">names</span>(wc) <span class="op">==</span><span class="st"> &quot;That&quot;</span>)</span></code></pre></div>
 <pre><code>## integer(0)</code></pre>
-<div class="sourceCode" id="cb631"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb631-1"><a href="text-data.html#cb631-1"></a>wc[<span class="st">&quot;That&quot;</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb658"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb658-1"><a href="text-data.html#cb658-1"></a>wc[<span class="st">&quot;That&quot;</span>]</span></code></pre></div>
 <pre><code>## &lt;NA&gt; 
 ##   NA</code></pre>
 
@@ -733,7 +793,7 @@ altogether."</p>
         </div>
       </div>
 <a href="packages.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="regular-expressions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="Regex.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

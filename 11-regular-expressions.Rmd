@@ -1,4 +1,4 @@
-# Regular Expressions
+# Regular Expressions {#Regex}
 
 
 With basic string-manipulation functions, we saw how to do things like split

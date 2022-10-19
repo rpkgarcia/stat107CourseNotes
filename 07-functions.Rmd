@@ -230,7 +230,7 @@ If you are not sure exactly which function you want, you can use `??` followed b
 ```
 
 
-## The ... Argument
+## The ... Argument {#dots}
 
 There is a special argument function `...` that can be used.  Sometimes we call a function within a function that has a different set of arguments.  We can use the `...` argument as a general placeholder for passing along any additional arguments in a function call. 
 

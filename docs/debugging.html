@@ -24,7 +24,7 @@
 <meta name="author" content="Rebecca Kurtz-Garcia" />
 
 
-<meta name="date" content="2022-10-18" />
+<meta name="date" content="2022-10-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -271,7 +271,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3" data-path="functions.html"><a href="functions.html#built-in-functions"><i class="fa fa-check"></i><b>7.3</b> Built-In Functions<span></span></a></li>
 <li class="chapter" data-level="7.4" data-path="functions.html"><a href="functions.html#vectorization"><i class="fa fa-check"></i><b>7.4</b> Vectorization<span></span></a></li>
 <li class="chapter" data-level="7.5" data-path="functions.html"><a href="functions.html#help-files"><i class="fa fa-check"></i><b>7.5</b> Help Files<span></span></a></li>
-<li class="chapter" data-level="7.6" data-path="functions.html"><a href="functions.html#the-argument"><i class="fa fa-check"></i><b>7.6</b> The … Argument<span></span></a></li>
+<li class="chapter" data-level="7.6" data-path="functions.html"><a href="functions.html#dots"><i class="fa fa-check"></i><b>7.6</b> The … Argument<span></span></a></li>
 <li class="chapter" data-level="7.7" data-path="functions.html"><a href="functions.html#generic-functions"><i class="fa fa-check"></i><b>7.7</b> Generic Functions<span></span></a></li>
 <li><a href="functions.html#additional-resources-3">Additional Resources<span></span></a></li>
 </ul></li>
@@ -281,7 +281,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3" data-path="if-statements.html"><a href="if-statements.html#else-if"><i class="fa fa-check"></i><b>8.3</b> Else If<span></span></a></li>
 <li class="chapter" data-level="8.4" data-path="if-statements.html"><a href="if-statements.html#nested-if-chains"><i class="fa fa-check"></i><b>8.4</b> Nested If Chains<span></span></a></li>
 <li class="chapter" data-level="8.5" data-path="if-statements.html"><a href="if-statements.html#ifelse"><i class="fa fa-check"></i><b>8.5</b> Ifelse<span></span></a></li>
-<li class="chapter" data-level="8.6" data-path="if-statements.html"><a href="if-statements.html#vectorizing-if-statments"><i class="fa fa-check"></i><b>8.6</b> Vectorizing If-Statments<span></span></a></li>
+<li class="chapter" data-level="8.6" data-path="if-statements.html"><a href="if-statements.html#vectorizeifelse"><i class="fa fa-check"></i><b>8.6</b> Vectorizing If-Statments<span></span></a></li>
 <li><a href="if-statements.html#additional-resources-4">Additional Resources<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>9</b> Packages<span></span></a><ul>
@@ -293,21 +293,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.3" data-path="text-data.html"><a href="text-data.html#dividing-strings-into-vectors"><i class="fa fa-check"></i><b>10.3</b> Dividing Strings into Vectors<span></span></a></li>
 <li class="chapter" data-level="10.4" data-path="text-data.html"><a href="text-data.html#converting-objects-into-strings"><i class="fa fa-check"></i><b>10.4</b> Converting Objects into Strings<span></span></a></li>
 <li class="chapter" data-level="10.5" data-path="text-data.html"><a href="text-data.html#versatility-of-the-paste-function"><i class="fa fa-check"></i><b>10.5</b> Versatility of the paste() Function<span></span></a></li>
-<li class="chapter" data-level="10.6" data-path="text-data.html"><a href="text-data.html#gsub-sub"><i class="fa fa-check"></i><b>10.6</b> gsub , sub<span></span></a></li>
+<li class="chapter" data-level="10.6" data-path="text-data.html"><a href="text-data.html#substitution"><i class="fa fa-check"></i><b>10.6</b> Substitution<span></span></a></li>
 <li class="chapter" data-level="10.7" data-path="text-data.html"><a href="text-data.html#text-of-some-importance"><i class="fa fa-check"></i><b>10.7</b> Text of Some Importance<span></span></a></li>
 <li class="chapter" data-level="10.8" data-path="text-data.html"><a href="text-data.html#search"><i class="fa fa-check"></i><b>10.8</b> Search<span></span></a></li>
-<li class="chapter" data-level="10.9" data-path="text-data.html"><a href="text-data.html#word-count-tables"><i class="fa fa-check"></i><b>10.9</b> Word Count Tables<span></span></a></li>
+<li class="chapter" data-level="10.9" data-path="text-data.html"><a href="text-data.html#vectorizing-text-functions"><i class="fa fa-check"></i><b>10.9</b> Vectorizing Text Functions<span></span></a></li>
+<li class="chapter" data-level="10.10" data-path="text-data.html"><a href="text-data.html#regular-expressions"><i class="fa fa-check"></i><b>10.10</b> Regular Expressions<span></span></a></li>
+<li class="chapter" data-level="10.11" data-path="text-data.html"><a href="text-data.html#word-count-tables"><i class="fa fa-check"></i><b>10.11</b> Word Count Tables<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="regular-expressions.html"><a href="regular-expressions.html"><i class="fa fa-check"></i><b>11</b> Regular Expressions<span></span></a><ul>
-<li class="chapter" data-level="11.1" data-path="regular-expressions.html"><a href="regular-expressions.html#ranges-escaping"><i class="fa fa-check"></i><b>11.1</b> Ranges, Escaping<span></span></a></li>
-<li class="chapter" data-level="11.2" data-path="regular-expressions.html"><a href="regular-expressions.html#metacharacters"><i class="fa fa-check"></i><b>11.2</b> Metacharacters<span></span></a></li>
-<li class="chapter" data-level="11.3" data-path="regular-expressions.html"><a href="regular-expressions.html#quantifiers"><i class="fa fa-check"></i><b>11.3</b> Quantifiers<span></span></a></li>
-<li class="chapter" data-level="11.4" data-path="regular-expressions.html"><a href="regular-expressions.html#anchoring"><i class="fa fa-check"></i><b>11.4</b> Anchoring<span></span></a></li>
-<li class="chapter" data-level="11.5" data-path="regular-expressions.html"><a href="regular-expressions.html#splitting-on-a-regexp"><i class="fa fa-check"></i><b>11.5</b> Splitting on a Regexp<span></span></a></li>
-<li class="chapter" data-level="11.6" data-path="regular-expressions.html"><a href="regular-expressions.html#stringr-package"><i class="fa fa-check"></i><b>11.6</b> Stringr Package<span></span></a></li>
-<li class="chapter" data-level="11.7" data-path="regular-expressions.html"><a href="regular-expressions.html#wordcloud-package"><i class="fa fa-check"></i><b>11.7</b> Wordcloud Package<span></span></a></li>
-<li class="chapter" data-level="11.8" data-path="regular-expressions.html"><a href="regular-expressions.html#replacements"><i class="fa fa-check"></i><b>11.8</b> Replacements<span></span></a></li>
-<li><a href="regular-expressions.html#additional-resources-5">Additional Resources<span></span></a></li>
+<li class="chapter" data-level="11" data-path="Regex.html"><a href="Regex.html"><i class="fa fa-check"></i><b>11</b> Regular Expressions<span></span></a><ul>
+<li class="chapter" data-level="11.1" data-path="Regex.html"><a href="Regex.html#ranges-escaping"><i class="fa fa-check"></i><b>11.1</b> Ranges, Escaping<span></span></a></li>
+<li class="chapter" data-level="11.2" data-path="Regex.html"><a href="Regex.html#metacharacters"><i class="fa fa-check"></i><b>11.2</b> Metacharacters<span></span></a></li>
+<li class="chapter" data-level="11.3" data-path="Regex.html"><a href="Regex.html#quantifiers"><i class="fa fa-check"></i><b>11.3</b> Quantifiers<span></span></a></li>
+<li class="chapter" data-level="11.4" data-path="Regex.html"><a href="Regex.html#anchoring"><i class="fa fa-check"></i><b>11.4</b> Anchoring<span></span></a></li>
+<li class="chapter" data-level="11.5" data-path="Regex.html"><a href="Regex.html#splitting-on-a-regexp"><i class="fa fa-check"></i><b>11.5</b> Splitting on a Regexp<span></span></a></li>
+<li class="chapter" data-level="11.6" data-path="Regex.html"><a href="Regex.html#stringr-package"><i class="fa fa-check"></i><b>11.6</b> Stringr Package<span></span></a></li>
+<li class="chapter" data-level="11.7" data-path="Regex.html"><a href="Regex.html#wordcloud-package"><i class="fa fa-check"></i><b>11.7</b> Wordcloud Package<span></span></a></li>
+<li class="chapter" data-level="11.8" data-path="Regex.html"><a href="Regex.html#replacements"><i class="fa fa-check"></i><b>11.8</b> Replacements<span></span></a></li>
+<li><a href="Regex.html#additional-resources-5">Additional Resources<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="base-r-plotting.html"><a href="base-r-plotting.html"><i class="fa fa-check"></i><b>12</b> Base R Plotting<span></span></a><ul>
 <li class="chapter" data-level="12.1" data-path="base-r-plotting.html"><a href="base-r-plotting.html#load-a-big-data-set"><i class="fa fa-check"></i><b>12.1</b> Load A Big Data Set<span></span></a></li>
@@ -501,107 +503,107 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="example-of-the-binary-search-algorithm" class="section level3 hasAnchor">
 <h3><span class="header-section-number">19.2.1</span> Example of the Binary Search Algorithm<a href="debugging.html#example-of-the-binary-search-algorithm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Below is an example of the binary search algorithm. For this example, one of the lines of code in the <code>LongComplexFunction()</code> will generate an error. We will pretend that we do not know where the error is.</p>
-<div class="sourceCode" id="cb970"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb970-1"><a href="debugging.html#cb970-1"></a>SimpleFun_Plus =<span class="st"> </span><span class="cf">function</span>(y) {</span>
-<span id="cb970-2"><a href="debugging.html#cb970-2"></a>    y =<span class="st"> </span>y <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb970-3"><a href="debugging.html#cb970-3"></a>    <span class="kw">return</span>(y)</span>
-<span id="cb970-4"><a href="debugging.html#cb970-4"></a>}</span>
-<span id="cb970-5"><a href="debugging.html#cb970-5"></a>SimpleFun_Minus =<span class="st"> </span><span class="cf">function</span>(y) {</span>
-<span id="cb970-6"><a href="debugging.html#cb970-6"></a>    y =<span class="st"> </span>y <span class="op">-</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb970-7"><a href="debugging.html#cb970-7"></a>    <span class="kw">return</span>(y)</span>
-<span id="cb970-8"><a href="debugging.html#cb970-8"></a>}</span>
-<span id="cb970-9"><a href="debugging.html#cb970-9"></a>SimpleFun_A &lt;-<span class="st"> </span><span class="cf">function</span>(y) {</span>
-<span id="cb970-10"><a href="debugging.html#cb970-10"></a>    y =<span class="st"> </span>y <span class="op">+</span><span class="st"> &quot;a&quot;</span></span>
-<span id="cb970-11"><a href="debugging.html#cb970-11"></a>    <span class="kw">return</span>(y)</span>
-<span id="cb970-12"><a href="debugging.html#cb970-12"></a>}</span>
-<span id="cb970-13"><a href="debugging.html#cb970-13"></a></span>
-<span id="cb970-14"><a href="debugging.html#cb970-14"></a></span>
-<span id="cb970-15"><a href="debugging.html#cb970-15"></a></span>
-<span id="cb970-16"><a href="debugging.html#cb970-16"></a><span class="co"># Hypothetical long complicated function</span></span>
-<span id="cb970-17"><a href="debugging.html#cb970-17"></a>LongComplexFunction =<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb970-18"><a href="debugging.html#cb970-18"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
-<span id="cb970-19"><a href="debugging.html#cb970-19"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb970-20"><a href="debugging.html#cb970-20"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
-<span id="cb970-21"><a href="debugging.html#cb970-21"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb970-22"><a href="debugging.html#cb970-22"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
-<span id="cb970-23"><a href="debugging.html#cb970-23"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb970-24"><a href="debugging.html#cb970-24"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
-<span id="cb970-25"><a href="debugging.html#cb970-25"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb970-26"><a href="debugging.html#cb970-26"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_A</span>(x)  <span class="co"># The Problem </span></span>
-<span id="cb970-27"><a href="debugging.html#cb970-27"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb970-28"><a href="debugging.html#cb970-28"></a>    <span class="kw">return</span>(x)</span>
-<span id="cb970-29"><a href="debugging.html#cb970-29"></a>}</span>
-<span id="cb970-30"><a href="debugging.html#cb970-30"></a></span>
-<span id="cb970-31"><a href="debugging.html#cb970-31"></a><span class="co"># Function call produces an error</span></span>
-<span id="cb970-32"><a href="debugging.html#cb970-32"></a><span class="kw">LongComplexFunction</span>(<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb997"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb997-1"><a href="debugging.html#cb997-1"></a>SimpleFun_Plus =<span class="st"> </span><span class="cf">function</span>(y) {</span>
+<span id="cb997-2"><a href="debugging.html#cb997-2"></a>    y =<span class="st"> </span>y <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb997-3"><a href="debugging.html#cb997-3"></a>    <span class="kw">return</span>(y)</span>
+<span id="cb997-4"><a href="debugging.html#cb997-4"></a>}</span>
+<span id="cb997-5"><a href="debugging.html#cb997-5"></a>SimpleFun_Minus =<span class="st"> </span><span class="cf">function</span>(y) {</span>
+<span id="cb997-6"><a href="debugging.html#cb997-6"></a>    y =<span class="st"> </span>y <span class="op">-</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb997-7"><a href="debugging.html#cb997-7"></a>    <span class="kw">return</span>(y)</span>
+<span id="cb997-8"><a href="debugging.html#cb997-8"></a>}</span>
+<span id="cb997-9"><a href="debugging.html#cb997-9"></a>SimpleFun_A &lt;-<span class="st"> </span><span class="cf">function</span>(y) {</span>
+<span id="cb997-10"><a href="debugging.html#cb997-10"></a>    y =<span class="st"> </span>y <span class="op">+</span><span class="st"> &quot;a&quot;</span></span>
+<span id="cb997-11"><a href="debugging.html#cb997-11"></a>    <span class="kw">return</span>(y)</span>
+<span id="cb997-12"><a href="debugging.html#cb997-12"></a>}</span>
+<span id="cb997-13"><a href="debugging.html#cb997-13"></a></span>
+<span id="cb997-14"><a href="debugging.html#cb997-14"></a></span>
+<span id="cb997-15"><a href="debugging.html#cb997-15"></a></span>
+<span id="cb997-16"><a href="debugging.html#cb997-16"></a><span class="co"># Hypothetical long complicated function</span></span>
+<span id="cb997-17"><a href="debugging.html#cb997-17"></a>LongComplexFunction =<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb997-18"><a href="debugging.html#cb997-18"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb997-19"><a href="debugging.html#cb997-19"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb997-20"><a href="debugging.html#cb997-20"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb997-21"><a href="debugging.html#cb997-21"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb997-22"><a href="debugging.html#cb997-22"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb997-23"><a href="debugging.html#cb997-23"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb997-24"><a href="debugging.html#cb997-24"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb997-25"><a href="debugging.html#cb997-25"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb997-26"><a href="debugging.html#cb997-26"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_A</span>(x)  <span class="co"># The Problem </span></span>
+<span id="cb997-27"><a href="debugging.html#cb997-27"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb997-28"><a href="debugging.html#cb997-28"></a>    <span class="kw">return</span>(x)</span>
+<span id="cb997-29"><a href="debugging.html#cb997-29"></a>}</span>
+<span id="cb997-30"><a href="debugging.html#cb997-30"></a></span>
+<span id="cb997-31"><a href="debugging.html#cb997-31"></a><span class="co"># Function call produces an error</span></span>
+<span id="cb997-32"><a href="debugging.html#cb997-32"></a><span class="kw">LongComplexFunction</span>(<span class="dv">1</span>)</span></code></pre></div>
 <p>The first step is to add a print statement half way through the program of function that is producing the error message. Then we call the function again and see if it produces the print statement before the error is generated.</p>
-<div class="sourceCode" id="cb971"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb971-1"><a href="debugging.html#cb971-1"></a>LongComplexFunction =<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb971-2"><a href="debugging.html#cb971-2"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
-<span id="cb971-3"><a href="debugging.html#cb971-3"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb971-4"><a href="debugging.html#cb971-4"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
-<span id="cb971-5"><a href="debugging.html#cb971-5"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb971-6"><a href="debugging.html#cb971-6"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
-<span id="cb971-7"><a href="debugging.html#cb971-7"></a></span>
-<span id="cb971-8"><a href="debugging.html#cb971-8"></a>    <span class="kw">print</span>(<span class="st">&quot;50%-ish through the function&quot;</span>)</span>
-<span id="cb971-9"><a href="debugging.html#cb971-9"></a></span>
-<span id="cb971-10"><a href="debugging.html#cb971-10"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb971-11"><a href="debugging.html#cb971-11"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
-<span id="cb971-12"><a href="debugging.html#cb971-12"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb971-13"><a href="debugging.html#cb971-13"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_A</span>(x)  <span class="co"># The Problem </span></span>
-<span id="cb971-14"><a href="debugging.html#cb971-14"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb971-15"><a href="debugging.html#cb971-15"></a>    <span class="kw">return</span>(x)</span>
-<span id="cb971-16"><a href="debugging.html#cb971-16"></a>}</span>
-<span id="cb971-17"><a href="debugging.html#cb971-17"></a></span>
-<span id="cb971-18"><a href="debugging.html#cb971-18"></a><span class="co"># Call the function again</span></span>
-<span id="cb971-19"><a href="debugging.html#cb971-19"></a><span class="kw">LongComplexFunction</span>(<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb998"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb998-1"><a href="debugging.html#cb998-1"></a>LongComplexFunction =<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb998-2"><a href="debugging.html#cb998-2"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb998-3"><a href="debugging.html#cb998-3"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb998-4"><a href="debugging.html#cb998-4"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb998-5"><a href="debugging.html#cb998-5"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb998-6"><a href="debugging.html#cb998-6"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb998-7"><a href="debugging.html#cb998-7"></a></span>
+<span id="cb998-8"><a href="debugging.html#cb998-8"></a>    <span class="kw">print</span>(<span class="st">&quot;50%-ish through the function&quot;</span>)</span>
+<span id="cb998-9"><a href="debugging.html#cb998-9"></a></span>
+<span id="cb998-10"><a href="debugging.html#cb998-10"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb998-11"><a href="debugging.html#cb998-11"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb998-12"><a href="debugging.html#cb998-12"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb998-13"><a href="debugging.html#cb998-13"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_A</span>(x)  <span class="co"># The Problem </span></span>
+<span id="cb998-14"><a href="debugging.html#cb998-14"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb998-15"><a href="debugging.html#cb998-15"></a>    <span class="kw">return</span>(x)</span>
+<span id="cb998-16"><a href="debugging.html#cb998-16"></a>}</span>
+<span id="cb998-17"><a href="debugging.html#cb998-17"></a></span>
+<span id="cb998-18"><a href="debugging.html#cb998-18"></a><span class="co"># Call the function again</span></span>
+<span id="cb998-19"><a href="debugging.html#cb998-19"></a><span class="kw">LongComplexFunction</span>(<span class="dv">1</span>)</span></code></pre></div>
 <p>The print statement was produced, so we conclude that the top 50% of the code was likely fine and focus on the bottom half. We add another print statement that splits the end of the function in half.</p>
-<div class="sourceCode" id="cb972"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb972-1"><a href="debugging.html#cb972-1"></a>LongComplexFunction =<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb972-2"><a href="debugging.html#cb972-2"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
-<span id="cb972-3"><a href="debugging.html#cb972-3"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb972-4"><a href="debugging.html#cb972-4"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
-<span id="cb972-5"><a href="debugging.html#cb972-5"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb972-6"><a href="debugging.html#cb972-6"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
-<span id="cb972-7"><a href="debugging.html#cb972-7"></a></span>
-<span id="cb972-8"><a href="debugging.html#cb972-8"></a>    <span class="kw">print</span>(<span class="st">&quot;50%-ish through the function&quot;</span>)</span>
-<span id="cb972-9"><a href="debugging.html#cb972-9"></a></span>
-<span id="cb972-10"><a href="debugging.html#cb972-10"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb972-11"><a href="debugging.html#cb972-11"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
-<span id="cb972-12"><a href="debugging.html#cb972-12"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb972-13"><a href="debugging.html#cb972-13"></a></span>
-<span id="cb972-14"><a href="debugging.html#cb972-14"></a>    <span class="kw">print</span>(<span class="st">&quot;75%-ish through the function&quot;</span>)</span>
-<span id="cb972-15"><a href="debugging.html#cb972-15"></a></span>
-<span id="cb972-16"><a href="debugging.html#cb972-16"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_A</span>(x)  <span class="co"># The Problem </span></span>
-<span id="cb972-17"><a href="debugging.html#cb972-17"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb972-18"><a href="debugging.html#cb972-18"></a>    <span class="kw">return</span>(x)</span>
-<span id="cb972-19"><a href="debugging.html#cb972-19"></a>}</span>
-<span id="cb972-20"><a href="debugging.html#cb972-20"></a></span>
-<span id="cb972-21"><a href="debugging.html#cb972-21"></a><span class="co"># Call the function again</span></span>
-<span id="cb972-22"><a href="debugging.html#cb972-22"></a><span class="kw">LongComplexFunction</span>(<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb999"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb999-1"><a href="debugging.html#cb999-1"></a>LongComplexFunction =<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb999-2"><a href="debugging.html#cb999-2"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb999-3"><a href="debugging.html#cb999-3"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb999-4"><a href="debugging.html#cb999-4"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb999-5"><a href="debugging.html#cb999-5"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb999-6"><a href="debugging.html#cb999-6"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb999-7"><a href="debugging.html#cb999-7"></a></span>
+<span id="cb999-8"><a href="debugging.html#cb999-8"></a>    <span class="kw">print</span>(<span class="st">&quot;50%-ish through the function&quot;</span>)</span>
+<span id="cb999-9"><a href="debugging.html#cb999-9"></a></span>
+<span id="cb999-10"><a href="debugging.html#cb999-10"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb999-11"><a href="debugging.html#cb999-11"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb999-12"><a href="debugging.html#cb999-12"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb999-13"><a href="debugging.html#cb999-13"></a></span>
+<span id="cb999-14"><a href="debugging.html#cb999-14"></a>    <span class="kw">print</span>(<span class="st">&quot;75%-ish through the function&quot;</span>)</span>
+<span id="cb999-15"><a href="debugging.html#cb999-15"></a></span>
+<span id="cb999-16"><a href="debugging.html#cb999-16"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_A</span>(x)  <span class="co"># The Problem </span></span>
+<span id="cb999-17"><a href="debugging.html#cb999-17"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb999-18"><a href="debugging.html#cb999-18"></a>    <span class="kw">return</span>(x)</span>
+<span id="cb999-19"><a href="debugging.html#cb999-19"></a>}</span>
+<span id="cb999-20"><a href="debugging.html#cb999-20"></a></span>
+<span id="cb999-21"><a href="debugging.html#cb999-21"></a><span class="co"># Call the function again</span></span>
+<span id="cb999-22"><a href="debugging.html#cb999-22"></a><span class="kw">LongComplexFunction</span>(<span class="dv">1</span>)</span></code></pre></div>
 <p>Again the print statement was produced, so we conclude that the top 75% of the code was likely fine and focus on the bottom 25%. We can add another print statement that splits this portion in half.</p>
-<div class="sourceCode" id="cb973"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb973-1"><a href="debugging.html#cb973-1"></a>LongComplexFunction =<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb973-2"><a href="debugging.html#cb973-2"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
-<span id="cb973-3"><a href="debugging.html#cb973-3"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb973-4"><a href="debugging.html#cb973-4"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
-<span id="cb973-5"><a href="debugging.html#cb973-5"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb973-6"><a href="debugging.html#cb973-6"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
-<span id="cb973-7"><a href="debugging.html#cb973-7"></a></span>
-<span id="cb973-8"><a href="debugging.html#cb973-8"></a>    <span class="kw">print</span>(<span class="st">&quot;50%-ish through the function&quot;</span>)</span>
-<span id="cb973-9"><a href="debugging.html#cb973-9"></a></span>
-<span id="cb973-10"><a href="debugging.html#cb973-10"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb973-11"><a href="debugging.html#cb973-11"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
-<span id="cb973-12"><a href="debugging.html#cb973-12"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb973-13"><a href="debugging.html#cb973-13"></a></span>
-<span id="cb973-14"><a href="debugging.html#cb973-14"></a>    <span class="kw">print</span>(<span class="st">&quot;75%-ish through the function&quot;</span>)</span>
-<span id="cb973-15"><a href="debugging.html#cb973-15"></a></span>
-<span id="cb973-16"><a href="debugging.html#cb973-16"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_A</span>(x)  <span class="co"># The Problem </span></span>
-<span id="cb973-17"><a href="debugging.html#cb973-17"></a></span>
-<span id="cb973-18"><a href="debugging.html#cb973-18"></a>    <span class="kw">print</span>(<span class="st">&quot;90%-ish through the function&quot;</span>)</span>
-<span id="cb973-19"><a href="debugging.html#cb973-19"></a></span>
-<span id="cb973-20"><a href="debugging.html#cb973-20"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
-<span id="cb973-21"><a href="debugging.html#cb973-21"></a>    <span class="kw">return</span>(x)</span>
-<span id="cb973-22"><a href="debugging.html#cb973-22"></a>}</span>
-<span id="cb973-23"><a href="debugging.html#cb973-23"></a></span>
-<span id="cb973-24"><a href="debugging.html#cb973-24"></a><span class="co"># Call the function again</span></span>
-<span id="cb973-25"><a href="debugging.html#cb973-25"></a><span class="kw">LongComplexFunction</span>(<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1000"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1000-1"><a href="debugging.html#cb1000-1"></a>LongComplexFunction =<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb1000-2"><a href="debugging.html#cb1000-2"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb1000-3"><a href="debugging.html#cb1000-3"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb1000-4"><a href="debugging.html#cb1000-4"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb1000-5"><a href="debugging.html#cb1000-5"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb1000-6"><a href="debugging.html#cb1000-6"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb1000-7"><a href="debugging.html#cb1000-7"></a></span>
+<span id="cb1000-8"><a href="debugging.html#cb1000-8"></a>    <span class="kw">print</span>(<span class="st">&quot;50%-ish through the function&quot;</span>)</span>
+<span id="cb1000-9"><a href="debugging.html#cb1000-9"></a></span>
+<span id="cb1000-10"><a href="debugging.html#cb1000-10"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb1000-11"><a href="debugging.html#cb1000-11"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Plus</span>(x)</span>
+<span id="cb1000-12"><a href="debugging.html#cb1000-12"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb1000-13"><a href="debugging.html#cb1000-13"></a></span>
+<span id="cb1000-14"><a href="debugging.html#cb1000-14"></a>    <span class="kw">print</span>(<span class="st">&quot;75%-ish through the function&quot;</span>)</span>
+<span id="cb1000-15"><a href="debugging.html#cb1000-15"></a></span>
+<span id="cb1000-16"><a href="debugging.html#cb1000-16"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_A</span>(x)  <span class="co"># The Problem </span></span>
+<span id="cb1000-17"><a href="debugging.html#cb1000-17"></a></span>
+<span id="cb1000-18"><a href="debugging.html#cb1000-18"></a>    <span class="kw">print</span>(<span class="st">&quot;90%-ish through the function&quot;</span>)</span>
+<span id="cb1000-19"><a href="debugging.html#cb1000-19"></a></span>
+<span id="cb1000-20"><a href="debugging.html#cb1000-20"></a>    x =<span class="st"> </span><span class="kw">SimpleFun_Minus</span>(x)</span>
+<span id="cb1000-21"><a href="debugging.html#cb1000-21"></a>    <span class="kw">return</span>(x)</span>
+<span id="cb1000-22"><a href="debugging.html#cb1000-22"></a>}</span>
+<span id="cb1000-23"><a href="debugging.html#cb1000-23"></a></span>
+<span id="cb1000-24"><a href="debugging.html#cb1000-24"></a><span class="co"># Call the function again</span></span>
+<span id="cb1000-25"><a href="debugging.html#cb1000-25"></a><span class="kw">LongComplexFunction</span>(<span class="dv">1</span>)</span></code></pre></div>
 <p>The last print statement was not produced before the error was generated, we have isolated a section of the function for where to look for the error.</p>
 </div>
 </div>
@@ -621,23 +623,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3>Example with traceback()<a href="debugging.html#example-with-traceback" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Run the following chunk of code and observe the output in your console. The command <code>func1(7)</code> results in an error, but we will pretend we do not know where the error occurred.
 We type <code>traceback()</code> in the console to see where this error happened, and what the last function call was.</p>
-<div class="sourceCode" id="cb974"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb974-1"><a href="debugging.html#cb974-1"></a>func1 =<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb974-2"><a href="debugging.html#cb974-2"></a>    <span class="kw">func2</span>(x)</span>
-<span id="cb974-3"><a href="debugging.html#cb974-3"></a>}</span>
-<span id="cb974-4"><a href="debugging.html#cb974-4"></a>func2 =<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb974-5"><a href="debugging.html#cb974-5"></a>    <span class="kw">func3</span>(x <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</span>
-<span id="cb974-6"><a href="debugging.html#cb974-6"></a>}</span>
-<span id="cb974-7"><a href="debugging.html#cb974-7"></a>func3 =<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb974-8"><a href="debugging.html#cb974-8"></a>    <span class="kw">func4</span>(x <span class="op">+</span><span class="st"> </span><span class="dv">4</span>)</span>
-<span id="cb974-9"><a href="debugging.html#cb974-9"></a>}</span>
-<span id="cb974-10"><a href="debugging.html#cb974-10"></a>func4 =<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb974-11"><a href="debugging.html#cb974-11"></a>    y =<span class="st"> &quot;a&quot;</span></span>
-<span id="cb974-12"><a href="debugging.html#cb974-12"></a>    x =<span class="st"> </span>x <span class="op">+</span><span class="st"> </span>y</span>
-<span id="cb974-13"><a href="debugging.html#cb974-13"></a>    <span class="kw">return</span>(x)</span>
-<span id="cb974-14"><a href="debugging.html#cb974-14"></a>}</span>
-<span id="cb974-15"><a href="debugging.html#cb974-15"></a></span>
-<span id="cb974-16"><a href="debugging.html#cb974-16"></a><span class="kw">func1</span>(<span class="dv">7</span>)</span>
-<span id="cb974-17"><a href="debugging.html#cb974-17"></a><span class="kw">traceback</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb1001"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1001-1"><a href="debugging.html#cb1001-1"></a>func1 =<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb1001-2"><a href="debugging.html#cb1001-2"></a>    <span class="kw">func2</span>(x)</span>
+<span id="cb1001-3"><a href="debugging.html#cb1001-3"></a>}</span>
+<span id="cb1001-4"><a href="debugging.html#cb1001-4"></a>func2 =<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb1001-5"><a href="debugging.html#cb1001-5"></a>    <span class="kw">func3</span>(x <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</span>
+<span id="cb1001-6"><a href="debugging.html#cb1001-6"></a>}</span>
+<span id="cb1001-7"><a href="debugging.html#cb1001-7"></a>func3 =<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb1001-8"><a href="debugging.html#cb1001-8"></a>    <span class="kw">func4</span>(x <span class="op">+</span><span class="st"> </span><span class="dv">4</span>)</span>
+<span id="cb1001-9"><a href="debugging.html#cb1001-9"></a>}</span>
+<span id="cb1001-10"><a href="debugging.html#cb1001-10"></a>func4 =<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb1001-11"><a href="debugging.html#cb1001-11"></a>    y =<span class="st"> &quot;a&quot;</span></span>
+<span id="cb1001-12"><a href="debugging.html#cb1001-12"></a>    x =<span class="st"> </span>x <span class="op">+</span><span class="st"> </span>y</span>
+<span id="cb1001-13"><a href="debugging.html#cb1001-13"></a>    <span class="kw">return</span>(x)</span>
+<span id="cb1001-14"><a href="debugging.html#cb1001-14"></a>}</span>
+<span id="cb1001-15"><a href="debugging.html#cb1001-15"></a></span>
+<span id="cb1001-16"><a href="debugging.html#cb1001-16"></a><span class="kw">func1</span>(<span class="dv">7</span>)</span>
+<span id="cb1001-17"><a href="debugging.html#cb1001-17"></a><span class="kw">traceback</span>()</span></code></pre></div>
 <p>The function <code>traceback()</code> tells us that the last function called was <code>func4(x + 4)</code>, so we conclude that the error must be in that function.</p>
 </div>
 <div id="unfamiliar-function-with-traceback" class="section level3 unnumbered hasAnchor">

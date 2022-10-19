@@ -59,7 +59,7 @@ nchar(c("Abraham", "Lincoln's", "beard"))
 We can use `print()` to display the string, and `cat()` is used to write the string directly to the console. If you're debugging, `message()` is R's preferred syntax.
 
 ```{r}
-presidents = c("Fillmore","Pierce","Buchanan","Davis","Johnson")
+presidents <- c("Fillmore","Pierce","Buchanan","Davis","Johnson")
 
 print("Abraham Lincoln")
 
@@ -123,7 +123,7 @@ strsplit(scarborough.fair, ", ")
 Pattern is recycled over elements of the input vector:
 
 ```{r}
-strsplit (c(scarborough.fair, "Garfunkel, Oates", "Clement, McKenzie"), ", ")
+strsplit(c(scarborough.fair, "Garfunkel, Oates", "Clement, McKenzie"), ", ")
 ```
 
 Note that it outputs a `list` of character vectors.
@@ -172,9 +172,19 @@ paste(presidents, " (", 41:45, ")", sep="", collapse="; ")
 
 Default value of `collapse` is `NULL` -- that is, it won't use it. 
 
-## gsub , sub
+## Substitution 
 
-gsub is all occurances, and sub is first occurance. 
+The functions `gsub()` and `sub()` are used to searcch for a pattern, and then substitue the matches.  The function `gsub()` finds and replaces all matches, and the `sub()` finds and replaces only the first match. 
+
+```{r}
+scarborough.fair <- "parsley, sage, rosemary, thyme"
+
+gsub(", ", "-", scarborough.fair) # replace all matches 
+
+sub(", ", "-", scarborough.fair) # replace one match 
+```
+
+
 
 
 ## Text of Some Importance
@@ -235,6 +245,70 @@ grepl("God", al1.phrases)
 al1.phrases[grep("God", al1.phrases)]
 ```
 
+## Vectorizing Text Functions
+
+An important note about a lot of the text functions we above is that some of these functions can only search or use one pattern at a time.  For example, consider a situation in which we want to find all occurrences of the letters "a", "b", and "c" for the `presidents` vector. 
+
+
+```{r}
+presidents <- c("Fillmore","Pierce","Buchanan","Davis","Johnson")
+abc <- c("a", "b", "c")
+
+
+grepl(abc, presidents)
+```
+We can only search for one pattern at a time. To make this search more versatile we either have to do multiple searches, use regular expressions (see Chapter \@ref(Regex)), or use some of the `*apply` functions. We saw examples of vectorizing functions that we created in Section \@ref(vectorizeifelse).  We can also apply these functions to built in functions in R. Lets consider the example above again, but this time we will use `sapply()`.  Notice that we have several arguments that we are using for `grepl()`.  If we want to apply a function to multiple elements in a vector but this function has several arguments that is not a problem with `sapply()`.  The function `sapply()` has a `...` argument which we learned about in Section \@ref(dots).  The extra arguments are passed on to the function call because of this `...` argument. 
+
+
+```{r}
+presidents_abc <- sapply(abc, grepl, x = presidents)
+presidents_abc
+```
+
+
+Each row corresponds to an element in the vector `presidents`, and each column contains `TRUE\FALSE` values depending on if the particular letter was present for that row.
+
+We can use `any()` and `all()` functions to determine if the *any* or *all* of the letters "a", "b" and "c" are present, respectively. We can do this with the `apply()` function.  The `apply()` function iterate over a matrix instead of a vector.  This function has three key arguments: `X`- the matrix we are iterating over, `MARGIN`- indicates if we iterate over rows (1) or columns (2), and `FUN`- the function to apply to each row or column of `X`.  For instance, if we want to see which president has *any* of the letters present, we can do this individually for each row. 
+
+```{r}
+any(presidents_abc[1,])
+any(presidents_abc[2,])
+any(presidents_abc[3,])
+any(presidents_abc[4,])
+any(presidents_abc[5,])
+
+```
+
+This is inefficient, messy, and takes up space in our code.  To instead, we can *apply* the *any* function to each row of our matrix. This returns the same values as above. 
+
+```{r}
+# Do the president names have the letters "a", "b" OR "c"
+apply(presidents_abc, 1, any)
+```
+
+Similarly, for the `all()` function we can check if the presidents have the letters "a", "b", AND "c". 
+
+```{r}
+# Do the president names have the letters "a", "b" AND "c"
+apply(presidents_abc, 1, all)
+```
+
+## Regular Expressions
+
+We will cover regular expressions more thoroughly in Chapter \@ref(Regex), however, there are some important notes we should mention now.  Most of the functions we discussed are not searching for simple strings of text, instead they are searching for something called "regular expressions".  These are strings of text where some symbols and characters have special meanings.  The symbols that have special meanings are: . \ | ( ) [ { ^ $ * + ?.  We call these *metacharacters*, and they are not treated like normal characters.  For example, the "." charcter is treated as a "any" character.  If we try to use `grep()`, grepl()`, `gsub()` or `sub()` with a "." we will not get what we are expecting. 
+
+```{r}
+string <- "Hello neighbor."
+gsub(".", "PERIOD", string)
+```
+ 
+If we want to use one of the metacharacters *without the special meaning* we need to use an escape key `\\`.  
+
+```{r}
+gsub("\\.", "PERIOD", string)
+```
+
+This escape key removes the special property, and works for all metacharacters. 
 
 ## Word Count Tables 
 
