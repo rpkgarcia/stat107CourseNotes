@@ -1,4 +1,3 @@
-part-part-i-stat-107-notes
 introduction-to-r
 download-and-install-r-and-rstudio
 the-rstudio-interface
@@ -96,7 +95,7 @@ search
 vectorizing-text-functions
 regular-expressions
 word-count-tables
-part-part-ii-advanced-methods
+wordcloud-package
 Regex
 ranges-escaping
 metacharacters
@@ -104,7 +103,7 @@ quantifiers
 anchoring
 splitting-on-a-regexp
 stringr-package
-wordcloud-package
+wordcloud-package-1
 replacements
 base-r-plotting
 load-a-big-data-set

@@ -247,7 +247,7 @@ al1.phrases[grep("God", al1.phrases)]
 
 ## Vectorizing Text Functions
 
-An important note about a lot of the text functions we above is that some of these functions can only search or use one pattern at a time.  For example, consider a situation in which we want to find all occurrences of the letters "a", "b", and "c" for the `presidents` vector. 
+A lot of the text functions above can only search or use one pattern at a time.  For example, consider a situation in which we want to find all occurrences of the letters "a", "b", and "c" for the `presidents` vector. 
 
 
 ```{r}
@@ -257,7 +257,7 @@ abc <- c("a", "b", "c")
 
 grepl(abc, presidents)
 ```
-We can only search for one pattern at a time. To make this search more versatile we either have to do multiple searches, use regular expressions (see Chapter \@ref(Regex)), or use some of the `*apply` functions. We saw examples of vectorizing functions that we created in Section \@ref(vectorizeifelse).  We can also apply these functions to built in functions in R. Lets consider the example above again, but this time we will use `sapply()`.  Notice that we have several arguments that we are using for `grepl()`.  If we want to apply a function to multiple elements in a vector but this function has several arguments that is not a problem with `sapply()`.  The function `sapply()` has a `...` argument which we learned about in Section \@ref(dots).  The extra arguments are passed on to the function call because of this `...` argument. 
+We can only search for one pattern at a time. To make this search more versatile we either have to do multiple searches, use regular expressions (see Chapter \@ref(Regex)), or use some of the `*apply` functions. We saw examples of how to vectorize functions we created in Section \@ref(vectorizeifelse).  We can use these same methods with built in functions in R. Lets consider the example above again, but this time we will use `sapply()`.  Notice that we have several arguments that we are using for `grepl()`.  If we want to apply a function to multiple elements in a vector but this function has several arguments that is not a problem with `sapply()`.  The function `sapply()` has a `...` argument which we learned about in Section \@ref(dots).  The extra arguments are passed on to the function call because of this `...` argument. 
 
 
 ```{r}
@@ -268,7 +268,7 @@ presidents_abc
 
 Each row corresponds to an element in the vector `presidents`, and each column contains `TRUE\FALSE` values depending on if the particular letter was present for that row.
 
-We can use `any()` and `all()` functions to determine if the *any* or *all* of the letters "a", "b" and "c" are present, respectively. We can do this with the `apply()` function.  The `apply()` function iterate over a matrix instead of a vector.  This function has three key arguments: `X`- the matrix we are iterating over, `MARGIN`- indicates if we iterate over rows (1) or columns (2), and `FUN`- the function to apply to each row or column of `X`.  For instance, if we want to see which president has *any* of the letters present, we can do this individually for each row. 
+We can use `any()` and `all()` functions to determine if the *any* or *all* of the letters "a", "b" and "c" are present in a presidents name, respectively. We can do this with the `apply()` function.  The `apply()` function iterates over a matrix instead of a vector.  This function has three key arguments: `X`- the matrix we are iterating over, `MARGIN`- indicates if we iterate over rows (1) or columns (2), and `FUN`- the function to apply to each row or column of `X`.  For instance, if we want to see which president has *any* of the letters present, we can do this individually for each row. 
 
 ```{r}
 any(presidents_abc[1,])
@@ -295,7 +295,7 @@ apply(presidents_abc, 1, all)
 
 ## Regular Expressions
 
-We will cover regular expressions more thoroughly in Chapter \@ref(Regex), however, there are some important notes we should mention now.  Most of the functions we discussed are not searching for simple strings of text, instead they are searching for something called "regular expressions".  These are strings of text where some symbols and characters have special meanings.  The symbols that have special meanings are: . \ | ( ) [ { ^ $ * + ?.  We call these *metacharacters*, and they are not treated like normal characters.  For example, the "." charcter is treated as a "any" character.  If we try to use `grep()`, grepl()`, `gsub()` or `sub()` with a "." we will not get what we are expecting. 
+We will cover regular expressions more thoroughly in Chapter \@ref(Regex), however, there are some important notes we should mention now.  Most of the functions we discussed are not searching for simple strings of text, instead they are searching for something called "regular expressions".  These are strings of text where some symbols and characters have special meanings.  The symbols that have special meanings are: . \ | ( ) [ { ^ $ * + ?.  We call these *metacharacters*, and they are not treated like normal characters.  For example, the "." charcter is treated as a "any" character.  If we try to use `grep()`, `grepl()`, `gsub()` or `sub()` with a "." we will not get what we are expecting. 
 
 ```{r}
 string <- "Hello neighbor."
@@ -343,5 +343,52 @@ In addition, all our words and string subsets are case sensitive.
 
 which(names(wc)  == "That")
 wc["That"]
+```
+
+
+## Wordcloud Package
+
+Another package that is particularly useful for working with text data is the `wordcloud` package.  This package extends the standard Base R plotting, and allows us to build word clouds.  It uses the same general principals and features that we do with Base R. 
+
+Lets use the same Abraham Lincoln speech again. We will start by make everything lower case, and replace all whitepsace with a single space for consistency. 
+
+```{r}
+library(wordcloud)
+
+the_url <- "https://raw.githubusercontent.com/rpkgarcia/LearnRBook/main/data_sets/al1.txt"
+al1 <- readLines(the_url, warn = FALSE)
+
+# make everything lower case
+al1 <- tolower(al1)
+
+# see all individual words by spliting by white space
+al1.words <- strsplit(al1, " ")
+
+# Word count table 
+wc <- table(al1.words)
+wc <- sort(wc, decreasing = T)
+
+# Fixed issues from previous section
+head(wc, 30)
+
+# The unique words in the table 
+names(wc)[1:6]
+
+
+# Default plot (there is some randomness to how this plot is made, see Help file)
+wordcloud(words = names(wc),
+          freq = wc) 
+
+```
+
+In a word cloud the `freq` argument controls how large the words will appear.  In this case we let the size of the words be proportional to the frequency.  There are a lot of extra features we can add to word clouds, feel free to explore them! 
+
+```{r}
+# Changing a few settings (Feel free to change more!! :) Have fun with it)
+wordcloud(words = names(wc),
+          freq = wc, 
+          min.freq = 2, 
+          random.order = F, 
+          colors = c("purple", "blue"))
 ```
 
