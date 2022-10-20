@@ -1,3 +1,4 @@
+part-part-i-stat-107-notes
 introduction-to-r
 download-and-install-r-and-rstudio
 the-rstudio-interface
@@ -95,6 +96,7 @@ search
 vectorizing-text-functions
 regular-expressions
 word-count-tables
+part-part-ii-advanced-methods
 Regex
 ranges-escaping
 metacharacters
