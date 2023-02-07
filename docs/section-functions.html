@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Functions | STAT 107 Outline of Class Notes</title>
+  <meta name="description" content="Course notes for UCR’s STAT 107. An introduction to programming in R." />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Functions | STAT 107 Outline of Class Notes" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://rpkgarcia.github.io/stat107_summer2022notes/" />
+  
+  <meta property="og:description" content="Course notes for UCR’s STAT 107. An introduction to programming in R." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Functions | STAT 107 Outline of Class Notes" />
+  
+  <meta name="twitter:description" content="Course notes for UCR’s STAT 107. An introduction to programming in R." />
+  
+
+<meta name="author" content="Rebecca Kurtz-Garcia" />
+
+
+<meta name="date" content="2023-02-06" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="section-working-with-data-sets.html"/>
+<link rel="next" href="section-if-statements.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="assets/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">STAT 107 Notes</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#section-welcome">Welcome<span></span></a></li>
+<li class="chapter" data-level="1" data-path="section-introduction-to-r.html"><a href="section-introduction-to-r.html"><i class="fa fa-check"></i><b>1</b> Introduction to R<span></span></a><ul>
+<li class="chapter" data-level="1.1" data-path="section-introduction-to-r.html"><a href="section-introduction-to-r.html#section-download-and-install-r-and-rstudio"><i class="fa fa-check"></i><b>1.1</b> Download and Install R and Rstudio<span></span></a></li>
+<li class="chapter" data-level="1.2" data-path="section-introduction-to-r.html"><a href="section-introduction-to-r.html#section-the-rstudio-interface"><i class="fa fa-check"></i><b>1.2</b> The <strong>RStudio</strong> Interface<span></span></a><ul>
+<li><a href="section-introduction-to-r.html#section-bottom-left-pane">Bottom Left Pane<span></span></a></li>
+<li><a href="section-introduction-to-r.html#section-bottom-right-pane">Bottom Right Pane<span></span></a></li>
+<li><a href="section-introduction-to-r.html#section-top-right-pane">Top Right Pane<span></span></a></li>
+<li><a href="section-introduction-to-r.html#section-top-left-pane">Top Left Pane<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="section-introduction-to-r.html"><a href="section-introduction-to-r.html#section-comments"><i class="fa fa-check"></i><b>1.3</b> Comments<span></span></a></li>
+<li class="chapter" data-level="1.4" data-path="section-introduction-to-r.html"><a href="section-introduction-to-r.html#section-operators"><i class="fa fa-check"></i><b>1.4</b> Operators<span></span></a><ul>
+<li><a href="section-introduction-to-r.html#section-arithmetic-operators">Arithmetic Operators<span></span></a></li>
+<li><a href="section-introduction-to-r.html#section-relational-operators">Relational Operators<span></span></a></li>
+<li><a href="section-introduction-to-r.html#section-logical-operators">Logical operators<span></span></a></li>
+<li><a href="section-introduction-to-r.html#section-assignment-operators">Assignment Operators<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="section-introduction-to-r.html"><a href="section-introduction-to-r.html#section-naming-conventions"><i class="fa fa-check"></i><b>1.5</b> Naming Conventions<span></span></a></li>
+<li class="chapter" data-level="1.6" data-path="section-introduction-to-r.html"><a href="section-introduction-to-r.html#section-basic-calculations"><i class="fa fa-check"></i><b>1.6</b> Basic Calculations<span></span></a></li>
+<li class="chapter" data-level="1.7" data-path="section-introduction-to-r.html"><a href="section-introduction-to-r.html#section-floating-point-error"><i class="fa fa-check"></i><b>1.7</b> Floating Point Error<span></span></a></li>
+<li><a href="section-introduction-to-r.html#section-additional-resources">Additional Resources<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="section-atomic-vectors.html"><a href="section-atomic-vectors.html"><i class="fa fa-check"></i><b>2</b> Atomic Vectors<span></span></a><ul>
+<li class="chapter" data-level="2.1" data-path="section-atomic-vectors.html"><a href="section-atomic-vectors.html#section-examples"><i class="fa fa-check"></i><b>2.1</b> Examples<span></span></a><ul>
+<li><a href="section-atomic-vectors.html#section-double">Double<span></span></a></li>
+<li><a href="section-atomic-vectors.html#section-integer">Integer<span></span></a></li>
+<li><a href="section-atomic-vectors.html#section-logical">Logical<span></span></a></li>
+<li><a href="section-atomic-vectors.html#section-character">Character<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="section-atomic-vectors.html"><a href="section-atomic-vectors.html#section-basic-features"><i class="fa fa-check"></i><b>2.2</b> Basic Features<span></span></a><ul>
+<li class="chapter" data-level="2.2.1" data-path="section-atomic-vectors.html"><a href="section-atomic-vectors.html#section-length"><i class="fa fa-check"></i><b>2.2.1</b> Length<span></span></a></li>
+<li class="chapter" data-level="2.2.2" data-path="section-atomic-vectors.html"><a href="section-atomic-vectors.html#section-vecoperators"><i class="fa fa-check"></i><b>2.2.2</b> Vectorized Operations and Recylcing<span></span></a></li>
+<li class="chapter" data-level="2.2.3" data-path="section-atomic-vectors.html"><a href="section-atomic-vectors.html#section-coercion"><i class="fa fa-check"></i><b>2.2.3</b> Coercion<span></span></a></li>
+<li class="chapter" data-level="2.2.4" data-path="section-atomic-vectors.html"><a href="section-atomic-vectors.html#section-testing"><i class="fa fa-check"></i><b>2.2.4</b> Testing<span></span></a></li>
+<li class="chapter" data-level="2.2.5" data-path="section-atomic-vectors.html"><a href="section-atomic-vectors.html#section-names"><i class="fa fa-check"></i><b>2.2.5</b> Names<span></span></a></li>
+<li class="chapter" data-level="2.2.6" data-path="section-atomic-vectors.html"><a href="section-atomic-vectors.html#section-typeof-and-class"><i class="fa fa-check"></i><b>2.2.6</b> typeof() and class()<span></span></a></li>
+<li class="chapter" data-level="2.2.7" data-path="section-atomic-vectors.html"><a href="section-atomic-vectors.html#section-index"><i class="fa fa-check"></i><b>2.2.7</b> Accessing Elements of a Vector<span></span></a></li>
+</ul></li>
+<li><a href="section-atomic-vectors.html#section-summary">Summary<span></span></a></li>
+<li><a href="section-atomic-vectors.html#section-additional-resources-1">Additional Resources<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html"><i class="fa fa-check"></i><b>3</b> Factors and Lists<span></span></a><ul>
+<li class="chapter" data-level="3.1" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-factors"><i class="fa fa-check"></i><b>3.1</b> Factors<span></span></a><ul>
+<li class="chapter" data-level="3.1.1" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-levels"><i class="fa fa-check"></i><b>3.1.1</b> Levels<span></span></a></li>
+<li class="chapter" data-level="3.1.2" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-ordered-factor"><i class="fa fa-check"></i><b>3.1.2</b> Ordered Factor<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-factors---basic-features"><i class="fa fa-check"></i><b>3.2</b> Factors - Basic Features<span></span></a><ul>
+<li class="chapter" data-level="3.2.1" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-length-1"><i class="fa fa-check"></i><b>3.2.1</b> Length<span></span></a></li>
+<li class="chapter" data-level="3.2.2" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-coercion-1"><i class="fa fa-check"></i><b>3.2.2</b> Coercion<span></span></a></li>
+<li class="chapter" data-level="3.2.3" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-testingclass"><i class="fa fa-check"></i><b>3.2.3</b> Testing/Class<span></span></a></li>
+<li class="chapter" data-level="3.2.4" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-names-1"><i class="fa fa-check"></i><b>3.2.4</b> Names<span></span></a></li>
+<li class="chapter" data-level="3.2.5" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-accessing-elements"><i class="fa fa-check"></i><b>3.2.5</b> Accessing Elements<span></span></a></li>
+<li class="chapter" data-level="3.2.6" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-frequency-tables"><i class="fa fa-check"></i><b>3.2.6</b> Frequency Tables<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-lists"><i class="fa fa-check"></i><b>3.3</b> Lists<span></span></a><ul>
+<li class="chapter" data-level="3.3.1" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-nested-lists"><i class="fa fa-check"></i><b>3.3.1</b> Nested Lists<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-list---basic-features"><i class="fa fa-check"></i><b>3.4</b> List - Basic Features<span></span></a><ul>
+<li class="chapter" data-level="3.4.1" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-length-2"><i class="fa fa-check"></i><b>3.4.1</b> Length<span></span></a></li>
+<li class="chapter" data-level="3.4.2" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-coercion-2"><i class="fa fa-check"></i><b>3.4.2</b> Coercion<span></span></a></li>
+<li class="chapter" data-level="3.4.3" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-testingclass-1"><i class="fa fa-check"></i><b>3.4.3</b> Testing/Class<span></span></a></li>
+<li class="chapter" data-level="3.4.4" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-names-2"><i class="fa fa-check"></i><b>3.4.4</b> Names<span></span></a></li>
+<li class="chapter" data-level="3.4.5" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-accessing-elements-1"><i class="fa fa-check"></i><b>3.4.5</b> Accessing Elements<span></span></a></li>
+</ul></li>
+<li><a href="section-factors-and-lists.html#section-summary-1">Summary<span></span></a></li>
+<li><a href="section-factors-and-lists.html#section-additional-resources-2">Additional Resources<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html"><i class="fa fa-check"></i><b>4</b> Matrices, Data Frames, and More<span></span></a><ul>
+<li class="chapter" data-level="4.1" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html#section-matrices"><i class="fa fa-check"></i><b>4.1</b> Matrices<span></span></a><ul>
+<li class="chapter" data-level="4.1.1" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html#section-vectorized-operations"><i class="fa fa-check"></i><b>4.1.1</b> Vectorized Operations<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html#section-data-frames"><i class="fa fa-check"></i><b>4.2</b> Data Frames<span></span></a><ul>
+<li class="chapter" data-level="4.2.1" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html#section-column-names"><i class="fa fa-check"></i><b>4.2.1</b> Column Names<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html#section-basic-features-of-matricesdata-frames"><i class="fa fa-check"></i><b>4.3</b> Basic Features of Matrices/Data-Frames<span></span></a><ul>
+<li class="chapter" data-level="4.3.1" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html#section-dimensions"><i class="fa fa-check"></i><b>4.3.1</b> Dimensions<span></span></a></li>
+<li class="chapter" data-level="4.3.2" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html#section-accesing-elements"><i class="fa fa-check"></i><b>4.3.2</b> Accesing Elements<span></span></a></li>
+<li class="chapter" data-level="4.3.3" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html#section-coercion-3"><i class="fa fa-check"></i><b>4.3.3</b> Coercion<span></span></a></li>
+<li class="chapter" data-level="4.3.4" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html#section-testingclass-2"><i class="fa fa-check"></i><b>4.3.4</b> Testing/Class<span></span></a></li>
+<li class="chapter" data-level="4.3.5" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html#section-names-3"><i class="fa fa-check"></i><b>4.3.5</b> Names<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html#section-other-object-types-and-the-global-environment"><i class="fa fa-check"></i><b>4.4</b> Other Object Types and the Global Environment<span></span></a></li>
+<li><a href="section-matrices-data-frames-and-more.html#section-summary-2">Summary<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="section-indexing.html"><a href="section-indexing.html"><i class="fa fa-check"></i><b>5</b> Indexing<span></span></a><ul>
+<li class="chapter" data-level="5.1" data-path="section-indexing.html"><a href="section-indexing.html#section-VectorIndex"><i class="fa fa-check"></i><b>5.1</b> Atomic Vectors and Factors<span></span></a><ul>
+<li><a href="section-indexing.html#section-example-positive-integers">Example: Positive Integers<span></span></a></li>
+<li><a href="section-indexing.html#section-example-negative-integers">Example: Negative Integers<span></span></a></li>
+<li><a href="section-indexing.html#section-example-logical-values">Example: Logical Values<span></span></a></li>
+<li><a href="section-indexing.html#section-example-names">Example: Names<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="section-indexing.html"><a href="section-indexing.html#section-lists-1"><i class="fa fa-check"></i><b>5.2</b> Lists<span></span></a><ul>
+<li class="chapter" data-level="5.2.1" data-path="section-indexing.html"><a href="section-indexing.html#section-double-brackets"><i class="fa fa-check"></i><b>5.2.1</b> Double Brackets<span></span></a></li>
+<li class="chapter" data-level="5.2.2" data-path="section-indexing.html"><a href="section-indexing.html#section-dollar-sign"><i class="fa fa-check"></i><b>5.2.2</b> Dollar Sign<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="section-indexing.html"><a href="section-indexing.html#section-matrices-1"><i class="fa fa-check"></i><b>5.3</b> Matrices<span></span></a><ul>
+<li class="chapter" data-level="5.3.1" data-path="section-indexing.html"><a href="section-indexing.html#section-two-vectors"><i class="fa fa-check"></i><b>5.3.1</b> Two Vectors<span></span></a></li>
+<li class="chapter" data-level="5.3.2" data-path="section-indexing.html"><a href="section-indexing.html#section-single-vector"><i class="fa fa-check"></i><b>5.3.2</b> Single Vector<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="section-indexing.html"><a href="section-indexing.html#section-data-frames-1"><i class="fa fa-check"></i><b>5.4</b> Data frames<span></span></a><ul>
+<li><a href="section-indexing.html#section-example-double-brackets">Example: Double brackets<span></span></a></li>
+<li><a href="section-indexing.html#section-example-dollar-sign">Example: Dollar Sign<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="section-indexing.html"><a href="section-indexing.html#section-features-and-applications"><i class="fa fa-check"></i><b>5.5</b> Features and Applications<span></span></a><ul>
+<li class="chapter" data-level="5.5.1" data-path="section-indexing.html"><a href="section-indexing.html#section-indexing-and-reassignment"><i class="fa fa-check"></i><b>5.5.1</b> Indexing and Reassignment<span></span></a></li>
+<li class="chapter" data-level="5.5.2" data-path="section-indexing.html"><a href="section-indexing.html#section-orderinginteger-indexing"><i class="fa fa-check"></i><b>5.5.2</b> Ordering/Integer Indexing<span></span></a></li>
+<li class="chapter" data-level="5.5.3" data-path="section-indexing.html"><a href="section-indexing.html#section-adding-elementsrowscolumns"><i class="fa fa-check"></i><b>5.5.3</b> Adding Elements/Rows/Columns<span></span></a></li>
+<li class="chapter" data-level="5.5.4" data-path="section-indexing.html"><a href="section-indexing.html#section-delete-elementsrowscolumns"><i class="fa fa-check"></i><b>5.5.4</b> Delete Elements/Rows/Columns<span></span></a></li>
+<li class="chapter" data-level="5.5.5" data-path="section-indexing.html"><a href="section-indexing.html#section-select-based-on-condition"><i class="fa fa-check"></i><b>5.5.5</b> Select Based on Condition<span></span></a></li>
+<li class="chapter" data-level="5.5.6" data-path="section-indexing.html"><a href="section-indexing.html#section-convert-indexing-techniques"><i class="fa fa-check"></i><b>5.5.6</b> Convert Indexing Techniques<span></span></a></li>
+</ul></li>
+<li><a href="section-indexing.html#section-summary-3">Summary<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="section-working-with-data-sets.html"><a href="section-working-with-data-sets.html"><i class="fa fa-check"></i><b>6</b> Working with Data Sets<span></span></a><ul>
+<li class="chapter" data-level="6.1" data-path="section-working-with-data-sets.html"><a href="section-working-with-data-sets.html#section-LoadData"><i class="fa fa-check"></i><b>6.1</b> Getting Data Sets in Our Working Environment<span></span></a><ul>
+<li><a href="section-working-with-data-sets.html#section-built-in-data">Built-In Data<span></span></a></li>
+<li><a href="section-working-with-data-sets.html#section-importing-from-your-computer">Importing From Your Computer<span></span></a></li>
+<li><a href="section-working-with-data-sets.html#section-import-from-online">Import From Online<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="section-working-with-data-sets.html"><a href="section-working-with-data-sets.html#section-basic-data-manipulation"><i class="fa fa-check"></i><b>6.2</b> Basic Data Manipulation<span></span></a><ul>
+<li><a href="section-working-with-data-sets.html#section-subset">Subset<span></span></a></li>
+<li><a href="section-working-with-data-sets.html#section-adding-columns">Adding Columns<span></span></a></li>
+<li><a href="section-working-with-data-sets.html#section-na-values">NA values<span></span></a></li>
+<li><a href="section-working-with-data-sets.html#section-null">NULL<span></span></a></li>
+<li><a href="section-working-with-data-sets.html#section-adding-rows">Adding Rows<span></span></a></li>
+</ul></li>
+<li><a href="section-working-with-data-sets.html#section-summary-4">Summary<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="section-functions.html"><a href="section-functions.html"><i class="fa fa-check"></i><b>7</b> Functions<span></span></a><ul>
+<li class="chapter" data-level="7.1" data-path="section-functions.html"><a href="section-functions.html#section-build-your-own-function"><i class="fa fa-check"></i><b>7.1</b> Build Your Own Function<span></span></a></li>
+<li class="chapter" data-level="7.2" data-path="section-functions.html"><a href="section-functions.html#section-lexical-scoping"><i class="fa fa-check"></i><b>7.2</b> Lexical Scoping<span></span></a></li>
+<li class="chapter" data-level="7.3" data-path="section-functions.html"><a href="section-functions.html#section-built-in-functions"><i class="fa fa-check"></i><b>7.3</b> Built-In Functions<span></span></a></li>
+<li class="chapter" data-level="7.4" data-path="section-functions.html"><a href="section-functions.html#section-vectorization"><i class="fa fa-check"></i><b>7.4</b> Vectorization<span></span></a></li>
+<li class="chapter" data-level="7.5" data-path="section-functions.html"><a href="section-functions.html#section-help-files"><i class="fa fa-check"></i><b>7.5</b> Help Files<span></span></a></li>
+<li class="chapter" data-level="7.6" data-path="section-functions.html"><a href="section-functions.html#section-dots"><i class="fa fa-check"></i><b>7.6</b> The … Argument<span></span></a></li>
+<li class="chapter" data-level="7.7" data-path="section-functions.html"><a href="section-functions.html#section-generic-functions"><i class="fa fa-check"></i><b>7.7</b> Generic Functions<span></span></a></li>
+<li><a href="section-functions.html#section-additional-resources-3">Additional Resources<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="section-if-statements.html"><a href="section-if-statements.html"><i class="fa fa-check"></i><b>8</b> If Statements<span></span></a><ul>
+<li class="chapter" data-level="8.1" data-path="section-if-statements.html"><a href="section-if-statements.html#section-if"><i class="fa fa-check"></i><b>8.1</b> If<span></span></a></li>
+<li class="chapter" data-level="8.2" data-path="section-if-statements.html"><a href="section-if-statements.html#section-if-else"><i class="fa fa-check"></i><b>8.2</b> If Else<span></span></a></li>
+<li class="chapter" data-level="8.3" data-path="section-if-statements.html"><a href="section-if-statements.html#section-else-if"><i class="fa fa-check"></i><b>8.3</b> Else If<span></span></a></li>
+<li class="chapter" data-level="8.4" data-path="section-if-statements.html"><a href="section-if-statements.html#section-nested-if-chains"><i class="fa fa-check"></i><b>8.4</b> Nested If Chains<span></span></a></li>
+<li class="chapter" data-level="8.5" data-path="section-if-statements.html"><a href="section-if-statements.html#section-ifelse"><i class="fa fa-check"></i><b>8.5</b> Ifelse<span></span></a></li>
+<li class="chapter" data-level="8.6" data-path="section-if-statements.html"><a href="section-if-statements.html#section-vectorizeifelse"><i class="fa fa-check"></i><b>8.6</b> Vectorizing If-Statments<span></span></a></li>
+<li><a href="section-if-statements.html#section-additional-resources-4">Additional Resources<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="section-packages.html"><a href="section-packages.html"><i class="fa fa-check"></i><b>9</b> Packages<span></span></a><ul>
+<li class="chapter" data-level="9.1" data-path="section-packages.html"><a href="section-packages.html#section-namespace-collisions"><i class="fa fa-check"></i><b>9.1</b> Namespace Collisions<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="section-text-data.html"><a href="section-text-data.html"><i class="fa fa-check"></i><b>10</b> Text Data<span></span></a><ul>
+<li class="chapter" data-level="10.1" data-path="section-text-data.html"><a href="section-text-data.html#section-making-strings"><i class="fa fa-check"></i><b>10.1</b> Making Strings<span></span></a></li>
+<li class="chapter" data-level="10.2" data-path="section-text-data.html"><a href="section-text-data.html#section-substring-operations"><i class="fa fa-check"></i><b>10.2</b> Substring Operations<span></span></a></li>
+<li class="chapter" data-level="10.3" data-path="section-text-data.html"><a href="section-text-data.html#section-dividing-strings-into-vectors"><i class="fa fa-check"></i><b>10.3</b> Dividing Strings into Vectors<span></span></a></li>
+<li class="chapter" data-level="10.4" data-path="section-text-data.html"><a href="section-text-data.html#section-converting-objects-into-strings"><i class="fa fa-check"></i><b>10.4</b> Converting Objects into Strings<span></span></a></li>
+<li class="chapter" data-level="10.5" data-path="section-text-data.html"><a href="section-text-data.html#section-versatility-of-the-paste-function"><i class="fa fa-check"></i><b>10.5</b> Versatility of the paste() Function<span></span></a></li>
+<li class="chapter" data-level="10.6" data-path="section-text-data.html"><a href="section-text-data.html#section-substitution"><i class="fa fa-check"></i><b>10.6</b> Substitution<span></span></a></li>
+<li class="chapter" data-level="10.7" data-path="section-text-data.html"><a href="section-text-data.html#section-text-of-some-importance"><i class="fa fa-check"></i><b>10.7</b> Text of Some Importance<span></span></a></li>
+<li class="chapter" data-level="10.8" data-path="section-text-data.html"><a href="section-text-data.html#section-search"><i class="fa fa-check"></i><b>10.8</b> Search<span></span></a></li>
+<li class="chapter" data-level="10.9" data-path="section-text-data.html"><a href="section-text-data.html#section-vectorizing-text-functions"><i class="fa fa-check"></i><b>10.9</b> Vectorizing Text Functions<span></span></a></li>
+<li class="chapter" data-level="10.10" data-path="section-text-data.html"><a href="section-text-data.html#section-regular-expressions"><i class="fa fa-check"></i><b>10.10</b> Regular Expressions<span></span></a></li>
+<li class="chapter" data-level="10.11" data-path="section-text-data.html"><a href="section-text-data.html#section-word-count-tables"><i class="fa fa-check"></i><b>10.11</b> Word Count Tables<span></span></a></li>
+<li class="chapter" data-level="10.12" data-path="section-text-data.html"><a href="section-text-data.html#section-wordcloud-package"><i class="fa fa-check"></i><b>10.12</b> Wordcloud Package<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="section-Regex.html"><a href="section-Regex.html"><i class="fa fa-check"></i><b>11</b> Regular Expressions<span></span></a><ul>
+<li class="chapter" data-level="11.1" data-path="section-Regex.html"><a href="section-Regex.html#section-ranges-escaping"><i class="fa fa-check"></i><b>11.1</b> Ranges, Escaping<span></span></a></li>
+<li class="chapter" data-level="11.2" data-path="section-Regex.html"><a href="section-Regex.html#section-metacharacters"><i class="fa fa-check"></i><b>11.2</b> Metacharacters<span></span></a></li>
+<li class="chapter" data-level="11.3" data-path="section-Regex.html"><a href="section-Regex.html#section-quantifiers"><i class="fa fa-check"></i><b>11.3</b> Quantifiers<span></span></a></li>
+<li class="chapter" data-level="11.4" data-path="section-Regex.html"><a href="section-Regex.html#section-anchoring"><i class="fa fa-check"></i><b>11.4</b> Anchoring<span></span></a></li>
+<li class="chapter" data-level="11.5" data-path="section-Regex.html"><a href="section-Regex.html#section-splitting-on-a-regexp"><i class="fa fa-check"></i><b>11.5</b> Splitting on a Regexp<span></span></a></li>
+<li class="chapter" data-level="11.6" data-path="section-Regex.html"><a href="section-Regex.html#section-stringr-package"><i class="fa fa-check"></i><b>11.6</b> Stringr Package<span></span></a></li>
+<li class="chapter" data-level="11.7" data-path="section-Regex.html"><a href="section-Regex.html#section-wordcloud-package-1"><i class="fa fa-check"></i><b>11.7</b> Wordcloud Package<span></span></a></li>
+<li class="chapter" data-level="11.8" data-path="section-Regex.html"><a href="section-Regex.html#section-replacements"><i class="fa fa-check"></i><b>11.8</b> Replacements<span></span></a></li>
+<li><a href="section-Regex.html#section-additional-resources-5">Additional Resources<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html"><i class="fa fa-check"></i><b>12</b> Base R Plotting<span></span></a><ul>
+<li class="chapter" data-level="12.1" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html#section-load-a-big-data-set"><i class="fa fa-check"></i><b>12.1</b> Load A Big Data Set<span></span></a></li>
+<li class="chapter" data-level="12.2" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html#section-histograms"><i class="fa fa-check"></i><b>12.2</b> Histograms<span></span></a></li>
+<li class="chapter" data-level="12.3" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html#section-boxplot"><i class="fa fa-check"></i><b>12.3</b> Boxplot<span></span></a></li>
+<li class="chapter" data-level="12.4" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html#section-scatter-plot"><i class="fa fa-check"></i><b>12.4</b> Scatter Plot<span></span></a></li>
+<li class="chapter" data-level="12.5" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html#section-pie-charts"><i class="fa fa-check"></i><b>12.5</b> Pie Charts<span></span></a></li>
+<li class="chapter" data-level="12.6" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html#section-adding-straight-lines"><i class="fa fa-check"></i><b>12.6</b> Adding Straight Lines<span></span></a></li>
+<li class="chapter" data-level="12.7" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html#section-adding-lines-between-points"><i class="fa fa-check"></i><b>12.7</b> Adding Lines Between Points<span></span></a></li>
+<li class="chapter" data-level="12.8" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html#section-adding-individual-points"><i class="fa fa-check"></i><b>12.8</b> Adding Individual Points<span></span></a></li>
+<li class="chapter" data-level="12.9" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html#section-the-par-help-file"><i class="fa fa-check"></i><b>12.9</b> The par() Help File<span></span></a></li>
+<li class="chapter" data-level="12.10" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html#section-adding-legends"><i class="fa fa-check"></i><b>12.10</b> Adding Legends<span></span></a></li>
+<li class="chapter" data-level="12.11" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html#section-what-makes-a-good-plot"><i class="fa fa-check"></i><b>12.11</b> What makes a good plot?<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="section-extending-base-r-graphics.html"><a href="section-extending-base-r-graphics.html"><i class="fa fa-check"></i><b>13</b> Extending Base R Graphics<span></span></a><ul>
+<li class="chapter" data-level="13.1" data-path="section-extending-base-r-graphics.html"><a href="section-extending-base-r-graphics.html#section-the-maps-package"><i class="fa fa-check"></i><b>13.1</b> The “maps” Package<span></span></a></li>
+<li class="chapter" data-level="13.2" data-path="section-extending-base-r-graphics.html"><a href="section-extending-base-r-graphics.html#section-some-additional-packages-to-consider"><i class="fa fa-check"></i><b>13.2</b> Some additional Packages to consider<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="section-loops.html"><a href="section-loops.html"><i class="fa fa-check"></i><b>14</b> Loops<span></span></a><ul>
+<li class="chapter" data-level="14.1" data-path="section-loops.html"><a href="section-loops.html#section-while-loop"><i class="fa fa-check"></i><b>14.1</b> While Loop<span></span></a></li>
+<li class="chapter" data-level="14.2" data-path="section-loops.html"><a href="section-loops.html#section-for-loops"><i class="fa fa-check"></i><b>14.2</b> For Loops<span></span></a></li>
+<li class="chapter" data-level="14.3" data-path="section-loops.html"><a href="section-loops.html#section-break"><i class="fa fa-check"></i><b>14.3</b> Break<span></span></a></li>
+<li class="chapter" data-level="14.4" data-path="section-loops.html"><a href="section-loops.html#section-next"><i class="fa fa-check"></i><b>14.4</b> Next<span></span></a></li>
+<li class="chapter" data-level="14.5" data-path="section-loops.html"><a href="section-loops.html#section-nested-loops"><i class="fa fa-check"></i><b>14.5</b> Nested Loops<span></span></a></li>
+<li class="chapter" data-level="14.6" data-path="section-loops.html"><a href="section-loops.html#section-examples-1"><i class="fa fa-check"></i><b>14.6</b> Examples<span></span></a><ul>
+<li class="chapter" data-level="14.6.1" data-path="section-loops.html"><a href="section-loops.html#section-example-1"><i class="fa fa-check"></i><b>14.6.1</b> Example 1<span></span></a></li>
+<li class="chapter" data-level="14.6.2" data-path="section-loops.html"><a href="section-loops.html#section-example-2"><i class="fa fa-check"></i><b>14.6.2</b> Example 2<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="14.7" data-path="section-loops.html"><a href="section-loops.html#section-additional-resources-6"><i class="fa fa-check"></i><b>14.7</b> Additional Resources<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="section-simulation.html"><a href="section-simulation.html"><i class="fa fa-check"></i><b>15</b> Simulation<span></span></a><ul>
+<li class="chapter" data-level="15.1" data-path="section-simulation.html"><a href="section-simulation.html#section-what-are-simulation-studies"><i class="fa fa-check"></i><b>15.1</b> What Are Simulation Studies<span></span></a></li>
+<li class="chapter" data-level="15.2" data-path="section-simulation.html"><a href="section-simulation.html#section-review-random-variables"><i class="fa fa-check"></i><b>15.2</b> Review Random Variables<span></span></a></li>
+<li class="chapter" data-level="15.3" data-path="section-simulation.html"><a href="section-simulation.html#section-generating-random-variables"><i class="fa fa-check"></i><b>15.3</b> Generating Random Variables<span></span></a></li>
+<li class="chapter" data-level="15.4" data-path="section-simulation.html"><a href="section-simulation.html#section-setting-a-seed"><i class="fa fa-check"></i><b>15.4</b> Setting a Seed<span></span></a></li>
+<li class="chapter" data-level="15.5" data-path="section-simulation.html"><a href="section-simulation.html#section-sample"><i class="fa fa-check"></i><b>15.5</b> sample()<span></span></a></li>
+<li class="chapter" data-level="15.6" data-path="section-simulation.html"><a href="section-simulation.html#section-cumulative-proportioncumulative-win-plots"><i class="fa fa-check"></i><b>15.6</b> Cumulative-Proportion/Cumulative-Win Plots<span></span></a></li>
+<li class="chapter" data-level="15.7" data-path="section-simulation.html"><a href="section-simulation.html#section-replicate"><i class="fa fa-check"></i><b>15.7</b> replicate()<span></span></a></li>
+<li class="chapter" data-level="15.8" data-path="section-simulation.html"><a href="section-simulation.html#section-adding-curves-to-graphs"><i class="fa fa-check"></i><b>15.8</b> Adding curves to graphs<span></span></a></li>
+<li class="chapter" data-level="15.9" data-path="section-simulation.html"><a href="section-simulation.html#section-example-central-limit-theorem-clt"><i class="fa fa-check"></i><b>15.9</b> Example: Central Limit Theorem (CLT)<span></span></a><ul>
+<li class="chapter" data-level="15.9.1" data-path="section-simulation.html"><a href="section-simulation.html#section-recall-clt"><i class="fa fa-check"></i><b>15.9.1</b> Recall CLT<span></span></a></li>
+<li class="chapter" data-level="15.9.2" data-path="section-simulation.html"><a href="section-simulation.html#section-assumption-violations-of-clt"><i class="fa fa-check"></i><b>15.9.2</b> Assumption Violations of CLT<span></span></a></li>
+<li class="chapter" data-level="15.9.3" data-path="section-simulation.html"><a href="section-simulation.html#section-the-data"><i class="fa fa-check"></i><b>15.9.3</b> The Data<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="15.10" data-path="section-simulation.html"><a href="section-simulation.html#section-example-coin-flips"><i class="fa fa-check"></i><b>15.10</b> Example: Coin Flips<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="section-tidyverse.html"><a href="section-tidyverse.html"><i class="fa fa-check"></i><b>16</b> Tidyverse<span></span></a><ul>
+<li class="chapter" data-level="16.1" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-piping-operator"><i class="fa fa-check"></i><b>16.1</b> Piping Operator<span></span></a></li>
+<li class="chapter" data-level="16.2" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-tibbles-vs-data-frames"><i class="fa fa-check"></i><b>16.2</b> Tibbles vs Data Frames<span></span></a></li>
+<li class="chapter" data-level="16.3" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-key-functions"><i class="fa fa-check"></i><b>16.3</b> Key Functions<span></span></a><ul>
+<li class="chapter" data-level="16.3.1" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-general-properties"><i class="fa fa-check"></i><b>16.3.1</b> General properties<span></span></a></li>
+<li class="chapter" data-level="16.3.2" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-select"><i class="fa fa-check"></i><b>16.3.2</b> select()<span></span></a></li>
+<li class="chapter" data-level="16.3.3" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-filter"><i class="fa fa-check"></i><b>16.3.3</b> filter()<span></span></a></li>
+<li class="chapter" data-level="16.3.4" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-arrange"><i class="fa fa-check"></i><b>16.3.4</b> arrange()<span></span></a></li>
+<li class="chapter" data-level="16.3.5" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-rename"><i class="fa fa-check"></i><b>16.3.5</b> rename()<span></span></a></li>
+<li class="chapter" data-level="16.3.6" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-mutate"><i class="fa fa-check"></i><b>16.3.6</b> mutate()<span></span></a></li>
+<li class="chapter" data-level="16.3.7" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-group_by"><i class="fa fa-check"></i><b>16.3.7</b> group_by()<span></span></a></li>
+<li class="chapter" data-level="16.3.8" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-summarizesummarise"><i class="fa fa-check"></i><b>16.3.8</b> summarize()/summarise()<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-examples-2"><i class="fa fa-check"></i><b>16.4</b> Examples<span></span></a><ul>
+<li class="chapter" data-level="16.4.1" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-example-1-1"><i class="fa fa-check"></i><b>16.4.1</b> Example 1<span></span></a></li>
+<li class="chapter" data-level="16.4.2" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-example-2-1"><i class="fa fa-check"></i><b>16.4.2</b> Example 2<span></span></a></li>
+<li class="chapter" data-level="16.4.3" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-example-3"><i class="fa fa-check"></i><b>16.4.3</b> Example 3<span></span></a></li>
+</ul></li>
+<li><a href="section-tidyverse.html#section-additional-resources-7">Additional Resources<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="section-ggplot2.html"><a href="section-ggplot2.html"><i class="fa fa-check"></i><b>17</b> ggplot2<span></span></a><ul>
+<li class="chapter" data-level="17.1" data-path="section-ggplot2.html"><a href="section-ggplot2.html#section-tidyverse-and-ggplot2"><i class="fa fa-check"></i><b>17.1</b> Tidyverse and ggplot2<span></span></a></li>
+<li class="chapter" data-level="17.2" data-path="section-ggplot2.html"><a href="section-ggplot2.html#section-intro-to-ggplot2"><i class="fa fa-check"></i><b>17.2</b> Intro to ggplot2<span></span></a><ul>
+<li><a href="section-ggplot2.html#section-what-is-the-grammar-of-graphics">What is the grammar of graphics?<span></span></a></li>
+<li><a href="section-ggplot2.html#section-ggplot2-versus-other-r-graphics">ggplot2 versus other R Graphics<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="section-ggplot2.html"><a href="section-ggplot2.html#section-getting-started-kep-components"><i class="fa fa-check"></i><b>17.3</b> Getting started: Kep Components<span></span></a></li>
+<li class="chapter" data-level="17.4" data-path="section-ggplot2.html"><a href="section-ggplot2.html#section-adjust-aesthetic-attributes-by-variable"><i class="fa fa-check"></i><b>17.4</b> Adjust aesthetic attributes by variable<span></span></a></li>
+<li class="chapter" data-level="17.5" data-path="section-ggplot2.html"><a href="section-ggplot2.html#section-adjust-aesthetic-attributes-for-the-entire-plot"><i class="fa fa-check"></i><b>17.5</b> Adjust aesthetic attributes for the entire plot<span></span></a></li>
+<li class="chapter" data-level="17.6" data-path="section-ggplot2.html"><a href="section-ggplot2.html#section-faceting"><i class="fa fa-check"></i><b>17.6</b> Faceting<span></span></a></li>
+<li class="chapter" data-level="17.7" data-path="section-ggplot2.html"><a href="section-ggplot2.html#section-some-example-plots"><i class="fa fa-check"></i><b>17.7</b> Some example plots<span></span></a></li>
+<li class="chapter" data-level="17.8" data-path="section-ggplot2.html"><a href="section-ggplot2.html#section-where-can-i-learn-more"><i class="fa fa-check"></i><b>17.8</b> Where can I learn more?<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="section-apply.html"><a href="section-apply.html"><i class="fa fa-check"></i><b>18</b> Apply Family of Functions<span></span></a><ul>
+<li class="chapter" data-level="18.1" data-path="section-apply.html"><a href="section-apply.html#section-apply-1"><i class="fa fa-check"></i><b>18.1</b> apply()<span></span></a><ul>
+<li><a href="section-apply.html#section-example-built-in-function">Example: Built In Function<span></span></a></li>
+<li><a href="section-apply.html#section-example-user-defined-function">Example: User Defined Function<span></span></a></li>
+<li class="chapter" data-level="18.1.1" data-path="section-apply.html"><a href="section-apply.html#section-returned-objects"><i class="fa fa-check"></i><b>18.1.1</b> Returned Objects<span></span></a></li>
+<li class="chapter" data-level="18.1.2" data-path="section-apply.html"><a href="section-apply.html#section-example-extra-arguments-array-output"><i class="fa fa-check"></i><b>18.1.2</b> Example: Extra Arguments, Array Output<span></span></a></li>
+<li class="chapter" data-level="18.1.3" data-path="section-apply.html"><a href="section-apply.html#section-example-list-output"><i class="fa fa-check"></i><b>18.1.3</b> Example: List Output<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="section-apply.html"><a href="section-apply.html#section-lapply"><i class="fa fa-check"></i><b>18.2</b> lapply()<span></span></a></li>
+<li class="chapter" data-level="18.3" data-path="section-apply.html"><a href="section-apply.html#section-sapply"><i class="fa fa-check"></i><b>18.3</b> sapply()<span></span></a></li>
+<li class="chapter" data-level="18.4" data-path="section-apply.html"><a href="section-apply.html#section-tapply"><i class="fa fa-check"></i><b>18.4</b> tapply()<span></span></a></li>
+<li class="chapter" data-level="18.5" data-path="section-apply.html"><a href="section-apply.html#section-mapply"><i class="fa fa-check"></i><b>18.5</b> mapply()<span></span></a></li>
+<li class="chapter" data-level="18.6" data-path="section-apply.html"><a href="section-apply.html#section-replicate-1"><i class="fa fa-check"></i><b>18.6</b> replicate()<span></span></a></li>
+<li class="chapter" data-level="18.7" data-path="section-apply.html"><a href="section-apply.html#section-how-to-pick-a-method"><i class="fa fa-check"></i><b>18.7</b> How to Pick a Method<span></span></a></li>
+<li class="chapter" data-level="18.8" data-path="section-apply.html"><a href="section-apply.html#section-more-examples"><i class="fa fa-check"></i><b>18.8</b> More Examples<span></span></a><ul>
+<li class="chapter" data-level="18.8.1" data-path="section-apply.html"><a href="section-apply.html#section-create-a-new-variable"><i class="fa fa-check"></i><b>18.8.1</b> Create a New Variable<span></span></a></li>
+</ul></li>
+<li><a href="section-apply.html#section-additional-resources-8">Additional Resources<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="section-debugging.html"><a href="section-debugging.html"><i class="fa fa-check"></i><b>19</b> Debugging<span></span></a><ul>
+<li class="chapter" data-level="19.1" data-path="section-debugging.html"><a href="section-debugging.html#section-debugging-background-history-types-of-bugs-challenges-to-consider"><i class="fa fa-check"></i><b>19.1</b> Debugging Background (History, Types of Bugs, Challenges to Consider)<span></span></a><ul>
+<li><a href="section-debugging.html#section-types-of-bugs">Types of bugs<span></span></a></li>
+<li><a href="section-debugging.html#section-debugging-process-difficulties">Debugging Process Difficulties<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="19.2" data-path="section-debugging.html"><a href="section-debugging.html#section-debugging-strategies-in-general"><i class="fa fa-check"></i><b>19.2</b> Debugging Strategies In General<span></span></a><ul>
+<li class="chapter" data-level="19.2.1" data-path="section-debugging.html"><a href="section-debugging.html#section-example-of-the-binary-search-algorithm"><i class="fa fa-check"></i><b>19.2.1</b> Example of the Binary Search Algorithm<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="19.3" data-path="section-debugging.html"><a href="section-debugging.html#section-using-debuggers"><i class="fa fa-check"></i><b>19.3</b> Using Debuggers<span></span></a><ul>
+<li class="chapter" data-level="19.3.1" data-path="section-debugging.html"><a href="section-debugging.html#section-traceback"><i class="fa fa-check"></i><b>19.3.1</b> traceback()<span></span></a></li>
+<li><a href="section-debugging.html#section-example-with-traceback">Example with traceback()<span></span></a></li>
+<li><a href="section-debugging.html#section-unfamiliar-function-with-traceback">Unfamiliar function with traceback()<span></span></a></li>
+<li class="chapter" data-level="19.3.2" data-path="section-debugging.html"><a href="section-debugging.html#section-browswer"><i class="fa fa-check"></i><b>19.3.2</b> browswer()<span></span></a></li>
+<li class="chapter" data-level="19.3.3" data-path="section-debugging.html"><a href="section-debugging.html#section-debug"><i class="fa fa-check"></i><b>19.3.3</b> debug()<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="section-debugging.html"><a href="section-debugging.html#section-more-options-to-consider"><i class="fa fa-check"></i><b>19.4</b> More options to consider<span></span></a></li>
+<li class="chapter" data-level="19.5" data-path="section-debugging.html"><a href="section-debugging.html#section-important-takeaways"><i class="fa fa-check"></i><b>19.5</b> Important Takeaways<span></span></a><ul>
+<li><a href="section-debugging.html#section-tips-for-writing-good-code">Tips for Writing good code<span></span></a></li>
+<li><a href="section-debugging.html#section-steps-to-reduce-the-number-of-bugs">Steps to Reduce the Number of Bugs<span></span></a></li>
+<li><a href="section-debugging.html#section-after-you-located-the-error">After You Located the Error<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="19.6" data-path="section-debugging.html"><a href="section-debugging.html#section-resources"><i class="fa fa-check"></i><b>19.6</b> Resources<span></span></a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STAT 107 Outline of Class Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="section-functions" class="section level1 hasAnchor">
+<h1><span class="header-section-number">Chapter 7</span> Functions<a href="section-functions.html#section-functions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In R we have functions, functions are another type of object in R. We use functions in order to preform a series of tasks repeatedly, or preform these tasks in different settings. They can make our code much more efficient. We can build our own functions or we can use built in functions. Here we describe both types and their properties. Parts of this chapter where adapted by <span class="citation">John Blischak, Daniel Chen, Harriet Dashnow, and Denis Haine (<a href="section-debugging.html#section-ref-r-func" role="doc-biblioref">2016</a>)</span> and <span class="citation">Vries and Meys (<a href="section-debugging.html#section-ref-dummies2015" role="doc-biblioref">2015</a>)</span>.</p>
+<div id="section-build-your-own-function" class="section level2 hasAnchor">
+<h2><span class="header-section-number">7.1</span> Build Your Own Function<a href="section-functions.html#section-build-your-own-function" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To define a function, a name is assigned and the keyword <code>function</code> is used to denote the start of the function and its argument list. Functions are created using the <code>function()</code> directive and are stored as R objects just like anything else. In particular, they are R objects of class <em>function</em>. Functions can be passed as arguments to other functions. Functions can be nested, so that you can define a function inside another function.</p>
+<p>Below is the <strong>general template</strong></p>
+<div class="sourceCode" id="section-cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="section-functions.html#cb446-1"></a>function_name &lt;-<span class="st"> </span><span class="cf">function</span>(arg) {</span>
+<span id="cb446-2"><a href="section-functions.html#cb446-2"></a>    <span class="co"># Function Body</span></span>
+<span id="cb446-3"><a href="section-functions.html#cb446-3"></a>    ....</span>
+<span id="cb446-4"><a href="section-functions.html#cb446-4"></a>    <span class="kw">return</span>(return_value)</span>
+<span id="cb446-5"><a href="section-functions.html#cb446-5"></a>}</span></code></pre></div>
+<p>In this template we have the following key components</p>
+<ul>
+<li><code>function_name</code>: This is the actual name of the function. It is stored in R environment as an object with this name.</li>
+<li><code>function</code>: A directive which tells R a function is being created.</li>
+<li><code>arg</code>: An argument is a placeholder. When a function is invoked, you pass a value to the argument. Arguments are optional; that is, a function may contain no arguments. Also arguments can have default values.</li>
+<li><code>function body</code>: The function body contains a collection of statements that defines what the function does.</li>
+<li><code>return_value</code>: The output value of the function. If <code>return(return_value)</code> is not supplied then the return value of a function is the last expression in the function body to be evaluated. Your function can only return one object. This object can be any class of object you desire, like a vector, list or data frame, but you may only return one object.</li>
+</ul>
+<p>Below is an example of converting a temperature from Fahrenheit to Celsius.</p>
+<div class="sourceCode" id="section-cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="section-functions.html#cb447-1"></a><span class="co"># Convert temperature from Fahrenheit (F) to Celsius (C)</span></span>
+<span id="cb447-2"><a href="section-functions.html#cb447-2"></a><span class="co"># ARGUMENTS: temp_F, a numeric vector of length 1 in F</span></span>
+<span id="cb447-3"><a href="section-functions.html#cb447-3"></a><span class="co"># units RETURNS: temp_C, a numeric vector of length 1 in C</span></span>
+<span id="cb447-4"><a href="section-functions.html#cb447-4"></a><span class="co"># units</span></span>
+<span id="cb447-5"><a href="section-functions.html#cb447-5"></a>fahrenheit_to_celsius &lt;-<span class="st"> </span><span class="cf">function</span>(temp_F) {</span>
+<span id="cb447-6"><a href="section-functions.html#cb447-6"></a>    temp_C =<span class="st"> </span>(temp_F <span class="op">-</span><span class="st"> </span><span class="dv">32</span>) <span class="op">*</span><span class="st"> </span><span class="dv">5</span><span class="op">/</span><span class="dv">9</span></span>
+<span id="cb447-7"><a href="section-functions.html#cb447-7"></a>    <span class="kw">return</span>(temp_C)</span>
+<span id="cb447-8"><a href="section-functions.html#cb447-8"></a>}</span></code></pre></div>
+<p>In this example the function name is <code>fahrenheit_to_celsius</code>, there is only one input or argument, <code>temp_F</code>, and the output is the object <code>temp_C</code>.</p>
+<p>Now if we would like to “call” this function we can simply put into the command console the function name and desired input.</p>
+<div class="sourceCode" id="section-cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="section-functions.html#cb448-1"></a><span class="co"># Convert 87F to Celsius</span></span>
+<span id="cb448-2"><a href="section-functions.html#cb448-2"></a><span class="kw">fahrenheit_to_celsius</span>(<span class="dt">temp_F =</span> <span class="dv">87</span>)</span></code></pre></div>
+<pre><code>## [1] 30.55556</code></pre>
+<p>What would happen if we tried to call this function without supplying an input? This would result in an error.</p>
+<div class="sourceCode" id="section-cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="section-functions.html#cb450-1"></a><span class="co"># temp_F not defined.</span></span>
+<span id="cb450-2"><a href="section-functions.html#cb450-2"></a><span class="kw">fahrenheit_to_celsius</span>()</span></code></pre></div>
+<pre><code>Error in fahrenheit_to_celsius() : 
+  argument &quot;temp_F&quot; is missing, with no default</code></pre>
+<p>With functions we can define function arguments to have default values. These default values are used only if the user did not supply an argument value. Observe the example below.</p>
+<div class="sourceCode" id="section-cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="section-functions.html#cb452-1"></a><span class="co"># An example function, does simply algebra ARGUMENTS: a = 1</span></span>
+<span id="cb452-2"><a href="section-functions.html#cb452-2"></a><span class="co"># (default), a numeric vector of length 1 b, a numeric</span></span>
+<span id="cb452-3"><a href="section-functions.html#cb452-3"></a><span class="co"># vector of length 1 RETURNS: d, a numeric vector of length</span></span>
+<span id="cb452-4"><a href="section-functions.html#cb452-4"></a><span class="co"># 1</span></span>
+<span id="cb452-5"><a href="section-functions.html#cb452-5"></a>example_func &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">a =</span> <span class="dv">1</span>, b) {</span>
+<span id="cb452-6"><a href="section-functions.html#cb452-6"></a>    c =<span class="st"> </span>a <span class="op">+</span><span class="st"> </span>b</span>
+<span id="cb452-7"><a href="section-functions.html#cb452-7"></a>    d =<span class="st"> </span>c <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb452-8"><a href="section-functions.html#cb452-8"></a></span>
+<span id="cb452-9"><a href="section-functions.html#cb452-9"></a>    <span class="co"># returns a+b+1</span></span>
+<span id="cb452-10"><a href="section-functions.html#cb452-10"></a>    <span class="kw">return</span>(d)</span>
+<span id="cb452-11"><a href="section-functions.html#cb452-11"></a>}</span>
+<span id="cb452-12"><a href="section-functions.html#cb452-12"></a></span>
+<span id="cb452-13"><a href="section-functions.html#cb452-13"></a><span class="co"># Call example function</span></span>
+<span id="cb452-14"><a href="section-functions.html#cb452-14"></a><span class="kw">example_func</span>(<span class="dt">a =</span> <span class="dv">2</span>, <span class="dt">b =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<div class="sourceCode" id="section-cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="section-functions.html#cb454-1"></a><span class="kw">example_func</span>(<span class="dt">b =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<p>Further notice that R has three ways to match function inputs to the formal arguments of the function definition. R attempts to match inputs to arguements in the following order.</p>
+<ol style="list-style-type: decimal">
+<li><p>by complete name</p></li>
+<li><p>by partial name (matching on initial <em>n</em> characters of the argument name)</p></li>
+<li><p>by position</p></li>
+</ol>
+<p>After running a function command R first attempts to match arguments by complete name, then by partial name, and then by position. If it unable to match inputs to an argument it then uses the default argument value, if one exists.</p>
+<p>Observe:</p>
+<div class="sourceCode" id="section-cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="section-functions.html#cb456-1"></a><span class="kw">example_func</span>(<span class="dv">2</span>, <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<div class="sourceCode" id="section-cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="section-functions.html#cb458-1"></a><span class="kw">example_func</span>(<span class="dt">b =</span> <span class="dv">3</span>, <span class="dt">a =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<div class="sourceCode" id="section-cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="section-functions.html#cb460-1"></a><span class="kw">example_func</span>(<span class="dt">a =</span> <span class="dv">2</span>, <span class="dt">b =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+</div>
+<div id="section-lexical-scoping" class="section level2 hasAnchor">
+<h2><span class="header-section-number">7.2</span> Lexical Scoping<a href="section-functions.html#section-lexical-scoping" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>With all these examples of functions, notice that in your global environment, only the function name was added. The function arguments, return values, and all objects defined inside the function are not a part of the global environment. This is not a mistake. We can define objects locally, or temporarily, when using functions. These objects are created and used only when the function is running, and quickly discarded once the function finishes. They never are listed in the global environment.</p>
+<p>Sometimes you may have an object defined in multiple places. When this happens, R uses a system of rules to determine which definition it will use. In other words, how and where we define an object determines the objects <em>scope</em>, or range of places that we can use this object. The system of rules R uses for searching for objects is called <em>lexical scoping</em>, as opposed to other types of scoping. With this system R looks for objects that are called in a function within the itself, then any enclosing environments, then the global environment, and lastly looking at objects in packages or built-in objects. This is the same searching method that we see in Python and Java.</p>
+<p><img src="images/Scoping.png" width="1314" style="display: block; margin: auto;" /></p>
+</div>
+<div id="section-built-in-functions" class="section level2 hasAnchor">
+<h2><span class="header-section-number">7.3</span> Built-In Functions<a href="section-functions.html#section-built-in-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>R has functions built-in to it just like excel. You can call these built-in function at any time. We have already seen a few of these functions.</p>
+<ul>
+<li><code>c()</code></li>
+<li><code>class()</code></li>
+<li><code>matrix()</code></li>
+<li><code>data.frame()</code></li>
+</ul>
+<p>Below are a few more examples using the built-in dataset <code>mtcars</code>, we will use <code>mtcars$mpg</code> as a vector of data to analyze.</p>
+<ul>
+<li><code>mean()</code>: Takes in a vector, and returns the mean of the values in the vector.</li>
+</ul>
+<div class="sourceCode" id="section-cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="section-functions.html#cb462-1"></a><span class="kw">mean</span>(mtcars<span class="op">$</span>mpg)</span></code></pre></div>
+<pre><code>## [1] 20.09062</code></pre>
+<ul>
+<li><code>median()</code>: Takes in a vector, and returns the median of the values in the vector.</li>
+</ul>
+<div class="sourceCode" id="section-cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="section-functions.html#cb464-1"></a><span class="kw">median</span>(mtcars<span class="op">$</span>mpg)</span></code></pre></div>
+<pre><code>## [1] 19.2</code></pre>
+<ul>
+<li><code>var()</code>: Takes in a vector, and returns the variance of the values in the vector.</li>
+</ul>
+<div class="sourceCode" id="section-cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="section-functions.html#cb466-1"></a><span class="kw">var</span>(mtcars<span class="op">$</span>mpg)</span></code></pre></div>
+<pre><code>## [1] 36.3241</code></pre>
+<ul>
+<li><code>sqrt()</code>: If you give it a vector, it returns the square root of each element in the vector. If you give it a single number, it returns the square root of the number.</li>
+</ul>
+<div class="sourceCode" id="section-cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="section-functions.html#cb468-1"></a><span class="kw">sqrt</span>(mtcars<span class="op">$</span>mpg)</span></code></pre></div>
+<pre><code>##  [1] 4.582576 4.582576 4.774935 4.626013 4.324350 4.254409 3.781534 4.939636
+##  [9] 4.774935 4.381780 4.219005 4.049691 4.159327 3.898718 3.224903 3.224903
+## [17] 3.834058 5.692100 5.513620 5.822371 4.636809 3.937004 3.898718 3.646917
+## [25] 4.381780 5.224940 5.099020 5.513620 3.974921 4.438468 3.872983 4.626013</code></pre>
+<ul>
+<li><code>sd()</code>: Takes in a vector, and returns the standard deviation of the values in the vector.</li>
+</ul>
+<div class="sourceCode" id="section-cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="section-functions.html#cb470-1"></a><span class="kw">sd</span>(mtcars<span class="op">$</span>mpg)</span></code></pre></div>
+<pre><code>## [1] 6.026948</code></pre>
+<ul>
+<li><code>range()</code>: Takes in a vector, and returns the minimum AND maximum of the values in the vector.</li>
+</ul>
+<div class="sourceCode" id="section-cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="section-functions.html#cb472-1"></a><span class="kw">range</span>(mtcars<span class="op">$</span>mpg)</span></code></pre></div>
+<pre><code>## [1] 10.4 33.9</code></pre>
+<ul>
+<li><code>quantile()</code>: Takes in a vector as the first argument, and a vector of values between 0 and 1 (any number of values) for the second argument. It will return the corresponding quantiles of the values in the first vector specified by the second vector.</li>
+</ul>
+<p>To get the <span class="math inline">\(10^{th}\)</span> and <span class="math inline">\(90^{th}\)</span> percentiles:</p>
+<div class="sourceCode" id="section-cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="section-functions.html#cb474-1"></a><span class="kw">quantile</span>(mtcars<span class="op">$</span>mpg, <span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>))</span></code></pre></div>
+<pre><code>##   10%   90% 
+## 14.34 30.09</code></pre>
+<ul>
+<li><code>summary()</code>: You can give this a dataset OR a vector. It returns some summary information about the values in the dataset or vector.</li>
+</ul>
+<div class="sourceCode" id="section-cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="section-functions.html#cb476-1"></a><span class="kw">summary</span>(cars<span class="op">$</span>speed)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##     4.0    12.0    15.0    15.4    19.0    25.0</code></pre>
+<p>One of the great advantages of using R is that there is a ton of resources available to learn about it. However, this can also be a disadvantage because of the vast amount of information available. The best and first resource you should look at when trying learn more about R functions is the <strong>Help files</strong>.</p>
+</div>
+<div id="section-vectorization" class="section level2 hasAnchor">
+<h2><span class="header-section-number">7.4</span> Vectorization<a href="section-functions.html#section-vectorization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="section-help-files" class="section level2 hasAnchor">
+<h2><span class="header-section-number">7.5</span> Help Files<a href="section-functions.html#section-help-files" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The Help files are in R and can be viewed from the lower right window by clicking the <em>Help</em> tab. Here you can search by function name to read about it. Each built in function has a help files, sometimes similar functions are grouped together in the same file. The R Help Files are typically the best resource to get help.</p>
+<p>The R Help files follow a fairly standard outline. You find most of the following sections in every R Help file:</p>
+<ul>
+<li><p><strong>Title</strong>: A one-sentence overview of the function.</p></li>
+<li><p><strong>Description</strong>: An introduction to the high-level objectives of the function, typically about one paragraph long.</p></li>
+<li><p><strong>Usage</strong>: A description of the syntax of the function (in other words, how the function is called). This is where you find all the arguments that you can supply to the function, as well as any default values of these arguments.</p></li>
+<li><p><strong>Arguments</strong>: A description of each argument. Usually this includes a specification of the class (for example, character, numeric, list, and so on). This section is an important one to understand, because arguments are frequently a cause of errors in R.</p></li>
+<li><p><strong>Details</strong>: Extended details about how the function works, provides longer descriptions of the various ways to call the function (if applicable), and a longer discussion of the arguments.</p></li>
+<li><p><strong>Value</strong>: A description of the class of the value returned by the function.</p></li>
+<li><p><strong>See also</strong>: Links to other relevant functions. In most of the R editors, you can click these links to read the Help files for these functions.</p></li>
+<li><p><strong>Examples</strong>: Worked examples of real R code that you can paste into your console and run.</p></li>
+</ul>
+<p>An alternative way to view a functions help file is by typing <code>?</code> followed by the function name, or by typing <code>help(function_name)</code>.</p>
+<div class="sourceCode" id="section-cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="section-functions.html#cb478-1"></a><span class="co"># Find a help file for the function `rep`</span></span>
+<span id="cb478-2"><a href="section-functions.html#cb478-2"></a><span class="st">`</span><span class="dt">?</span><span class="st">`</span>(rep)</span>
+<span id="cb478-3"><a href="section-functions.html#cb478-3"></a><span class="kw">help</span>(rep)</span></code></pre></div>
+<p>If you are not sure exactly which function you want, you can use <code>??</code> followed by what you believe the function name is to look at a list of functions.</p>
+<div class="sourceCode" id="section-cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="section-functions.html#cb479-1"></a><span class="st">`</span><span class="dt">?</span><span class="st">`</span>(<span class="st">`</span><span class="dt">?</span><span class="st">`</span>(rep))</span></code></pre></div>
+</div>
+<div id="section-dots" class="section level2 hasAnchor">
+<h2><span class="header-section-number">7.6</span> The … Argument<a href="section-functions.html#section-dots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>There is a special argument function <code>...</code> that can be used. Sometimes we call a function within a function that has a different set of arguments. We can use the <code>...</code> argument as a general placeholder for passing along any additional arguments in a function call.</p>
+<div class="sourceCode" id="section-cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="section-functions.html#cb480-1"></a><span class="co"># An example function, uses the ... argument and calls</span></span>
+<span id="cb480-2"><a href="section-functions.html#cb480-2"></a><span class="co"># fun2() ARGUMENTS: x , a numeric vector of length 1 ...,</span></span>
+<span id="cb480-3"><a href="section-functions.html#cb480-3"></a><span class="co"># all additional arguments to be passed to fun2() RETURNS:</span></span>
+<span id="cb480-4"><a href="section-functions.html#cb480-4"></a><span class="co"># z, a numeric vector of length 1</span></span>
+<span id="cb480-5"><a href="section-functions.html#cb480-5"></a>fun1 &lt;-<span class="st"> </span><span class="cf">function</span>(x, ...) {</span>
+<span id="cb480-6"><a href="section-functions.html#cb480-6"></a>    y =<span class="st"> </span><span class="kw">fun2</span>(...)</span>
+<span id="cb480-7"><a href="section-functions.html#cb480-7"></a>    z =<span class="st"> </span>x <span class="op">+</span><span class="st"> </span>y</span>
+<span id="cb480-8"><a href="section-functions.html#cb480-8"></a>    <span class="kw">return</span>(z)</span>
+<span id="cb480-9"><a href="section-functions.html#cb480-9"></a>}</span>
+<span id="cb480-10"><a href="section-functions.html#cb480-10"></a></span>
+<span id="cb480-11"><a href="section-functions.html#cb480-11"></a><span class="co"># Support function for fun1() ARGUMENTS: a , a numeric</span></span>
+<span id="cb480-12"><a href="section-functions.html#cb480-12"></a><span class="co"># vector of length 1 RETURNS: b, a numeric vector of length</span></span>
+<span id="cb480-13"><a href="section-functions.html#cb480-13"></a><span class="co"># 1</span></span>
+<span id="cb480-14"><a href="section-functions.html#cb480-14"></a>fun2 &lt;-<span class="st"> </span><span class="cf">function</span>(a) {</span>
+<span id="cb480-15"><a href="section-functions.html#cb480-15"></a>    b =<span class="st"> </span>a<span class="op">^</span><span class="dv">2</span></span>
+<span id="cb480-16"><a href="section-functions.html#cb480-16"></a>    <span class="kw">return</span>(b)</span>
+<span id="cb480-17"><a href="section-functions.html#cb480-17"></a>}</span>
+<span id="cb480-18"><a href="section-functions.html#cb480-18"></a></span>
+<span id="cb480-19"><a href="section-functions.html#cb480-19"></a><span class="co"># Returns 1 + 2^2 = 5</span></span>
+<span id="cb480-20"><a href="section-functions.html#cb480-20"></a><span class="kw">fun1</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<p>We can also use the <code>...</code> argument in a nested fashion.</p>
+<div class="sourceCode" id="section-cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="section-functions.html#cb482-1"></a><span class="co"># An example function, uses the ... argument and calls</span></span>
+<span id="cb482-2"><a href="section-functions.html#cb482-2"></a><span class="co"># fun2() ARGUMENTS: x , a numeric vector of length 1 ...,</span></span>
+<span id="cb482-3"><a href="section-functions.html#cb482-3"></a><span class="co"># all additional arguments to be passed to fun2() RETURNS:</span></span>
+<span id="cb482-4"><a href="section-functions.html#cb482-4"></a><span class="co"># z, a numeric vector of length 1</span></span>
+<span id="cb482-5"><a href="section-functions.html#cb482-5"></a>fun1 &lt;-<span class="st"> </span><span class="cf">function</span>(x, ...) {</span>
+<span id="cb482-6"><a href="section-functions.html#cb482-6"></a>    y =<span class="st"> </span><span class="kw">fun2</span>(...)</span>
+<span id="cb482-7"><a href="section-functions.html#cb482-7"></a>    z =<span class="st"> </span>x <span class="op">+</span><span class="st"> </span>y</span>
+<span id="cb482-8"><a href="section-functions.html#cb482-8"></a>    <span class="kw">return</span>(z)</span>
+<span id="cb482-9"><a href="section-functions.html#cb482-9"></a>}</span>
+<span id="cb482-10"><a href="section-functions.html#cb482-10"></a></span>
+<span id="cb482-11"><a href="section-functions.html#cb482-11"></a><span class="co"># Support function for fun1(), calls fun3() ARGUMENTS: a ,</span></span>
+<span id="cb482-12"><a href="section-functions.html#cb482-12"></a><span class="co"># a numeric vector of length 1 ..., all additional</span></span>
+<span id="cb482-13"><a href="section-functions.html#cb482-13"></a><span class="co"># arguments to be passed to fun3() RETURNS: c, a numeric</span></span>
+<span id="cb482-14"><a href="section-functions.html#cb482-14"></a><span class="co"># vector of length 1</span></span>
+<span id="cb482-15"><a href="section-functions.html#cb482-15"></a>fun2 &lt;-<span class="st"> </span><span class="cf">function</span>(a, ...) {</span>
+<span id="cb482-16"><a href="section-functions.html#cb482-16"></a>    b =<span class="st"> </span><span class="kw">fun3</span>(...)</span>
+<span id="cb482-17"><a href="section-functions.html#cb482-17"></a>    c =<span class="st"> </span>a<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>b</span>
+<span id="cb482-18"><a href="section-functions.html#cb482-18"></a>    <span class="kw">return</span>(c)</span>
+<span id="cb482-19"><a href="section-functions.html#cb482-19"></a>}</span>
+<span id="cb482-20"><a href="section-functions.html#cb482-20"></a></span>
+<span id="cb482-21"><a href="section-functions.html#cb482-21"></a><span class="co"># Support function for fun1() and fun2(), called by fun2()</span></span>
+<span id="cb482-22"><a href="section-functions.html#cb482-22"></a><span class="co"># ARGUMENTS: n , a numeric vector of length 1 RETURNS: n, a</span></span>
+<span id="cb482-23"><a href="section-functions.html#cb482-23"></a><span class="co"># numeric vector of length 1</span></span>
+<span id="cb482-24"><a href="section-functions.html#cb482-24"></a>fun3 &lt;-<span class="st"> </span><span class="cf">function</span>(n) {</span>
+<span id="cb482-25"><a href="section-functions.html#cb482-25"></a>    n =<span class="st"> </span><span class="kw">sqrt</span>(n)</span>
+<span id="cb482-26"><a href="section-functions.html#cb482-26"></a>    <span class="kw">return</span>(n)</span>
+<span id="cb482-27"><a href="section-functions.html#cb482-27"></a>}</span>
+<span id="cb482-28"><a href="section-functions.html#cb482-28"></a></span>
+<span id="cb482-29"><a href="section-functions.html#cb482-29"></a><span class="co"># Returns: 1 + 2^2 + sqrt(4) = 7</span></span>
+<span id="cb482-30"><a href="section-functions.html#cb482-30"></a><span class="kw">fun1</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## [1] 7</code></pre>
+<div class="sourceCode" id="section-cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="section-functions.html#cb484-1"></a><span class="co"># Returns: 1 + 2^2 + sqrt(4) = 7 Define each input</span></span>
+<span id="cb484-2"><a href="section-functions.html#cb484-2"></a><span class="co"># explicitly</span></span>
+<span id="cb484-3"><a href="section-functions.html#cb484-3"></a><span class="kw">fun1</span>(<span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">a =</span> <span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## [1] 7</code></pre>
+<p>When using the <code>...</code> argument it is customary to always place <code>...</code> at the end of a function argument list, as it can be difficult for R to determine which arguments are to be passed to the next function. If possible, it is good practice to explicitly define the arguments to avoid an error.</p>
+</div>
+<div id="section-generic-functions" class="section level2 hasAnchor">
+<h2><span class="header-section-number">7.7</span> Generic Functions<a href="section-functions.html#section-generic-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In R we have something called <em>generic functions</em> which are functions that behave differently depending on the class type of one of the arguments. Typically generic functions depend on the class of the first argument. The functions <code>mean()</code>, <code>summary()</code>, and <code>plot()</code> are all generic functions. These functions act as a “middle man” or a “dispatcher”. The generic function calls the actual function you desire. For example, when we call <code>summary()</code> and the first argument is a <code>lm</code> object, then the summary function that is actually run is <code>summary.lm()</code> which may have its own help file.</p>
+</div>
+<div id="section-additional-resources-3" class="section level2 unnumbered hasAnchor">
+<h2>Additional Resources<a href="section-functions.html#section-additional-resources-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><a href="https://bookdown.org/rdpeng/rprogdatascience/functions.html#the-...-argument">Chapter 14 of “R for Programming in Data Science”</a></li>
+<li><a href="https://adv-r.hadley.nz/s3.html">Chapter 13 of “Advanced R”</a></li>
+<li>Videos:
+<ul>
+<li><a href="https://ucr.yuja.com/V/Video?v=2390137&amp;node=8588230&amp;a=1409376127&amp;autoplay=1">R Functions 1 | Anatomy of a Function</a></li>
+<li><a href="https://ucr.yuja.com/V/Video?v=2368890&amp;node=8488096&amp;a=1477744713&amp;autoplay=1">R Functions 2 | Getting Help</a></li>
+<li><a href="https://ucr.yuja.com/V/Video?v=2368889&amp;node=8488095&amp;a=762120086&amp;autoplay=1">R Functions 3 | Argument Order and Default Values</a></li>
+<li><a href="https://ucr.yuja.com/V/Video?v=2700489&amp;node=9649685&amp;a=1404409900&amp;autoplay=1">Writing Functions 1 | Introduction</a></li>
+<li><a href="https://ucr.yuja.com/V/Video?v=2700492&amp;node=9649688&amp;a=604881114&amp;autoplay=1">Writing Functions 2 | 4 Fundamental Steps</a></li>
+</ul></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="section-working-with-data-sets.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-if-statements.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/07-functions.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

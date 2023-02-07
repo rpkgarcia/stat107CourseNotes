@@ -115,7 +115,7 @@
 
 \title{STAT 107 Outline of Class Notes}
 \author{Rebecca Kurtz-Garcia}
-\date{2022-10-20}
+\date{2023-02-06}
 
 \begin{document}
 \maketitle
@@ -4659,8 +4659,8 @@ We can pair an \texttt{if} statement with an \texttt{else} value. After the \tex
 ## [1] "number"
 \end{verbatim}
 
-\hypertarget{else-if}{%
-\section{Else If}\label{else-if}}
+\hypertarget{elseif}{%
+\section{Else If}\label{elseif}}
 
 Sometimes we will want to do a sequence of checks that are all related, and we will only want code to run if the previous \texttt{if} statements were \texttt{FALSE} and another criteria is \texttt{TRUE}. We can use \texttt{else\ if} to implement these rules.
 
@@ -4861,7 +4861,7 @@ When we want to do a vectorized approach for if-statements we generally have two
 ## [6] "positive"     "positive"
 \end{verbatim}
 
-Here is a more complicated example that we can use to find all cars in the \texttt{mtcars} data set that have a high horsepower and are fuel efficient, i.e.~cars have \texttt{mpg\ \textgreater{}\ 25} and \texttt{hp\ \textgreater{}\ 60}.
+Here is another example that we can use to find all cars in the \texttt{mtcars} data set that have a high horsepower and are fuel efficient, i.e.~cars have \texttt{mpg\ \textgreater{}\ 25} and \texttt{hp\ \textgreater{}\ 60}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4873,93 +4873,6 @@ Here is a more complicated example that we can use to find all cars in the \text
 
 \begin{verbatim}
 ## [1] 0.15625
-\end{verbatim}
-
-\hypertarget{vectorizeifelse}{%
-\section{Vectorizing If-Statments}\label{vectorizeifelse}}
-
-The \texttt{ifelse()} function is useful when we are vectorizing a simple if-else statment. When we have something more complicated we either need to do a combination of \texttt{ifelse()} functions that are nested together, which can be hard to read, or we need to consider another option.
-
-Are second option is to use one of the \texttt{*apply} functions, which we will be discussed in more detail in a later chapter. The \texttt{*apply} functions are used to vectorized functions in R and make them more efficient. The \texttt{*apply} functions are technically \textbf{functionals}. A \textbf{functional} in mathematics (and programming) is a function that accepts another function as an input. There are many different types of apply functions, for now we will just focus on the most common one, the \texttt{sapply()} function.
-
-Let us consider a more complicated example where we might want to consider an \texttt{*apply} function. In the below example we want to find each value of \texttt{x} that is an even positive number, odd positive number, and non-positive number
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\DecValTok{-3}\OperatorTok{:}\DecValTok{3}
-
-\ControlFlowTok{if}\NormalTok{ (x }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{) \{}
-    \ControlFlowTok{if}\NormalTok{ (x}\OperatorTok{%%}\DecValTok{2} \OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{) \{}
-\NormalTok{        type <-}\StringTok{ "even positive"}
-\NormalTok{    \} }\ControlFlowTok{else}\NormalTok{ \{}
-\NormalTok{        type <-}\StringTok{ "odd positive"}
-\NormalTok{    \}}
-\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
-\NormalTok{    type <-}\StringTok{ "non-positive"}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Warning in if (x > 0) {: the condition has length > 1 and only the first element
-## will be used
-\end{verbatim}
-
-Again, we have an error message because if-statements can only accept logical vectors of length 1, and our expression is generating a logical vector of length greater than 1. To use \texttt{sapply()} to vectorized this operation we need to change this chain if-statements into a function.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{EvenOdd <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(num) \{}
-    \ControlFlowTok{if}\NormalTok{ (num }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{) \{}
-        \ControlFlowTok{if}\NormalTok{ (num}\OperatorTok{%%}\DecValTok{2} \OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{) \{}
-\NormalTok{            type <-}\StringTok{ "even positive"}
-\NormalTok{        \} }\ControlFlowTok{else}\NormalTok{ \{}
-\NormalTok{            type <-}\StringTok{ "odd positive"}
-\NormalTok{        \}}
-\NormalTok{    \} }\ControlFlowTok{else}\NormalTok{ \{}
-\NormalTok{        type <-}\StringTok{ "non-positive"}
-\NormalTok{    \}}
-    \KeywordTok{return}\NormalTok{(type)}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-This will still generate an error message if we call \texttt{EvenOdd(x)} because our input is still a vector greater than 1. To use \texttt{sapply()} we can do the following:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\DecValTok{-3}\OperatorTok{:}\DecValTok{3}
-\KeywordTok{sapply}\NormalTok{(x, EvenOdd)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "non-positive"  "non-positive"  "non-positive"  "non-positive" 
-## [5] "odd positive"  "even positive" "odd positive"
-\end{verbatim}
-
-The first argument, labeled as \texttt{X} in the help file, is the object that contains the elements we want to apply the function to. The second argument, labeled as \texttt{FUN} in the help file, is the function that is applied to each element of \texttt{X}. We can make much more complicated if-statement changes and apply them to vectors using \texttt{sapply()}.
-
-If we wanted to vectorize a function that had multiple inputs like the \texttt{Toyfun} function above we can do that with another \texttt{*apply} function, \texttt{mapply()}. This function iterates over mutltiple inputs simultaneously. Consider the following vectors
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{X_input <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{)}
-\NormalTok{Y_input <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{100}\NormalTok{, }\DecValTok{50}\NormalTok{, }\DecValTok{25}\NormalTok{)}
-\NormalTok{Do_input <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Add"}\NormalTok{, }\StringTok{"Subtract"}\NormalTok{, }\StringTok{"Multiply"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-Suppose we wish to add the first elements of \texttt{X\_input} and \texttt{Y\_input}, subtract the second elements \texttt{X\_input} and \texttt{Y\_input}, and multiply the last elements of \texttt{X\_input} and \texttt{Y\_input}. We can do this iteratively all at once with \texttt{mapply()}. If we look at the \texttt{mapply()} help file the first two arguments are \texttt{FUN} and \texttt{...}. The \texttt{FUN} arguement is the function we wish to apply, and the \texttt{...} represents the inputted values we want to iterative over. The vectors supplied in \texttt{...} will all be called one at a time. That is, the first elements of all the vectors passed via \texttt{...} will be called first, followed by the second elements, and so on.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{mapply}\NormalTok{(Toyfun, }\DataTypeTok{X =}\NormalTok{ X_input, }\DataTypeTok{Y =}\NormalTok{ Y_input, }\DataTypeTok{Do =}\NormalTok{ Do_input)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 101 -48  75
 \end{verbatim}
 
 \hypertarget{additional-resources-4}{%
@@ -4988,99 +4901,947 @@ Suppose we wish to add the first elements of \texttt{X\_input} and \texttt{Y\_in
   \end{itemize}
 \end{itemize}
 
-\hypertarget{packages}{%
-\chapter{Packages}\label{packages}}
+\hypertarget{apply-family-of-functions}{%
+\chapter{*apply Family of Functions}\label{apply-family-of-functions}}
 
-\texttt{R} packages are a collection of \texttt{R} functions, complied code and sample data. They are stored under a directory called ``library'' in the \texttt{R} environment. By default, \texttt{R} installs a set of packages during installation. More packages are added later, when they are needed for some specific purpose. When we start the \texttt{R} console, only the default packages are available by default. Other packages which are already installed have to be loaded explicitly to be used by the \texttt{R} program that is going to use them.
+\hypertarget{introduction-to-the-apply-family}{%
+\section{Introduction to the *apply family}\label{introduction-to-the-apply-family}}
 
-All the packages available in \texttt{R} language are listed at \href{https://cran.r-project.org/web/packages/available_packages_by_name.html}{R Packages}.
+You may have seen loops (like \texttt{for}, and \texttt{while}) in another class, which are used to repeatedly execute some code. However, they are often slow in execution when it comes to processing large data sets in \texttt{R}.\texttt{R} has a more efficient and quick approach to perform iterations -- **The *apply family**.
 
-To see a list of all packages installed on your device.
+The \texttt{*apply} functions are used to vectorized functions in R and make them more efficient. The \texttt{*apply} functions are technically \textbf{functionals}. A \textbf{functional} in mathematics (and programming) is a function that accepts another function as an input. Below are the most common forms of apply functions.
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{apply()}
+\item
+  \texttt{lapply()}
+\item
+  \texttt{sapply()}
+\item
+  \texttt{tapply()}
+\item
+  \texttt{mapply()}
+\item
+  \texttt{replicate()}
+\end{itemize}
+
+These functions apply a function to different components of a vector/list/dataframe/array in a non-sequential way. In general, if each element in your object is not dependent on the other elements of your object then an apply function is usually faster than a loop.
+
+\begin{center}\includegraphics[width=0.9\linewidth]{images/lapplyGraphic} \end{center}
+
+\hypertarget{apply}{%
+\section{apply()}\label{apply}}
+
+The \texttt{apply()}function is used to apply a function to the rows or columns of arrays (matrices). It assembles the returned values, and then returns it in a vector, array, or list.
+
+If you want to apply a function on a data frame, make sure that the data frame is homogeneous (i.e.~all columns have numeric values, all columns have character strings, etc). Otherwise, R will force all columns to have identical types using \texttt{as.matrix()}. This may not be what you want. In that case, you might consider using the \texttt{lapply()} or \texttt{sapply()} functions instead.
+
+Description of the required \texttt{apply()} arguments:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{X}: A array (or matrix)
+\item
+  \texttt{MARGIN}: A vector giving the subscripts which the function will be applied over.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    1 indicates rows
+  \item
+    2 indicates columns
+  \item
+    c(1, 2) indicates rows and columns
+  \end{itemize}
+\item
+  \texttt{FUN}: The function to be applied
+\item
+  \texttt{...}: Additional arguments to be passed to ``FUN''
+\end{itemize}
+
+\hypertarget{example-built-in-function}{%
+\subsection*{Example: Built In Function}\label{example-built-in-function}}
+\addcontentsline{toc}{subsection}{Example: Built In Function}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-To see a list of all packages that are currently loaded (note that yours will likely look different).
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{search}\NormalTok{()}
+\CommentTok{# Get column means}
+\NormalTok{data <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{9}\NormalTok{, }\DataTypeTok{nrow =} \DecValTok{3}\NormalTok{, }\DataTypeTok{ncol =} \DecValTok{3}\NormalTok{)}
+\NormalTok{data}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] ".GlobalEnv"        "package:knitr"     "package:stats"    
-##  [4] "package:graphics"  "package:grDevices" "package:utils"    
-##  [7] "package:datasets"  "package:methods"   "Autoloads"        
-## [10] "package:base"
+##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9
 \end{verbatim}
 
-When adding a new package to our library we only have to install it once. We can do so with the following command.
-
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"library name"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-Alternatively, we can also go to the lower left hand window and select the \emph{Packages} tab. Then hit the button \textbf{Install}. A dropdown menu will appear where we can search for the package name.
-
-Before a package can be used in the code, it must be loaded to the current R environment. You also need to load a package that is already installed previously but not available in the current environment.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(}\StringTok{"library name"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-For example, suppose we wanted to install and load the package ``ggplot2'', (a very popular package for making plots). We would type the following commands.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Install package (only need to do this once)}
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"ggplot2"}\NormalTok{)}
-
-\CommentTok{# Load into working environment (need to do this for each}
-\CommentTok{# new R session)}
-\KeywordTok{library}\NormalTok{(}\StringTok{"ggplot2"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-It might seem strange to (1) have to download packages tto use features and (2) have to load these packages each time we wish to use them; however, there are several good reasons for doing packages in this way, and this system is considered a feature. We don't have all possible packages available to us at all times because that is a lot of information that R would need to store at once which could make our computer lag. These packages are also always being updated at different rates with different features. Most users will only utilize packages in CRAN, so having to update R each session for features you may never use would be tedious. Furthermore, there are several packages which contain objects and functions with the same name.
-
-\hypertarget{namespace-collisions}{%
-\section{Namespace Collisions}\label{namespace-collisions}}
-
-Every time we load a package into our environment the results for the \texttt{search()} function changes. The most recently added package is always listed after the global environment, followed by the second most recent, and so on.
-The \texttt{search()} function tells us how R searches for an object that we called. For example, consider the following command.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{v <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{)}
-\KeywordTok{mean}\NormalTok{(v)}
+\KeywordTok{apply}\NormalTok{(data, }\DecValTok{2}\NormalTok{, mean)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
+## [1] 2 5 8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Get row means}
+\KeywordTok{apply}\NormalTok{(data, }\DecValTok{1}\NormalTok{, sum)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 12 15 18
+\end{verbatim}
+
+\hypertarget{example-user-defined-function}{%
+\subsection*{Example: User Defined Function}\label{example-user-defined-function}}
+\addcontentsline{toc}{subsection}{Example: User Defined Function}
+
+You can use user-defined functions as well.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{apply}\NormalTok{(data, }\DecValTok{2}\NormalTok{, }\ControlFlowTok{function}\NormalTok{(x) \{}
+
+    \CommentTok{# Standard deviation formula}
+\NormalTok{    y <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(x }\OperatorTok{-}\StringTok{ }\KeywordTok{mean}\NormalTok{(x))}\OperatorTok{^}\DecValTok{2}\OperatorTok{/}\NormalTok{(}\KeywordTok{length}\NormalTok{(x) }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{)}
+
+    \KeywordTok{return}\NormalTok{(y)}
+\NormalTok{\})}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0 0 0
+\end{verbatim}
+
+\hypertarget{returned-objects}{%
+\subsection{Returned Objects}\label{returned-objects}}
+
+The values that \texttt{apply()} returns depends on the function \texttt{FUN}. If \texttt{FUN} returns an element of length 1, then \texttt{apply()} will return a vector. If \texttt{FUN} \emph{always} returns an element of length \texttt{n}\textgreater1, then \texttt{apply()} will return a matrix with \texttt{n} rows, and the number of columns will correspond to how many rows/columns were iterated over. Lastly, if \texttt{FUN} returns an object that would vary in length, then \texttt{apply()} will return a list where each element corresponds to a row or column that was iterated over. In short, \texttt{apply()} prioritizes returning a vector, array (or matrix), and list (in that order). What is returned depends on the output of \texttt{FUN}.
+
+\hypertarget{example-extra-arguments-array-output}{%
+\subsection{Example: Extra Arguments, Array Output}\label{example-extra-arguments-array-output}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{cbind}\NormalTok{(}\DataTypeTok{x1 =} \DecValTok{3}\NormalTok{, }\DataTypeTok{x2 =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\OperatorTok{:}\DecValTok{1}\NormalTok{, }\DecValTok{2}\OperatorTok{:}\DecValTok{5}\NormalTok{))}
+
+\NormalTok{fun1 <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, c1, c2) \{}
+\NormalTok{    mean_vec <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{mean}\NormalTok{(x[c1]), }\KeywordTok{mean}\NormalTok{(x[c2]))}
+    \KeywordTok{return}\NormalTok{(mean_vec)}
+\NormalTok{\}}
+
+\KeywordTok{apply}\NormalTok{(x, }\DecValTok{1}\NormalTok{, fun1, }\DataTypeTok{c1 =} \StringTok{"x1"}\NormalTok{, }\DataTypeTok{c2 =} \KeywordTok{c}\NormalTok{(}\StringTok{"x1"}\NormalTok{, }\StringTok{"x2"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
+## [1,]  3.0    3  3.0    3  3.0    3  3.0    3
+## [2,]  3.5    3  2.5    2  2.5    3  3.5    4
+\end{verbatim}
+
+\hypertarget{example-list-output}{%
+\subsection{Example: List Output}\label{example-list-output}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mat <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{-2}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{62}\NormalTok{, }\DecValTok{-2}\NormalTok{, }\DecValTok{-6}\NormalTok{), }\DataTypeTok{nrow =} \DecValTok{3}\NormalTok{)}
+
+\NormalTok{CheckPos <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(Vec) \{}
+    \CommentTok{# Subset values of Vec that are positive}
+\NormalTok{    PosVec <-}\StringTok{ }\NormalTok{Vec[Vec }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{]}
+
+    \CommentTok{# Return only the even values}
+    \KeywordTok{return}\NormalTok{(PosVec)}
+\NormalTok{\}}
+
+\CommentTok{# Check Positive values by column}
+\KeywordTok{apply}\NormalTok{(mat, }\DecValTok{2}\NormalTok{, CheckPos)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1]  2 20
+## 
+## [[3]]
+## [1] 62
+\end{verbatim}
+
+\hypertarget{lapply}{%
+\section{lapply()}\label{lapply}}
+
+The \texttt{lapply()} function is used to apply a function to each element of the list. It collects the returned values into a list, and then \textbf{returns that list} which is of the same length.
+
+Description of the required \texttt{lapply()} arguments:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{X}: A list
+\item
+  \texttt{FUN}: The function to be applied
+\item
+  \texttt{...}: Additional arguments to be passed to \texttt{FUN}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data_lst <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{item1 =} \DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{, }\DataTypeTok{item2 =} \KeywordTok{seq}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{36}\NormalTok{, }\DecValTok{8}\NormalTok{), }\DataTypeTok{item3 =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}
+    \DecValTok{3}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{9}\NormalTok{))}
+\NormalTok{data_lst}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $item1
+## [1] 1 2 3 4 5
+## 
+## $item2
+## [1]  4 12 20 28 36
+## 
+## $item3
+## [1] 1 3 5 7 9
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data_vector <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{8}\NormalTok{)}
+\NormalTok{data_vector}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1 2 3 4 5 6 7 8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lapply}\NormalTok{(data_lst, sum)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $item1
+## [1] 15
+## 
+## $item2
+## [1] 100
+## 
+## $item3
+## [1] 25
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lapply}\NormalTok{(data_vector, sum)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## [1] 1
+## 
+## [[2]]
 ## [1] 2
+## 
+## [[3]]
+## [1] 3
+## 
+## [[4]]
+## [1] 4
+## 
+## [[5]]
+## [1] 5
+## 
+## [[6]]
+## [1] 6
+## 
+## [[7]]
+## [1] 7
+## 
+## [[8]]
+## [1] 8
 \end{verbatim}
-
-In this case R is searching for the function mean first in the global environment, and then in the package in the order that appears in the output of the \texttt{search()} function. The package \texttt{base} is always last. In our case the function \texttt{mean()} is only defined in the base package. If you want to call a function from a specific package explicitly and want to be sure there is no confusion you can type the package name followed by \texttt{::} and the desired command.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{base}\OperatorTok{::}\KeywordTok{mean}\NormalTok{(v)}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{a =} \DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{beta =} \KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\DecValTok{3}\OperatorTok{:}\DecValTok{3}\NormalTok{), }\DataTypeTok{logic =} \KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{,}
+    \OtherTok{FALSE}\NormalTok{, }\OtherTok{TRUE}\NormalTok{))}
+
+\CommentTok{# compute the list mean for each list element}
+\KeywordTok{lapply}\NormalTok{(x, mean)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2
+## $a
+## [1] 5.5
+## 
+## $beta
+## [1] 4.535125
+## 
+## $logic
+## [1] 0.5
 \end{verbatim}
 
-This can be useful, but is not usually necessary.
+Unlike \texttt{apply()}, \texttt{lapply()} will always return a list. If the argument \texttt{X} is an object that is something other than a list then the \texttt{as.list()} function will be used to convert that object. Consider the built-in data set \texttt{iris} in R. If we use the \texttt{as.list()} function, each column will be converted into an element of a list.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(iris)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(}\KeywordTok{as.list}\NormalTok{(iris))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## List of 5
+##  $ Sepal.Length: num [1:150] 5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+##  $ Sepal.Width : num [1:150] 3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+##  $ Petal.Length: num [1:150] 1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+##  $ Petal.Width : num [1:150] 0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+##  $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
+\end{verbatim}
+
+Then if we use \texttt{lapply()} it will iterate over the columns. We can find all values within a column that are bigger than the column mean (just looking at the numeric columns though).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lapply}\NormalTok{(iris[, }\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{], }\ControlFlowTok{function}\NormalTok{(column) \{}
+\NormalTok{    big_values <-}\StringTok{ }\NormalTok{column[column }\OperatorTok{>}\StringTok{ }\KeywordTok{mean}\NormalTok{(column)]}
+    \KeywordTok{return}\NormalTok{(big_values)}
+\NormalTok{\})}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $Sepal.Length
+##  [1] 7.0 6.4 6.9 6.5 6.3 6.6 5.9 6.0 6.1 6.7 6.2 5.9 6.1 6.3 6.1 6.4 6.6 6.8 6.7
+## [20] 6.0 6.0 6.0 6.7 6.3 6.1 6.2 6.3 7.1 6.3 6.5 7.6 7.3 6.7 7.2 6.5 6.4 6.8 6.4
+## [39] 6.5 7.7 7.7 6.0 6.9 7.7 6.3 6.7 7.2 6.2 6.1 6.4 7.2 7.4 7.9 6.4 6.3 6.1 7.7
+## [58] 6.3 6.4 6.0 6.9 6.7 6.9 6.8 6.7 6.7 6.3 6.5 6.2 5.9
+## 
+## $Sepal.Width
+##  [1] 3.5 3.2 3.1 3.6 3.9 3.4 3.4 3.1 3.7 3.4 4.0 4.4 3.9 3.5 3.8 3.8 3.4 3.7 3.6
+## [20] 3.3 3.4 3.4 3.5 3.4 3.2 3.1 3.4 4.1 4.2 3.1 3.2 3.5 3.6 3.4 3.5 3.2 3.5 3.8
+## [39] 3.8 3.2 3.7 3.3 3.2 3.2 3.1 3.3 3.1 3.2 3.4 3.1 3.3 3.6 3.2 3.2 3.8 3.2 3.3
+## [58] 3.2 3.8 3.4 3.1 3.1 3.1 3.1 3.2 3.3 3.4
+## 
+## $Petal.Length
+##  [1] 4.7 4.5 4.9 4.0 4.6 4.5 4.7 4.6 3.9 4.2 4.0 4.7 4.4 4.5 4.1 4.5 3.9 4.8 4.0
+## [20] 4.9 4.7 4.3 4.4 4.8 5.0 4.5 3.8 3.9 5.1 4.5 4.5 4.7 4.4 4.1 4.0 4.4 4.6 4.0
+## [39] 4.2 4.2 4.2 4.3 4.1 6.0 5.1 5.9 5.6 5.8 6.6 4.5 6.3 5.8 6.1 5.1 5.3 5.5 5.0
+## [58] 5.1 5.3 5.5 6.7 6.9 5.0 5.7 4.9 6.7 4.9 5.7 6.0 4.8 4.9 5.6 5.8 6.1 6.4 5.6
+## [77] 5.1 5.6 6.1 5.6 5.5 4.8 5.4 5.6 5.1 5.1 5.9 5.7 5.2 5.0 5.2 5.4 5.1
+## 
+## $Petal.Width
+##  [1] 1.4 1.5 1.5 1.3 1.5 1.3 1.6 1.3 1.4 1.5 1.4 1.3 1.4 1.5 1.5 1.8 1.3 1.5 1.2
+## [20] 1.3 1.4 1.4 1.7 1.5 1.2 1.6 1.5 1.6 1.5 1.3 1.3 1.3 1.2 1.4 1.2 1.3 1.2 1.3
+## [39] 1.3 1.3 2.5 1.9 2.1 1.8 2.2 2.1 1.7 1.8 1.8 2.5 2.0 1.9 2.1 2.0 2.4 2.3 1.8
+## [58] 2.2 2.3 1.5 2.3 2.0 2.0 1.8 2.1 1.8 1.8 1.8 2.1 1.6 1.9 2.0 2.2 1.5 1.4 2.3
+## [77] 2.4 1.8 1.8 2.1 2.4 2.3 1.9 2.3 2.5 2.3 1.9 2.0 2.3 1.8
+\end{verbatim}
+
+\hypertarget{sapply}{%
+\section{sapply()}\label{sapply}}
+
+The \texttt{sapply()} and \texttt{lapply()} are very similar. The main difference is that \texttt{lapply()} always returns a list, whereas \texttt{sapply()} tries to simplify the result into a vector or matrix. The output for \texttt{sapply()} is just like the output of \texttt{apply()}, it depends on the dimensions of the returned value for \texttt{FUN}.
+
+\begin{itemize}
+\item
+  If the return value is a list where every element is length 1, you get a vector.
+\item
+  If the return value is a list where every element is a vector of the same length (\textgreater{} 1), you get a matrix.
+\item
+  If the lengths vary, simplification is impossible and you get a list.
+\end{itemize}
+
+Description of the required \texttt{sapply()} arguments:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{X}: A list
+\item
+  \texttt{FUN}: The function to be applied
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data_lst <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{item1 =} \DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{, }\DataTypeTok{item2 =} \KeywordTok{seq}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{36}\NormalTok{, }\DecValTok{8}\NormalTok{), }\DataTypeTok{item3 =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}
+    \DecValTok{3}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{9}\NormalTok{))}
+\NormalTok{data_lst}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $item1
+## [1] 1 2 3 4 5
+## 
+## $item2
+## [1]  4 12 20 28 36
+## 
+## $item3
+## [1] 1 3 5 7 9
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sapply}\NormalTok{(data_lst, sum)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## item1 item2 item3 
+##    15   100    25
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lapply}\NormalTok{(data_lst, sum)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $item1
+## [1] 15
+## 
+## $item2
+## [1] 100
+## 
+## $item3
+## [1] 25
+\end{verbatim}
+
+\hypertarget{tapply}{%
+\section{tapply()}\label{tapply}}
+
+The \texttt{tapply()} function breaks the data set up into groups and applies a function to each group.
+
+Description of the required \texttt{sapply()} arguments:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{X}: A 1 dimensional object
+\item
+  \texttt{INDEX}: A grouping factor or a list of factors
+\item
+  \texttt{FUN}: The function to be applied
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{name =} \KeywordTok{c}\NormalTok{(}\StringTok{"Amy"}\NormalTok{, }\StringTok{"Max"}\NormalTok{, }\StringTok{"Ray"}\NormalTok{, }\StringTok{"Kim"}\NormalTok{, }\StringTok{"Sam"}\NormalTok{,}
+    \StringTok{"Eve"}\NormalTok{, }\StringTok{"Bob"}\NormalTok{), }\DataTypeTok{age =} \KeywordTok{c}\NormalTok{(}\DecValTok{24}\NormalTok{, }\DecValTok{22}\NormalTok{, }\DecValTok{21}\NormalTok{, }\DecValTok{23}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{24}\NormalTok{, }\DecValTok{21}\NormalTok{), }\DataTypeTok{gender =} \KeywordTok{factor}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"F"}\NormalTok{,}
+    \StringTok{"M"}\NormalTok{, }\StringTok{"M"}\NormalTok{, }\StringTok{"F"}\NormalTok{, }\StringTok{"M"}\NormalTok{, }\StringTok{"F"}\NormalTok{, }\StringTok{"M"}\NormalTok{)))}
+
+\NormalTok{data}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   name age gender
+## 1  Amy  24      F
+## 2  Max  22      M
+## 3  Ray  21      M
+## 4  Kim  23      F
+## 5  Sam  20      M
+## 6  Eve  24      F
+## 7  Bob  21      M
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tapply}\NormalTok{(data}\OperatorTok{$}\NormalTok{age, data}\OperatorTok{$}\NormalTok{gender, min)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  F  M 
+## 23 20
+\end{verbatim}
+
+\hypertarget{mapply}{%
+\section{mapply()}\label{mapply}}
+
+The \texttt{mapply()} function is a multivariate version of \texttt{sapply()}. It applies \texttt{FUN} to the first elements of each \ldots{} argument, the second elements, the third elements, and so on.
+
+Description of the required \texttt{mapply()} arguments:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{FUN}: The function to be applied
+\item
+  \texttt{...}: Arguments to vectorize over (vectors or lists of strictly positive length, or all of zero length).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mapply}\NormalTok{(rep, }\DataTypeTok{times =} \DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{, }\DataTypeTok{x =} \DecValTok{4}\OperatorTok{:}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## [1] 4
+## 
+## [[2]]
+## [1] 3 3
+## 
+## [[3]]
+## [1] 2 2 2
+## 
+## [[4]]
+## [1] 1 1 1 1
+\end{verbatim}
+
+\hypertarget{replicate}{%
+\section{replicate()}\label{replicate}}
+
+The \texttt{replicate()} function is a wrapper for \texttt{sapply()}. If we want to repeat an evaluation of an function call or an expression that does not require us to iterate through a data set or vector we can use \texttt{replicate()}.
+
+Description of the required \texttt{replicate()} arguments:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{n}: An integer containing the number of replications.
+\item
+  \texttt{expr}: The expression (or function call) to evaluate repeatedly.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{replicate}\NormalTok{(}\DataTypeTok{n =} \DecValTok{4}\NormalTok{, }\StringTok{"Hello"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Hello" "Hello" "Hello" "Hello"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{replicate}\NormalTok{(}\DataTypeTok{n =} \DecValTok{10}\NormalTok{, }\KeywordTok{factorial}\NormalTok{(}\DecValTok{4}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 24 24 24 24 24 24 24 24 24 24
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{replicate}\NormalTok{(}\DataTypeTok{n =} \DecValTok{5}\NormalTok{, }\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1]   [,2]   [,3]   [,4]   [,5]  
+## [1,] "red"  "red"  "blue" "red"  "blue"
+## [2,] "blue" "blue" "red"  "blue" "red"
+\end{verbatim}
+
+\hypertarget{how-to-pick-a-method}{%
+\section{How to Pick a Method}\label{how-to-pick-a-method}}
+
+It can be difficult at first to decide which of these apply function you may want to use. In general, we can use the flow chart below as a quick guide.
+
+\includegraphics{images/apply_flowchart.png}
+
+\hypertarget{vectorizeifelse}{%
+\section{Vectorizing If-Statments}\label{vectorizeifelse}}
+
+The \texttt{ifelse()} function is useful when we are vectorizing a simple if-else statment. When we have something more complicated we either need to do a combination of \texttt{ifelse()} functions that are nested together, which can be hard to read, or we need to consider another option.
+
+Are second option is to use one of the \texttt{*apply} functions. There are many different types of apply functions, for now we will just focus on the most common one, the \texttt{sapply()} function.
+
+Let us consider a more complicated example where we might want to consider an \texttt{*apply} function. In the below example we want to find each value of \texttt{x} that is an even positive number, odd positive number, and non-positive number
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{3}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+
+\ControlFlowTok{if}\NormalTok{ (x }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{) \{}
+    \ControlFlowTok{if}\NormalTok{ (x}\OperatorTok{%%}\DecValTok{2} \OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{) \{}
+\NormalTok{        type <-}\StringTok{ "even positive"}
+\NormalTok{    \} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{        type <-}\StringTok{ "odd positive"}
+\NormalTok{    \}}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{    type <-}\StringTok{ "non-positive"}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in if (x > 0) {: the condition has length > 1 and only the first element
+## will be used
+\end{verbatim}
+
+With the above code we have an warning message because if-statements can only accept logical vectors of length 1, and our expression is generating a logical vector of length greater than 1. To use \texttt{sapply()} to vectorized this operation we need to change this chain of if-statements into a function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{EvenOdd <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(num) \{}
+    \ControlFlowTok{if}\NormalTok{ (num }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{) \{}
+        \ControlFlowTok{if}\NormalTok{ (num}\OperatorTok{%%}\DecValTok{2} \OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{) \{}
+\NormalTok{            type <-}\StringTok{ "even positive"}
+\NormalTok{        \} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{            type <-}\StringTok{ "odd positive"}
+\NormalTok{        \}}
+\NormalTok{    \} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{        type <-}\StringTok{ "non-positive"}
+\NormalTok{    \}}
+    \KeywordTok{return}\NormalTok{(type)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+This will still generate an error message if we call \texttt{EvenOdd(x)} because our input is still a vector greater than 1. To use \texttt{sapply()} we can do the following:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sapply}\NormalTok{(x, EvenOdd)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "non-positive" "non-positive" "odd positive"
+\end{verbatim}
+
+The first argument, labeled as \texttt{X} in the help file, is the object that contains the elements we want to apply the function to. The second argument, labeled as \texttt{FUN} in the help file, is the function that is applied to each element of \texttt{X}. We can make much more complicated if-statement changes and apply them to vectors using \texttt{sapply()}.
+
+If we wanted to vectorize a function that had multiple inputs like the \texttt{Toyfun} function seen in \ref{elseif}. we can do that with another \texttt{*apply} function, \texttt{mapply()}. This function iterates over mutltiple inputs simultaneously. Consider the following vectors
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X_input <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\NormalTok{Y_input <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{100}\NormalTok{, }\DecValTok{50}\NormalTok{, }\DecValTok{25}\NormalTok{)}
+\NormalTok{Do_input <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Add"}\NormalTok{, }\StringTok{"Subtract"}\NormalTok{, }\StringTok{"Multiply"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Suppose we wish to add the first elements of \texttt{X\_input} and \texttt{Y\_input}, subtract the second elements \texttt{X\_input} and \texttt{Y\_input}, and multiply the last elements of \texttt{X\_input} and \texttt{Y\_input}. We can do this iteratively all at once with \texttt{mapply()}. If we look at the \texttt{mapply()} help file the first two arguments are \texttt{FUN} and \texttt{...}. The \texttt{FUN} argument is the function we wish to apply, and the \texttt{...} represents the inputted values we want to iterative over. The vectors supplied in \texttt{...} will all be called one at a time. That is, the first elements of all the vectors passed via \texttt{...} will be called first, followed by the second elements, and so on.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mapply}\NormalTok{(Toyfun, }\DataTypeTok{X =}\NormalTok{ X_input, }\DataTypeTok{Y =}\NormalTok{ Y_input, }\DataTypeTok{Do =}\NormalTok{ Do_input)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 101 -48  75
+\end{verbatim}
+
+\hypertarget{more-examples}{%
+\section{More Examples}\label{more-examples}}
+
+To see some more examples of these functions in action. We will use the \texttt{iris} data set which is a built in data set in R. This data set has four numeric columns, and one factor column, \texttt{Species}. Each row is a flower, and there are four different measurements of each flower.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(iris)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(iris)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
+##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
+##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
+##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+##        Species  
+##  setosa    :50  
+##  versicolor:50  
+##  virginica :50  
+##                 
+##                 
+## 
+\end{verbatim}
+
+Find the maximum value for the numeric variables for each observation.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{numeric_iris <-}\StringTok{ }\NormalTok{iris[, }\DecValTok{-5}\NormalTok{]}
+\NormalTok{max_in_row <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(numeric_iris, }\DecValTok{1}\NormalTok{, max)}
+\KeywordTok{head}\NormalTok{(max_in_row)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5.1 4.9 4.7 4.6 5.0 5.4
+\end{verbatim}
+
+Determine the (arithmetic) mean of the sepal width for each species.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mean_species <-}\StringTok{ }\KeywordTok{tapply}\NormalTok{(iris}\OperatorTok{$}\NormalTok{Sepal.Width, }\DataTypeTok{INDEX =}\NormalTok{ iris}\OperatorTok{$}\NormalTok{Species,}
+\NormalTok{    mean)}
+\NormalTok{mean_species}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     setosa versicolor  virginica 
+##      3.428      2.770      2.974
+\end{verbatim}
+
+Determine the (arithmetic) mean and the median of sepal width for each species.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_avgs <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(vec) \{}
+\NormalTok{    the_mean <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(vec)}
+\NormalTok{    the_median <-}\StringTok{ }\KeywordTok{median}\NormalTok{(vec)}
+\NormalTok{    return_object <-}\StringTok{ }\KeywordTok{c}\NormalTok{(the_mean, the_median)}
+    \KeywordTok{names}\NormalTok{(return_object) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"mean"}\NormalTok{, }\StringTok{"median"}\NormalTok{)}
+    \KeywordTok{return}\NormalTok{(return_object)}
+\NormalTok{\}}
+
+\NormalTok{species_avgs <-}\StringTok{ }\KeywordTok{tapply}\NormalTok{(iris}\OperatorTok{$}\NormalTok{Sepal.Width, iris}\OperatorTok{$}\NormalTok{Species, my_avgs)}
+\NormalTok{species_avgs}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $setosa
+##   mean median 
+##  3.428  3.400 
+## 
+## $versicolor
+##   mean median 
+##   2.77   2.80 
+## 
+## $virginica
+##   mean median 
+##  2.974  3.000
+\end{verbatim}
+
+Make a plot of the sepal width and sepal length. Make the points differ depending on the species type.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Starting plot, make it blank}
+\KeywordTok{plot}\NormalTok{(iris}\OperatorTok{$}\NormalTok{Sepal.Length, iris}\OperatorTok{$}\NormalTok{Sepal.Width, }\DataTypeTok{col =} \StringTok{"white"}\NormalTok{)}
+
+
+\CommentTok{# Custom function to add the points}
+\NormalTok{add_points <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(the_data, ...) \{}
+
+    \ControlFlowTok{if}\NormalTok{ (the_data[}\DecValTok{5}\NormalTok{] }\OperatorTok{==}\StringTok{ "setosa"}\NormalTok{) \{}
+        \KeywordTok{points}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ the_data[}\DecValTok{1}\NormalTok{], }\DataTypeTok{y =}\NormalTok{ the_data[}\DecValTok{2}\NormalTok{], }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{,}
+            \DataTypeTok{pch =} \DecValTok{0}\NormalTok{)}
+\NormalTok{    \} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (the_data[}\DecValTok{5}\NormalTok{] }\OperatorTok{==}\StringTok{ "virginica"}\NormalTok{) \{}
+        \KeywordTok{points}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ the_data[}\DecValTok{1}\NormalTok{], }\DataTypeTok{y =}\NormalTok{ the_data[}\DecValTok{2}\NormalTok{], }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{,}
+            \DataTypeTok{pch =} \DecValTok{2}\NormalTok{)}
+\NormalTok{    \} }\ControlFlowTok{else}\NormalTok{ \{}
+        \KeywordTok{points}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ the_data[}\DecValTok{1}\NormalTok{], }\DataTypeTok{y =}\NormalTok{ the_data[}\DecValTok{2}\NormalTok{], }\DataTypeTok{col =} \StringTok{"green"}\NormalTok{,}
+            \DataTypeTok{pch =} \DecValTok{10}\NormalTok{)}
+
+\NormalTok{    \}}
+\NormalTok{\}}
+
+
+\CommentTok{# Use apply to add points}
+\KeywordTok{apply}\NormalTok{(iris, }\DecValTok{1}\NormalTok{, add_points)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-185-1.pdf}
+
+\begin{verbatim}
+## NULL
+\end{verbatim}
+
+Make a plot of the sepal width and sepal length. Make the points differ depending on the species type. Add the (arithmetic) mean of these two variables for each group.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# ------ PLOT FROM BEFORE Starting plot, make it blank}
+\KeywordTok{plot}\NormalTok{(iris}\OperatorTok{$}\NormalTok{Sepal.Length, iris}\OperatorTok{$}\NormalTok{Sepal.Width, }\DataTypeTok{col =} \StringTok{"white"}\NormalTok{)}
+\KeywordTok{apply}\NormalTok{(iris, }\DecValTok{1}\NormalTok{, add_points)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## NULL
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# ------}
+
+
+\CommentTok{# Split the data into a list by factor}
+\NormalTok{split_iris =}\StringTok{ }\KeywordTok{split}\NormalTok{(iris, }\DataTypeTok{f =}\NormalTok{ iris}\OperatorTok{$}\NormalTok{Species)}
+
+\CommentTok{# Iterate through the list and add (black) points to the}
+\CommentTok{# plot}
+\KeywordTok{lapply}\NormalTok{(split_iris, }\ControlFlowTok{function}\NormalTok{(species_data) \{}
+    \KeywordTok{points}\NormalTok{(}\KeywordTok{mean}\NormalTok{(species_data}\OperatorTok{$}\NormalTok{Sepal.Length), }\KeywordTok{mean}\NormalTok{(species_data}\OperatorTok{$}\NormalTok{Sepal.Width),}
+        \DataTypeTok{pch =} \DecValTok{16}\NormalTok{)}
+\NormalTok{\})}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-186-1.pdf}
+
+\begin{verbatim}
+## $setosa
+## NULL
+## 
+## $versicolor
+## NULL
+## 
+## $virginica
+## NULL
+\end{verbatim}
+
+Lets try using another example. Suppose we wish to use the following formula (below) with \texttt{a\ =\ Sepal.Length}, \texttt{b\ =\ Sepal.Width}, and \texttt{c\ =\ Petal.Length}.
+\[ \frac{-b + \sqrt{b^2-4ac} }{2a}\]
+
+Now there is more efficient ways to do this in R, but lets practice how we would do it with \texttt{mapply} as an example.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_formula <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(a, b, c) \{}
+\NormalTok{    num <-}\StringTok{ }\NormalTok{(}\OperatorTok{-}\NormalTok{b }\OperatorTok{+}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(b}\OperatorTok{^}\DecValTok{2} \OperatorTok{+}\StringTok{ }\DecValTok{4} \OperatorTok{*}\StringTok{ }\NormalTok{a }\OperatorTok{*}\StringTok{ }\NormalTok{c))}
+\NormalTok{    den <-}\StringTok{ }\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{a}
+
+\NormalTok{    answer <-}\StringTok{ }\NormalTok{num}\OperatorTok{/}\NormalTok{den}
+    \KeywordTok{return}\NormalTok{(answer)}
+\NormalTok{\}}
+
+\NormalTok{formula_results <-}\StringTok{ }\KeywordTok{mapply}\NormalTok{(my_formula, }\DataTypeTok{a =}\NormalTok{ iris}\OperatorTok{$}\NormalTok{Sepal.Length,}
+    \DataTypeTok{b =}\NormalTok{ iris}\OperatorTok{$}\NormalTok{Sepal.Width, }\DataTypeTok{c =}\NormalTok{ iris}\OperatorTok{$}\NormalTok{Petal.Length)}
+\KeywordTok{head}\NormalTok{(formula_results)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.2831638 0.3098526 0.2860609 0.3260870 0.2800000 0.3061340
+\end{verbatim}
+
+\hypertarget{create-a-new-variable}{%
+\subsection{Create a New Variable}\label{create-a-new-variable}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{petal_size <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(PLength, BigCutOff, ModerateCutOff, SmallCutOff)\{}
+  \ControlFlowTok{if}\NormalTok{(PLength }\OperatorTok{>}\StringTok{ }\NormalTok{BigCutOff)\{}
+\NormalTok{    PetalSize <-}\StringTok{ "Big"}
+\NormalTok{  \} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (PLength }\OperatorTok{>}\StringTok{ }\NormalTok{ModerateCutOff)\{}
+\NormalTok{    PetalSize <-}\StringTok{ "Moderate"}
+\NormalTok{  \} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{(PLength }\OperatorTok{>}\StringTok{ }\NormalTok{SmallCutOff)\{}
+\NormalTok{    PetalSize <-}\StringTok{ "Small"}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{\{}
+\NormalTok{    PetalSize <-}\StringTok{ "Very Small"}
+\NormalTok{  \}}
+  \KeywordTok{return}\NormalTok{(PetalSize)}
+\NormalTok{\}}
+
+\KeywordTok{sapply}\NormalTok{(iris}\OperatorTok{$}\NormalTok{Petal.Length,   }\CommentTok{# Data}
+\NormalTok{       petal_size,          }\CommentTok{# Function}
+       \DataTypeTok{BigCutOff =} \DecValTok{5}\NormalTok{,       }\CommentTok{# Optional Arguments for function}
+       \DataTypeTok{ModerateCutOff =} \DecValTok{4}\NormalTok{, }
+       \DataTypeTok{SmallCutOff =} \FloatTok{1.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   [1] "Very Small" "Very Small" "Very Small" "Very Small" "Very Small"
+##   [6] "Small"      "Very Small" "Very Small" "Very Small" "Very Small"
+##  [11] "Very Small" "Small"      "Very Small" "Very Small" "Very Small"
+##  [16] "Very Small" "Very Small" "Very Small" "Small"      "Very Small"
+##  [21] "Small"      "Very Small" "Very Small" "Small"      "Small"     
+##  [26] "Small"      "Small"      "Very Small" "Very Small" "Small"     
+##  [31] "Small"      "Very Small" "Very Small" "Very Small" "Very Small"
+##  [36] "Very Small" "Very Small" "Very Small" "Very Small" "Very Small"
+##  [41] "Very Small" "Very Small" "Very Small" "Small"      "Small"     
+##  [46] "Very Small" "Small"      "Very Small" "Very Small" "Very Small"
+##  [51] "Moderate"   "Moderate"   "Moderate"   "Small"      "Moderate"  
+##  [56] "Moderate"   "Moderate"   "Small"      "Moderate"   "Small"     
+##  [61] "Small"      "Moderate"   "Small"      "Moderate"   "Small"     
+##  [66] "Moderate"   "Moderate"   "Moderate"   "Moderate"   "Small"     
+##  [71] "Moderate"   "Small"      "Moderate"   "Moderate"   "Moderate"  
+##  [76] "Moderate"   "Moderate"   "Moderate"   "Moderate"   "Small"     
+##  [81] "Small"      "Small"      "Small"      "Big"        "Moderate"  
+##  [86] "Moderate"   "Moderate"   "Moderate"   "Moderate"   "Small"     
+##  [91] "Moderate"   "Moderate"   "Small"      "Small"      "Moderate"  
+##  [96] "Moderate"   "Moderate"   "Moderate"   "Small"      "Moderate"  
+## [101] "Big"        "Big"        "Big"        "Big"        "Big"       
+## [106] "Big"        "Moderate"   "Big"        "Big"        "Big"       
+## [111] "Big"        "Big"        "Big"        "Moderate"   "Big"       
+## [116] "Big"        "Big"        "Big"        "Big"        "Moderate"  
+## [121] "Big"        "Moderate"   "Big"        "Moderate"   "Big"       
+## [126] "Big"        "Moderate"   "Moderate"   "Big"        "Big"       
+## [131] "Big"        "Big"        "Big"        "Big"        "Big"       
+## [136] "Big"        "Big"        "Big"        "Moderate"   "Big"       
+## [141] "Big"        "Big"        "Big"        "Big"        "Big"       
+## [146] "Big"        "Moderate"   "Big"        "Big"        "Big"
+\end{verbatim}
+
+\hypertarget{additional-resources-5}{%
+\section*{Additional Resources}\label{additional-resources-5}}
+\addcontentsline{toc}{section}{Additional Resources}
+
+\begin{itemize}
+\tightlist
+\item
+  \url{http://adv-r.had.co.nz/Functionals.html}
+\end{itemize}
 
 \hypertarget{text-data}{%
 \chapter{Text Data}\label{text-data}}
@@ -6047,7 +6808,7 @@ Lets use the same Abraham Lincoln speech again. We will start by make everything
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-203-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-218-1.pdf}
 
 In a word cloud the \texttt{freq} argument controls how large the words will appear. In this case we let the size of the words be proportional to the frequency. There are a lot of extra features we can add to word clouds, feel free to explore them!
 
@@ -6060,711 +6821,7 @@ In a word cloud the \texttt{freq} argument controls how large the words will app
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-204-1.pdf}
-
-\hypertarget{Regex}{%
-\chapter{Regular Expressions}\label{Regex}}
-
-With basic string-manipulation functions, we saw how to do things like split
-up entries in a data file which are separated by commas.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{text =}\StringTok{ "One Fish, Two Fish, Red Fish, Blue Fish"}
-\KeywordTok{strsplit}\NormalTok{(text, }\DataTypeTok{split =} \StringTok{","}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [[1]]
-## [1] "One Fish"   " Two Fish"  " Red Fish"  " Blue Fish"
-\end{verbatim}
-
-or by single spaces
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{strsplit}\NormalTok{(text, }\DataTypeTok{split =} \StringTok{" "}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [[1]]
-## [1] "One"   "Fish," "Two"   "Fish," "Red"   "Fish," "Blue"  "Fish"
-\end{verbatim}
-
-or even a comma followed by a space
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{strsplit}\NormalTok{(text, }\DataTypeTok{split =} \StringTok{", "}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [[1]]
-## [1] "One Fish"  "Two Fish"  "Red Fish"  "Blue Fish"
-\end{verbatim}
-
-But we don't know how to deal with situations like splitting on a comma,
-\textbf{optionally} followed by some number of spaces.
-
-Not only is it annoying to have such a simple thing defeat us, it's an instance
-of a much broader class of problems. If we're trying to extract data from webpages, we may want to get rid of all the formatting instructions buried in the source of the webpage. We might want to extract all the personal names from
-a document which are preceded by titles (such as Mr., Ms., Miss, Dr.), without
-knowing what those names are, or how long they are. And so forth.
-
-We need a language for telling R about patterns of strings. The most basic such language is that of \textbf{regular expressions}. Regular expressions are used to \textbf{match} sets of strings. Start with string constants, and build up by allowing ``\emph{this} and then \emph{that}'', ``either \emph{this} or \emph{that}'', ``repeat \emph{this}'', etc. These rules get expressed in a \textbf{grammar}, with special symbols.
-
-Every regular expression is a sequence of symbols, which specifies a set of text strings that follow some pattern that --- match the regular expression. - Regular expressions are strings and therefore a regexp can be stored in a \texttt{character} variable. This means that regexps can be built up and changed using string-manipulating functions. A valid regular expression must conform to certain rules of grammar; it gets interpreted by the computer as rules for matching certain strings, but not others.
-
-Every string is a valid regexp. We say ``regexp'' as short hand for the phrase a \href{https://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html}{``regular expression as used in R''}. \texttt{fly} matches end of ``fruitfly'', ``why walk when you can fly'' but it does not match ``time flies like an arrow; fruit flies like a banana; a banana flies poorly''.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{fly_phrases =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"fruitfly"}\NormalTok{, }\StringTok{"why walk when you can fly"}\NormalTok{, }\StringTok{"time flies like an arrow; fruit flies like a banana; a banana flies poorly"}\NormalTok{,}
-    \StringTok{"superman flew"}\NormalTok{)}
-
-\CommentTok{# Returns which elements have the term 'fly'}
-\KeywordTok{grep}\NormalTok{(}\StringTok{"fly"}\NormalTok{, fly_phrases, }\DataTypeTok{value =}\NormalTok{ T)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "fruitfly"                  "why walk when you can fly"
-\end{verbatim}
-
-If we did wish to match one regexp OR another regexp we cold use the ``\textbar{}'' symbol. This symbol is used in the same way it was in section \ref{operators}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Returns which elements have the term 'fly' or 'flies'}
-\KeywordTok{grep}\NormalTok{(}\StringTok{"fly|flies"}\NormalTok{, fly_phrases, }\DataTypeTok{value =}\NormalTok{ T)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "fruitfly"                                                                  
-## [2] "why walk when you can fly"                                                 
-## [3] "time flies like an arrow; fruit flies like a banana; a banana flies poorly"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Returns which elements have the term 'fly' or 'flies'}
-\KeywordTok{grep}\NormalTok{(}\StringTok{"flies|fly"}\NormalTok{, fly_phrases, }\DataTypeTok{value =}\NormalTok{ T)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "fruitfly"                                                                  
-## [2] "why walk when you can fly"                                                 
-## [3] "time flies like an arrow; fruit flies like a banana; a banana flies poorly"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Returns which elements have 'fly flies' or 'time' or}
-\CommentTok{# 'flies'}
-\KeywordTok{grep}\NormalTok{(}\StringTok{"time|fruit fly|flies"}\NormalTok{, fly_phrases, }\DataTypeTok{value =}\NormalTok{ T)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "time flies like an arrow; fruit flies like a banana; a banana flies poorly"
-\end{verbatim}
-
-Parentheses are used to create groups.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{text_colors =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Some people say grey"}\NormalTok{, }\StringTok{"others say gray,"}\NormalTok{, }\StringTok{"and both are greatly used"}\NormalTok{)}
-
-\CommentTok{# Searches for the same thing}
-\KeywordTok{grep}\NormalTok{(}\StringTok{"gr(e|a)y"}\NormalTok{, text_colors, }\DataTypeTok{value =}\NormalTok{ T)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "Some people say grey" "others say gray,"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{grep}\NormalTok{(}\StringTok{"grey|gray"}\NormalTok{, text_colors, }\DataTypeTok{value =}\NormalTok{ T)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "Some people say grey" "others say gray,"
-\end{verbatim}
-
-\hypertarget{ranges-escaping}{%
-\section{Ranges, Escaping}\label{ranges-escaping}}
-
-A character class is a list of characters enclosed between \texttt{{[}} and \texttt{{]}} which matches any single character in that list. We use these braces in regular expressions to indicate character \emph{ranges}. For example the regexp \texttt{{[}0123456789{]}} matches any single digit.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{text =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"1 Fish"}\NormalTok{, }\StringTok{"2 Fish"}\NormalTok{, }\StringTok{"red fish"}\NormalTok{, }\StringTok{"blue fish"}\NormalTok{)}
-
-\CommentTok{# Any numbers?}
-\KeywordTok{grep}\NormalTok{(}\StringTok{"[0123456789]"}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "1 Fish" "2 Fish"
-\end{verbatim}
-
-If the first character of the list is the caret \^{}, then it matches any character \emph{not} in the list. For example, \texttt{{[}\^{}abc{]}} matches anything \emph{except} the characters a, b or c.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Any letters EXCEPT a, b, c}
-\KeywordTok{grep}\NormalTok{(}\StringTok{"[^abc]"}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "1 Fish"    "2 Fish"    "red fish"  "blue fish"
-\end{verbatim}
-
-Another example: \texttt{t{[}aeiou{]}} matches any two-character sequence in which ``t'' is followed by a lowercase vowel.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{text_baseball =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Ohhhhh"}\NormalTok{, }\StringTok{"take me out"}\NormalTok{, }\StringTok{"to the ball game"}\NormalTok{)}
-
-\CommentTok{# Match any two-character sequence in which “t” is followed}
-\CommentTok{# by a lowercase vowel.}
-\KeywordTok{grep}\NormalTok{(}\StringTok{"t[aeiou]"}\NormalTok{, text_baseball, }\DataTypeTok{value =}\NormalTok{ T)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "take me out"      "to the ball game"
-\end{verbatim}
-
-This system of using ranges is used a lot, and there are certain named classes of characters are predefined, below are some of them.
-
-\begin{itemize}
-\tightlist
-\item
-  \texttt{{[}:lower:{]}} : Lower-case letters, equivalent to \texttt{{[}a-z{]}}
-\item
-  \texttt{{[}:upper:{]}} : Upper-case letters, equivalent to \texttt{{[}A-Z{]}}
-\item
-  \texttt{{[}:alpha:{]}} : Alphabetic characters: \texttt{{[}:lower:{]}} and \texttt{{[}:upper:{]}}.
-\item
-  \texttt{{[}:digit:{]}} : Digits: 0 1 2 3 4 5 6 7 8 9, equivalent to \texttt{{[}0-9{]}}
-\item
-  \texttt{\textbackslash{}d} : digit, equivalent to \texttt{{[}:digit:{]}}
-\item
-  \texttt{\textbackslash{}D} : Non-digit
-\item
-  \texttt{{[}:alnum:{]}} : Alphanumeric characters: \texttt{{[}:alpha:{]}} and \texttt{{[}:digit:{]}}.
-\item
-  \texttt{{[}:blank:{]}} : Blank characters: space and tab, and possibly other locale-dependent characters such as non-breaking space.
-\item
-  \texttt{{[}:punct:{]}} : Punctuation characters:
-  ! " \# \$ \% \& ' ( ) * + , - . / : ; \textless{} = \textgreater{} ? @ {[} ~{]} \^{} \_ ` \{ \textbar{} \} \textasciitilde.
-\item
-  \texttt{{[}:graph:{]}} : Graphical characters: \texttt{{[}:alnum:{]}} and \texttt{{[}:punct:{]}}.
-\item
-  \texttt{{[}:space:{]}} : Space characters: tab, newline, vertical tab, form feed, carriage return, space and possibly other locale-dependent characters.
-\item
-  \texttt{\textbackslash{}s} : space
-\item
-  \texttt{\textbackslash{}S} : not space
-\item
-  \texttt{\textbackslash{}w}: word characters, equivalent to \texttt{{[}{[}:alnum:{]}\_{]}} or \texttt{{[}A-z0-9{]}}.
-\item
-  \texttt{\textbackslash{}W}: not word, equivalent to \texttt{{[}\^{}A-z0-9\_{]}}.
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Are any digits in the text?}
-\KeywordTok{grep}\NormalTok{(}\StringTok{"[[:digit:]]"}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "1 Fish" "2 Fish"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Are any upper case letters in the text?}
-\KeywordTok{grep}\NormalTok{(}\StringTok{"[[:upper:]]"}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "1 Fish" "2 Fish"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Are any lower case letters in the text?}
-\KeywordTok{grep}\NormalTok{(}\StringTok{"[[:lower:]]"}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "1 Fish"    "2 Fish"    "red fish"  "blue fish"
-\end{verbatim}
-
-\hypertarget{metacharacters}{%
-\section{Metacharacters}\label{metacharacters}}
-
-The fundamental building blocks are the regular expressions that match a single character. Most characters, including all letters and digits, are regular expressions that match themselves. However, we also use some of these characters to mean different things in order to match more intricate patterns. The characters reserved for special meanings (and not simply as characters to match) are called \emph{metacharacters}. Any metacharacter with special meaning may be quoted by preceding it with a backslash. The metacharacters in extended regular expressions are . ~\textbar{} ( ) {[} \{ \^{} \$ * + ?.
-
-We already saw \texttt{\textbar{}} and \texttt{{[}{]}} in action above. Now lets talk about the \texttt{.} symbol. This symbol matches any single character. To match strings that have a ``.'' we need to use a backslash.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{text =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"There was a monster"}\NormalTok{, }\StringTok{"Superman flew over there."}\NormalTok{,}
-    \StringTok{"He made it in time."}\NormalTok{, }\StringTok{"Yumm, pancakes!"}\NormalTok{, }\StringTok{"MMmm Mmmm they were good..."}\NormalTok{)}
-
-\CommentTok{# Looks for every character}
-\KeywordTok{grep}\NormalTok{(}\StringTok{"."}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "There was a monster"         "Superman flew over there."  
-## [3] "He made it in time."         "Yumm, pancakes!"            
-## [5] "MMmm Mmmm they were good..."
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Matches only '.'}
-\KeywordTok{grep}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{."}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "Superman flew over there."   "He made it in time."        
-## [3] "MMmm Mmmm they were good..."
-\end{verbatim}
-
-\hypertarget{quantifiers}{%
-\section{Quantifiers}\label{quantifiers}}
-
-Here is a list of some of the metacharacters and some of their features. These are all \emph{quantifiers} and they control how many times the regexp should be matched. The following features all are considered \emph{repetition quantifiers}.
-
-\begin{itemize}
-\tightlist
-\item
-  \texttt{+} : The preceding item will be matched one or more times.
-\item
-  \texttt{*} : The preceding item will be matched zero or more times.
-\item
-  \texttt{?} : The preceding item is optional and will be matched at most once.
-\item
-  \texttt{\{n\}} : The preceding item is matched exactly ``n'' times.
-\item
-  \texttt{\{n,\}} : The preceding item is matched ``n'' or more times.
-\item
-  \texttt{\{n,m\}} : The preceding item is matched at least ``n'' times, but not more than ``m'' times.
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Detect the letter 'm'}
-\KeywordTok{grep}\NormalTok{(}\StringTok{"m"}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "There was a monster"         "Superman flew over there."  
-## [3] "He made it in time."         "Yumm, pancakes!"            
-## [5] "MMmm Mmmm they were good..."
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Detect the letter 'm' exactly one time}
-\KeywordTok{grep}\NormalTok{(}\StringTok{"m\{1\}"}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "There was a monster"         "Superman flew over there."  
-## [3] "He made it in time."         "Yumm, pancakes!"            
-## [5] "MMmm Mmmm they were good..."
-\end{verbatim}
-
-If we want to match a regexp exactly \texttt{\{n\}}, \texttt{\{n,\}} or \texttt{\{n,m\}} times then it looks for this sequence consecutively. For example, the following command does not output ``He made it in time.'', despite this phrase having two ``m''s in it.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Detect the letter 'm' exactly two or more times (in a}
-\CommentTok{# row)}
-\KeywordTok{grep}\NormalTok{(}\StringTok{"m\{2,\}"}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "Yumm, pancakes!"             "MMmm Mmmm they were good..."
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Another example}
-\NormalTok{text =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"3, 2, 1, GO!"}\NormalTok{, }\StringTok{"On the count of 3,"}\NormalTok{, }\StringTok{"Count to 100"}\NormalTok{,}
-    \StringTok{"Wish upon 1 star."}\NormalTok{)}
-
-\CommentTok{# Detect exactly two digits in a row.}
-\KeywordTok{grep}\NormalTok{(}\StringTok{"[[:digit:]]\{2\}"}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "Count to 100"
-\end{verbatim}
-
-By default, quantifiers are ``greedy'' and they match as many repetitions as they can. Following a quantifier by \texttt{?} makes it match as few as possible.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Only look for one digit then stop.  It doesn't matter if}
-\CommentTok{# there is more.}
-\KeywordTok{grep}\NormalTok{(}\StringTok{"[[:digit:]]?"}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "3, 2, 1, GO!"       "On the count of 3," "Count to 100"      
-## [4] "Wish upon 1 star."
-\end{verbatim}
-
-\hypertarget{anchoring}{%
-\section{Anchoring}\label{anchoring}}
-
-Anchoring is used to find regexps at specific locations in a string. For example, at the beginning or end of a word, or at the beginning or end of a phrase.
-
-\begin{itemize}
-\tightlist
-\item
-  \texttt{\$} means a pattern can only match at the end of a line or string
-\item
-  \texttt{\^{}} means (outside of braces) the beginning of a line or string
-\item
-  \texttt{\textless{}} and \texttt{\textgreater{}} anchor to beginning or ending of words
-\item
-  \texttt{\textbackslash{}b} anchors boundary (beginning \emph{or} ending) of words, \texttt{\textbackslash{}B} anywhere else
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# matches elements ending in a lower-case letter or comma}
-\KeywordTok{grep}\NormalTok{(}\StringTok{"[a-z,]$"}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "On the count of 3,"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# matches capital letters not at the beginning or ending of}
-\CommentTok{# a word}
-\KeywordTok{grep}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{B[A-Z]"}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "3, 2, 1, GO!"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Find elements that end with a number}
-\KeywordTok{grep}\NormalTok{(}\StringTok{"[[:digit:]]$"}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "Count to 100"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Find elements that start with a number}
-\KeywordTok{grep}\NormalTok{(}\StringTok{"^[[:digit:]]"}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "3, 2, 1, GO!"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Find elements that have a word that starts or ends with u}
-\KeywordTok{grep}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{bu"}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "Wish upon 1 star."
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Find elements that have a word that starts or ends with t}
-\KeywordTok{grep}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{bt"}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "On the count of 3," "Count to 100"
-\end{verbatim}
-
-\hypertarget{splitting-on-a-regexp}{%
-\section{Splitting on a Regexp}\label{splitting-on-a-regexp}}
-
-We can use regexps in many R functions, we are not limited to just \texttt{grep()} and \texttt{grepl}. For example, \texttt{strsplit()} will take a regexp as its \texttt{split} argument. This means we can make splits a string into new strings at each instance of the regexp, just like it would if \texttt{split} were a string.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Load data:}
-\NormalTok{al2 =}\StringTok{ }\KeywordTok{readLines}\NormalTok{(}\StringTok{"http://www.stat.cmu.edu/~cshalizi/statcomp/14/lectures/04/al2.txt"}\NormalTok{)}
-\NormalTok{al2 =}\StringTok{ }\KeywordTok{paste}\NormalTok{(al2, }\DataTypeTok{collapse =} \StringTok{" "}\NormalTok{)}
-
-\CommentTok{# Split words by space}
-\NormalTok{al2.words1 =}\StringTok{ }\KeywordTok{strsplit}\NormalTok{(al2, }\DataTypeTok{split =} \StringTok{" "}\NormalTok{)}
-
-\CommentTok{# Lets see what this looks like}
-\KeywordTok{head}\NormalTok{(}\KeywordTok{sort}\NormalTok{(}\KeywordTok{table}\NormalTok{(al2.words1)))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## al2.words1
-##       -    "the    "Woe absorbs  accept achieve 
-##       1       1       1       1       1       1
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Split words by space or by a punctuation symbol}
-\NormalTok{al2.words2 =}\StringTok{ }\KeywordTok{strsplit}\NormalTok{(al2, }\DataTypeTok{split =} \StringTok{"(}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{s|[[:punct:]])+"}\NormalTok{)[[}\DecValTok{1}\NormalTok{]]}
-\KeywordTok{head}\NormalTok{(}\KeywordTok{sort}\NormalTok{(}\KeywordTok{table}\NormalTok{(al2.words2)))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## al2.words2
-## absorbs  accept achieve against  agents     aid 
-##       1       1       1       1       1       1
-\end{verbatim}
-
-Closer examination shows there's still a problem: ``men's'' \(\rightarrow\) ``men'', ``s''.
-To handle possessives: look for any number of white spaces, \emph{or} at least one punctuation mark followed by at least one space
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{al2.words3 =}\StringTok{ }\KeywordTok{strsplit}\NormalTok{(al2, }\DataTypeTok{split =} \StringTok{"}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{s+|([[:punct:]]+[[:space:]]+)"}\NormalTok{)[[}\DecValTok{1}\NormalTok{]]}
-\KeywordTok{head}\NormalTok{(}\KeywordTok{sort}\NormalTok{(}\KeywordTok{table}\NormalTok{(al2.words3)))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## al2.words3
-##            "the    "Woe absorbs  accept achieve 
-##       1       1       1       1       1       1
-\end{verbatim}
-
-\hypertarget{stringr-package}{%
-\section{Stringr Package}\label{stringr-package}}
-
-The \texttt{stringr} package is one of the many packages that helps with text data. This package also has several vignettes with explanations on the different functions available, and how the package works. It is thought of as an extension of the standard base R functions. The \texttt{stringr} package is part of the \texttt{tidyverse}, but the functions and uses of this package are much more similar to base R then \texttt{dplyr} and \texttt{ggplot2}.
-
-Two functions that are particularly helpful is \texttt{str\_extract()} and \texttt{str\_extract\_all()}. These functions find and isolate particular occurrences of words and phrases. When used with regular expressions this can be very beneficial.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(tidyverse)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Warning: package 'tidyverse' was built under R version 4.0.2
-\end{verbatim}
-
-\begin{verbatim}
-## -- Attaching packages --------------------------------------- tidyverse 1.3.0 --
-\end{verbatim}
-
-\begin{verbatim}
-## v ggplot2 3.3.6     v purrr   0.3.4
-## v tibble  3.0.1     v dplyr   1.0.2
-## v tidyr   1.1.2     v stringr 1.4.0
-## v readr   1.3.1     v forcats 0.5.0
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: package 'tidyr' was built under R version 4.0.2
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: package 'readr' was built under R version 4.0.2
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: package 'purrr' was built under R version 4.0.2
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: package 'dplyr' was built under R version 4.0.2
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: package 'forcats' was built under R version 4.0.2
-\end{verbatim}
-
-\begin{verbatim}
-## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{fly_phrases <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"fruitfly"}\NormalTok{, }\StringTok{"why walk when you can fly"}\NormalTok{, }\StringTok{"time flies like an arrow; fruit flies like a banana; a banana flies poorly"}\NormalTok{,}
-    \StringTok{"superman flew"}\NormalTok{)}
-
-\CommentTok{# Returns occurrences of a phrase starting with a space,}
-\CommentTok{# followed by 'fl', and ending with any number of letters}
-\CommentTok{# (upper or lower case)}
-\NormalTok{fl_occurances <-}\StringTok{ }\KeywordTok{str_extract_all}\NormalTok{(fly_phrases, }\DataTypeTok{pattern =} \StringTok{" fl[[:alpha:]]\{1,\}"}\NormalTok{)}
-
-\CommentTok{# Remove white space}
-\NormalTok{fl_occurances <-}\StringTok{ }\KeywordTok{lapply}\NormalTok{(fl_occurances, gsub, }\DataTypeTok{pattern =} \StringTok{"[[:space:]]"}\NormalTok{,}
-    \DataTypeTok{replacement =} \StringTok{""}\NormalTok{)}
-\NormalTok{fl_occurances}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [[1]]
-## character(0)
-## 
-## [[2]]
-## [1] "fly"
-## 
-## [[3]]
-## [1] "flies" "flies" "flies"
-## 
-## [[4]]
-## [1] "flew"
-\end{verbatim}
-
-\hypertarget{wordcloud-package-1}{%
-\section{Wordcloud Package}\label{wordcloud-package-1}}
-
-Another package that is particularly useful for working with text data is the \texttt{wordcloud} package. This package extends the standard Base R plotting, and allows us to build word clouds. It uses the same general principals and features that we do with Base R.
-
-Lets use the same Abraham Lincoln speech from the previous section. This time we will remove all punctuation, make everything lower case, and replace all whitepsace with a single space for consistency.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(wordcloud)}
-
-\NormalTok{the_url <-}\StringTok{ "https://raw.githubusercontent.com/rpkgarcia/LearnRBook/main/data_sets/al1.txt"}
-\NormalTok{al1 <-}\StringTok{ }\KeywordTok{readLines}\NormalTok{(the_url, }\DataTypeTok{warn =} \OtherTok{FALSE}\NormalTok{)}
-
-\CommentTok{# make everything lower case}
-\NormalTok{al1 <-}\StringTok{ }\KeywordTok{tolower}\NormalTok{(al1)}
-
-\CommentTok{# remove puncuation}
-\NormalTok{al1 <-}\StringTok{ }\KeywordTok{gsub}\NormalTok{(}\StringTok{"[[:punct:]]"}\NormalTok{, }\StringTok{""}\NormalTok{, al1)}
-
-\CommentTok{# replace any whitespace by a single white space}
-\NormalTok{al1 <-}\StringTok{ }\KeywordTok{gsub}\NormalTok{(}\StringTok{"[[:space:]]"}\NormalTok{, }\StringTok{" "}\NormalTok{, al1)}
-
-\CommentTok{# see all individual words by spliting by white space}
-\NormalTok{al1.words <-}\StringTok{ }\KeywordTok{strsplit}\NormalTok{(al1, }\StringTok{" "}\NormalTok{)}
-
-\CommentTok{# Word count table}
-\NormalTok{wc <-}\StringTok{ }\KeywordTok{table}\NormalTok{(al1.words)}
-\NormalTok{wc <-}\StringTok{ }\KeywordTok{sort}\NormalTok{(wc, }\DataTypeTok{decreasing =}\NormalTok{ T)}
-
-\CommentTok{# Fixed issues from previous section}
-\KeywordTok{head}\NormalTok{(wc, }\DecValTok{30}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## al1.words
-##   the    of   and shall  that    to    we    be    by   god those which    as 
-##    10     6     5     4     4     4     4     3     3     3     3     3     2 
-##    do drawn    he    if    in    it  must  said  this until   war wills  with 
-##     2     2     2     2     2     2     2     2     2     2     2     2     2 
-## years     a   ago   all 
-##     2     1     1     1
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# The unique words in the table}
-\KeywordTok{names}\NormalTok{(wc)[}\DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{]}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "the"   "of"    "and"   "shall" "that"  "to"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Default plot (there is some randomness to how this plot}
-\CommentTok{# is made, see Help file)}
-\KeywordTok{wordcloud}\NormalTok{(}\DataTypeTok{words =} \KeywordTok{names}\NormalTok{(wc), }\DataTypeTok{freq =}\NormalTok{ wc)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{_main_files/figure-latex/unnamed-chunk-227-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Changing a few settings (Feel free to change more!! :)}
-\CommentTok{# Have fun with it)}
-\KeywordTok{wordcloud}\NormalTok{(}\DataTypeTok{words =} \KeywordTok{names}\NormalTok{(wc), }\DataTypeTok{freq =}\NormalTok{ wc, }\DataTypeTok{min.freq =} \DecValTok{2}\NormalTok{, }\DataTypeTok{random.order =}\NormalTok{ F,}
-    \DataTypeTok{colors =} \KeywordTok{c}\NormalTok{(}\StringTok{"purple"}\NormalTok{, }\StringTok{"blue"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{_main_files/figure-latex/unnamed-chunk-227-2.pdf}
-
-\hypertarget{replacements}{%
-\section{Replacements}\label{replacements}}
-
-Assigning to \texttt{regmatches()} changes the matched string, just like \texttt{substr()}
-
-\texttt{sub()} and \texttt{gsub()} work like \texttt{regexpr()} and \texttt{gregexpr()}, but with an extra \texttt{replace} argument
-
-\texttt{sub()} produces a new string, assigning to \texttt{regmatches()} modifies the original one
-
-Really, assigning to \texttt{regmatches()} creates a new string, destroys the old one, and assigns the new string the old name.
-
-\hypertarget{additional-resources-5}{%
-\section*{Additional Resources}\label{additional-resources-5}}
-\addcontentsline{toc}{section}{Additional Resources}
-
-\begin{itemize}
-\tightlist
-\item
-  \href{https://homerhanumat.github.io/r-notes/regex.html\#regex}{``Begining Computer Science with R'' Chapter 12}
-\item
-  \href{https://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html}{R Help Page on Regular Expressions}
-\end{itemize}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-219-1.pdf}
 
 \hypertarget{base-r-plotting}{%
 \chapter{Base R Plotting}\label{base-r-plotting}}
@@ -6862,7 +6919,7 @@ Most of the basic R plots have default settings. For example, the x-axis, y-axis
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-231-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-223-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6870,7 +6927,7 @@ Most of the basic R plots have default settings. For example, the x-axis, y-axis
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-231-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-223-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6878,7 +6935,7 @@ Most of the basic R plots have default settings. For example, the x-axis, y-axis
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-231-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-223-3.pdf}
 
 The output appears in the \emph{Plots} panel of \emph{RStudio}. You can use the arrows to the left of the \emph{Zoom} button the switch among the three plots.
 
@@ -6890,7 +6947,7 @@ There are several settings in base R plots that are similar. For example, in bas
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-232-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-224-1.pdf}
 
 There are also function specific arguments. For example, we can control the number of bins to create.
 
@@ -6901,7 +6958,7 @@ There are also function specific arguments. For example, we can control the numb
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-233-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-225-1.pdf}
 
 Use \texttt{col} argument to change the colors used for the bars. By using the \texttt{border} argument, you can even change the color used for the border of the bars.
 
@@ -6912,7 +6969,7 @@ Use \texttt{col} argument to change the colors used for the bars. By using the \
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-234-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-226-1.pdf}
 
 There are several ways we can add \textbf{colors} to \texttt{R}.
 
@@ -6936,7 +6993,7 @@ You can also place values on top of bars; which will help you interpret the grap
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-235-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-227-1.pdf}
 
 Often you want to compare the distributions of different variables within your data. You can overlay the histograms by setting the \texttt{add} argument of the second histogram to \texttt{TRUE}.
 
@@ -6952,7 +7009,7 @@ Often you want to compare the distributions of different variables within your d
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-236-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-228-1.pdf}
 
 For more options, look up ``hist'' in the \emph{Help} panel of \emph{RStudio}.
 
@@ -6973,7 +7030,7 @@ Let's produce a boxplot for the first 1000 values of the height variable.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-238-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-230-1.pdf}
 
 The line in the center is the median. The bottom and top of the box are drawn at the first (\(Q_1\)) and third (\(Q_3\)) quartiles (same as the 25th and 75th percentiles). The difference between the third and first quartiles is called the interquartile range (\(Q_3-Q_1\)). This is the height of the box. The lines above and below the box are called the whiskers. The upper whisker is either the third quartile plus 1.5 times the interquartile range, \(Q3 +1.5(Q_3-Q_1)\), or the largest data value, whichever is smallest. Similarly, the lower whisker is either the first quartile minus 1.5 times the interquartile range, \(Q1-1.5(Q_3-Q_1)\), or the smallest data value, whichever is largest. If data values exceed the whiskers, they are considered outliers (according to the \(IQR\) method, see Homework 2) and are plotted as circles. Boxplots are often used to represent numeric data.
 
@@ -6985,7 +7042,7 @@ One can use boxplots to compare different groups using \texttt{\textasciitilde{}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-239-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-231-1.pdf}
 
 \hypertarget{scatter-plot}{%
 \section{Scatter Plot}\label{scatter-plot}}
@@ -7020,7 +7077,7 @@ We can create a scatter plot using the \texttt{plot()} function in R. This is ge
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-240-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-232-1.pdf}
 
 Notice that this help file has many of the same arguments as we saw with the \texttt{hist()} function. For example, \texttt{xlab}, \texttt{ylab}, \texttt{main}, and \texttt{col}. A lot of Base R plotting functions are related and use the same techniques and arguments.
 
@@ -7032,7 +7089,7 @@ Notice that this help file has many of the same arguments as we saw with the \te
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-241-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-233-1.pdf}
 Other interesting features we may want to consider is having different colors points on our plot. We can supple the \texttt{col} argument for a vector the colors we want plotted. If the vector of is the same length as the number of rows in our data set, then the index of the vector of colors corresponds to the index of the point being plotted. If the vector of colors is not the size, then colors are generated using recycling. For example, below only two colors were supplied. This means every other point in the data set had a different color.
 
 \begin{Shaded}
@@ -7043,7 +7100,7 @@ Other interesting features we may want to consider is having different colors po
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-242-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-234-1.pdf}
 There are lots of other features we can change. Consider changing \texttt{cex}, \texttt{type}, \texttt{bg}, \texttt{pch}, \texttt{ylim}, \texttt{xlim}.
 
 \hypertarget{pie-charts}{%
@@ -7085,7 +7142,7 @@ Pie charts are also used for categorical data. Options are also available for th
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-245-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-237-1.pdf}
 
 Options are also available for the pie() function.
 
@@ -7096,7 +7153,7 @@ Options are also available for the pie() function.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-246-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-238-1.pdf}
 
 \hypertarget{adding-straight-lines}{%
 \section{Adding Straight Lines}\label{adding-straight-lines}}
@@ -7113,7 +7170,7 @@ Often you want to draw attention to specific values or observations in your grap
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-247-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-239-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7129,7 +7186,7 @@ Often you want to draw attention to specific values or observations in your grap
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-248-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-240-1.pdf}
 
 \hypertarget{adding-lines-between-points}{%
 \section{Adding Lines Between Points}\label{adding-lines-between-points}}
@@ -7151,7 +7208,7 @@ Sometimes, we would rather add a line connecting two points, rather than a conti
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-249-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-241-1.pdf}
 
 \hypertarget{adding-individual-points}{%
 \section{Adding Individual Points}\label{adding-individual-points}}
@@ -7175,7 +7232,7 @@ Similarly we can also add points to any base R graph using the \texttt{points()}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-250-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-242-1.pdf}
 
 In the \texttt{points()} help file we can see a separate section called \texttt{pch\ values} which contains the different types of points that Base R can create.
 
@@ -7200,7 +7257,7 @@ It is also a function that can adjust global plotting window parameters. For exa
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-251-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-243-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7229,7 +7286,7 @@ We control were the legend goes by using the first argument. This first argument
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-252-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-244-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7256,7 +7313,7 @@ We control were the legend goes by using the first argument. This first argument
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-253-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-245-1.pdf}
 
 \hypertarget{what-makes-a-good-plot}{%
 \section{What makes a good plot?}\label{what-makes-a-good-plot}}
@@ -7292,7 +7349,101 @@ This is not an exhaustive list, but contains a general quick check list of items
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-254-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-246-1.pdf}
+
+\hypertarget{packages}{%
+\chapter{Packages}\label{packages}}
+
+\texttt{R} packages are a collection of \texttt{R} functions, complied code and sample data. They are stored under a directory called ``library'' in the \texttt{R} environment. By default, \texttt{R} installs a set of packages during installation. More packages are added later, when they are needed for some specific purpose. When we start the \texttt{R} console, only the default packages are available by default. Other packages which are already installed have to be loaded explicitly to be used by the \texttt{R} program that is going to use them.
+
+All the packages available in \texttt{R} language are listed at \href{https://cran.r-project.org/web/packages/available_packages_by_name.html}{R Packages}.
+
+To see a list of all packages installed on your device.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+To see a list of all packages that are currently loaded (note that yours will likely look different).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{search}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] ".GlobalEnv"           "package:wordcloud"    "package:RColorBrewer"
+##  [4] "package:knitr"        "package:stats"        "package:graphics"    
+##  [7] "package:grDevices"    "package:utils"        "package:datasets"    
+## [10] "package:methods"      "Autoloads"            "package:base"
+\end{verbatim}
+
+When adding a new package to our library we only have to install it once. We can do so with the following command.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"library name"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Alternatively, we can also go to the lower left hand window and select the \emph{Packages} tab. Then hit the button \textbf{Install}. A dropdown menu will appear where we can search for the package name.
+
+Before a package can be used in the code, it must be loaded to the current R environment. You also need to load a package that is already installed previously but not available in the current environment.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(}\StringTok{"library name"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+For example, suppose we wanted to install and load the package ``ggplot2'', (a very popular package for making plots). We would type the following commands.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Install package (only need to do this once)}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"ggplot2"}\NormalTok{)}
+
+\CommentTok{# Load into working environment (need to do this for each}
+\CommentTok{# new R session)}
+\KeywordTok{library}\NormalTok{(}\StringTok{"ggplot2"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+It might seem strange to (1) have to download packages tto use features and (2) have to load these packages each time we wish to use them; however, there are several good reasons for doing packages in this way, and this system is considered a feature. We don't have all possible packages available to us at all times because that is a lot of information that R would need to store at once which could make our computer lag. These packages are also always being updated at different rates with different features. Most users will only utilize packages in CRAN, so having to update R each session for features you may never use would be tedious. Furthermore, there are several packages which contain objects and functions with the same name.
+
+\hypertarget{namespace-collisions}{%
+\section{Namespace Collisions}\label{namespace-collisions}}
+
+Every time we load a package into our environment the results for the \texttt{search()} function changes. The most recently added package is always listed after the global environment, followed by the second most recent, and so on.
+The \texttt{search()} function tells us how R searches for an object that we called. For example, consider the following command.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\KeywordTok{mean}\NormalTok{(v)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+In this case R is searching for the function mean first in the global environment, and then in the package in the order that appears in the output of the \texttt{search()} function. The package \texttt{base} is always last. In our case the function \texttt{mean()} is only defined in the base package. If you want to call a function from a specific package explicitly and want to be sure there is no confusion you can type the package name followed by \texttt{::} and the desired command.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{base}\OperatorTok{::}\KeywordTok{mean}\NormalTok{(v)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+This can be useful, but is not usually necessary.
 
 \hypertarget{extending-base-r-graphics}{%
 \chapter{Extending Base R Graphics}\label{extending-base-r-graphics}}
@@ -7314,17 +7465,6 @@ We specifically consider the \texttt{maps} package which lets us create differen
 
 \begin{verbatim}
 ## Warning: package 'maps' was built under R version 4.0.2
-\end{verbatim}
-
-\begin{verbatim}
-## 
-## Attaching package: 'maps'
-\end{verbatim}
-
-\begin{verbatim}
-## The following object is masked from 'package:purrr':
-## 
-##     map
 \end{verbatim}
 
 \begin{Shaded}
@@ -8086,8 +8226,27 @@ We can set the seed like we did before in order to insure we keep getting the sa
 ## [10] "Tails"
 \end{verbatim}
 
-\hypertarget{replicate}{%
-\section{replicate()}\label{replicate}}
+\hypertarget{cumulative-proportioncumulative-win-plots}{%
+\section{Cumulative-Proportion/Cumulative-Win Plots}\label{cumulative-proportioncumulative-win-plots}}
+
+A fair question to ask with simulations is: ``how many simulations do we need for our data to representative?''. There are rigorous rules that we can use to determine how many simulations we need until our data set starts to represent the truth; however, we will focus on summary tables and visualization tools for now. We know we have enough simulations when our data set seems to ``stabilize''. We track statistics or estimated probability of an event changes as we consider more data. We can visualize this using a cumulative proportion plot. For example, suppose we want to estimate how often we can expect a coin to land on a ``head''. We can flip a coin multiple times and record a ``1'' if it land on a head, and ``0'' otherwise. Then we can calculate the proportion of the times that the coin landed on a head, which is the (arithmetic) mean of the 0s and 1s. If we only flip the coin a few times, then the proportion that we calculate may not be accurate due to random fluctuation. However, the more coin flips we consider the more likely the proportion we calculate approaches the truth. We can observe this using a cumulative proportion plot. In a cumulative proportion plot we have the number of trials on the x-axis, and the estimated proportion of successes using all data up to trial ``x'' on the y-axis. For example, suppose we flip one coin five times and obtain the results 1, 1, 0, 1, 0. Then the proportion of successes using ``x'' number of trials is the following.
+
+\begin{itemize}
+\tightlist
+\item
+  When the number of trials is x = 1, the proportion of times we observe a head is y = (1)/1 = 1
+\item
+  When the number of trials is x = 2, the proportion of times we observe a head is y = (1+1)/2 = 1
+\item
+  When the number of trials is x = 3, the proportion of times we observe a head is y = (1+1+0)/3 = 2/3
+\item
+  When the number of trials is x = 4, the proportion of times we observe a head is y = (1+1+0+1)/4 = 3/4
+\item
+  When the number of trials is x = 5, the proportion of times we observe a head is y = (1+1+0+1+0)/5 = 3/5
+\end{itemize}
+
+\hypertarget{replicate-1}{%
+\section{replicate()}\label{replicate-1}}
 
 The \texttt{replicate()} function repeats a function call \texttt{n} times in a very efficient way. Suppose we wish to find the probability we get exactly 3 heads if we flip a coin 10 times. We can replicate flipping a coin 10 times, and count how many of these times we see exactly 3 heads.
 
@@ -8271,6 +8430,27 @@ To add a curve to the graph we need to know the mean and the standard deviation 
 \end{Shaded}
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-291-1.pdf}
+
+\hypertarget{example-coin-flips}{%
+\section{Example: Coin Flips}\label{example-coin-flips}}
+
+Suppose we are interested in the proportion of times we observe a head if we flip a fair sided coin. A fair question to ask: ``how many simulations do we need to do this?''. There are rigorous rules that we can use to determine how many simulations we need until our data set starts to represent the truth; however, we will focus on summary tables and visualization tools for now. We know we have enough simulations when our data set seems to ``stabilize''.
+
+Suppose we flip a coin 10 times and we observe the following results.
+
+\begin{itemize}
+\tightlist
+\item
+  Heads, Heads, Tails, Tails, Tails, Tails, Heads, Tails, Tails, Tails
+\end{itemize}
+
+With simulation studies we often want to visualize are results using summary tables and graphs. Lets create a table of the proportion of heads vs the number of trials.
+
+\begin{itemize}
+\tightlist
+\item
+  Create a plot of the proportion of heads vs the number of trials
+\end{itemize}
 
 \hypertarget{tidyverse}{%
 \chapter{Tidyverse}\label{tidyverse}}
@@ -9338,840 +9518,652 @@ Faceting creates tables of graphics by splitting the data into subsets and displ
   \url{https://hbctraining.github.io/Intro-to-R-flipped/cheatsheets/data-visualization-2.1.pdf}
 \end{itemize}
 
-\hypertarget{apply}{%
-\chapter{Apply Family of Functions}\label{apply}}
+\hypertarget{Regex}{%
+\chapter{Regular Expressions}\label{Regex}}
 
-Loops (like \texttt{for}, and \texttt{while}) are a way to repeatedly execute some code. However, they are often slow in execution when it comes to processing large data sets.
-
-\texttt{R} has a more efficient and quick approach to perform iterations -- \textbf{The apply family}.
-
-The apply family consists of vectorized functions. Below are the most common forms of apply functions.
-
-\begin{itemize}
-\tightlist
-\item
-  \texttt{apply()}
-\item
-  \texttt{lapply()}
-\item
-  \texttt{sapply()}
-\item
-  \texttt{tapply()}
-\item
-  \texttt{mapply()}
-\item
-  \texttt{replicate()}
-\end{itemize}
-
-These functions let you take data in batches and process the whole batch at once.
-
-There primary difference is in the object (such as list, matrix, data frame etc.) on which the function is applied to and the object that will be returned from the function.
-
-These functions apply a function to different components of a vector/list/dataframe/array in a non-sequential way. In general, if each element in your object is not dependent on the other elements of your object then an apply function is usually faster than a loop.
-
-\begin{center}\includegraphics[width=0.3\linewidth]{images/lapplyGraphic} \end{center}
-
-\hypertarget{apply-1}{%
-\section{apply()}\label{apply-1}}
-
-The \texttt{apply()}function is used to apply a function to the rows or columns of arrays (matrices). It assembles the returned values, and then returns it in a vector, array, or list.
-
-If you want to apply a function on a data frame, make sure that the data frame is homogeneous (i.e.~either all numeric values or all character strings). Otherwise, R will force all columns to have identical types using \texttt{as.matrix()}. This may not be what you want. In that case, you might consider using the \texttt{lapply()} or \texttt{sapply()} functions instead.
-
-Description of the required \texttt{apply()} arguments:
-
-\begin{itemize}
-\tightlist
-\item
-  \texttt{X}: A array (or matrix)
-\item
-  \texttt{MARGIN}: A vector giving the subscripts which the function will be applied over.
-
-  \begin{itemize}
-  \tightlist
-  \item
-    1 indicates rows
-  \item
-    2 indicates columns
-  \item
-    c(1, 2) indicates rows and columns
-  \end{itemize}
-\item
-  \texttt{FUN}: The function to be applied
-\item
-  \texttt{...}: Additional arguments to be passed to ``FUN''
-\end{itemize}
-
-\hypertarget{example-built-in-function}{%
-\subsection*{Example: Built In Function}\label{example-built-in-function}}
-\addcontentsline{toc}{subsection}{Example: Built In Function}
+With basic string-manipulation functions, we saw how to do things like split
+up entries in a data file which are separated by commas.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# Get column means}
-\NormalTok{data <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{9}\NormalTok{, }\DataTypeTok{nrow =} \DecValTok{3}\NormalTok{, }\DataTypeTok{ncol =} \DecValTok{3}\NormalTok{)}
-\NormalTok{data}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##      [,1] [,2] [,3]
-## [1,]    1    4    7
-## [2,]    2    5    8
-## [3,]    3    6    9
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{apply}\NormalTok{(data, }\DecValTok{2}\NormalTok{, mean)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 2 5 8
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Get row means}
-\KeywordTok{apply}\NormalTok{(data, }\DecValTok{1}\NormalTok{, sum)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 12 15 18
-\end{verbatim}
-
-\hypertarget{example-user-defined-function}{%
-\subsection*{Example: User Defined Function}\label{example-user-defined-function}}
-\addcontentsline{toc}{subsection}{Example: User Defined Function}
-
-You can use user-defined functions as well.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{apply}\NormalTok{(data, }\DecValTok{2}\NormalTok{, }\ControlFlowTok{function}\NormalTok{(x) \{}
-
-    \CommentTok{# Standard deviation formula}
-\NormalTok{    y <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(x }\OperatorTok{-}\StringTok{ }\KeywordTok{mean}\NormalTok{(x))}\OperatorTok{^}\DecValTok{2}\OperatorTok{/}\NormalTok{(}\KeywordTok{length}\NormalTok{(x) }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{)}
-
-    \KeywordTok{return}\NormalTok{(y)}
-\NormalTok{\})}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 0 0 0
-\end{verbatim}
-
-\hypertarget{returned-objects}{%
-\subsection{Returned Objects}\label{returned-objects}}
-
-The values that \texttt{apply()} returns depends on the function \texttt{FUN}. If \texttt{FUN} returns an element of length 1, then \texttt{apply()} will return a vector. If \texttt{FUN} \emph{always} returns an element of length \texttt{n}\textgreater1, then \texttt{apply()} will return a matrix with \texttt{n} rows, and the number of columns will correspond to how many rows/columns were iterated over. Lastly, if \texttt{FUN} returns an object that would vary in length, then \texttt{apply()} will return a list where each element corresponds to a row or column that was iterated over. In short, \texttt{apply()} prioritizes returning a vector, array (or matrix), and list (in that order). What is returned depends on the output of \texttt{FUN}.
-
-\hypertarget{example-extra-arguments-array-output}{%
-\subsection{Example: Extra Arguments, Array Output}\label{example-extra-arguments-array-output}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\KeywordTok{cbind}\NormalTok{(}\DataTypeTok{x1 =} \DecValTok{3}\NormalTok{, }\DataTypeTok{x2 =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\OperatorTok{:}\DecValTok{1}\NormalTok{, }\DecValTok{2}\OperatorTok{:}\DecValTok{5}\NormalTok{))}
-
-\NormalTok{fun1 <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, c1, c2) \{}
-\NormalTok{    mean_vec <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{mean}\NormalTok{(x[c1]), }\KeywordTok{mean}\NormalTok{(x[c2]))}
-    \KeywordTok{return}\NormalTok{(mean_vec)}
-\NormalTok{\}}
-
-\KeywordTok{apply}\NormalTok{(x, }\DecValTok{1}\NormalTok{, fun1, }\DataTypeTok{c1 =} \StringTok{"x1"}\NormalTok{, }\DataTypeTok{c2 =} \KeywordTok{c}\NormalTok{(}\StringTok{"x1"}\NormalTok{, }\StringTok{"x2"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
-## [1,]  3.0    3  3.0    3  3.0    3  3.0    3
-## [2,]  3.5    3  2.5    2  2.5    3  3.5    4
-\end{verbatim}
-
-\hypertarget{example-list-output}{%
-\subsection{Example: List Output}\label{example-list-output}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{mat <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{-2}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{62}\NormalTok{, }\DecValTok{-2}\NormalTok{, }\DecValTok{-6}\NormalTok{), }\DataTypeTok{nrow =} \DecValTok{3}\NormalTok{)}
-
-\NormalTok{CheckPos <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(Vec) \{}
-    \CommentTok{# Subset values of Vec that are even}
-\NormalTok{    PosVec <-}\StringTok{ }\NormalTok{Vec[Vec }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{]}
-
-    \CommentTok{# Return only the even values}
-    \KeywordTok{return}\NormalTok{(PosVec)}
-\NormalTok{\}}
-
-\CommentTok{# Check Positive values by column}
-\KeywordTok{apply}\NormalTok{(mat, }\DecValTok{2}\NormalTok{, CheckPos)}
+\NormalTok{text =}\StringTok{ "One Fish, Two Fish, Red Fish, Blue Fish"}
+\KeywordTok{strsplit}\NormalTok{(text, }\DataTypeTok{split =} \StringTok{","}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 ## [[1]]
-## [1] 1
-## 
-## [[2]]
-## [1]  2 20
-## 
-## [[3]]
-## [1] 62
+## [1] "One Fish"   " Two Fish"  " Red Fish"  " Blue Fish"
 \end{verbatim}
 
-\hypertarget{lapply}{%
-\section{lapply()}\label{lapply}}
-
-The \texttt{lapply()} function is used to apply a function to each element of the list. It collects the returned values into a list, and then \textbf{returns that list} which is of the same length.
-
-Description of the required \texttt{lapply()} arguments:
-
-\begin{itemize}
-\tightlist
-\item
-  \texttt{X}: A list
-\item
-  \texttt{FUN}: The function to be applied
-\item
-  \texttt{...}: Additional arguments to be passed to \texttt{FUN}
-\end{itemize}
+or by single spaces
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{data_lst <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{item1 =} \DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{, }\DataTypeTok{item2 =} \KeywordTok{seq}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{36}\NormalTok{, }\DecValTok{8}\NormalTok{), }\DataTypeTok{item3 =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}
-    \DecValTok{3}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{9}\NormalTok{))}
-\NormalTok{data_lst}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## $item1
-## [1] 1 2 3 4 5
-## 
-## $item2
-## [1]  4 12 20 28 36
-## 
-## $item3
-## [1] 1 3 5 7 9
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{data_vector <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{8}\NormalTok{)}
-\NormalTok{data_vector}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 1 2 3 4 5 6 7 8
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{lapply}\NormalTok{(data_lst, sum)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## $item1
-## [1] 15
-## 
-## $item2
-## [1] 100
-## 
-## $item3
-## [1] 25
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{lapply}\NormalTok{(data_vector, sum)}
+\KeywordTok{strsplit}\NormalTok{(text, }\DataTypeTok{split =} \StringTok{" "}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 ## [[1]]
-## [1] 1
+## [1] "One"   "Fish," "Two"   "Fish," "Red"   "Fish," "Blue"  "Fish"
+\end{verbatim}
+
+or even a comma followed by a space
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{strsplit}\NormalTok{(text, }\DataTypeTok{split =} \StringTok{", "}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## [1] "One Fish"  "Two Fish"  "Red Fish"  "Blue Fish"
+\end{verbatim}
+
+But we don't know how to deal with situations like splitting on a comma,
+\textbf{optionally} followed by some number of spaces.
+
+Not only is it annoying to have such a simple thing defeat us, it's an instance
+of a much broader class of problems. If we're trying to extract data from webpages, we may want to get rid of all the formatting instructions buried in the source of the webpage. We might want to extract all the personal names from
+a document which are preceded by titles (such as Mr., Ms., Miss, Dr.), without
+knowing what those names are, or how long they are. And so forth.
+
+We need a language for telling R about patterns of strings. The most basic such language is that of \textbf{regular expressions}. Regular expressions are used to \textbf{match} sets of strings. Start with string constants, and build up by allowing ``\emph{this} and then \emph{that}'', ``either \emph{this} or \emph{that}'', ``repeat \emph{this}'', etc. These rules get expressed in a \textbf{grammar}, with special symbols.
+
+Every regular expression is a sequence of symbols, which specifies a set of text strings that follow some pattern that --- match the regular expression. - Regular expressions are strings and therefore a regexp can be stored in a \texttt{character} variable. This means that regexps can be built up and changed using string-manipulating functions. A valid regular expression must conform to certain rules of grammar; it gets interpreted by the computer as rules for matching certain strings, but not others.
+
+Every string is a valid regexp. We say ``regexp'' as short hand for the phrase a \href{https://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html}{``regular expression as used in R''}. \texttt{fly} matches end of ``fruitfly'', ``why walk when you can fly'' but it does not match ``time flies like an arrow; fruit flies like a banana; a banana flies poorly''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fly_phrases =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"fruitfly"}\NormalTok{, }\StringTok{"why walk when you can fly"}\NormalTok{, }\StringTok{"time flies like an arrow; fruit flies like a banana; a banana flies poorly"}\NormalTok{,}
+    \StringTok{"superman flew"}\NormalTok{)}
+
+\CommentTok{# Returns which elements have the term 'fly'}
+\KeywordTok{grep}\NormalTok{(}\StringTok{"fly"}\NormalTok{, fly_phrases, }\DataTypeTok{value =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "fruitfly"                  "why walk when you can fly"
+\end{verbatim}
+
+If we did wish to match one regexp OR another regexp we cold use the ``\textbar{}'' symbol. This symbol is used in the same way it was in section \ref{operators}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Returns which elements have the term 'fly' or 'flies'}
+\KeywordTok{grep}\NormalTok{(}\StringTok{"fly|flies"}\NormalTok{, fly_phrases, }\DataTypeTok{value =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "fruitfly"                                                                  
+## [2] "why walk when you can fly"                                                 
+## [3] "time flies like an arrow; fruit flies like a banana; a banana flies poorly"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Returns which elements have the term 'fly' or 'flies'}
+\KeywordTok{grep}\NormalTok{(}\StringTok{"flies|fly"}\NormalTok{, fly_phrases, }\DataTypeTok{value =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "fruitfly"                                                                  
+## [2] "why walk when you can fly"                                                 
+## [3] "time flies like an arrow; fruit flies like a banana; a banana flies poorly"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Returns which elements have 'fly flies' or 'time' or}
+\CommentTok{# 'flies'}
+\KeywordTok{grep}\NormalTok{(}\StringTok{"time|fruit fly|flies"}\NormalTok{, fly_phrases, }\DataTypeTok{value =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "time flies like an arrow; fruit flies like a banana; a banana flies poorly"
+\end{verbatim}
+
+Parentheses are used to create groups.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{text_colors =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Some people say grey"}\NormalTok{, }\StringTok{"others say gray,"}\NormalTok{, }\StringTok{"and both are greatly used"}\NormalTok{)}
+
+\CommentTok{# Searches for the same thing}
+\KeywordTok{grep}\NormalTok{(}\StringTok{"gr(e|a)y"}\NormalTok{, text_colors, }\DataTypeTok{value =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Some people say grey" "others say gray,"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{grep}\NormalTok{(}\StringTok{"grey|gray"}\NormalTok{, text_colors, }\DataTypeTok{value =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Some people say grey" "others say gray,"
+\end{verbatim}
+
+\hypertarget{ranges-escaping}{%
+\section{Ranges, Escaping}\label{ranges-escaping}}
+
+A character class is a list of characters enclosed between \texttt{{[}} and \texttt{{]}} which matches any single character in that list. We use these braces in regular expressions to indicate character \emph{ranges}. For example the regexp \texttt{{[}0123456789{]}} matches any single digit.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{text =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"1 Fish"}\NormalTok{, }\StringTok{"2 Fish"}\NormalTok{, }\StringTok{"red fish"}\NormalTok{, }\StringTok{"blue fish"}\NormalTok{)}
+
+\CommentTok{# Any numbers?}
+\KeywordTok{grep}\NormalTok{(}\StringTok{"[0123456789]"}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "1 Fish" "2 Fish"
+\end{verbatim}
+
+If the first character of the list is the caret \^{}, then it matches any character \emph{not} in the list. For example, \texttt{{[}\^{}abc{]}} matches anything \emph{except} the characters a, b or c.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Any letters EXCEPT a, b, c}
+\KeywordTok{grep}\NormalTok{(}\StringTok{"[^abc]"}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "1 Fish"    "2 Fish"    "red fish"  "blue fish"
+\end{verbatim}
+
+Another example: \texttt{t{[}aeiou{]}} matches any two-character sequence in which ``t'' is followed by a lowercase vowel.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{text_baseball =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Ohhhhh"}\NormalTok{, }\StringTok{"take me out"}\NormalTok{, }\StringTok{"to the ball game"}\NormalTok{)}
+
+\CommentTok{# Match any two-character sequence in which “t” is followed}
+\CommentTok{# by a lowercase vowel.}
+\KeywordTok{grep}\NormalTok{(}\StringTok{"t[aeiou]"}\NormalTok{, text_baseball, }\DataTypeTok{value =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "take me out"      "to the ball game"
+\end{verbatim}
+
+This system of using ranges is used a lot, and there are certain named classes of characters are predefined, below are some of them.
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{{[}:lower:{]}} : Lower-case letters, equivalent to \texttt{{[}a-z{]}}
+\item
+  \texttt{{[}:upper:{]}} : Upper-case letters, equivalent to \texttt{{[}A-Z{]}}
+\item
+  \texttt{{[}:alpha:{]}} : Alphabetic characters: \texttt{{[}:lower:{]}} and \texttt{{[}:upper:{]}}.
+\item
+  \texttt{{[}:digit:{]}} : Digits: 0 1 2 3 4 5 6 7 8 9, equivalent to \texttt{{[}0-9{]}}
+\item
+  \texttt{\textbackslash{}d} : digit, equivalent to \texttt{{[}:digit:{]}}
+\item
+  \texttt{\textbackslash{}D} : Non-digit
+\item
+  \texttt{{[}:alnum:{]}} : Alphanumeric characters: \texttt{{[}:alpha:{]}} and \texttt{{[}:digit:{]}}.
+\item
+  \texttt{{[}:blank:{]}} : Blank characters: space and tab, and possibly other locale-dependent characters such as non-breaking space.
+\item
+  \texttt{{[}:punct:{]}} : Punctuation characters:
+  ! " \# \$ \% \& ' ( ) * + , - . / : ; \textless{} = \textgreater{} ? @ {[} ~{]} \^{} \_ ` \{ \textbar{} \} \textasciitilde.
+\item
+  \texttt{{[}:graph:{]}} : Graphical characters: \texttt{{[}:alnum:{]}} and \texttt{{[}:punct:{]}}.
+\item
+  \texttt{{[}:space:{]}} : Space characters: tab, newline, vertical tab, form feed, carriage return, space and possibly other locale-dependent characters.
+\item
+  \texttt{\textbackslash{}s} : space
+\item
+  \texttt{\textbackslash{}S} : not space
+\item
+  \texttt{\textbackslash{}w}: word characters, equivalent to \texttt{{[}{[}:alnum:{]}\_{]}} or \texttt{{[}A-z0-9{]}}.
+\item
+  \texttt{\textbackslash{}W}: not word, equivalent to \texttt{{[}\^{}A-z0-9\_{]}}.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Are any digits in the text?}
+\KeywordTok{grep}\NormalTok{(}\StringTok{"[[:digit:]]"}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "1 Fish" "2 Fish"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Are any upper case letters in the text?}
+\KeywordTok{grep}\NormalTok{(}\StringTok{"[[:upper:]]"}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "1 Fish" "2 Fish"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Are any lower case letters in the text?}
+\KeywordTok{grep}\NormalTok{(}\StringTok{"[[:lower:]]"}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "1 Fish"    "2 Fish"    "red fish"  "blue fish"
+\end{verbatim}
+
+\hypertarget{metacharacters}{%
+\section{Metacharacters}\label{metacharacters}}
+
+The fundamental building blocks are the regular expressions that match a single character. Most characters, including all letters and digits, are regular expressions that match themselves. However, we also use some of these characters to mean different things in order to match more intricate patterns. The characters reserved for special meanings (and not simply as characters to match) are called \emph{metacharacters}. Any metacharacter with special meaning may be quoted by preceding it with a backslash. The metacharacters in extended regular expressions are . ~\textbar{} ( ) {[} \{ \^{} \$ * + ?.
+
+We already saw \texttt{\textbar{}} and \texttt{{[}{]}} in action above. Now lets talk about the \texttt{.} symbol. This symbol matches any single character. To match strings that have a ``.'' we need to use a backslash.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{text =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"There was a monster"}\NormalTok{, }\StringTok{"Superman flew over there."}\NormalTok{,}
+    \StringTok{"He made it in time."}\NormalTok{, }\StringTok{"Yumm, pancakes!"}\NormalTok{, }\StringTok{"MMmm Mmmm they were good..."}\NormalTok{)}
+
+\CommentTok{# Looks for every character}
+\KeywordTok{grep}\NormalTok{(}\StringTok{"."}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "There was a monster"         "Superman flew over there."  
+## [3] "He made it in time."         "Yumm, pancakes!"            
+## [5] "MMmm Mmmm they were good..."
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Matches only '.'}
+\KeywordTok{grep}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{."}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Superman flew over there."   "He made it in time."        
+## [3] "MMmm Mmmm they were good..."
+\end{verbatim}
+
+\hypertarget{quantifiers}{%
+\section{Quantifiers}\label{quantifiers}}
+
+Here is a list of some of the metacharacters and some of their features. These are all \emph{quantifiers} and they control how many times the regexp should be matched. The following features all are considered \emph{repetition quantifiers}.
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{+} : The preceding item will be matched one or more times.
+\item
+  \texttt{*} : The preceding item will be matched zero or more times.
+\item
+  \texttt{?} : The preceding item is optional and will be matched at most once.
+\item
+  \texttt{\{n\}} : The preceding item is matched exactly ``n'' times.
+\item
+  \texttt{\{n,\}} : The preceding item is matched ``n'' or more times.
+\item
+  \texttt{\{n,m\}} : The preceding item is matched at least ``n'' times, but not more than ``m'' times.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Detect the letter 'm'}
+\KeywordTok{grep}\NormalTok{(}\StringTok{"m"}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "There was a monster"         "Superman flew over there."  
+## [3] "He made it in time."         "Yumm, pancakes!"            
+## [5] "MMmm Mmmm they were good..."
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Detect the letter 'm' exactly one time}
+\KeywordTok{grep}\NormalTok{(}\StringTok{"m\{1\}"}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "There was a monster"         "Superman flew over there."  
+## [3] "He made it in time."         "Yumm, pancakes!"            
+## [5] "MMmm Mmmm they were good..."
+\end{verbatim}
+
+If we want to match a regexp exactly \texttt{\{n\}}, \texttt{\{n,\}} or \texttt{\{n,m\}} times then it looks for this sequence consecutively. For example, the following command does not output ``He made it in time.'', despite this phrase having two ``m''s in it.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Detect the letter 'm' exactly two or more times (in a}
+\CommentTok{# row)}
+\KeywordTok{grep}\NormalTok{(}\StringTok{"m\{2,\}"}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Yumm, pancakes!"             "MMmm Mmmm they were good..."
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Another example}
+\NormalTok{text =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"3, 2, 1, GO!"}\NormalTok{, }\StringTok{"On the count of 3,"}\NormalTok{, }\StringTok{"Count to 100"}\NormalTok{,}
+    \StringTok{"Wish upon 1 star."}\NormalTok{)}
+
+\CommentTok{# Detect exactly two digits in a row.}
+\KeywordTok{grep}\NormalTok{(}\StringTok{"[[:digit:]]\{2\}"}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Count to 100"
+\end{verbatim}
+
+By default, quantifiers are ``greedy'' and they match as many repetitions as they can. Following a quantifier by \texttt{?} makes it match as few as possible.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Only look for one digit then stop.  It doesn't matter if}
+\CommentTok{# there is more.}
+\KeywordTok{grep}\NormalTok{(}\StringTok{"[[:digit:]]?"}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "3, 2, 1, GO!"       "On the count of 3," "Count to 100"      
+## [4] "Wish upon 1 star."
+\end{verbatim}
+
+\hypertarget{anchoring}{%
+\section{Anchoring}\label{anchoring}}
+
+Anchoring is used to find regexps at specific locations in a string. For example, at the beginning or end of a word, or at the beginning or end of a phrase.
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{\$} means a pattern can only match at the end of a line or string
+\item
+  \texttt{\^{}} means (outside of braces) the beginning of a line or string
+\item
+  \texttt{\textless{}} and \texttt{\textgreater{}} anchor to beginning or ending of words
+\item
+  \texttt{\textbackslash{}b} anchors boundary (beginning \emph{or} ending) of words, \texttt{\textbackslash{}B} anywhere else
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# matches elements ending in a lower-case letter or comma}
+\KeywordTok{grep}\NormalTok{(}\StringTok{"[a-z,]$"}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "On the count of 3,"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# matches capital letters not at the beginning or ending of}
+\CommentTok{# a word}
+\KeywordTok{grep}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{B[A-Z]"}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "3, 2, 1, GO!"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Find elements that end with a number}
+\KeywordTok{grep}\NormalTok{(}\StringTok{"[[:digit:]]$"}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Count to 100"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Find elements that start with a number}
+\KeywordTok{grep}\NormalTok{(}\StringTok{"^[[:digit:]]"}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "3, 2, 1, GO!"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Find elements that have a word that starts or ends with u}
+\KeywordTok{grep}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{bu"}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Wish upon 1 star."
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Find elements that have a word that starts or ends with t}
+\KeywordTok{grep}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{bt"}\NormalTok{, text, }\DataTypeTok{value =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "On the count of 3," "Count to 100"
+\end{verbatim}
+
+\hypertarget{splitting-on-a-regexp}{%
+\section{Splitting on a Regexp}\label{splitting-on-a-regexp}}
+
+We can use regexps in many R functions, we are not limited to just \texttt{grep()} and \texttt{grepl}. For example, \texttt{strsplit()} will take a regexp as its \texttt{split} argument. This means we can make splits a string into new strings at each instance of the regexp, just like it would if \texttt{split} were a string.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Load data:}
+\NormalTok{al2 =}\StringTok{ }\KeywordTok{readLines}\NormalTok{(}\StringTok{"http://www.stat.cmu.edu/~cshalizi/statcomp/14/lectures/04/al2.txt"}\NormalTok{)}
+\NormalTok{al2 =}\StringTok{ }\KeywordTok{paste}\NormalTok{(al2, }\DataTypeTok{collapse =} \StringTok{" "}\NormalTok{)}
+
+\CommentTok{# Split words by space}
+\NormalTok{al2.words1 =}\StringTok{ }\KeywordTok{strsplit}\NormalTok{(al2, }\DataTypeTok{split =} \StringTok{" "}\NormalTok{)}
+
+\CommentTok{# Lets see what this looks like}
+\KeywordTok{head}\NormalTok{(}\KeywordTok{sort}\NormalTok{(}\KeywordTok{table}\NormalTok{(al2.words1)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## al2.words1
+##       -    "the    "Woe absorbs  accept achieve 
+##       1       1       1       1       1       1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Split words by space or by a punctuation symbol}
+\NormalTok{al2.words2 =}\StringTok{ }\KeywordTok{strsplit}\NormalTok{(al2, }\DataTypeTok{split =} \StringTok{"(}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{s|[[:punct:]])+"}\NormalTok{)[[}\DecValTok{1}\NormalTok{]]}
+\KeywordTok{head}\NormalTok{(}\KeywordTok{sort}\NormalTok{(}\KeywordTok{table}\NormalTok{(al2.words2)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## al2.words2
+## absorbs  accept achieve against  agents     aid 
+##       1       1       1       1       1       1
+\end{verbatim}
+
+Closer examination shows there's still a problem: ``men's'' \(\rightarrow\) ``men'', ``s''.
+To handle possessives: look for any number of white spaces, \emph{or} at least one punctuation mark followed by at least one space
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{al2.words3 =}\StringTok{ }\KeywordTok{strsplit}\NormalTok{(al2, }\DataTypeTok{split =} \StringTok{"}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{s+|([[:punct:]]+[[:space:]]+)"}\NormalTok{)[[}\DecValTok{1}\NormalTok{]]}
+\KeywordTok{head}\NormalTok{(}\KeywordTok{sort}\NormalTok{(}\KeywordTok{table}\NormalTok{(al2.words3)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## al2.words3
+##            "the    "Woe absorbs  accept achieve 
+##       1       1       1       1       1       1
+\end{verbatim}
+
+\hypertarget{stringr-package}{%
+\section{Stringr Package}\label{stringr-package}}
+
+The \texttt{stringr} package is one of the many packages that helps with text data. This package also has several vignettes with explanations on the different functions available, and how the package works. It is thought of as an extension of the standard base R functions. The \texttt{stringr} package is part of the \texttt{tidyverse}, but the functions and uses of this package are much more similar to base R then \texttt{dplyr} and \texttt{ggplot2}.
+
+Two functions that are particularly helpful is \texttt{str\_extract()} and \texttt{str\_extract\_all()}. These functions find and isolate particular occurrences of words and phrases. When used with regular expressions this can be very beneficial.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+
+\NormalTok{fly_phrases <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"fruitfly"}\NormalTok{, }\StringTok{"why walk when you can fly"}\NormalTok{, }\StringTok{"time flies like an arrow; fruit flies like a banana; a banana flies poorly"}\NormalTok{,}
+    \StringTok{"superman flew"}\NormalTok{)}
+
+\CommentTok{# Returns occurrences of a phrase starting with a space,}
+\CommentTok{# followed by 'fl', and ending with any number of letters}
+\CommentTok{# (upper or lower case)}
+\NormalTok{fl_occurances <-}\StringTok{ }\KeywordTok{str_extract_all}\NormalTok{(fly_phrases, }\DataTypeTok{pattern =} \StringTok{" fl[[:alpha:]]\{1,\}"}\NormalTok{)}
+
+\CommentTok{# Remove white space}
+\NormalTok{fl_occurances <-}\StringTok{ }\KeywordTok{lapply}\NormalTok{(fl_occurances, gsub, }\DataTypeTok{pattern =} \StringTok{"[[:space:]]"}\NormalTok{,}
+    \DataTypeTok{replacement =} \StringTok{""}\NormalTok{)}
+\NormalTok{fl_occurances}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## character(0)
 ## 
 ## [[2]]
-## [1] 2
+## [1] "fly"
 ## 
 ## [[3]]
-## [1] 3
+## [1] "flies" "flies" "flies"
 ## 
 ## [[4]]
-## [1] 4
-## 
-## [[5]]
-## [1] 5
-## 
-## [[6]]
-## [1] 6
-## 
-## [[7]]
-## [1] 7
-## 
-## [[8]]
-## [1] 8
+## [1] "flew"
 \end{verbatim}
+
+\hypertarget{wordcloud-package-1}{%
+\section{Wordcloud Package}\label{wordcloud-package-1}}
+
+Another package that is particularly useful for working with text data is the \texttt{wordcloud} package. This package extends the standard Base R plotting, and allows us to build word clouds. It uses the same general principals and features that we do with Base R.
+
+Lets use the same Abraham Lincoln speech from the previous section. This time we will remove all punctuation, make everything lower case, and replace all whitepsace with a single space for consistency.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{a =} \DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{beta =} \KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\DecValTok{3}\OperatorTok{:}\DecValTok{3}\NormalTok{), }\DataTypeTok{logic =} \KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{,}
-    \OtherTok{FALSE}\NormalTok{, }\OtherTok{TRUE}\NormalTok{))}
+\KeywordTok{library}\NormalTok{(wordcloud)}
 
-\CommentTok{# compute the list mean for each list element}
-\KeywordTok{lapply}\NormalTok{(x, mean)}
+\NormalTok{the_url <-}\StringTok{ "https://raw.githubusercontent.com/rpkgarcia/LearnRBook/main/data_sets/al1.txt"}
+\NormalTok{al1 <-}\StringTok{ }\KeywordTok{readLines}\NormalTok{(the_url, }\DataTypeTok{warn =} \OtherTok{FALSE}\NormalTok{)}
+
+\CommentTok{# make everything lower case}
+\NormalTok{al1 <-}\StringTok{ }\KeywordTok{tolower}\NormalTok{(al1)}
+
+\CommentTok{# remove puncuation}
+\NormalTok{al1 <-}\StringTok{ }\KeywordTok{gsub}\NormalTok{(}\StringTok{"[[:punct:]]"}\NormalTok{, }\StringTok{""}\NormalTok{, al1)}
+
+\CommentTok{# replace any whitespace by a single white space}
+\NormalTok{al1 <-}\StringTok{ }\KeywordTok{gsub}\NormalTok{(}\StringTok{"[[:space:]]"}\NormalTok{, }\StringTok{" "}\NormalTok{, al1)}
+
+\CommentTok{# see all individual words by spliting by white space}
+\NormalTok{al1.words <-}\StringTok{ }\KeywordTok{strsplit}\NormalTok{(al1, }\StringTok{" "}\NormalTok{)}
+
+\CommentTok{# Word count table}
+\NormalTok{wc <-}\StringTok{ }\KeywordTok{table}\NormalTok{(al1.words)}
+\NormalTok{wc <-}\StringTok{ }\KeywordTok{sort}\NormalTok{(wc, }\DataTypeTok{decreasing =}\NormalTok{ T)}
+
+\CommentTok{# Fixed issues from previous section}
+\KeywordTok{head}\NormalTok{(wc, }\DecValTok{30}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## $a
-## [1] 5.5
-## 
-## $beta
-## [1] 4.535125
-## 
-## $logic
-## [1] 0.5
-\end{verbatim}
-
-Unlike \texttt{apply()}, \texttt{lapply()} will always return a list. If the argument \texttt{X} is an object that is something other than a list then the \texttt{as.list()} function will be used to convert that object. Consider the built-in data set \texttt{iris} in R. If we use the \texttt{as.list()} function, each column will be converted into an element of a list.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{head}\NormalTok{(iris)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-## 1          5.1         3.5          1.4         0.2  setosa
-## 2          4.9         3.0          1.4         0.2  setosa
-## 3          4.7         3.2          1.3         0.2  setosa
-## 4          4.6         3.1          1.5         0.2  setosa
-## 5          5.0         3.6          1.4         0.2  setosa
-## 6          5.4         3.9          1.7         0.4  setosa
+## al1.words
+##   the    of   and shall  that    to    we    be    by   god those which    as 
+##    10     6     5     4     4     4     4     3     3     3     3     3     2 
+##    do drawn    he    if    in    it  must  said  this until   war wills  with 
+##     2     2     2     2     2     2     2     2     2     2     2     2     2 
+## years     a   ago   all 
+##     2     1     1     1
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{str}\NormalTok{(}\KeywordTok{as.list}\NormalTok{(iris))}
+\CommentTok{# The unique words in the table}
+\KeywordTok{names}\NormalTok{(wc)[}\DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## List of 5
-##  $ Sepal.Length: num [1:150] 5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
-##  $ Sepal.Width : num [1:150] 3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
-##  $ Petal.Length: num [1:150] 1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
-##  $ Petal.Width : num [1:150] 0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
-##  $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
-\end{verbatim}
-
-Then if we use \texttt{lapply()} it will iterate over the columns. We can find all values within a column that are bigger than the column mean (just looking at the numeric columns though).
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{lapply}\NormalTok{(iris[, }\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{], }\ControlFlowTok{function}\NormalTok{(column) \{}
-\NormalTok{    big_values <-}\StringTok{ }\NormalTok{column[column }\OperatorTok{>}\StringTok{ }\KeywordTok{mean}\NormalTok{(column)]}
-    \KeywordTok{return}\NormalTok{(big_values)}
-\NormalTok{\})}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## $Sepal.Length
-##  [1] 7.0 6.4 6.9 6.5 6.3 6.6 5.9 6.0 6.1 6.7 6.2 5.9 6.1 6.3 6.1 6.4 6.6 6.8 6.7
-## [20] 6.0 6.0 6.0 6.7 6.3 6.1 6.2 6.3 7.1 6.3 6.5 7.6 7.3 6.7 7.2 6.5 6.4 6.8 6.4
-## [39] 6.5 7.7 7.7 6.0 6.9 7.7 6.3 6.7 7.2 6.2 6.1 6.4 7.2 7.4 7.9 6.4 6.3 6.1 7.7
-## [58] 6.3 6.4 6.0 6.9 6.7 6.9 6.8 6.7 6.7 6.3 6.5 6.2 5.9
-## 
-## $Sepal.Width
-##  [1] 3.5 3.2 3.1 3.6 3.9 3.4 3.4 3.1 3.7 3.4 4.0 4.4 3.9 3.5 3.8 3.8 3.4 3.7 3.6
-## [20] 3.3 3.4 3.4 3.5 3.4 3.2 3.1 3.4 4.1 4.2 3.1 3.2 3.5 3.6 3.4 3.5 3.2 3.5 3.8
-## [39] 3.8 3.2 3.7 3.3 3.2 3.2 3.1 3.3 3.1 3.2 3.4 3.1 3.3 3.6 3.2 3.2 3.8 3.2 3.3
-## [58] 3.2 3.8 3.4 3.1 3.1 3.1 3.1 3.2 3.3 3.4
-## 
-## $Petal.Length
-##  [1] 4.7 4.5 4.9 4.0 4.6 4.5 4.7 4.6 3.9 4.2 4.0 4.7 4.4 4.5 4.1 4.5 3.9 4.8 4.0
-## [20] 4.9 4.7 4.3 4.4 4.8 5.0 4.5 3.8 3.9 5.1 4.5 4.5 4.7 4.4 4.1 4.0 4.4 4.6 4.0
-## [39] 4.2 4.2 4.2 4.3 4.1 6.0 5.1 5.9 5.6 5.8 6.6 4.5 6.3 5.8 6.1 5.1 5.3 5.5 5.0
-## [58] 5.1 5.3 5.5 6.7 6.9 5.0 5.7 4.9 6.7 4.9 5.7 6.0 4.8 4.9 5.6 5.8 6.1 6.4 5.6
-## [77] 5.1 5.6 6.1 5.6 5.5 4.8 5.4 5.6 5.1 5.1 5.9 5.7 5.2 5.0 5.2 5.4 5.1
-## 
-## $Petal.Width
-##  [1] 1.4 1.5 1.5 1.3 1.5 1.3 1.6 1.3 1.4 1.5 1.4 1.3 1.4 1.5 1.5 1.8 1.3 1.5 1.2
-## [20] 1.3 1.4 1.4 1.7 1.5 1.2 1.6 1.5 1.6 1.5 1.3 1.3 1.3 1.2 1.4 1.2 1.3 1.2 1.3
-## [39] 1.3 1.3 2.5 1.9 2.1 1.8 2.2 2.1 1.7 1.8 1.8 2.5 2.0 1.9 2.1 2.0 2.4 2.3 1.8
-## [58] 2.2 2.3 1.5 2.3 2.0 2.0 1.8 2.1 1.8 1.8 1.8 2.1 1.6 1.9 2.0 2.2 1.5 1.4 2.3
-## [77] 2.4 1.8 1.8 2.1 2.4 2.3 1.9 2.3 2.5 2.3 1.9 2.0 2.3 1.8
-\end{verbatim}
-
-\hypertarget{sapply}{%
-\section{sapply()}\label{sapply}}
-
-The \texttt{sapply()} and \texttt{lapply()} work basically the same.
-
-The only difference is that \texttt{lapply()} always returns a list, whereas \texttt{sapply()} tries to simplify the result into a vector or matrix. The output for \texttt{sapply()} is just like the output of \texttt{apply()}, it depends on the dimensions of the returned value for \texttt{FUN}.
-
-\begin{itemize}
-\item
-  If the return value is a list where every element is length 1, you get a vector.
-\item
-  If the return value is a list where every element is a vector of the same length (\textgreater{} 1), you get a matrix.
-\item
-  If the lengths vary, simplification is impossible and you get a list.
-\end{itemize}
-
-Description of the required \texttt{sapply()} arguments:
-
-\begin{itemize}
-\tightlist
-\item
-  \texttt{X}: A list
-\item
-  \texttt{FUN}: The function to be applied
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{data_lst <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{item1 =} \DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{, }\DataTypeTok{item2 =} \KeywordTok{seq}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{36}\NormalTok{, }\DecValTok{8}\NormalTok{), }\DataTypeTok{item3 =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}
-    \DecValTok{3}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{9}\NormalTok{))}
-\NormalTok{data_lst}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## $item1
-## [1] 1 2 3 4 5
-## 
-## $item2
-## [1]  4 12 20 28 36
-## 
-## $item3
-## [1] 1 3 5 7 9
+## [1] "the"   "of"    "and"   "shall" "that"  "to"
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{sapply}\NormalTok{(data_lst, sum)}
+\CommentTok{# Default plot (there is some randomness to how this plot}
+\CommentTok{# is made, see Help file)}
+\KeywordTok{wordcloud}\NormalTok{(}\DataTypeTok{words =} \KeywordTok{names}\NormalTok{(wc), }\DataTypeTok{freq =}\NormalTok{ wc)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## item1 item2 item3 
-##    15   100    25
-\end{verbatim}
-
-\hypertarget{tapply}{%
-\section{tapply()}\label{tapply}}
-
-The \texttt{tapply()} function breaks the data set up into groups and applies a function to each group.
-
-Description of the required \texttt{sapply()} arguments:
-
-\begin{itemize}
-\tightlist
-\item
-  \texttt{X}: A 1 dimensional object
-\item
-  \texttt{INDEX}: A grouping factor or a list of factors
-\item
-  \texttt{FUN}: The function to be applied
-\end{itemize}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-342-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{data <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{name =} \KeywordTok{c}\NormalTok{(}\StringTok{"Amy"}\NormalTok{, }\StringTok{"Max"}\NormalTok{, }\StringTok{"Ray"}\NormalTok{, }\StringTok{"Kim"}\NormalTok{, }\StringTok{"Sam"}\NormalTok{,}
-    \StringTok{"Eve"}\NormalTok{, }\StringTok{"Bob"}\NormalTok{), }\DataTypeTok{age =} \KeywordTok{c}\NormalTok{(}\DecValTok{24}\NormalTok{, }\DecValTok{22}\NormalTok{, }\DecValTok{21}\NormalTok{, }\DecValTok{23}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{24}\NormalTok{, }\DecValTok{21}\NormalTok{), }\DataTypeTok{gender =} \KeywordTok{factor}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"F"}\NormalTok{,}
-    \StringTok{"M"}\NormalTok{, }\StringTok{"M"}\NormalTok{, }\StringTok{"F"}\NormalTok{, }\StringTok{"M"}\NormalTok{, }\StringTok{"F"}\NormalTok{, }\StringTok{"M"}\NormalTok{)))}
-
-\NormalTok{data}
+\CommentTok{# Changing a few settings (Feel free to change more!! :)}
+\CommentTok{# Have fun with it)}
+\KeywordTok{wordcloud}\NormalTok{(}\DataTypeTok{words =} \KeywordTok{names}\NormalTok{(wc), }\DataTypeTok{freq =}\NormalTok{ wc, }\DataTypeTok{min.freq =} \DecValTok{2}\NormalTok{, }\DataTypeTok{random.order =}\NormalTok{ F,}
+    \DataTypeTok{colors =} \KeywordTok{c}\NormalTok{(}\StringTok{"purple"}\NormalTok{, }\StringTok{"blue"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-##   name age gender
-## 1  Amy  24      F
-## 2  Max  22      M
-## 3  Ray  21      M
-## 4  Kim  23      F
-## 5  Sam  20      M
-## 6  Eve  24      F
-## 7  Bob  21      M
-\end{verbatim}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-342-2.pdf}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{tapply}\NormalTok{(data}\OperatorTok{$}\NormalTok{age, data}\OperatorTok{$}\NormalTok{gender, min)}
-\end{Highlighting}
-\end{Shaded}
+\hypertarget{replacements}{%
+\section{Replacements}\label{replacements}}
 
-\begin{verbatim}
-##  F  M 
-## 23 20
-\end{verbatim}
+Assigning to \texttt{regmatches()} changes the matched string, just like \texttt{substr()}
 
-\hypertarget{mapply}{%
-\section{mapply()}\label{mapply}}
+\texttt{sub()} and \texttt{gsub()} work like \texttt{regexpr()} and \texttt{gregexpr()}, but with an extra \texttt{replace} argument
 
-The \texttt{mapply()} function is a multivariate version of \texttt{sapply()}. It applies \texttt{FUN} to the first elements of each \ldots{} argument, the second elements, the third elements, and so on.
+\texttt{sub()} produces a new string, assigning to \texttt{regmatches()} modifies the original one
 
-Description of the required \texttt{mapply()} arguments:
-
-\begin{itemize}
-\tightlist
-\item
-  \texttt{FUN}: The function to be applied
-\item
-  \texttt{...}: Arguments to vectorize over (vectors or lists of strictly positive length, or all of zero length).
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{mapply}\NormalTok{(rep, }\DataTypeTok{times =} \DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{, }\DataTypeTok{x =} \DecValTok{4}\OperatorTok{:}\DecValTok{1}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [[1]]
-## [1] 4
-## 
-## [[2]]
-## [1] 3 3
-## 
-## [[3]]
-## [1] 2 2 2
-## 
-## [[4]]
-## [1] 1 1 1 1
-\end{verbatim}
-
-\hypertarget{replicate-1}{%
-\section{replicate()}\label{replicate-1}}
-
-The \texttt{replicate()} function is a wrapper for \texttt{sapply()}. If we want to repeat an evaluation of an function call or an expression that does not require us to iterate through a data set or vector we can use \texttt{replicate()}.
-
-Description of the required \texttt{replicate()} arguments:
-
-\begin{itemize}
-\tightlist
-\item
-  \texttt{n}: An integer containing the number of replications.
-\item
-  \texttt{expr}: The expression (or function call) to evaluate repeatedly.
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{replicate}\NormalTok{(}\DataTypeTok{n =} \DecValTok{4}\NormalTok{, }\StringTok{"Hello"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "Hello" "Hello" "Hello" "Hello"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{replicate}\NormalTok{(}\DataTypeTok{n =} \DecValTok{10}\NormalTok{, }\KeywordTok{factorial}\NormalTok{(}\DecValTok{4}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  [1] 24 24 24 24 24 24 24 24 24 24
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{replicate}\NormalTok{(}\DataTypeTok{n =} \DecValTok{5}\NormalTok{, }\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{)))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##      [,1]   [,2]   [,3]   [,4]   [,5]  
-## [1,] "blue" "red"  "red"  "red"  "red" 
-## [2,] "red"  "blue" "blue" "blue" "blue"
-\end{verbatim}
-
-\hypertarget{how-to-pick-a-method}{%
-\section{How to Pick a Method}\label{how-to-pick-a-method}}
-
-It can be difficult at first to decide which of these apply function you may want to use. In general, we can use the flow chart below as a quick guide.
-
-\includegraphics{images/apply_flowchart.png}
-
-\hypertarget{more-examples}{%
-\section{More Examples}\label{more-examples}}
-
-To see some more examples of these functions in action. We will use the \texttt{iris} data set which is a built in data set in R. This data set has four numeric columns, and one factor column, \texttt{Species}. Each row is a flower, and there are four different measurements of each flower.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{head}\NormalTok{(iris)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-## 1          5.1         3.5          1.4         0.2  setosa
-## 2          4.9         3.0          1.4         0.2  setosa
-## 3          4.7         3.2          1.3         0.2  setosa
-## 4          4.6         3.1          1.5         0.2  setosa
-## 5          5.0         3.6          1.4         0.2  setosa
-## 6          5.4         3.9          1.7         0.4  setosa
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{summary}\NormalTok{(iris)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
-##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
-##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
-##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
-##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
-##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
-##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
-##        Species  
-##  setosa    :50  
-##  versicolor:50  
-##  virginica :50  
-##                 
-##                 
-## 
-\end{verbatim}
-
-Find the maximum value for the numeric variables for each observation.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{numeric_iris <-}\StringTok{ }\NormalTok{iris[, }\DecValTok{-5}\NormalTok{]}
-\NormalTok{max_in_row <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(numeric_iris, }\DecValTok{1}\NormalTok{, max)}
-\KeywordTok{head}\NormalTok{(max_in_row)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 5.1 4.9 4.7 4.6 5.0 5.4
-\end{verbatim}
-
-Determine the (arithmetic) mean of the sepal width for each species.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{mean_species <-}\StringTok{ }\KeywordTok{tapply}\NormalTok{(iris}\OperatorTok{$}\NormalTok{Sepal.Width, }\DataTypeTok{INDEX =}\NormalTok{ iris}\OperatorTok{$}\NormalTok{Species,}
-\NormalTok{    mean)}
-\NormalTok{mean_species}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##     setosa versicolor  virginica 
-##      3.428      2.770      2.974
-\end{verbatim}
-
-Determine the (arithmetic) mean and the median of sepal width for each species.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{my_avgs <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(vec) \{}
-\NormalTok{    the_mean <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(vec)}
-\NormalTok{    the_median <-}\StringTok{ }\KeywordTok{median}\NormalTok{(vec)}
-\NormalTok{    return_object <-}\StringTok{ }\KeywordTok{c}\NormalTok{(the_mean, the_median)}
-    \KeywordTok{names}\NormalTok{(return_object) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"mean"}\NormalTok{, }\StringTok{"median"}\NormalTok{)}
-    \KeywordTok{return}\NormalTok{(return_object)}
-\NormalTok{\}}
-
-\NormalTok{species_avgs <-}\StringTok{ }\KeywordTok{tapply}\NormalTok{(iris}\OperatorTok{$}\NormalTok{Sepal.Width, iris}\OperatorTok{$}\NormalTok{Species, my_avgs)}
-\NormalTok{species_avgs}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## $setosa
-##   mean median 
-##  3.428  3.400 
-## 
-## $versicolor
-##   mean median 
-##   2.77   2.80 
-## 
-## $virginica
-##   mean median 
-##  2.974  3.000
-\end{verbatim}
-
-Make a plot of the sepal width and sepal length. Make the points differ depending on the species type.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Starting plot, make it blank}
-\KeywordTok{plot}\NormalTok{(iris}\OperatorTok{$}\NormalTok{Sepal.Length, iris}\OperatorTok{$}\NormalTok{Sepal.Width, }\DataTypeTok{col =} \StringTok{"white"}\NormalTok{)}
-
-
-\CommentTok{# Custom function to add the points}
-\NormalTok{add_points <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(the_data, ...) \{}
-
-    \ControlFlowTok{if}\NormalTok{ (the_data[}\DecValTok{5}\NormalTok{] }\OperatorTok{==}\StringTok{ "setosa"}\NormalTok{) \{}
-        \KeywordTok{points}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ the_data[}\DecValTok{1}\NormalTok{], }\DataTypeTok{y =}\NormalTok{ the_data[}\DecValTok{2}\NormalTok{], }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{,}
-            \DataTypeTok{pch =} \DecValTok{0}\NormalTok{)}
-\NormalTok{    \} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (the_data[}\DecValTok{5}\NormalTok{] }\OperatorTok{==}\StringTok{ "virginica"}\NormalTok{) \{}
-        \KeywordTok{points}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ the_data[}\DecValTok{1}\NormalTok{], }\DataTypeTok{y =}\NormalTok{ the_data[}\DecValTok{2}\NormalTok{], }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{,}
-            \DataTypeTok{pch =} \DecValTok{2}\NormalTok{)}
-\NormalTok{    \} }\ControlFlowTok{else}\NormalTok{ \{}
-        \KeywordTok{points}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ the_data[}\DecValTok{1}\NormalTok{], }\DataTypeTok{y =}\NormalTok{ the_data[}\DecValTok{2}\NormalTok{], }\DataTypeTok{col =} \StringTok{"green"}\NormalTok{,}
-            \DataTypeTok{pch =} \DecValTok{10}\NormalTok{)}
-
-\NormalTok{    \}}
-\NormalTok{\}}
-
-
-\CommentTok{# Use apply to add points}
-\KeywordTok{apply}\NormalTok{(iris, }\DecValTok{1}\NormalTok{, add_points)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{_main_files/figure-latex/unnamed-chunk-338-1.pdf}
-
-\begin{verbatim}
-## NULL
-\end{verbatim}
-
-Make a plot of the sepal width and sepal length. Make the points differ depending on the species type. Add the (arithmetic) mean of these two variables for each group.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# ------ PLOT FROM BEFORE Starting plot, make it blank}
-\KeywordTok{plot}\NormalTok{(iris}\OperatorTok{$}\NormalTok{Sepal.Length, iris}\OperatorTok{$}\NormalTok{Sepal.Width, }\DataTypeTok{col =} \StringTok{"white"}\NormalTok{)}
-\KeywordTok{apply}\NormalTok{(iris, }\DecValTok{1}\NormalTok{, add_points)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## NULL
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# ------}
-
-
-\CommentTok{# Split the data into a list by factor}
-\NormalTok{split_iris =}\StringTok{ }\KeywordTok{split}\NormalTok{(iris, }\DataTypeTok{f =}\NormalTok{ iris}\OperatorTok{$}\NormalTok{Species)}
-
-\CommentTok{# Iterate through the list and add (black) points to the}
-\CommentTok{# plot}
-\KeywordTok{lapply}\NormalTok{(split_iris, }\ControlFlowTok{function}\NormalTok{(species_data) \{}
-    \KeywordTok{points}\NormalTok{(}\KeywordTok{mean}\NormalTok{(species_data}\OperatorTok{$}\NormalTok{Sepal.Length), }\KeywordTok{mean}\NormalTok{(species_data}\OperatorTok{$}\NormalTok{Sepal.Width),}
-        \DataTypeTok{pch =} \DecValTok{16}\NormalTok{)}
-\NormalTok{\})}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{_main_files/figure-latex/unnamed-chunk-339-1.pdf}
-
-\begin{verbatim}
-## $setosa
-## NULL
-## 
-## $versicolor
-## NULL
-## 
-## $virginica
-## NULL
-\end{verbatim}
-
-Lets try using another example. Suppose we wish to use the following formula (below) with \texttt{a\ =\ Sepal.Length}, \texttt{b\ =\ Sepal.Width}, and \texttt{c\ =\ Petal.Length}.
-\[ \frac{-b + \sqrt{b^2-4ac} }{2a}\]
-
-Now there is more efficient ways to do this in R, but lets practice how we would do it with \texttt{mapply} as an example.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{my_formula <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(a, b, c) \{}
-\NormalTok{    num <-}\StringTok{ }\NormalTok{(}\OperatorTok{-}\NormalTok{b }\OperatorTok{+}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(b}\OperatorTok{^}\DecValTok{2} \OperatorTok{+}\StringTok{ }\DecValTok{4} \OperatorTok{*}\StringTok{ }\NormalTok{a }\OperatorTok{*}\StringTok{ }\NormalTok{c))}
-\NormalTok{    den <-}\StringTok{ }\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{a}
-
-\NormalTok{    answer <-}\StringTok{ }\NormalTok{num}\OperatorTok{/}\NormalTok{den}
-    \KeywordTok{return}\NormalTok{(answer)}
-\NormalTok{\}}
-
-\NormalTok{formula_results <-}\StringTok{ }\KeywordTok{mapply}\NormalTok{(my_formula, }\DataTypeTok{a =}\NormalTok{ iris}\OperatorTok{$}\NormalTok{Sepal.Length,}
-    \DataTypeTok{b =}\NormalTok{ iris}\OperatorTok{$}\NormalTok{Sepal.Width, }\DataTypeTok{c =}\NormalTok{ iris}\OperatorTok{$}\NormalTok{Petal.Length)}
-\KeywordTok{head}\NormalTok{(formula_results)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 0.2831638 0.3098526 0.2860609 0.3260870 0.2800000 0.3061340
-\end{verbatim}
-
-\hypertarget{create-a-new-variable}{%
-\subsection{Create a New Variable}\label{create-a-new-variable}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{petal_size <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(PLength, BigCutOff, ModerateCutOff, SmallCutOff)\{}
-  \ControlFlowTok{if}\NormalTok{(PLength }\OperatorTok{>}\StringTok{ }\NormalTok{BigCutOff)\{}
-\NormalTok{    PetalSize <-}\StringTok{ "Big"}
-\NormalTok{  \} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (PLength }\OperatorTok{>}\StringTok{ }\NormalTok{ModerateCutOff)\{}
-\NormalTok{    PetalSize <-}\StringTok{ "Moderate"}
-\NormalTok{  \} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{(PLength }\OperatorTok{>}\StringTok{ }\NormalTok{SmallCutOff)\{}
-\NormalTok{    PetalSize <-}\StringTok{ "Small"}
-\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{\{}
-\NormalTok{    PetalSize <-}\StringTok{ "Very Small"}
-\NormalTok{  \}}
-  \KeywordTok{return}\NormalTok{(PetalSize)}
-\NormalTok{\}}
-
-\KeywordTok{sapply}\NormalTok{(iris}\OperatorTok{$}\NormalTok{Petal.Length,   }\CommentTok{# Data}
-\NormalTok{       petal_size,          }\CommentTok{# Function}
-       \DataTypeTok{BigCutOff =} \DecValTok{5}\NormalTok{,       }\CommentTok{# Optional Arguments for function}
-       \DataTypeTok{ModerateCutOff =} \DecValTok{4}\NormalTok{, }
-       \DataTypeTok{SmallCutOff =} \FloatTok{1.5}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##   [1] "Very Small" "Very Small" "Very Small" "Very Small" "Very Small"
-##   [6] "Small"      "Very Small" "Very Small" "Very Small" "Very Small"
-##  [11] "Very Small" "Small"      "Very Small" "Very Small" "Very Small"
-##  [16] "Very Small" "Very Small" "Very Small" "Small"      "Very Small"
-##  [21] "Small"      "Very Small" "Very Small" "Small"      "Small"     
-##  [26] "Small"      "Small"      "Very Small" "Very Small" "Small"     
-##  [31] "Small"      "Very Small" "Very Small" "Very Small" "Very Small"
-##  [36] "Very Small" "Very Small" "Very Small" "Very Small" "Very Small"
-##  [41] "Very Small" "Very Small" "Very Small" "Small"      "Small"     
-##  [46] "Very Small" "Small"      "Very Small" "Very Small" "Very Small"
-##  [51] "Moderate"   "Moderate"   "Moderate"   "Small"      "Moderate"  
-##  [56] "Moderate"   "Moderate"   "Small"      "Moderate"   "Small"     
-##  [61] "Small"      "Moderate"   "Small"      "Moderate"   "Small"     
-##  [66] "Moderate"   "Moderate"   "Moderate"   "Moderate"   "Small"     
-##  [71] "Moderate"   "Small"      "Moderate"   "Moderate"   "Moderate"  
-##  [76] "Moderate"   "Moderate"   "Moderate"   "Moderate"   "Small"     
-##  [81] "Small"      "Small"      "Small"      "Big"        "Moderate"  
-##  [86] "Moderate"   "Moderate"   "Moderate"   "Moderate"   "Small"     
-##  [91] "Moderate"   "Moderate"   "Small"      "Small"      "Moderate"  
-##  [96] "Moderate"   "Moderate"   "Moderate"   "Small"      "Moderate"  
-## [101] "Big"        "Big"        "Big"        "Big"        "Big"       
-## [106] "Big"        "Moderate"   "Big"        "Big"        "Big"       
-## [111] "Big"        "Big"        "Big"        "Moderate"   "Big"       
-## [116] "Big"        "Big"        "Big"        "Big"        "Moderate"  
-## [121] "Big"        "Moderate"   "Big"        "Moderate"   "Big"       
-## [126] "Big"        "Moderate"   "Moderate"   "Big"        "Big"       
-## [131] "Big"        "Big"        "Big"        "Big"        "Big"       
-## [136] "Big"        "Big"        "Big"        "Moderate"   "Big"       
-## [141] "Big"        "Big"        "Big"        "Big"        "Big"       
-## [146] "Big"        "Moderate"   "Big"        "Big"        "Big"
-\end{verbatim}
+Really, assigning to \texttt{regmatches()} creates a new string, destroys the old one, and assigns the new string the old name.
 
 \hypertarget{additional-resources-8}{%
 \section*{Additional Resources}\label{additional-resources-8}}
@@ -10180,7 +10172,9 @@ Now there is more efficient ways to do this in R, but lets practice how we would
 \begin{itemize}
 \tightlist
 \item
-  \url{http://adv-r.had.co.nz/Functionals.html}
+  \href{https://homerhanumat.github.io/r-notes/regex.html\#regex}{``Begining Computer Science with R'' Chapter 12}
+\item
+  \href{https://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html}{R Help Page on Regular Expressions}
 \end{itemize}
 
 \hypertarget{debugging}{%

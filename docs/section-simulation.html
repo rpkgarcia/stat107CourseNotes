@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 15 Simulation | STAT 107 Outline of Class Notes</title>
+  <meta name="description" content="Course notes for UCR’s STAT 107. An introduction to programming in R." />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 15 Simulation | STAT 107 Outline of Class Notes" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://rpkgarcia.github.io/stat107_summer2022notes/" />
+  
+  <meta property="og:description" content="Course notes for UCR’s STAT 107. An introduction to programming in R." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 15 Simulation | STAT 107 Outline of Class Notes" />
+  
+  <meta name="twitter:description" content="Course notes for UCR’s STAT 107. An introduction to programming in R." />
+  
+
+<meta name="author" content="Rebecca Kurtz-Garcia" />
+
+
+<meta name="date" content="2023-02-06" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="section-loops.html"/>
+<link rel="next" href="section-tidyverse.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="assets/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">STAT 107 Notes</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#section-welcome">Welcome<span></span></a></li>
+<li class="chapter" data-level="1" data-path="section-introduction-to-r.html"><a href="section-introduction-to-r.html"><i class="fa fa-check"></i><b>1</b> Introduction to R<span></span></a><ul>
+<li class="chapter" data-level="1.1" data-path="section-introduction-to-r.html"><a href="section-introduction-to-r.html#section-download-and-install-r-and-rstudio"><i class="fa fa-check"></i><b>1.1</b> Download and Install R and Rstudio<span></span></a></li>
+<li class="chapter" data-level="1.2" data-path="section-introduction-to-r.html"><a href="section-introduction-to-r.html#section-the-rstudio-interface"><i class="fa fa-check"></i><b>1.2</b> The <strong>RStudio</strong> Interface<span></span></a><ul>
+<li><a href="section-introduction-to-r.html#section-bottom-left-pane">Bottom Left Pane<span></span></a></li>
+<li><a href="section-introduction-to-r.html#section-bottom-right-pane">Bottom Right Pane<span></span></a></li>
+<li><a href="section-introduction-to-r.html#section-top-right-pane">Top Right Pane<span></span></a></li>
+<li><a href="section-introduction-to-r.html#section-top-left-pane">Top Left Pane<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="section-introduction-to-r.html"><a href="section-introduction-to-r.html#section-comments"><i class="fa fa-check"></i><b>1.3</b> Comments<span></span></a></li>
+<li class="chapter" data-level="1.4" data-path="section-introduction-to-r.html"><a href="section-introduction-to-r.html#section-operators"><i class="fa fa-check"></i><b>1.4</b> Operators<span></span></a><ul>
+<li><a href="section-introduction-to-r.html#section-arithmetic-operators">Arithmetic Operators<span></span></a></li>
+<li><a href="section-introduction-to-r.html#section-relational-operators">Relational Operators<span></span></a></li>
+<li><a href="section-introduction-to-r.html#section-logical-operators">Logical operators<span></span></a></li>
+<li><a href="section-introduction-to-r.html#section-assignment-operators">Assignment Operators<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="section-introduction-to-r.html"><a href="section-introduction-to-r.html#section-naming-conventions"><i class="fa fa-check"></i><b>1.5</b> Naming Conventions<span></span></a></li>
+<li class="chapter" data-level="1.6" data-path="section-introduction-to-r.html"><a href="section-introduction-to-r.html#section-basic-calculations"><i class="fa fa-check"></i><b>1.6</b> Basic Calculations<span></span></a></li>
+<li class="chapter" data-level="1.7" data-path="section-introduction-to-r.html"><a href="section-introduction-to-r.html#section-floating-point-error"><i class="fa fa-check"></i><b>1.7</b> Floating Point Error<span></span></a></li>
+<li><a href="section-introduction-to-r.html#section-additional-resources">Additional Resources<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="section-atomic-vectors.html"><a href="section-atomic-vectors.html"><i class="fa fa-check"></i><b>2</b> Atomic Vectors<span></span></a><ul>
+<li class="chapter" data-level="2.1" data-path="section-atomic-vectors.html"><a href="section-atomic-vectors.html#section-examples"><i class="fa fa-check"></i><b>2.1</b> Examples<span></span></a><ul>
+<li><a href="section-atomic-vectors.html#section-double">Double<span></span></a></li>
+<li><a href="section-atomic-vectors.html#section-integer">Integer<span></span></a></li>
+<li><a href="section-atomic-vectors.html#section-logical">Logical<span></span></a></li>
+<li><a href="section-atomic-vectors.html#section-character">Character<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="section-atomic-vectors.html"><a href="section-atomic-vectors.html#section-basic-features"><i class="fa fa-check"></i><b>2.2</b> Basic Features<span></span></a><ul>
+<li class="chapter" data-level="2.2.1" data-path="section-atomic-vectors.html"><a href="section-atomic-vectors.html#section-length"><i class="fa fa-check"></i><b>2.2.1</b> Length<span></span></a></li>
+<li class="chapter" data-level="2.2.2" data-path="section-atomic-vectors.html"><a href="section-atomic-vectors.html#section-vecoperators"><i class="fa fa-check"></i><b>2.2.2</b> Vectorized Operations and Recylcing<span></span></a></li>
+<li class="chapter" data-level="2.2.3" data-path="section-atomic-vectors.html"><a href="section-atomic-vectors.html#section-coercion"><i class="fa fa-check"></i><b>2.2.3</b> Coercion<span></span></a></li>
+<li class="chapter" data-level="2.2.4" data-path="section-atomic-vectors.html"><a href="section-atomic-vectors.html#section-testing"><i class="fa fa-check"></i><b>2.2.4</b> Testing<span></span></a></li>
+<li class="chapter" data-level="2.2.5" data-path="section-atomic-vectors.html"><a href="section-atomic-vectors.html#section-names"><i class="fa fa-check"></i><b>2.2.5</b> Names<span></span></a></li>
+<li class="chapter" data-level="2.2.6" data-path="section-atomic-vectors.html"><a href="section-atomic-vectors.html#section-typeof-and-class"><i class="fa fa-check"></i><b>2.2.6</b> typeof() and class()<span></span></a></li>
+<li class="chapter" data-level="2.2.7" data-path="section-atomic-vectors.html"><a href="section-atomic-vectors.html#section-index"><i class="fa fa-check"></i><b>2.2.7</b> Accessing Elements of a Vector<span></span></a></li>
+</ul></li>
+<li><a href="section-atomic-vectors.html#section-summary">Summary<span></span></a></li>
+<li><a href="section-atomic-vectors.html#section-additional-resources-1">Additional Resources<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html"><i class="fa fa-check"></i><b>3</b> Factors and Lists<span></span></a><ul>
+<li class="chapter" data-level="3.1" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-factors"><i class="fa fa-check"></i><b>3.1</b> Factors<span></span></a><ul>
+<li class="chapter" data-level="3.1.1" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-levels"><i class="fa fa-check"></i><b>3.1.1</b> Levels<span></span></a></li>
+<li class="chapter" data-level="3.1.2" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-ordered-factor"><i class="fa fa-check"></i><b>3.1.2</b> Ordered Factor<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-factors---basic-features"><i class="fa fa-check"></i><b>3.2</b> Factors - Basic Features<span></span></a><ul>
+<li class="chapter" data-level="3.2.1" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-length-1"><i class="fa fa-check"></i><b>3.2.1</b> Length<span></span></a></li>
+<li class="chapter" data-level="3.2.2" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-coercion-1"><i class="fa fa-check"></i><b>3.2.2</b> Coercion<span></span></a></li>
+<li class="chapter" data-level="3.2.3" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-testingclass"><i class="fa fa-check"></i><b>3.2.3</b> Testing/Class<span></span></a></li>
+<li class="chapter" data-level="3.2.4" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-names-1"><i class="fa fa-check"></i><b>3.2.4</b> Names<span></span></a></li>
+<li class="chapter" data-level="3.2.5" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-accessing-elements"><i class="fa fa-check"></i><b>3.2.5</b> Accessing Elements<span></span></a></li>
+<li class="chapter" data-level="3.2.6" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-frequency-tables"><i class="fa fa-check"></i><b>3.2.6</b> Frequency Tables<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-lists"><i class="fa fa-check"></i><b>3.3</b> Lists<span></span></a><ul>
+<li class="chapter" data-level="3.3.1" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-nested-lists"><i class="fa fa-check"></i><b>3.3.1</b> Nested Lists<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-list---basic-features"><i class="fa fa-check"></i><b>3.4</b> List - Basic Features<span></span></a><ul>
+<li class="chapter" data-level="3.4.1" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-length-2"><i class="fa fa-check"></i><b>3.4.1</b> Length<span></span></a></li>
+<li class="chapter" data-level="3.4.2" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-coercion-2"><i class="fa fa-check"></i><b>3.4.2</b> Coercion<span></span></a></li>
+<li class="chapter" data-level="3.4.3" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-testingclass-1"><i class="fa fa-check"></i><b>3.4.3</b> Testing/Class<span></span></a></li>
+<li class="chapter" data-level="3.4.4" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-names-2"><i class="fa fa-check"></i><b>3.4.4</b> Names<span></span></a></li>
+<li class="chapter" data-level="3.4.5" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-accessing-elements-1"><i class="fa fa-check"></i><b>3.4.5</b> Accessing Elements<span></span></a></li>
+</ul></li>
+<li><a href="section-factors-and-lists.html#section-summary-1">Summary<span></span></a></li>
+<li><a href="section-factors-and-lists.html#section-additional-resources-2">Additional Resources<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html"><i class="fa fa-check"></i><b>4</b> Matrices, Data Frames, and More<span></span></a><ul>
+<li class="chapter" data-level="4.1" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html#section-matrices"><i class="fa fa-check"></i><b>4.1</b> Matrices<span></span></a><ul>
+<li class="chapter" data-level="4.1.1" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html#section-vectorized-operations"><i class="fa fa-check"></i><b>4.1.1</b> Vectorized Operations<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html#section-data-frames"><i class="fa fa-check"></i><b>4.2</b> Data Frames<span></span></a><ul>
+<li class="chapter" data-level="4.2.1" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html#section-column-names"><i class="fa fa-check"></i><b>4.2.1</b> Column Names<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html#section-basic-features-of-matricesdata-frames"><i class="fa fa-check"></i><b>4.3</b> Basic Features of Matrices/Data-Frames<span></span></a><ul>
+<li class="chapter" data-level="4.3.1" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html#section-dimensions"><i class="fa fa-check"></i><b>4.3.1</b> Dimensions<span></span></a></li>
+<li class="chapter" data-level="4.3.2" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html#section-accesing-elements"><i class="fa fa-check"></i><b>4.3.2</b> Accesing Elements<span></span></a></li>
+<li class="chapter" data-level="4.3.3" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html#section-coercion-3"><i class="fa fa-check"></i><b>4.3.3</b> Coercion<span></span></a></li>
+<li class="chapter" data-level="4.3.4" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html#section-testingclass-2"><i class="fa fa-check"></i><b>4.3.4</b> Testing/Class<span></span></a></li>
+<li class="chapter" data-level="4.3.5" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html#section-names-3"><i class="fa fa-check"></i><b>4.3.5</b> Names<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html#section-other-object-types-and-the-global-environment"><i class="fa fa-check"></i><b>4.4</b> Other Object Types and the Global Environment<span></span></a></li>
+<li><a href="section-matrices-data-frames-and-more.html#section-summary-2">Summary<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="section-indexing.html"><a href="section-indexing.html"><i class="fa fa-check"></i><b>5</b> Indexing<span></span></a><ul>
+<li class="chapter" data-level="5.1" data-path="section-indexing.html"><a href="section-indexing.html#section-VectorIndex"><i class="fa fa-check"></i><b>5.1</b> Atomic Vectors and Factors<span></span></a><ul>
+<li><a href="section-indexing.html#section-example-positive-integers">Example: Positive Integers<span></span></a></li>
+<li><a href="section-indexing.html#section-example-negative-integers">Example: Negative Integers<span></span></a></li>
+<li><a href="section-indexing.html#section-example-logical-values">Example: Logical Values<span></span></a></li>
+<li><a href="section-indexing.html#section-example-names">Example: Names<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="section-indexing.html"><a href="section-indexing.html#section-lists-1"><i class="fa fa-check"></i><b>5.2</b> Lists<span></span></a><ul>
+<li class="chapter" data-level="5.2.1" data-path="section-indexing.html"><a href="section-indexing.html#section-double-brackets"><i class="fa fa-check"></i><b>5.2.1</b> Double Brackets<span></span></a></li>
+<li class="chapter" data-level="5.2.2" data-path="section-indexing.html"><a href="section-indexing.html#section-dollar-sign"><i class="fa fa-check"></i><b>5.2.2</b> Dollar Sign<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="section-indexing.html"><a href="section-indexing.html#section-matrices-1"><i class="fa fa-check"></i><b>5.3</b> Matrices<span></span></a><ul>
+<li class="chapter" data-level="5.3.1" data-path="section-indexing.html"><a href="section-indexing.html#section-two-vectors"><i class="fa fa-check"></i><b>5.3.1</b> Two Vectors<span></span></a></li>
+<li class="chapter" data-level="5.3.2" data-path="section-indexing.html"><a href="section-indexing.html#section-single-vector"><i class="fa fa-check"></i><b>5.3.2</b> Single Vector<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="section-indexing.html"><a href="section-indexing.html#section-data-frames-1"><i class="fa fa-check"></i><b>5.4</b> Data frames<span></span></a><ul>
+<li><a href="section-indexing.html#section-example-double-brackets">Example: Double brackets<span></span></a></li>
+<li><a href="section-indexing.html#section-example-dollar-sign">Example: Dollar Sign<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="section-indexing.html"><a href="section-indexing.html#section-features-and-applications"><i class="fa fa-check"></i><b>5.5</b> Features and Applications<span></span></a><ul>
+<li class="chapter" data-level="5.5.1" data-path="section-indexing.html"><a href="section-indexing.html#section-indexing-and-reassignment"><i class="fa fa-check"></i><b>5.5.1</b> Indexing and Reassignment<span></span></a></li>
+<li class="chapter" data-level="5.5.2" data-path="section-indexing.html"><a href="section-indexing.html#section-orderinginteger-indexing"><i class="fa fa-check"></i><b>5.5.2</b> Ordering/Integer Indexing<span></span></a></li>
+<li class="chapter" data-level="5.5.3" data-path="section-indexing.html"><a href="section-indexing.html#section-adding-elementsrowscolumns"><i class="fa fa-check"></i><b>5.5.3</b> Adding Elements/Rows/Columns<span></span></a></li>
+<li class="chapter" data-level="5.5.4" data-path="section-indexing.html"><a href="section-indexing.html#section-delete-elementsrowscolumns"><i class="fa fa-check"></i><b>5.5.4</b> Delete Elements/Rows/Columns<span></span></a></li>
+<li class="chapter" data-level="5.5.5" data-path="section-indexing.html"><a href="section-indexing.html#section-select-based-on-condition"><i class="fa fa-check"></i><b>5.5.5</b> Select Based on Condition<span></span></a></li>
+<li class="chapter" data-level="5.5.6" data-path="section-indexing.html"><a href="section-indexing.html#section-convert-indexing-techniques"><i class="fa fa-check"></i><b>5.5.6</b> Convert Indexing Techniques<span></span></a></li>
+</ul></li>
+<li><a href="section-indexing.html#section-summary-3">Summary<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="section-working-with-data-sets.html"><a href="section-working-with-data-sets.html"><i class="fa fa-check"></i><b>6</b> Working with Data Sets<span></span></a><ul>
+<li class="chapter" data-level="6.1" data-path="section-working-with-data-sets.html"><a href="section-working-with-data-sets.html#section-LoadData"><i class="fa fa-check"></i><b>6.1</b> Getting Data Sets in Our Working Environment<span></span></a><ul>
+<li><a href="section-working-with-data-sets.html#section-built-in-data">Built-In Data<span></span></a></li>
+<li><a href="section-working-with-data-sets.html#section-importing-from-your-computer">Importing From Your Computer<span></span></a></li>
+<li><a href="section-working-with-data-sets.html#section-import-from-online">Import From Online<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="section-working-with-data-sets.html"><a href="section-working-with-data-sets.html#section-basic-data-manipulation"><i class="fa fa-check"></i><b>6.2</b> Basic Data Manipulation<span></span></a><ul>
+<li><a href="section-working-with-data-sets.html#section-subset">Subset<span></span></a></li>
+<li><a href="section-working-with-data-sets.html#section-adding-columns">Adding Columns<span></span></a></li>
+<li><a href="section-working-with-data-sets.html#section-na-values">NA values<span></span></a></li>
+<li><a href="section-working-with-data-sets.html#section-null">NULL<span></span></a></li>
+<li><a href="section-working-with-data-sets.html#section-adding-rows">Adding Rows<span></span></a></li>
+</ul></li>
+<li><a href="section-working-with-data-sets.html#section-summary-4">Summary<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="section-functions.html"><a href="section-functions.html"><i class="fa fa-check"></i><b>7</b> Functions<span></span></a><ul>
+<li class="chapter" data-level="7.1" data-path="section-functions.html"><a href="section-functions.html#section-build-your-own-function"><i class="fa fa-check"></i><b>7.1</b> Build Your Own Function<span></span></a></li>
+<li class="chapter" data-level="7.2" data-path="section-functions.html"><a href="section-functions.html#section-lexical-scoping"><i class="fa fa-check"></i><b>7.2</b> Lexical Scoping<span></span></a></li>
+<li class="chapter" data-level="7.3" data-path="section-functions.html"><a href="section-functions.html#section-built-in-functions"><i class="fa fa-check"></i><b>7.3</b> Built-In Functions<span></span></a></li>
+<li class="chapter" data-level="7.4" data-path="section-functions.html"><a href="section-functions.html#section-vectorization"><i class="fa fa-check"></i><b>7.4</b> Vectorization<span></span></a></li>
+<li class="chapter" data-level="7.5" data-path="section-functions.html"><a href="section-functions.html#section-help-files"><i class="fa fa-check"></i><b>7.5</b> Help Files<span></span></a></li>
+<li class="chapter" data-level="7.6" data-path="section-functions.html"><a href="section-functions.html#section-dots"><i class="fa fa-check"></i><b>7.6</b> The … Argument<span></span></a></li>
+<li class="chapter" data-level="7.7" data-path="section-functions.html"><a href="section-functions.html#section-generic-functions"><i class="fa fa-check"></i><b>7.7</b> Generic Functions<span></span></a></li>
+<li><a href="section-functions.html#section-additional-resources-3">Additional Resources<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="section-if-statements.html"><a href="section-if-statements.html"><i class="fa fa-check"></i><b>8</b> If Statements<span></span></a><ul>
+<li class="chapter" data-level="8.1" data-path="section-if-statements.html"><a href="section-if-statements.html#section-if"><i class="fa fa-check"></i><b>8.1</b> If<span></span></a></li>
+<li class="chapter" data-level="8.2" data-path="section-if-statements.html"><a href="section-if-statements.html#section-if-else"><i class="fa fa-check"></i><b>8.2</b> If Else<span></span></a></li>
+<li class="chapter" data-level="8.3" data-path="section-if-statements.html"><a href="section-if-statements.html#section-else-if"><i class="fa fa-check"></i><b>8.3</b> Else If<span></span></a></li>
+<li class="chapter" data-level="8.4" data-path="section-if-statements.html"><a href="section-if-statements.html#section-nested-if-chains"><i class="fa fa-check"></i><b>8.4</b> Nested If Chains<span></span></a></li>
+<li class="chapter" data-level="8.5" data-path="section-if-statements.html"><a href="section-if-statements.html#section-ifelse"><i class="fa fa-check"></i><b>8.5</b> Ifelse<span></span></a></li>
+<li class="chapter" data-level="8.6" data-path="section-if-statements.html"><a href="section-if-statements.html#section-vectorizeifelse"><i class="fa fa-check"></i><b>8.6</b> Vectorizing If-Statments<span></span></a></li>
+<li><a href="section-if-statements.html#section-additional-resources-4">Additional Resources<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="section-packages.html"><a href="section-packages.html"><i class="fa fa-check"></i><b>9</b> Packages<span></span></a><ul>
+<li class="chapter" data-level="9.1" data-path="section-packages.html"><a href="section-packages.html#section-namespace-collisions"><i class="fa fa-check"></i><b>9.1</b> Namespace Collisions<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="section-text-data.html"><a href="section-text-data.html"><i class="fa fa-check"></i><b>10</b> Text Data<span></span></a><ul>
+<li class="chapter" data-level="10.1" data-path="section-text-data.html"><a href="section-text-data.html#section-making-strings"><i class="fa fa-check"></i><b>10.1</b> Making Strings<span></span></a></li>
+<li class="chapter" data-level="10.2" data-path="section-text-data.html"><a href="section-text-data.html#section-substring-operations"><i class="fa fa-check"></i><b>10.2</b> Substring Operations<span></span></a></li>
+<li class="chapter" data-level="10.3" data-path="section-text-data.html"><a href="section-text-data.html#section-dividing-strings-into-vectors"><i class="fa fa-check"></i><b>10.3</b> Dividing Strings into Vectors<span></span></a></li>
+<li class="chapter" data-level="10.4" data-path="section-text-data.html"><a href="section-text-data.html#section-converting-objects-into-strings"><i class="fa fa-check"></i><b>10.4</b> Converting Objects into Strings<span></span></a></li>
+<li class="chapter" data-level="10.5" data-path="section-text-data.html"><a href="section-text-data.html#section-versatility-of-the-paste-function"><i class="fa fa-check"></i><b>10.5</b> Versatility of the paste() Function<span></span></a></li>
+<li class="chapter" data-level="10.6" data-path="section-text-data.html"><a href="section-text-data.html#section-substitution"><i class="fa fa-check"></i><b>10.6</b> Substitution<span></span></a></li>
+<li class="chapter" data-level="10.7" data-path="section-text-data.html"><a href="section-text-data.html#section-text-of-some-importance"><i class="fa fa-check"></i><b>10.7</b> Text of Some Importance<span></span></a></li>
+<li class="chapter" data-level="10.8" data-path="section-text-data.html"><a href="section-text-data.html#section-search"><i class="fa fa-check"></i><b>10.8</b> Search<span></span></a></li>
+<li class="chapter" data-level="10.9" data-path="section-text-data.html"><a href="section-text-data.html#section-vectorizing-text-functions"><i class="fa fa-check"></i><b>10.9</b> Vectorizing Text Functions<span></span></a></li>
+<li class="chapter" data-level="10.10" data-path="section-text-data.html"><a href="section-text-data.html#section-regular-expressions"><i class="fa fa-check"></i><b>10.10</b> Regular Expressions<span></span></a></li>
+<li class="chapter" data-level="10.11" data-path="section-text-data.html"><a href="section-text-data.html#section-word-count-tables"><i class="fa fa-check"></i><b>10.11</b> Word Count Tables<span></span></a></li>
+<li class="chapter" data-level="10.12" data-path="section-text-data.html"><a href="section-text-data.html#section-wordcloud-package"><i class="fa fa-check"></i><b>10.12</b> Wordcloud Package<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="section-Regex.html"><a href="section-Regex.html"><i class="fa fa-check"></i><b>11</b> Regular Expressions<span></span></a><ul>
+<li class="chapter" data-level="11.1" data-path="section-Regex.html"><a href="section-Regex.html#section-ranges-escaping"><i class="fa fa-check"></i><b>11.1</b> Ranges, Escaping<span></span></a></li>
+<li class="chapter" data-level="11.2" data-path="section-Regex.html"><a href="section-Regex.html#section-metacharacters"><i class="fa fa-check"></i><b>11.2</b> Metacharacters<span></span></a></li>
+<li class="chapter" data-level="11.3" data-path="section-Regex.html"><a href="section-Regex.html#section-quantifiers"><i class="fa fa-check"></i><b>11.3</b> Quantifiers<span></span></a></li>
+<li class="chapter" data-level="11.4" data-path="section-Regex.html"><a href="section-Regex.html#section-anchoring"><i class="fa fa-check"></i><b>11.4</b> Anchoring<span></span></a></li>
+<li class="chapter" data-level="11.5" data-path="section-Regex.html"><a href="section-Regex.html#section-splitting-on-a-regexp"><i class="fa fa-check"></i><b>11.5</b> Splitting on a Regexp<span></span></a></li>
+<li class="chapter" data-level="11.6" data-path="section-Regex.html"><a href="section-Regex.html#section-stringr-package"><i class="fa fa-check"></i><b>11.6</b> Stringr Package<span></span></a></li>
+<li class="chapter" data-level="11.7" data-path="section-Regex.html"><a href="section-Regex.html#section-wordcloud-package-1"><i class="fa fa-check"></i><b>11.7</b> Wordcloud Package<span></span></a></li>
+<li class="chapter" data-level="11.8" data-path="section-Regex.html"><a href="section-Regex.html#section-replacements"><i class="fa fa-check"></i><b>11.8</b> Replacements<span></span></a></li>
+<li><a href="section-Regex.html#section-additional-resources-5">Additional Resources<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html"><i class="fa fa-check"></i><b>12</b> Base R Plotting<span></span></a><ul>
+<li class="chapter" data-level="12.1" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html#section-load-a-big-data-set"><i class="fa fa-check"></i><b>12.1</b> Load A Big Data Set<span></span></a></li>
+<li class="chapter" data-level="12.2" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html#section-histograms"><i class="fa fa-check"></i><b>12.2</b> Histograms<span></span></a></li>
+<li class="chapter" data-level="12.3" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html#section-boxplot"><i class="fa fa-check"></i><b>12.3</b> Boxplot<span></span></a></li>
+<li class="chapter" data-level="12.4" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html#section-scatter-plot"><i class="fa fa-check"></i><b>12.4</b> Scatter Plot<span></span></a></li>
+<li class="chapter" data-level="12.5" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html#section-pie-charts"><i class="fa fa-check"></i><b>12.5</b> Pie Charts<span></span></a></li>
+<li class="chapter" data-level="12.6" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html#section-adding-straight-lines"><i class="fa fa-check"></i><b>12.6</b> Adding Straight Lines<span></span></a></li>
+<li class="chapter" data-level="12.7" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html#section-adding-lines-between-points"><i class="fa fa-check"></i><b>12.7</b> Adding Lines Between Points<span></span></a></li>
+<li class="chapter" data-level="12.8" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html#section-adding-individual-points"><i class="fa fa-check"></i><b>12.8</b> Adding Individual Points<span></span></a></li>
+<li class="chapter" data-level="12.9" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html#section-the-par-help-file"><i class="fa fa-check"></i><b>12.9</b> The par() Help File<span></span></a></li>
+<li class="chapter" data-level="12.10" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html#section-adding-legends"><i class="fa fa-check"></i><b>12.10</b> Adding Legends<span></span></a></li>
+<li class="chapter" data-level="12.11" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html#section-what-makes-a-good-plot"><i class="fa fa-check"></i><b>12.11</b> What makes a good plot?<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="section-extending-base-r-graphics.html"><a href="section-extending-base-r-graphics.html"><i class="fa fa-check"></i><b>13</b> Extending Base R Graphics<span></span></a><ul>
+<li class="chapter" data-level="13.1" data-path="section-extending-base-r-graphics.html"><a href="section-extending-base-r-graphics.html#section-the-maps-package"><i class="fa fa-check"></i><b>13.1</b> The “maps” Package<span></span></a></li>
+<li class="chapter" data-level="13.2" data-path="section-extending-base-r-graphics.html"><a href="section-extending-base-r-graphics.html#section-some-additional-packages-to-consider"><i class="fa fa-check"></i><b>13.2</b> Some additional Packages to consider<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="section-loops.html"><a href="section-loops.html"><i class="fa fa-check"></i><b>14</b> Loops<span></span></a><ul>
+<li class="chapter" data-level="14.1" data-path="section-loops.html"><a href="section-loops.html#section-while-loop"><i class="fa fa-check"></i><b>14.1</b> While Loop<span></span></a></li>
+<li class="chapter" data-level="14.2" data-path="section-loops.html"><a href="section-loops.html#section-for-loops"><i class="fa fa-check"></i><b>14.2</b> For Loops<span></span></a></li>
+<li class="chapter" data-level="14.3" data-path="section-loops.html"><a href="section-loops.html#section-break"><i class="fa fa-check"></i><b>14.3</b> Break<span></span></a></li>
+<li class="chapter" data-level="14.4" data-path="section-loops.html"><a href="section-loops.html#section-next"><i class="fa fa-check"></i><b>14.4</b> Next<span></span></a></li>
+<li class="chapter" data-level="14.5" data-path="section-loops.html"><a href="section-loops.html#section-nested-loops"><i class="fa fa-check"></i><b>14.5</b> Nested Loops<span></span></a></li>
+<li class="chapter" data-level="14.6" data-path="section-loops.html"><a href="section-loops.html#section-examples-1"><i class="fa fa-check"></i><b>14.6</b> Examples<span></span></a><ul>
+<li class="chapter" data-level="14.6.1" data-path="section-loops.html"><a href="section-loops.html#section-example-1"><i class="fa fa-check"></i><b>14.6.1</b> Example 1<span></span></a></li>
+<li class="chapter" data-level="14.6.2" data-path="section-loops.html"><a href="section-loops.html#section-example-2"><i class="fa fa-check"></i><b>14.6.2</b> Example 2<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="14.7" data-path="section-loops.html"><a href="section-loops.html#section-additional-resources-6"><i class="fa fa-check"></i><b>14.7</b> Additional Resources<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="section-simulation.html"><a href="section-simulation.html"><i class="fa fa-check"></i><b>15</b> Simulation<span></span></a><ul>
+<li class="chapter" data-level="15.1" data-path="section-simulation.html"><a href="section-simulation.html#section-what-are-simulation-studies"><i class="fa fa-check"></i><b>15.1</b> What Are Simulation Studies<span></span></a></li>
+<li class="chapter" data-level="15.2" data-path="section-simulation.html"><a href="section-simulation.html#section-review-random-variables"><i class="fa fa-check"></i><b>15.2</b> Review Random Variables<span></span></a></li>
+<li class="chapter" data-level="15.3" data-path="section-simulation.html"><a href="section-simulation.html#section-generating-random-variables"><i class="fa fa-check"></i><b>15.3</b> Generating Random Variables<span></span></a></li>
+<li class="chapter" data-level="15.4" data-path="section-simulation.html"><a href="section-simulation.html#section-setting-a-seed"><i class="fa fa-check"></i><b>15.4</b> Setting a Seed<span></span></a></li>
+<li class="chapter" data-level="15.5" data-path="section-simulation.html"><a href="section-simulation.html#section-sample"><i class="fa fa-check"></i><b>15.5</b> sample()<span></span></a></li>
+<li class="chapter" data-level="15.6" data-path="section-simulation.html"><a href="section-simulation.html#section-cumulative-proportioncumulative-win-plots"><i class="fa fa-check"></i><b>15.6</b> Cumulative-Proportion/Cumulative-Win Plots<span></span></a></li>
+<li class="chapter" data-level="15.7" data-path="section-simulation.html"><a href="section-simulation.html#section-replicate"><i class="fa fa-check"></i><b>15.7</b> replicate()<span></span></a></li>
+<li class="chapter" data-level="15.8" data-path="section-simulation.html"><a href="section-simulation.html#section-adding-curves-to-graphs"><i class="fa fa-check"></i><b>15.8</b> Adding curves to graphs<span></span></a></li>
+<li class="chapter" data-level="15.9" data-path="section-simulation.html"><a href="section-simulation.html#section-example-central-limit-theorem-clt"><i class="fa fa-check"></i><b>15.9</b> Example: Central Limit Theorem (CLT)<span></span></a><ul>
+<li class="chapter" data-level="15.9.1" data-path="section-simulation.html"><a href="section-simulation.html#section-recall-clt"><i class="fa fa-check"></i><b>15.9.1</b> Recall CLT<span></span></a></li>
+<li class="chapter" data-level="15.9.2" data-path="section-simulation.html"><a href="section-simulation.html#section-assumption-violations-of-clt"><i class="fa fa-check"></i><b>15.9.2</b> Assumption Violations of CLT<span></span></a></li>
+<li class="chapter" data-level="15.9.3" data-path="section-simulation.html"><a href="section-simulation.html#section-the-data"><i class="fa fa-check"></i><b>15.9.3</b> The Data<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="15.10" data-path="section-simulation.html"><a href="section-simulation.html#section-example-coin-flips"><i class="fa fa-check"></i><b>15.10</b> Example: Coin Flips<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="section-tidyverse.html"><a href="section-tidyverse.html"><i class="fa fa-check"></i><b>16</b> Tidyverse<span></span></a><ul>
+<li class="chapter" data-level="16.1" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-piping-operator"><i class="fa fa-check"></i><b>16.1</b> Piping Operator<span></span></a></li>
+<li class="chapter" data-level="16.2" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-tibbles-vs-data-frames"><i class="fa fa-check"></i><b>16.2</b> Tibbles vs Data Frames<span></span></a></li>
+<li class="chapter" data-level="16.3" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-key-functions"><i class="fa fa-check"></i><b>16.3</b> Key Functions<span></span></a><ul>
+<li class="chapter" data-level="16.3.1" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-general-properties"><i class="fa fa-check"></i><b>16.3.1</b> General properties<span></span></a></li>
+<li class="chapter" data-level="16.3.2" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-select"><i class="fa fa-check"></i><b>16.3.2</b> select()<span></span></a></li>
+<li class="chapter" data-level="16.3.3" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-filter"><i class="fa fa-check"></i><b>16.3.3</b> filter()<span></span></a></li>
+<li class="chapter" data-level="16.3.4" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-arrange"><i class="fa fa-check"></i><b>16.3.4</b> arrange()<span></span></a></li>
+<li class="chapter" data-level="16.3.5" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-rename"><i class="fa fa-check"></i><b>16.3.5</b> rename()<span></span></a></li>
+<li class="chapter" data-level="16.3.6" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-mutate"><i class="fa fa-check"></i><b>16.3.6</b> mutate()<span></span></a></li>
+<li class="chapter" data-level="16.3.7" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-group_by"><i class="fa fa-check"></i><b>16.3.7</b> group_by()<span></span></a></li>
+<li class="chapter" data-level="16.3.8" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-summarizesummarise"><i class="fa fa-check"></i><b>16.3.8</b> summarize()/summarise()<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-examples-2"><i class="fa fa-check"></i><b>16.4</b> Examples<span></span></a><ul>
+<li class="chapter" data-level="16.4.1" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-example-1-1"><i class="fa fa-check"></i><b>16.4.1</b> Example 1<span></span></a></li>
+<li class="chapter" data-level="16.4.2" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-example-2-1"><i class="fa fa-check"></i><b>16.4.2</b> Example 2<span></span></a></li>
+<li class="chapter" data-level="16.4.3" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-example-3"><i class="fa fa-check"></i><b>16.4.3</b> Example 3<span></span></a></li>
+</ul></li>
+<li><a href="section-tidyverse.html#section-additional-resources-7">Additional Resources<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="section-ggplot2.html"><a href="section-ggplot2.html"><i class="fa fa-check"></i><b>17</b> ggplot2<span></span></a><ul>
+<li class="chapter" data-level="17.1" data-path="section-ggplot2.html"><a href="section-ggplot2.html#section-tidyverse-and-ggplot2"><i class="fa fa-check"></i><b>17.1</b> Tidyverse and ggplot2<span></span></a></li>
+<li class="chapter" data-level="17.2" data-path="section-ggplot2.html"><a href="section-ggplot2.html#section-intro-to-ggplot2"><i class="fa fa-check"></i><b>17.2</b> Intro to ggplot2<span></span></a><ul>
+<li><a href="section-ggplot2.html#section-what-is-the-grammar-of-graphics">What is the grammar of graphics?<span></span></a></li>
+<li><a href="section-ggplot2.html#section-ggplot2-versus-other-r-graphics">ggplot2 versus other R Graphics<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="section-ggplot2.html"><a href="section-ggplot2.html#section-getting-started-kep-components"><i class="fa fa-check"></i><b>17.3</b> Getting started: Kep Components<span></span></a></li>
+<li class="chapter" data-level="17.4" data-path="section-ggplot2.html"><a href="section-ggplot2.html#section-adjust-aesthetic-attributes-by-variable"><i class="fa fa-check"></i><b>17.4</b> Adjust aesthetic attributes by variable<span></span></a></li>
+<li class="chapter" data-level="17.5" data-path="section-ggplot2.html"><a href="section-ggplot2.html#section-adjust-aesthetic-attributes-for-the-entire-plot"><i class="fa fa-check"></i><b>17.5</b> Adjust aesthetic attributes for the entire plot<span></span></a></li>
+<li class="chapter" data-level="17.6" data-path="section-ggplot2.html"><a href="section-ggplot2.html#section-faceting"><i class="fa fa-check"></i><b>17.6</b> Faceting<span></span></a></li>
+<li class="chapter" data-level="17.7" data-path="section-ggplot2.html"><a href="section-ggplot2.html#section-some-example-plots"><i class="fa fa-check"></i><b>17.7</b> Some example plots<span></span></a></li>
+<li class="chapter" data-level="17.8" data-path="section-ggplot2.html"><a href="section-ggplot2.html#section-where-can-i-learn-more"><i class="fa fa-check"></i><b>17.8</b> Where can I learn more?<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="section-apply.html"><a href="section-apply.html"><i class="fa fa-check"></i><b>18</b> Apply Family of Functions<span></span></a><ul>
+<li class="chapter" data-level="18.1" data-path="section-apply.html"><a href="section-apply.html#section-apply-1"><i class="fa fa-check"></i><b>18.1</b> apply()<span></span></a><ul>
+<li><a href="section-apply.html#section-example-built-in-function">Example: Built In Function<span></span></a></li>
+<li><a href="section-apply.html#section-example-user-defined-function">Example: User Defined Function<span></span></a></li>
+<li class="chapter" data-level="18.1.1" data-path="section-apply.html"><a href="section-apply.html#section-returned-objects"><i class="fa fa-check"></i><b>18.1.1</b> Returned Objects<span></span></a></li>
+<li class="chapter" data-level="18.1.2" data-path="section-apply.html"><a href="section-apply.html#section-example-extra-arguments-array-output"><i class="fa fa-check"></i><b>18.1.2</b> Example: Extra Arguments, Array Output<span></span></a></li>
+<li class="chapter" data-level="18.1.3" data-path="section-apply.html"><a href="section-apply.html#section-example-list-output"><i class="fa fa-check"></i><b>18.1.3</b> Example: List Output<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="section-apply.html"><a href="section-apply.html#section-lapply"><i class="fa fa-check"></i><b>18.2</b> lapply()<span></span></a></li>
+<li class="chapter" data-level="18.3" data-path="section-apply.html"><a href="section-apply.html#section-sapply"><i class="fa fa-check"></i><b>18.3</b> sapply()<span></span></a></li>
+<li class="chapter" data-level="18.4" data-path="section-apply.html"><a href="section-apply.html#section-tapply"><i class="fa fa-check"></i><b>18.4</b> tapply()<span></span></a></li>
+<li class="chapter" data-level="18.5" data-path="section-apply.html"><a href="section-apply.html#section-mapply"><i class="fa fa-check"></i><b>18.5</b> mapply()<span></span></a></li>
+<li class="chapter" data-level="18.6" data-path="section-apply.html"><a href="section-apply.html#section-replicate-1"><i class="fa fa-check"></i><b>18.6</b> replicate()<span></span></a></li>
+<li class="chapter" data-level="18.7" data-path="section-apply.html"><a href="section-apply.html#section-how-to-pick-a-method"><i class="fa fa-check"></i><b>18.7</b> How to Pick a Method<span></span></a></li>
+<li class="chapter" data-level="18.8" data-path="section-apply.html"><a href="section-apply.html#section-more-examples"><i class="fa fa-check"></i><b>18.8</b> More Examples<span></span></a><ul>
+<li class="chapter" data-level="18.8.1" data-path="section-apply.html"><a href="section-apply.html#section-create-a-new-variable"><i class="fa fa-check"></i><b>18.8.1</b> Create a New Variable<span></span></a></li>
+</ul></li>
+<li><a href="section-apply.html#section-additional-resources-8">Additional Resources<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="section-debugging.html"><a href="section-debugging.html"><i class="fa fa-check"></i><b>19</b> Debugging<span></span></a><ul>
+<li class="chapter" data-level="19.1" data-path="section-debugging.html"><a href="section-debugging.html#section-debugging-background-history-types-of-bugs-challenges-to-consider"><i class="fa fa-check"></i><b>19.1</b> Debugging Background (History, Types of Bugs, Challenges to Consider)<span></span></a><ul>
+<li><a href="section-debugging.html#section-types-of-bugs">Types of bugs<span></span></a></li>
+<li><a href="section-debugging.html#section-debugging-process-difficulties">Debugging Process Difficulties<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="19.2" data-path="section-debugging.html"><a href="section-debugging.html#section-debugging-strategies-in-general"><i class="fa fa-check"></i><b>19.2</b> Debugging Strategies In General<span></span></a><ul>
+<li class="chapter" data-level="19.2.1" data-path="section-debugging.html"><a href="section-debugging.html#section-example-of-the-binary-search-algorithm"><i class="fa fa-check"></i><b>19.2.1</b> Example of the Binary Search Algorithm<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="19.3" data-path="section-debugging.html"><a href="section-debugging.html#section-using-debuggers"><i class="fa fa-check"></i><b>19.3</b> Using Debuggers<span></span></a><ul>
+<li class="chapter" data-level="19.3.1" data-path="section-debugging.html"><a href="section-debugging.html#section-traceback"><i class="fa fa-check"></i><b>19.3.1</b> traceback()<span></span></a></li>
+<li><a href="section-debugging.html#section-example-with-traceback">Example with traceback()<span></span></a></li>
+<li><a href="section-debugging.html#section-unfamiliar-function-with-traceback">Unfamiliar function with traceback()<span></span></a></li>
+<li class="chapter" data-level="19.3.2" data-path="section-debugging.html"><a href="section-debugging.html#section-browswer"><i class="fa fa-check"></i><b>19.3.2</b> browswer()<span></span></a></li>
+<li class="chapter" data-level="19.3.3" data-path="section-debugging.html"><a href="section-debugging.html#section-debug"><i class="fa fa-check"></i><b>19.3.3</b> debug()<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="section-debugging.html"><a href="section-debugging.html#section-more-options-to-consider"><i class="fa fa-check"></i><b>19.4</b> More options to consider<span></span></a></li>
+<li class="chapter" data-level="19.5" data-path="section-debugging.html"><a href="section-debugging.html#section-important-takeaways"><i class="fa fa-check"></i><b>19.5</b> Important Takeaways<span></span></a><ul>
+<li><a href="section-debugging.html#section-tips-for-writing-good-code">Tips for Writing good code<span></span></a></li>
+<li><a href="section-debugging.html#section-steps-to-reduce-the-number-of-bugs">Steps to Reduce the Number of Bugs<span></span></a></li>
+<li><a href="section-debugging.html#section-after-you-located-the-error">After You Located the Error<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="19.6" data-path="section-debugging.html"><a href="section-debugging.html#section-resources"><i class="fa fa-check"></i><b>19.6</b> Resources<span></span></a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STAT 107 Outline of Class Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="section-simulation" class="section level1 hasAnchor">
+<h1><span class="header-section-number">Chapter 15</span> Simulation<a href="section-simulation.html#section-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="section-what-are-simulation-studies" class="section level2 hasAnchor">
+<h2><span class="header-section-number">15.1</span> What Are Simulation Studies<a href="section-simulation.html#section-what-are-simulation-studies" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Simulation studies are used in statistics to verify theoretical results, and to do “what-if” experiments. The are commonly used in a variety of applications and fields. Often times we have a particular theory or an idea about how things work. In order to verify that our theory is correct we can simulate a data set with known properties, and then check if the data set matches our theory. For example, suppose you want to calculate a 95% confidence interval for the heights of all college students. Our theory on confidence intervals says that we expect that a 95% confidence interval will capture the true mean about 95% of the time. If we simply go out and take a sample of data from “real-life” and then calculate the a confidence interval we have no idea if that confidence interval captures the truth because the true average height of all college students is unknown! It is not feasible to sample every college students, so we will never know if the true mean actually falls within our interval. Furthermore, in this example we only calculated one confidence interval. If we did know the true mean then our results would simply indicate that the confidence interval captured the mean or not, but nothing about the <em>rate</em> that confidence intervals capture the mean, which should be 95%. What we can do instead is simulate this process. We can randomly generate data that has a true mean of <span class="math inline">\(\mu\)</span> using a computer. Then we can estimate a 95% confidence interval using the appropriate methods and see if this confidence interval contains <span class="math inline">\(\mu\)</span>. We then can repeat this process as many times as we would like because we are using a computer, which makes the process much simpler. If our theory about confidence intervals is correct we would expect that 95% of our confidence intervals captured the true mean (<span class="math inline">\(\mu\)</span>), and the rest did not.</p>
+<p>Simulations are very important, and can range greatly in complexity. We will focus on simple techniques in this section. For a more complete discussion on simulation studies in statistics, and best practices see this freely available online at <a href="https://onlinelibrary.wiley.com/doi/10.1002/sim.8086">https://onlinelibrary.wiley.com/doi/10.1002/sim.8086</a>.</p>
+</div>
+<div id="section-review-random-variables" class="section level2 hasAnchor">
+<h2><span class="header-section-number">15.2</span> Review Random Variables<a href="section-simulation.html#section-review-random-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Before discussing how to simulate data with specific properties we review the concept of a random variable. This discussion is adapted primarily from Chapter 3 and 4 of <span class="citation">Diez, Cetinkaya-Rundel, and Barr (<a href="section-debugging.html#section-ref-OpenIntro" role="doc-biblioref">2020</a>)</span>. A <strong>random variable</strong> is a random process or variable with a numeric outcome. Random variables in general have a typical value which is called the <strong>expected value</strong>. However, in practice random variables also have variability, that is we do not expect to obtain the expected value for every random variable. Instead we expect to observe a range of values according to some sort of pattern, which is usually centered around the expected value.</p>
+<p>For example, in Yellowstone National Park, Wyoming there is a famous geyser called Old Faithful. A geyser is a natural hot spring that periodically erupts water. The amount of time (in minutes) the eruption lasts varies each time, but not by a dramatic amount. The eruption time in minutes is the random variable, and the expected value is the average eruption length, and we can measure the variability using a measure of dispersion, like the variance. Below is a histogram of a random sample of eruptions times of 272 different eruptions.</p>
+<div class="sourceCode" id="section-cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="section-simulation.html#cb1-1"></a><span class="kw">hist</span>(faithful<span class="op">$</span>eruptions, </span>
+<span id="cb1-2"><a href="section-simulation.html#cb1-2"></a>     <span class="dt">main =</span> <span class="st">&quot;Eruption Times of Old Faithful&quot;</span>, </span>
+<span id="cb1-3"><a href="section-simulation.html#cb1-3"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Time (in minutes)&quot;</span>, </span>
+<span id="cb1-4"><a href="section-simulation.html#cb1-4"></a>     <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">7</span>, <span class="dt">by =</span> <span class="fl">.5</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>As mentioned previously, random variables generate observations according to some sort of pattern. These patterns are referred to as <strong>densities</strong>, and can be analyzed visually, and analytically (i.e. through formulas). One of the most common ways to look at how often we would expect certain values for data that we find from the “real-world” is to use a histogram. Histogram order observations into mutually exclusive bins, where the height of each bin indicates how common a particular range of values is. For example, in the histogram above each bin is a 30 second (0.5 minute) range, and we can see the frequency of observations within the data set that are in this range on the y-axis. When thinking about random variables though, it is often more helpful to look at the proportion of observed values within a bin, instead of the frequency. We can modify our histogram to accomplish this.</p>
+<div class="sourceCode" id="section-cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="section-simulation.html#cb2-1"></a><span class="kw">hist</span>(faithful<span class="op">$</span>eruptions, </span>
+<span id="cb2-2"><a href="section-simulation.html#cb2-2"></a>     <span class="dt">main =</span> <span class="st">&quot;Eruption Times of Old Faithful&quot;</span>, </span>
+<span id="cb2-3"><a href="section-simulation.html#cb2-3"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Time (in minutes)&quot;</span>, </span>
+<span id="cb2-4"><a href="section-simulation.html#cb2-4"></a>     <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">7</span>, <span class="dt">by =</span> <span class="fl">.5</span>), </span>
+<span id="cb2-5"><a href="section-simulation.html#cb2-5"></a>     <span class="dt">freq =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>Notice that the y-axis now says “Density”. This is the relative probability that an observed data point will be a particular value. In “real-world” data, we can only estimate the density. We will never know the truth. Hence, we will never know the true expected value, or the true variance. This is why we have statistics!! We have statistics in order to make educated guesses about these values and properties from which the data arises from.</p>
+<p>Analyzing the density or pattern of a random variable visually with histograms is intuitive, but limiting. Using a formula as a representation for a density is much more versatile and useful. For these functions we have <strong>parameters</strong> which are values that let us further customize the function representation of a density to the specific random variable that we have. Let <span class="math inline">\(X\)</span> be a random variable, and <span class="math inline">\(x\)</span> be some observed value. In practice, if <span class="math inline">\(X\)</span> is a random variable that can only take on values that are discrete (usually integers) then we say the probability of observing some a particular value, say <span class="math inline">\(x\)</span>, is denoted <span class="math inline">\(p(x)\)</span>. There are extremely well known discrete densities that random variables tend to follow and that are available in R. A few of them are listed below.</p>
+<ul>
+<li><strong>Binomial</strong>:</li>
+</ul>
+<p><span class="math display">\[p(x) = \binom{n}{x} p^x (1-p)^{n-x} \hspace{1cm} x = 0, ..., n\]</span></p>
+<ul>
+<li><p><strong>Poison</strong>:
+<span class="math display">\[p(x) = λ^x exp(-λ)/x! \hspace{1cm} x = 0, ..., n\]</span></p></li>
+<li><p><strong>Negative Binomial:</strong></p></li>
+</ul>
+<p><span class="math display">\[Γ(x+n)/(Γ(n) x!) p^n (1-p)^x   \hspace{1cm} x = 0, ..., \]</span></p>
+<p>If <span class="math inline">\(X\)</span> is a random variable that can be any value within a range of numbers then we denote the density function of this random variable by <span class="math inline">\(f(x)\)</span>. As with discrete random variables, there are extremely well known continuous densities that random variables tend to follow and that are available in R. A few of them are listed below.</p>
+<ul>
+<li><strong>Uniform:</strong></li>
+</ul>
+<p><span class="math display">\[f(x) = 1/(max-min)\]</span></p>
+<ul>
+<li><strong>Log-Normal:</strong></li>
+</ul>
+<p><span class="math display">\[f(x) = 1/(√(2 π) σ x) e^{-((log{(x)} - μ)^2 / (2 σ^2))} \hspace{1cm} 0 &lt;x &lt; \infty\]</span></p>
+<ul>
+<li><strong>Exponential:</strong></li>
+</ul>
+<p><span class="math display">\[f(x) = λ {e}^{- λ x} \hspace{1cm} 0 &lt;x &lt; \infty\]</span></p>
+<ul>
+<li><p><strong>Normal</strong>:
+<span class="math display">\[f(x) = 1/(√(2 π) σ) e^{-((x - μ)^2/(2 σ^2))} \hspace{1cm} -\infty &lt;x &lt; \infty\]</span></p></li>
+<li><p><strong>t-Distribution</strong></p></li>
+</ul>
+<p><span class="math display">\[f(x) = Γ((n+1)/2) / (√(n π) Γ(n/2)) (1 + x^2/n)^-((n+1)/2)\hspace{1cm} -\infty &lt;x &lt; \infty\]</span></p>
+<p>To see a complete list of well known distribution functions (or densities) that R already has see the help file <code>?Distributions</code>.</p>
+</div>
+<div id="section-generating-random-variables" class="section level2 hasAnchor">
+<h2><span class="header-section-number">15.3</span> Generating Random Variables<a href="section-simulation.html#section-generating-random-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Each distribution available in base R is listed in <code>?Distributions</code>. Each of the distributions has a link to their corresponding help file which lists four main functions: <code>dxxx()</code>, <code>pxxx()</code>, <code>qxxx()</code> and <code>rxxx()</code>. These are the density function, cumulative distribution function, quantile function, and a random number generator for the particular random variable of interest. The letters <code>xxx</code> are replaced by an code for the particular random variable. The density function (<code>dxxx()</code>) generates the relative probability of observing a particular value. The cumulative distribution function (<code>pxxx()</code>) generates the probability of observing a particular value, and anything smaller than this value. The quantile function (<code>qxxx()</code>) generates what value corresponds to a given percentile. Lastly, the random number generator (<code>rxxx()</code>) will generate a random variable according to the given distribuiton/density. We will focus only on <code>dxxx()</code> and <code>rxxx()</code>.</p>
+<p>For example, go to <code>?Distributions</code> and click on <code>dnorm</code> which corresponds to the normal distribution (in the bottom third of the list). Here you will see the functions <code>dnorm()</code>, <code>pnorm()</code>, <code>qnorm()</code>, and <code>rnorm()</code>. To generate a normal random variable with mean 0 and standard deviation 1 we can use the following command.</p>
+<div class="sourceCode" id="section-cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="section-simulation.html#cb3-1"></a><span class="co"># Generate a single normal random variable with mean 0 and standard deviation 1</span></span>
+<span id="cb3-2"><a href="section-simulation.html#cb3-2"></a><span class="kw">rnorm</span>(<span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [1] -0.03665243</code></pre>
+<div class="sourceCode" id="section-cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="section-simulation.html#cb5-1"></a><span class="co"># Generate 20 normal random variables with mean 0 and standard deviation 1</span></span>
+<span id="cb5-2"><a href="section-simulation.html#cb5-2"></a><span class="kw">rnorm</span>(<span class="dv">20</span>)</span></code></pre></div>
+<pre><code>##  [1]  1.87541776 -1.48331589 -1.81665982 -0.75420233 -0.76520755 -0.04128481
+##  [7] -1.21446529  1.42853667 -0.42965155 -2.08760168  1.23796668  0.86853976
+## [13]  0.43923027 -0.14979036 -1.31097162  0.82299963 -0.50579796 -0.33793665
+## [19] -1.08480988 -0.28678317</code></pre>
+<p>However, as we saw in the previous section, these common distribution functions have parameters which let us further customize the behavior of the random variable. We can change the parameters of any of the distributions in R using the function arguments.</p>
+<div class="sourceCode" id="section-cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="section-simulation.html#cb7-1"></a><span class="co"># Normal random variable with mean 10, and standard deviation 0.5 </span></span>
+<span id="cb7-2"><a href="section-simulation.html#cb7-2"></a><span class="kw">rnorm</span>(<span class="dv">1</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<pre><code>## [1] 9.523706</code></pre>
+<div class="sourceCode" id="section-cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="section-simulation.html#cb9-1"></a><span class="co"># Normal random variable with mean 10, and standard deviation 0.5 </span></span>
+<span id="cb9-2"><a href="section-simulation.html#cb9-2"></a><span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<pre><code>##  [1]  9.741774 10.202395 10.137310  9.738262 10.214143  9.848172 10.449042
+##  [8] 10.654441 10.012702 10.696044 10.252141  9.627608 10.009389  9.586648
+## [15]  9.681349 10.286448  9.972635 10.013944  9.749256  9.366298</code></pre>
+<p>To find the relative probability of observing a particular value for a normal distribution we use <code>dnorm()</code>.</p>
+<div class="sourceCode" id="section-cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="section-simulation.html#cb11-1"></a><span class="co"># Relative probability of observing the value 0.25</span></span>
+<span id="cb11-2"><a href="section-simulation.html#cb11-2"></a><span class="co"># for a normal random variable with mean 0 and standard devation 1</span></span>
+<span id="cb11-3"><a href="section-simulation.html#cb11-3"></a><span class="kw">dnorm</span>(<span class="fl">0.25</span>)</span></code></pre></div>
+<pre><code>## [1] 0.3866681</code></pre>
+<div class="sourceCode" id="section-cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="section-simulation.html#cb13-1"></a><span class="co"># Relative probability of observing the value 0.25, -0.5, 2</span></span>
+<span id="cb13-2"><a href="section-simulation.html#cb13-2"></a><span class="co"># for a normal random variable with mean 0 and standard devation 1</span></span>
+<span id="cb13-3"><a href="section-simulation.html#cb13-3"></a><span class="kw">dnorm</span>(<span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">-0.5</span>, <span class="dv">2</span>))</span></code></pre></div>
+<pre><code>## [1] 0.38666812 0.35206533 0.05399097</code></pre>
+</div>
+<div id="section-setting-a-seed" class="section level2 hasAnchor">
+<h2><span class="header-section-number">15.4</span> Setting a Seed<a href="section-simulation.html#section-setting-a-seed" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Often times when running a simulation we will want to use the same numbers over and over again. The function <code>rxxx()</code> generates values randomly though, which means each time we call this function we will get new and different values. In order to make sure our values are consistent each time we run R, or across computers we can set the seed. The seed determines the way the computer generates our random numbers. Normally the seed is random, so each time <code>rxxx()</code> is called we get a new random sequence. Using the <code>set.seed()</code> function will make sure that the sequence stays the same each time we run <code>rxxx()</code>.</p>
+<p>See the example below were generate a sequence of 10 uniform random variables that are between -5 and 5. If you copy this code directly into your computer you will get the same sequence. However, if you do not set the seed you will get a different sequence.</p>
+<div class="sourceCode" id="section-cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="section-simulation.html#cb15-1"></a><span class="kw">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb15-2"><a href="section-simulation.html#cb15-2"></a><span class="kw">runif</span>(<span class="dv">10</span>, <span class="dt">min =</span> <span class="dv">-5</span>, <span class="dt">max =</span> <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>##  [1] -2.3449134 -1.2787610  0.7285336  4.0820779 -2.9831807  3.9838968
+##  [7]  4.4467527  1.6079779  1.2911404 -4.3821373</code></pre>
+</div>
+<div id="section-sample" class="section level2 hasAnchor">
+<h2><span class="header-section-number">15.5</span> sample()<a href="section-simulation.html#section-sample" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The <code>sample()</code> function is a powerful tool that can let you create your own unique random sequence. You can sample values with replacement, or without replacement. You can also assign certain probabilities to certain events. This is a particularly helpful function for rearranging rows, and for generating a sequence of categorical variables. For example, we can simulate a coin flip.</p>
+<div class="sourceCode" id="section-cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="section-simulation.html#cb17-1"></a><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;Heads&quot;</span>, <span class="st">&quot;Tails&quot;</span>), <span class="dt">size=</span><span class="dv">1</span> , <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;Tails&quot;</code></pre>
+<p>Below is the code for simulating 10 coin flips.</p>
+<div class="sourceCode" id="section-cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="section-simulation.html#cb19-1"></a><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;Heads&quot;</span>, <span class="st">&quot;Tails&quot;</span>), <span class="dt">size=</span><span class="dv">10</span> , <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>), <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>##  [1] &quot;Tails&quot; &quot;Heads&quot; &quot;Tails&quot; &quot;Heads&quot; &quot;Tails&quot; &quot;Heads&quot; &quot;Heads&quot; &quot;Tails&quot; &quot;Heads&quot;
+## [10] &quot;Heads&quot;</code></pre>
+<p>We can set the seed like we did before in order to insure we keep getting the same sample each time we run this code.</p>
+<div class="sourceCode" id="section-cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="section-simulation.html#cb21-1"></a><span class="kw">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb21-2"><a href="section-simulation.html#cb21-2"></a><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;Heads&quot;</span>, <span class="st">&quot;Tails&quot;</span>), <span class="dt">size=</span><span class="dv">10</span> , <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>), <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>##  [1] &quot;Tails&quot; &quot;Tails&quot; &quot;Heads&quot; &quot;Heads&quot; &quot;Tails&quot; &quot;Heads&quot; &quot;Heads&quot; &quot;Heads&quot; &quot;Heads&quot;
+## [10] &quot;Tails&quot;</code></pre>
+</div>
+<div id="section-cumulative-proportioncumulative-win-plots" class="section level2 hasAnchor">
+<h2><span class="header-section-number">15.6</span> Cumulative-Proportion/Cumulative-Win Plots<a href="section-simulation.html#section-cumulative-proportioncumulative-win-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A fair question to ask with simulations is: “how many simulations do we need for our data to representative?”. There are rigorous rules that we can use to determine how many simulations we need until our data set starts to represent the truth; however, we will focus on summary tables and visualization tools for now. We know we have enough simulations when our data set seems to “stabilize”. We track statistics or estimated probability of an event changes as we consider more data. We can visualize this using a cumulative proportion plot. For example, suppose we want to estimate how often we can expect a coin to land on a “head”. We can flip a coin multiple times and record a “1” if it land on a head, and “0” otherwise. Then we can calculate the proportion of the times that the coin landed on a head, which is the (arithmetic) mean of the 0s and 1s. If we only flip the coin a few times, then the proportion that we calculate may not be accurate due to random fluctuation. However, the more coin flips we consider the more likely the proportion we calculate approaches the truth. We can observe this using a cumulative proportion plot. In a cumulative proportion plot we have the number of trials on the x-axis, and the estimated proportion of successes using all data up to trial “x” on the y-axis. For example, suppose we flip one coin five times and obtain the results 1, 1, 0, 1, 0. Then the proportion of successes using “x” number of trials is the following.</p>
+<ul>
+<li>When the number of trials is x = 1, the proportion of times we observe a head is y = (1)/1 = 1</li>
+<li>When the number of trials is x = 2, the proportion of times we observe a head is y = (1+1)/2 = 1</li>
+<li>When the number of trials is x = 3, the proportion of times we observe a head is y = (1+1+0)/3 = 2/3</li>
+<li>When the number of trials is x = 4, the proportion of times we observe a head is y = (1+1+0+1)/4 = 3/4</li>
+<li>When the number of trials is x = 5, the proportion of times we observe a head is y = (1+1+0+1+0)/5 = 3/5</li>
+</ul>
+<!-- ```{r} -->
+<!-- library(shiny) -->
+<!-- shinyAppFile( -->
+<!--   "shiny/one_coin/app.R", -->
+<!--   options = list(width = "100%", height = 700) -->
+<!-- ) -->
+<!-- ``` -->
+</div>
+<div id="section-replicate" class="section level2 hasAnchor">
+<h2><span class="header-section-number">15.7</span> replicate()<a href="section-simulation.html#section-replicate" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The <code>replicate()</code> function repeats a function call <code>n</code> times in a very efficient way. Suppose we wish to find the probability we get exactly 3 heads if we flip a coin 10 times. We can replicate flipping a coin 10 times, and count how many of these times we see exactly 3 heads.</p>
+<div class="sourceCode" id="section-cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="section-simulation.html#cb23-1"></a>coin_flip_heads3 &lt;-<span class="st"> </span><span class="cf">function</span>(){</span>
+<span id="cb23-2"><a href="section-simulation.html#cb23-2"></a>        coin_flip &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;Heads&quot;</span>, <span class="st">&quot;Tails&quot;</span>), <span class="dt">size=</span><span class="dv">10</span> , </span>
+<span id="cb23-3"><a href="section-simulation.html#cb23-3"></a>                           <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>), <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb23-4"><a href="section-simulation.html#cb23-4"></a>        num_heads &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(coin_flip <span class="op">==</span><span class="st"> &quot;Heads&quot;</span>))</span>
+<span id="cb23-5"><a href="section-simulation.html#cb23-5"></a>        </span>
+<span id="cb23-6"><a href="section-simulation.html#cb23-6"></a>        <span class="cf">if</span>(num_heads <span class="op">==</span><span class="st"> </span><span class="dv">3</span>){</span>
+<span id="cb23-7"><a href="section-simulation.html#cb23-7"></a>                heads3 =<span class="st"> </span><span class="ot">TRUE</span></span>
+<span id="cb23-8"><a href="section-simulation.html#cb23-8"></a>        } <span class="cf">else</span>{</span>
+<span id="cb23-9"><a href="section-simulation.html#cb23-9"></a>                heads3 =<span class="st"> </span><span class="ot">FALSE</span></span>
+<span id="cb23-10"><a href="section-simulation.html#cb23-10"></a>        }</span>
+<span id="cb23-11"><a href="section-simulation.html#cb23-11"></a>        <span class="kw">return</span>(heads3)</span>
+<span id="cb23-12"><a href="section-simulation.html#cb23-12"></a>}</span>
+<span id="cb23-13"><a href="section-simulation.html#cb23-13"></a></span>
+<span id="cb23-14"><a href="section-simulation.html#cb23-14"></a></span>
+<span id="cb23-15"><a href="section-simulation.html#cb23-15"></a></span>
+<span id="cb23-16"><a href="section-simulation.html#cb23-16"></a><span class="co"># Generates flipping a coin 3 times</span></span>
+<span id="cb23-17"><a href="section-simulation.html#cb23-17"></a><span class="co"># Returns TRUE if exactly 3 flips resulted in heads</span></span>
+<span id="cb23-18"><a href="section-simulation.html#cb23-18"></a><span class="co"># Returns FALSE if otherwise </span></span>
+<span id="cb23-19"><a href="section-simulation.html#cb23-19"></a><span class="kw">coin_flip_heads3</span>()</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="section-cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="section-simulation.html#cb25-1"></a><span class="co"># Replicate the experiment 10,000 times</span></span>
+<span id="cb25-2"><a href="section-simulation.html#cb25-2"></a>see_heads3 &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">10000</span>, <span class="kw">coin_flip_heads3</span>())</span>
+<span id="cb25-3"><a href="section-simulation.html#cb25-3"></a></span>
+<span id="cb25-4"><a href="section-simulation.html#cb25-4"></a><span class="co"># How many of these experiments results in 3 heads???</span></span>
+<span id="cb25-5"><a href="section-simulation.html#cb25-5"></a><span class="co"># Probability of seeing exactly 3 heads is approximately 12%</span></span>
+<span id="cb25-6"><a href="section-simulation.html#cb25-6"></a><span class="kw">table</span>(see_heads3)<span class="op">/</span><span class="dv">10000</span></span></code></pre></div>
+<pre><code>## see_heads3
+##  FALSE   TRUE 
+## 0.8861 0.1139</code></pre>
+</div>
+<div id="section-adding-curves-to-graphs" class="section level2 hasAnchor">
+<h2><span class="header-section-number">15.8</span> Adding curves to graphs<a href="section-simulation.html#section-adding-curves-to-graphs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Often times when generating data or using a real-world data set we might want to see how well a well known distribution fits a particular data set. We can do so by adding the proposed density function on to a histogram which contains the data set of interest. For example, suppose we wish to see if a normal distribution with mean of 3.5 and standard deviation of 1.14 fits the old faithful data set for eruption times. We can add this density function on top and see if it approximately fits the data.</p>
+<div class="sourceCode" id="section-cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="section-simulation.html#cb27-1"></a><span class="kw">hist</span>(faithful<span class="op">$</span>eruptions, </span>
+<span id="cb27-2"><a href="section-simulation.html#cb27-2"></a>     <span class="dt">main =</span> <span class="st">&quot;Eruption Times of Old Faithful&quot;</span>, </span>
+<span id="cb27-3"><a href="section-simulation.html#cb27-3"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Time (in minutes)&quot;</span>, </span>
+<span id="cb27-4"><a href="section-simulation.html#cb27-4"></a>     <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">7</span>, <span class="dt">by =</span> <span class="fl">.5</span>), </span>
+<span id="cb27-5"><a href="section-simulation.html#cb27-5"></a>     <span class="dt">freq =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb27-6"><a href="section-simulation.html#cb27-6"></a></span>
+<span id="cb27-7"><a href="section-simulation.html#cb27-7"></a><span class="kw">curve</span>(<span class="kw">dnorm</span>(x, <span class="fl">3.5</span>, <span class="fl">1.14</span>), <span class="dt">add =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Now lets generate 272 normal random variables with mean 3.5 and standard deviation of 1.14 and see how well are generated data matches the density function.</p>
+<div class="sourceCode" id="section-cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="section-simulation.html#cb28-1"></a>gen_data &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">272</span>, <span class="dt">mean =</span> <span class="fl">3.5</span>, <span class="dt">sd =</span> <span class="fl">1.14</span>)</span>
+<span id="cb28-2"><a href="section-simulation.html#cb28-2"></a></span>
+<span id="cb28-3"><a href="section-simulation.html#cb28-3"></a><span class="kw">hist</span>(gen_data, </span>
+<span id="cb28-4"><a href="section-simulation.html#cb28-4"></a>     <span class="dt">main =</span> <span class="st">&quot;Simulated Data&quot;</span>, </span>
+<span id="cb28-5"><a href="section-simulation.html#cb28-5"></a>     <span class="dt">xlab =</span> <span class="st">&quot;X&quot;</span>, </span>
+<span id="cb28-6"><a href="section-simulation.html#cb28-6"></a>     <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="op">-</span><span class="fl">0.5</span>, <span class="dv">7</span>, <span class="dt">by =</span> <span class="fl">.5</span>), </span>
+<span id="cb28-7"><a href="section-simulation.html#cb28-7"></a>     <span class="dt">freq =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb28-8"><a href="section-simulation.html#cb28-8"></a></span>
+<span id="cb28-9"><a href="section-simulation.html#cb28-9"></a><span class="kw">curve</span>(<span class="kw">dnorm</span>(x, <span class="fl">3.5</span>, <span class="fl">1.14</span>), <span class="dt">add =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>We do not see a perfect fit, but this is what happens with random samples. The fit for the simulated data is what we expect approximately if we had a sample with this distribution. It should be approximately the same as the curve, which we see for the simulated data. Our old faithful data is significantly less fitted the simulated data. Thus it appears that the old faithful eruption times is probably not normally distributed with mean 3.5 and standard deviation 1.14. How similar is “similar enough” is not a hard and fast rule, and it is ultimately up to the researcher. The simulated data set gives us a general idea of what is “similar enough”.</p>
+<p>Note that the <code>curve()</code> function does not need to be added to graph but can stand alone.</p>
+<div class="sourceCode" id="section-cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="section-simulation.html#cb29-1"></a><span class="kw">curve</span>(<span class="kw">dnorm</span>(x, <span class="fl">3.5</span>, <span class="fl">1.14</span>), <span class="dv">0</span>, <span class="dv">7</span>, <span class="dt">add =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>In addition, we can make our own functions to plot using <code>curve()</code>.</p>
+<div class="sourceCode" id="section-cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="section-simulation.html#cb30-1"></a>my_fun &lt;-<span class="st"> </span><span class="cf">function</span>(x){</span>
+<span id="cb30-2"><a href="section-simulation.html#cb30-2"></a>        y =<span class="st"> </span>x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span>x <span class="op">-</span><span class="st"> </span><span class="dv">3</span></span>
+<span id="cb30-3"><a href="section-simulation.html#cb30-3"></a>        <span class="kw">return</span>(y)</span>
+<span id="cb30-4"><a href="section-simulation.html#cb30-4"></a>}</span>
+<span id="cb30-5"><a href="section-simulation.html#cb30-5"></a></span>
+<span id="cb30-6"><a href="section-simulation.html#cb30-6"></a><span class="kw">curve</span>(<span class="kw">my_fun</span>(x), <span class="dv">-10</span>, <span class="dv">10</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+</div>
+<div id="section-example-central-limit-theorem-clt" class="section level2 hasAnchor">
+<h2><span class="header-section-number">15.9</span> Example: Central Limit Theorem (CLT)<a href="section-simulation.html#section-example-central-limit-theorem-clt" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="section-recall-clt" class="section level3 hasAnchor">
+<h3><span class="header-section-number">15.9.1</span> Recall CLT<a href="section-simulation.html#section-recall-clt" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let <span class="math inline">\(X_1, ..., X_n\)</span> be independent and identically distributed random variables with mean and variance, <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span>. If the sample size is sufficiently large (<span class="math inline">\(n \geq 30\)</span>), the sample mean <span class="math inline">\(\bar{x}\)</span> will tend to follow a normal distribution with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\frac{\sigma}{\sqrt{n}}\)</span>.</p>
+<p>In other words, for any set of data <span class="math inline">\(X_1, ..., X_n\)</span> that is independent and comes from the same distribution, and that distribution has a finite mean and variance, <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span>. Then</p>
+<p><span class="math display">\[\bar{x} \sim N \left ( \mu, \frac{\sigma}{\sqrt{n}} \right ) \]</span></p>
+<p>The distribution above is a <em>sampling distribution</em>. It is the distribution of a <em>sample mean</em>. That is, if we take <span class="math inline">\(k\)</span> samples, and for each sample we calculated the mean, the central limit theorem tells us about the distribution of these means (<span class="math inline">\(\bar{x}_1, \dots, \bar{x}_k\)</span>).</p>
+</div>
+<div id="section-assumption-violations-of-clt" class="section level3 hasAnchor">
+<h3><span class="header-section-number">15.9.2</span> Assumption Violations of CLT<a href="section-simulation.html#section-assumption-violations-of-clt" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The central limit theorem has a few key assumptions. Some of these assumptions are fairly easy to meet, and others are more susceptible to being violated. For example, typically it is reasonable to assume that mean and variance are finite. Other assumptions are easier to violate, and the consequences of violating these assumptions vary greatly. Sometimes we may have data that comes from a mix of multiple distributions, this violate the assumption that data is identically distributed. Another assumption violation could be independence. For example, in time series data we typically observe a random variable over a sequence of time and measure it repeatedly. This would violate the independence assumption because earlier observations are typically related to future observations. Another assumption that is often violated is the minimum sample size. The central limit theorem says we need at least 30 observations, or else we should use the t-distribution instead. Historically this is usually not a very big problem. The requirement that our sample size is at least 30 is a “rule of thumb” and not based on rigorous statistical theory.</p>
+<p>Below are a summary of these assumptions restated:</p>
+<ul>
+<li><p>All our observations are independent, and have the same distribution (come from same population)</p></li>
+<li><p>Sample size is greater than 30 (<span class="math inline">\(n\geq 30\)</span>)</p></li>
+<li><p>The mean and the variance of the distribution the data comes from are finite (<span class="math inline">\(|\mu|&lt; \infty, |\sigma^2|&lt; \infty\)</span>)</p></li>
+</ul>
+<p>Once we have verified these assumptions, we still need to determine what the mean (<span class="math inline">\(\mu\)</span>) and variance (<span class="math inline">\(\sigma^2\)</span>) are. If we know that our distribution is one of the really common ones above, then this task becomes much eaiser.</p>
+</div>
+<div id="section-the-data" class="section level3 hasAnchor">
+<h3><span class="header-section-number">15.9.3</span> The Data<a href="section-simulation.html#section-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We will see how well the CLT theorem applies to a data set that has a uniform distribution. That is, say we have a sample of 50 observations which we believe are all uniformly distributed between -5 and 5. We want to determine if the mean of a sample of this type would be normally distributed according to the CLT. To do so, we simulate a sample of this type 10,000 times and assess if it matches the CLT results.</p>
+<div class="sourceCode" id="section-cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="section-simulation.html#cb31-1"></a><span class="co"># Simulate a sample of 50 observations that are uniformly distributed </span></span>
+<span id="cb31-2"><a href="section-simulation.html#cb31-2"></a>gen_unif_mean =<span class="st"> </span><span class="cf">function</span>(the_min, the_max){</span>
+<span id="cb31-3"><a href="section-simulation.html#cb31-3"></a>        gen_data =<span class="st"> </span><span class="kw">runif</span>(<span class="dv">50</span>, the_min, the_max)</span>
+<span id="cb31-4"><a href="section-simulation.html#cb31-4"></a>        the_mean =<span class="st"> </span><span class="kw">mean</span>(gen_data)</span>
+<span id="cb31-5"><a href="section-simulation.html#cb31-5"></a>        the_parameters =<span class="st"> </span><span class="kw">c</span>(the_min, the_max)</span>
+<span id="cb31-6"><a href="section-simulation.html#cb31-6"></a>        results =<span class="st"> </span><span class="kw">list</span>(the_mean, the_parameters)</span>
+<span id="cb31-7"><a href="section-simulation.html#cb31-7"></a>        <span class="kw">names</span>(results) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;mean&quot;</span>, <span class="st">&quot;parameters&quot;</span>)</span>
+<span id="cb31-8"><a href="section-simulation.html#cb31-8"></a>        <span class="kw">return</span>(results)</span>
+<span id="cb31-9"><a href="section-simulation.html#cb31-9"></a>}</span>
+<span id="cb31-10"><a href="section-simulation.html#cb31-10"></a></span>
+<span id="cb31-11"><a href="section-simulation.html#cb31-11"></a><span class="co"># Simulate 10000 samples, each of size 50, where the minumum value is -5</span></span>
+<span id="cb31-12"><a href="section-simulation.html#cb31-12"></a><span class="co"># And the maximum value is 5</span></span>
+<span id="cb31-13"><a href="section-simulation.html#cb31-13"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb31-14"><a href="section-simulation.html#cb31-14"></a>sim_means &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">10000</span>, <span class="kw">gen_unif_mean</span>(<span class="dt">the_min =</span> <span class="dv">-5</span>, <span class="dt">the_max=</span><span class="dv">5</span>)<span class="op">$</span>mean)</span>
+<span id="cb31-15"><a href="section-simulation.html#cb31-15"></a></span>
+<span id="cb31-16"><a href="section-simulation.html#cb31-16"></a></span>
+<span id="cb31-17"><a href="section-simulation.html#cb31-17"></a><span class="co"># histogram of results</span></span>
+<span id="cb31-18"><a href="section-simulation.html#cb31-18"></a><span class="kw">hist</span>(sim_means, <span class="dt">freq =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>To add a curve to the graph we need to know the mean and the standard deviation of the data we generated. For a uniform distribution with a minimum of -5 and a maximum of 5, the mean is 0 and the standard deviation is <span class="math inline">\(10/\sqrt{12} \approx 2.89\)</span>. Thus according to CLT, we expect our histogram above to correspond to a normal density with mean 0 and standard deviation <span class="math inline">\(2.89/\sqrt{50} \approx 0.41\)</span>.</p>
+<div class="sourceCode" id="section-cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="section-simulation.html#cb32-1"></a><span class="co"># histogram of results</span></span>
+<span id="cb32-2"><a href="section-simulation.html#cb32-2"></a><span class="kw">hist</span>(sim_means, <span class="dt">freq =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb32-3"><a href="section-simulation.html#cb32-3"></a></span>
+<span id="cb32-4"><a href="section-simulation.html#cb32-4"></a><span class="co"># Add normal curve according to CLT</span></span>
+<span id="cb32-5"><a href="section-simulation.html#cb32-5"></a><span class="kw">curve</span>(<span class="kw">dnorm</span>(x, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="fl">0.41</span>), <span class="dt">add =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+</div>
+</div>
+<div id="section-example-coin-flips" class="section level2 hasAnchor">
+<h2><span class="header-section-number">15.10</span> Example: Coin Flips<a href="section-simulation.html#section-example-coin-flips" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Suppose we are interested in the proportion of times we observe a head if we flip a fair sided coin. A fair question to ask: “how many simulations do we need to do this?”. There are rigorous rules that we can use to determine how many simulations we need until our data set starts to represent the truth; however, we will focus on summary tables and visualization tools for now. We know we have enough simulations when our data set seems to “stabilize”.</p>
+<p>Suppose we flip a coin 10 times and we observe the following results.</p>
+<ul>
+<li>Heads, Heads, Tails, Tails, Tails, Tails, Heads, Tails, Tails, Tails</li>
+</ul>
+<p>With simulation studies we often want to visualize are results using summary tables and graphs. Lets create a table of the proportion of heads vs the number of trials.</p>
+<ul>
+<li>Create a plot of the proportion of heads vs the number of trials</li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="section-loops.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-tidyverse.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/15-simulation.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

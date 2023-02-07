@@ -163,13 +163,13 @@ A fair question to ask with simulations is: "how many simulations do we need for
 - When the number of trials is x = 5, the proportion of times we observe a head is y = (1+1+0+1+0)/5 = 3/5
 
 
-```{r}
-library(shiny)
-shinyAppFile(
-  "shiny/one_coin/app.R",
-  options = list(width = "100%", height = 700)
-)
-```
+<!-- ```{r} -->
+<!-- library(shiny) -->
+<!-- shinyAppFile( -->
+<!--   "shiny/one_coin/app.R", -->
+<!--   options = list(width = "100%", height = 700) -->
+<!-- ) -->
+<!-- ``` -->
 
 
 ## replicate() 

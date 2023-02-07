@@ -1,10 +1,11 @@
-#  Apply Family of Functions {#apply}
+#  *apply Family of Functions 
 
-Loops (like `for`, and `while`) are a way to repeatedly execute some code. However, they are often slow in execution when it comes to processing large data sets.
 
-`R` has a more efficient and quick approach to perform iterations – **The apply family**.
+## Introduction to the *apply family
 
-The apply family consists of vectorized functions. Below are the most common forms of apply functions.
+You may have seen loops (like `for`, and `while`) in another class, which are used to  repeatedly execute some code. However, they are often slow in execution when it comes to processing large data sets in `R`.`R` has a more efficient and quick approach to perform iterations – **The *apply family**.
+
+The `*apply` functions are used to vectorized functions in R and make them more efficient.  The `*apply` functions are technically **functionals**.  A **functional** in mathematics (and programming) is a function that accepts another function as an input.  Below are the most common forms of apply functions.
 
 - `apply()`
 - `lapply()`
@@ -13,13 +14,10 @@ The apply family consists of vectorized functions. Below are the most common for
 - `mapply()`
 - `replicate()`
 
-These functions let you take data in batches and process the whole batch at once.
-
-There primary difference is in the object (such as list, matrix, data frame etc.) on which the function is applied to and the object that will be returned from the function. 
-
 These functions apply a function to different components of a vector/list/dataframe/array in a non-sequential way.  In general, if each element in your object is not dependent on the other elements of your object then an apply function is usually faster than a loop. 
 
-```{r, echo = F, message=FALSE, warning=FALSE, fig.align='center', out.width="30%"}
+
+```{r, echo = F, message=FALSE, warning=FALSE, fig.align='center', out.width="90%"}
 library(knitr)
 knitr::include_graphics("images/lapplyGraphic.png")
 ```
@@ -29,7 +27,7 @@ knitr::include_graphics("images/lapplyGraphic.png")
 
 The `apply() `function is used to apply a function to the rows or columns of arrays (matrices). It assembles the returned values, and then returns it in a vector, array, or list. 
 
-If you want to apply a function on a data frame, make sure that the data frame is homogeneous (i.e. either all numeric values or all character strings). Otherwise, R will force all columns to have identical types using `as.matrix()`. This may not be what you want. In that case, you might consider using the `lapply()` or `sapply()` functions instead.
+If you want to apply a function on a data frame, make sure that the data frame is homogeneous (i.e. all columns have numeric values,  all columns have character strings, etc). Otherwise, R will force all columns to have identical types using `as.matrix()`. This may not be what you want. In that case, you might consider using the `lapply()` or `sapply()` functions instead.
 
 Description of the required `apply()` arguments:
 
@@ -101,7 +99,7 @@ mat <- matrix(c(-1, 1, 0,
                 62,-2, -6), nrow = 3)
 
 CheckPos <- function(Vec){
-  # Subset values of Vec that are even
+  # Subset values of Vec that are positive 
   PosVec <- Vec[Vec > 0]
   
   # Return only the even values
@@ -172,9 +170,7 @@ lapply(iris[,1:4], function(column){
 
 ## sapply()
 
-The `sapply()` and `lapply()` work basically the same.
-
-The only difference is that `lapply()` always returns a list, whereas `sapply()` tries to simplify the result into a vector or matrix.  The output for `sapply()` is just like the output of `apply()`, it depends on the dimensions of the returned value for `FUN`. 
+The `sapply()` and `lapply()` are very similar. The main difference is that `lapply()` always returns a list, whereas `sapply()` tries to simplify the result into a vector or matrix.  The output for `sapply()` is just like the output of `apply()`, it depends on the dimensions of the returned value for `FUN`. 
 
 - If the return value is a list where every element is length 1, you get a vector. 
 
@@ -194,7 +190,13 @@ data_lst <- list(item1 = 1:5,
 data_lst
 
 sapply(data_lst, sum)
+
+lapply(data_lst, sum)
 ```
+
+
+
+
 
 ## tapply() 
 
@@ -261,6 +263,101 @@ It can be difficult at first to decide which of these apply function you may wan
 <!-- # ``` -->
 
 ![](images/apply_flowchart.png){hieght=200%}
+
+
+
+## Vectorizing If-Statments {#vectorizeifelse}
+
+
+The `ifelse()` function is useful when we are vectorizing a simple if-else statment.  When we have something more complicated we either need to do a combination of `ifelse()` functions that are nested together, which can be hard to read, or we need to consider another option.  
+
+Are second option is to use one of the `*apply` functions. There are many different types of apply functions, for now we will just focus on the most common one, the `sapply()` function.  
+
+
+Let us consider a more complicated example where we might want to consider an `*apply` function. In the below example we want to find each value of `x` that is an even positive number, odd positive number, and non-positive number 
+
+```{r}
+
+x<- c(-3, 0, 3)
+
+if(x >0){
+  if(x%%2 ==0){
+    type <- "even positive"
+  } else {
+    type <- "odd positive"
+  } 
+} else {
+  type <- "non-positive"
+}
+```
+
+
+With the above code we have an warning message because if-statements can only accept logical vectors of length 1, and our expression is generating a logical vector of length greater than 1.  To use `sapply()` to vectorized this operation we need to change this chain of if-statements into a function. 
+
+```{r}
+EvenOdd <- function(num){
+  if(num > 0){
+    if(num %% 2 == 0){
+      type <- "even positive"
+    } else {
+      type <- "odd positive"
+    } 
+  } else {
+    type <- "non-positive"
+  }
+  return(type)
+}
+```
+
+
+This will still generate an error message if we call `EvenOdd(x)` because our input is still a vector greater than 1.  To use `sapply()` we can do the following:
+
+```{r}
+sapply(x, EvenOdd)
+```
+
+
+The first argument, labeled as `X` in the help file, is the object that contains the elements we want to apply the function to.  The second argument, labeled as `FUN` in the help file, is the function that is applied to each element of `X`.  We can make much more complicated if-statement changes and apply them to vectors using `sapply()`. 
+
+If we wanted to vectorize a function that had multiple inputs like the `Toyfun` function seen in \@ref(elseif). we can do that with another `*apply` function, `mapply()`.  This function iterates over mutltiple inputs simultaneously.  Consider the following vectors 
+
+```{r}
+X_input <- c(1, 2, 3)
+Y_input <- c(100, 50, 25)
+Do_input <- c("Add", "Subtract", "Multiply")
+```
+
+Suppose we wish to add the first elements of `X_input` and `Y_input`, subtract the second elements `X_input` and `Y_input`, and multiply the last elements of `X_input` and `Y_input`.  We can do this iteratively all at once with `mapply()`. If we look at the `mapply()` help file the first two arguments are `FUN` and `...`.  The `FUN` argument is the function we wish to apply, and the `...` represents the inputted values we want to iterative over.  The vectors supplied in `...` will all be called one at a time.  That is, the first elements of all the vectors passed via `...` will be called first, followed by the second elements, and so on. 
+
+```{r, echo = F}
+Toyfun <- function(X,Y,Do){
+  if(Do == "Add"){
+    Z = X+Y
+
+  }else if(Do =="Subtract"){
+    Z = X-Y
+
+  }else if(Do =="Multiply"){
+    Z = X*Y
+
+    
+  }else if(Do =="Penguin"){
+    Z = c("<('' )")
+    
+  } else{
+    Z = c(X,Y)
+  }
+  
+  return(Z)
+}
+```
+
+
+```{r}
+mapply(Toyfun, X = X_input, Y = Y_input, Do = Do_input)
+```
+
+
 
 
 

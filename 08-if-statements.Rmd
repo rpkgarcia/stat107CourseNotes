@@ -43,7 +43,7 @@ if(class(x) == "numeric"){
 type
 ```
 
-## Else If 
+## Else If {#elseif}
 
 Sometimes we will want to do a sequence of checks that are all related, and we will only want code to run if the previous `if` statements were `FALSE` and another criteria is `TRUE`.  We can use `else if` to implement these rules. 
 
@@ -170,82 +170,13 @@ type
 ```
 
 
-Here is a more complicated example that we can use to find all cars in the `mtcars` data set that have a high horsepower and are fuel efficient, i.e. cars have `mpg > 25` and `hp > 60`.
+Here is another example that we can use to find all cars in the `mtcars` data set that have a high horsepower and are fuel efficient, i.e. cars have `mpg > 25` and `hp > 60`.
 
 ```{r}
 fast_efficient <- ifelse(mtcars$mpg > 25 & mtcars$hp>60, TRUE, FALSE)
 sum(fast_efficient)/length(fast_efficient)
 ```
 
-
-
-## Vectorizing If-Statments {#vectorizeifelse}
-
-
-The `ifelse()` function is useful when we are vectorizing a simple if-else statment.  When we have something more complicated we either need to do a combination of `ifelse()` functions that are nested together, which can be hard to read, or we need to consider another option.  
-
-Are second option is to use one of the `*apply` functions, which we will be discussed in more detail in a later chapter.  The `*apply` functions are used to vectorized functions in R and make them more efficient.  The `*apply` functions are technically **functionals**.  A **functional** in mathematics (and programming) is a function that accepts another function as an input.  There are many different types of apply functions, for now we will just focus on the most common one, the `sapply()` function.  
-
-
-Let us consider a more complicated example where we might want to consider an `*apply` function. In the below example we want to find each value of `x` that is an even positive number, odd positive number, and non-positive number 
-
-```{r}
-
-x<- -3:3
-
-if(x >0){
-  if(x%%2 ==0){
-    type <- "even positive"
-  } else {
-    type <- "odd positive"
-  } 
-} else {
-  type <- "non-positive"
-}
-```
-
-
-Again, we have an error message because if-statements can only accept logical vectors of length 1, and our expression is generating a logical vector of length greater than 1.  To use `sapply()` to vectorized this operation we need to change this chain if-statements into a function. 
-
-```{r}
-EvenOdd <- function(num){
-  if(num > 0){
-    if(num %% 2 == 0){
-      type <- "even positive"
-    } else {
-      type <- "odd positive"
-    } 
-  } else {
-    type <- "non-positive"
-  }
-  return(type)
-}
-```
-
-
-This will still generate an error message if we call `EvenOdd(x)` because our input is still a vector greater than 1.  To use `sapply()` we can do the following:
-
-```{r}
-x<- -3:3
-sapply( x, EvenOdd)
-```
-
-
-The first argument, labeled as `X` in the help file, is the object that contains the elements we want to apply the function to.  The second argument, labeled as `FUN` in the help file, is the function that is applied to each element of `X`.  We can make much more complicated if-statement changes and apply them to vectors using `sapply()`. 
-
-If we wanted to vectorize a function that had multiple inputs like the `Toyfun` function above we can do that with another `*apply` function, `mapply()`.  This function iterates over mutltiple inputs simultaneously.  Consider the following vectors 
-
-```{r}
-X_input <- c(1, 2, 3)
-Y_input <- c(100, 50, 25)
-Do_input <- c("Add", "Subtract", "Multiply")
-```
-
-Suppose we wish to add the first elements of `X_input` and `Y_input`, subtract the second elements `X_input` and `Y_input`, and multiply the last elements of `X_input` and `Y_input`.  We can do this iteratively all at once with `mapply()`. If we look at the `mapply()` help file the first two arguments are `FUN` and `...`.  The `FUN` arguement is the function we wish to apply, and the `...` represents the inputted values we want to iterative over.  The vectors supplied in `...` will all be called one at a time.  That is, the first elements of all the vectors passed via `...` will be called first, followed by the second elements, and so on. 
-
-```{r}
-mapply(Toyfun, X = X_input, Y = Y_input, Do = Do_input)
-```
 
 
 

@@ -116,129 +116,132 @@
 \contentsline {section}{\numberline {8.3}Else If}{92}{section.8.3}%
 \contentsline {section}{\numberline {8.4}Nested If Chains}{93}{section.8.4}%
 \contentsline {section}{\numberline {8.5}Ifelse}{94}{section.8.5}%
-\contentsline {section}{\numberline {8.6}Vectorizing If-Statments}{95}{section.8.6}%
-\contentsline {section}{Additional Resources}{97}{section*.38}%
-\contentsline {chapter}{\numberline {9}Packages}{99}{chapter.9}%
-\contentsline {section}{\numberline {9.1}Namespace Collisions}{100}{section.9.1}%
-\contentsline {chapter}{\numberline {10}Text Data}{103}{chapter.10}%
-\contentsline {section}{\numberline {10.1}Making Strings}{104}{section.10.1}%
-\contentsline {section}{\numberline {10.2}Substring Operations}{105}{section.10.2}%
-\contentsline {section}{\numberline {10.3}Dividing Strings into Vectors}{106}{section.10.3}%
-\contentsline {section}{\numberline {10.4}Converting Objects into Strings}{107}{section.10.4}%
-\contentsline {section}{\numberline {10.5}Versatility of the paste() Function}{107}{section.10.5}%
-\contentsline {section}{\numberline {10.6}Substitution}{108}{section.10.6}%
-\contentsline {section}{\numberline {10.7}Text of Some Importance}{108}{section.10.7}%
-\contentsline {section}{\numberline {10.8}Search}{109}{section.10.8}%
-\contentsline {section}{\numberline {10.9}Vectorizing Text Functions}{110}{section.10.9}%
-\contentsline {section}{\numberline {10.10}Regular Expressions}{112}{section.10.10}%
-\contentsline {section}{\numberline {10.11}Word Count Tables}{112}{section.10.11}%
-\contentsline {section}{\numberline {10.12}Wordcloud Package}{114}{section.10.12}%
-\contentsline {chapter}{\numberline {11}Regular Expressions}{119}{chapter.11}%
-\contentsline {section}{\numberline {11.1}Ranges, Escaping}{121}{section.11.1}%
-\contentsline {section}{\numberline {11.2}Metacharacters}{122}{section.11.2}%
-\contentsline {section}{\numberline {11.3}Quantifiers}{123}{section.11.3}%
-\contentsline {section}{\numberline {11.4}Anchoring}{124}{section.11.4}%
-\contentsline {section}{\numberline {11.5}Splitting on a Regexp}{125}{section.11.5}%
-\contentsline {section}{\numberline {11.6}Stringr Package}{126}{section.11.6}%
-\contentsline {section}{\numberline {11.7}Wordcloud Package}{127}{section.11.7}%
-\contentsline {section}{\numberline {11.8}Replacements}{130}{section.11.8}%
-\contentsline {section}{Additional Resources}{130}{section*.39}%
-\contentsline {chapter}{\numberline {12}Base R Plotting}{131}{chapter.12}%
-\contentsline {section}{\numberline {12.1}Load A Big Data Set}{131}{section.12.1}%
-\contentsline {section}{\numberline {12.2}Histograms}{133}{section.12.2}%
-\contentsline {section}{\numberline {12.3}Boxplot}{138}{section.12.3}%
-\contentsline {section}{\numberline {12.4}Scatter Plot}{140}{section.12.4}%
-\contentsline {section}{\numberline {12.5}Pie Charts}{143}{section.12.5}%
-\contentsline {section}{\numberline {12.6}Adding Straight Lines}{145}{section.12.6}%
-\contentsline {section}{\numberline {12.7}Adding Lines Between Points}{147}{section.12.7}%
-\contentsline {section}{\numberline {12.8}Adding Individual Points}{148}{section.12.8}%
-\contentsline {section}{\numberline {12.9}The par() Help File}{149}{section.12.9}%
-\contentsline {section}{\numberline {12.10}Adding Legends}{150}{section.12.10}%
-\contentsline {section}{\numberline {12.11}What makes a good plot?}{152}{section.12.11}%
-\contentsline {chapter}{\numberline {13}Extending Base R Graphics}{155}{chapter.13}%
-\contentsline {section}{\numberline {13.1}The ``maps'' Package}{155}{section.13.1}%
-\contentsline {section}{\numberline {13.2}Some additional Packages to consider}{160}{section.13.2}%
-\contentsline {chapter}{\numberline {14}Loops}{163}{chapter.14}%
-\contentsline {section}{\numberline {14.1}While Loop}{163}{section.14.1}%
-\contentsline {section}{\numberline {14.2}For Loops}{165}{section.14.2}%
-\contentsline {section}{\numberline {14.3}Break}{166}{section.14.3}%
-\contentsline {section}{\numberline {14.4}Next}{167}{section.14.4}%
-\contentsline {section}{\numberline {14.5}Nested Loops}{168}{section.14.5}%
-\contentsline {section}{\numberline {14.6}Examples}{169}{section.14.6}%
-\contentsline {subsection}{\numberline {14.6.1}Example 1}{169}{subsection.14.6.1}%
-\contentsline {subsection}{\numberline {14.6.2}Example 2}{170}{subsection.14.6.2}%
-\contentsline {section}{\numberline {14.7}Additional Resources}{171}{section.14.7}%
-\contentsline {chapter}{\numberline {15}Simulation}{173}{chapter.15}%
-\contentsline {section}{\numberline {15.1}What Are Simulation Studies}{173}{section.15.1}%
-\contentsline {section}{\numberline {15.2}Review Random Variables}{174}{section.15.2}%
-\contentsline {section}{\numberline {15.3}Generating Random Variables}{177}{section.15.3}%
-\contentsline {section}{\numberline {15.4}Setting a Seed}{178}{section.15.4}%
-\contentsline {section}{\numberline {15.5}sample()}{179}{section.15.5}%
-\contentsline {section}{\numberline {15.6}replicate()}{179}{section.15.6}%
-\contentsline {section}{\numberline {15.7}Adding curves to graphs}{180}{section.15.7}%
-\contentsline {section}{\numberline {15.8}Example: Central Limit Theorem (CLT)}{184}{section.15.8}%
-\contentsline {subsection}{\numberline {15.8.1}Recall CLT}{184}{subsection.15.8.1}%
-\contentsline {subsection}{\numberline {15.8.2}Assumption Violations of CLT}{185}{subsection.15.8.2}%
-\contentsline {subsection}{\numberline {15.8.3}The Data}{185}{subsection.15.8.3}%
-\contentsline {chapter}{\numberline {16}Tidyverse}{189}{chapter.16}%
-\contentsline {section}{\numberline {16.1}Piping Operator}{189}{section.16.1}%
-\contentsline {section}{\numberline {16.2}Tibbles vs Data Frames}{190}{section.16.2}%
-\contentsline {section}{\numberline {16.3}Key Functions}{191}{section.16.3}%
-\contentsline {subsection}{\numberline {16.3.1}General properties}{192}{subsection.16.3.1}%
-\contentsline {subsection}{\numberline {16.3.2}select()}{192}{subsection.16.3.2}%
-\contentsline {subsection}{\numberline {16.3.3}filter()}{194}{subsection.16.3.3}%
-\contentsline {subsection}{\numberline {16.3.4}arrange()}{195}{subsection.16.3.4}%
-\contentsline {subsection}{\numberline {16.3.5}rename()}{195}{subsection.16.3.5}%
-\contentsline {subsection}{\numberline {16.3.6}mutate()}{196}{subsection.16.3.6}%
-\contentsline {subsection}{\numberline {16.3.7}group\_by()}{198}{subsection.16.3.7}%
-\contentsline {subsection}{\numberline {16.3.8}summarize()/summarise()}{198}{subsection.16.3.8}%
-\contentsline {section}{\numberline {16.4}Examples}{199}{section.16.4}%
-\contentsline {subsection}{\numberline {16.4.1}Example 1}{199}{subsection.16.4.1}%
-\contentsline {subsection}{\numberline {16.4.2}Example 2}{200}{subsection.16.4.2}%
-\contentsline {subsection}{\numberline {16.4.3}Example 3}{200}{subsection.16.4.3}%
-\contentsline {section}{Additional Resources}{201}{section*.40}%
-\contentsline {chapter}{\numberline {17}ggplot2}{203}{chapter.17}%
-\contentsline {section}{\numberline {17.1}Tidyverse and ggplot2}{203}{section.17.1}%
-\contentsline {section}{\numberline {17.2}Intro to ggplot2}{203}{section.17.2}%
-\contentsline {subsection}{What is the grammar of graphics?}{203}{section*.41}%
-\contentsline {subsection}{ggplot2 versus other R Graphics}{204}{section*.42}%
-\contentsline {section}{\numberline {17.3}Getting started: Kep Components}{204}{section.17.3}%
-\contentsline {section}{\numberline {17.4}Adjust aesthetic attributes by variable}{205}{section.17.4}%
-\contentsline {section}{\numberline {17.5}Adjust aesthetic attributes for the entire plot}{208}{section.17.5}%
-\contentsline {section}{\numberline {17.6}Faceting}{210}{section.17.6}%
-\contentsline {section}{\numberline {17.7}Some example plots}{211}{section.17.7}%
-\contentsline {section}{\numberline {17.8}Where can I learn more?}{217}{section.17.8}%
-\contentsline {chapter}{\numberline {18}Apply Family of Functions}{219}{chapter.18}%
-\contentsline {section}{\numberline {18.1}apply()}{220}{section.18.1}%
-\contentsline {subsection}{Example: Built In Function}{220}{section*.43}%
-\contentsline {subsection}{Example: User Defined Function}{221}{section*.44}%
-\contentsline {subsection}{\numberline {18.1.1}Returned Objects}{221}{subsection.18.1.1}%
-\contentsline {subsection}{\numberline {18.1.2}Example: Extra Arguments, Array Output}{221}{subsection.18.1.2}%
-\contentsline {subsection}{\numberline {18.1.3}Example: List Output}{222}{subsection.18.1.3}%
-\contentsline {section}{\numberline {18.2}lapply()}{222}{section.18.2}%
-\contentsline {section}{\numberline {18.3}sapply()}{225}{section.18.3}%
-\contentsline {section}{\numberline {18.4}tapply()}{226}{section.18.4}%
-\contentsline {section}{\numberline {18.5}mapply()}{227}{section.18.5}%
-\contentsline {section}{\numberline {18.6}replicate()}{227}{section.18.6}%
-\contentsline {section}{\numberline {18.7}How to Pick a Method}{228}{section.18.7}%
-\contentsline {section}{\numberline {18.8}More Examples}{228}{section.18.8}%
-\contentsline {subsection}{\numberline {18.8.1}Create a New Variable}{233}{subsection.18.8.1}%
-\contentsline {section}{Additional Resources}{234}{section*.45}%
-\contentsline {chapter}{\numberline {19}Debugging}{235}{chapter.19}%
-\contentsline {section}{\numberline {19.1}Debugging Background (History, Types of Bugs, Challenges to Consider)}{235}{section.19.1}%
-\contentsline {subsection}{Types of bugs}{236}{section*.46}%
-\contentsline {subsection}{Debugging Process Difficulties}{236}{section*.47}%
-\contentsline {section}{\numberline {19.2}Debugging Strategies In General}{237}{section.19.2}%
-\contentsline {subsection}{\numberline {19.2.1}Example of the Binary Search Algorithm}{238}{subsection.19.2.1}%
-\contentsline {section}{\numberline {19.3}Using Debuggers}{240}{section.19.3}%
-\contentsline {subsection}{\numberline {19.3.1}traceback()}{240}{subsection.19.3.1}%
-\contentsline {subsection}{Example with traceback()}{241}{section*.48}%
-\contentsline {subsection}{Unfamiliar function with traceback()}{241}{section*.49}%
-\contentsline {subsection}{\numberline {19.3.2}browswer()}{241}{subsection.19.3.2}%
-\contentsline {subsection}{\numberline {19.3.3}debug()}{241}{subsection.19.3.3}%
-\contentsline {section}{\numberline {19.4}More options to consider}{241}{section.19.4}%
-\contentsline {section}{\numberline {19.5}Important Takeaways}{242}{section.19.5}%
-\contentsline {subsection}{Tips for Writing good code}{242}{section*.50}%
-\contentsline {subsection}{Steps to Reduce the Number of Bugs}{242}{section*.51}%
-\contentsline {subsection}{After You Located the Error}{243}{section*.52}%
-\contentsline {section}{\numberline {19.6}Resources}{243}{section.19.6}%
+\contentsline {section}{Additional Resources}{95}{section*.38}%
+\contentsline {chapter}{\numberline {9}*apply Family of Functions}{97}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Introduction to the *apply family}{97}{section.9.1}%
+\contentsline {section}{\numberline {9.2}apply()}{98}{section.9.2}%
+\contentsline {subsection}{Example: Built In Function}{98}{section*.39}%
+\contentsline {subsection}{Example: User Defined Function}{99}{section*.40}%
+\contentsline {subsection}{\numberline {9.2.1}Returned Objects}{99}{subsection.9.2.1}%
+\contentsline {subsection}{\numberline {9.2.2}Example: Extra Arguments, Array Output}{99}{subsection.9.2.2}%
+\contentsline {subsection}{\numberline {9.2.3}Example: List Output}{100}{subsection.9.2.3}%
+\contentsline {section}{\numberline {9.3}lapply()}{100}{section.9.3}%
+\contentsline {section}{\numberline {9.4}sapply()}{103}{section.9.4}%
+\contentsline {section}{\numberline {9.5}tapply()}{104}{section.9.5}%
+\contentsline {section}{\numberline {9.6}mapply()}{105}{section.9.6}%
+\contentsline {section}{\numberline {9.7}replicate()}{106}{section.9.7}%
+\contentsline {section}{\numberline {9.8}How to Pick a Method}{106}{section.9.8}%
+\contentsline {section}{\numberline {9.9}Vectorizing If-Statments}{107}{section.9.9}%
+\contentsline {section}{\numberline {9.10}More Examples}{109}{section.9.10}%
+\contentsline {subsection}{\numberline {9.10.1}Create a New Variable}{114}{subsection.9.10.1}%
+\contentsline {section}{Additional Resources}{115}{section*.41}%
+\contentsline {chapter}{\numberline {10}Text Data}{117}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Making Strings}{118}{section.10.1}%
+\contentsline {section}{\numberline {10.2}Substring Operations}{119}{section.10.2}%
+\contentsline {section}{\numberline {10.3}Dividing Strings into Vectors}{120}{section.10.3}%
+\contentsline {section}{\numberline {10.4}Converting Objects into Strings}{121}{section.10.4}%
+\contentsline {section}{\numberline {10.5}Versatility of the paste() Function}{121}{section.10.5}%
+\contentsline {section}{\numberline {10.6}Substitution}{122}{section.10.6}%
+\contentsline {section}{\numberline {10.7}Text of Some Importance}{122}{section.10.7}%
+\contentsline {section}{\numberline {10.8}Search}{123}{section.10.8}%
+\contentsline {section}{\numberline {10.9}Vectorizing Text Functions}{124}{section.10.9}%
+\contentsline {section}{\numberline {10.10}Regular Expressions}{126}{section.10.10}%
+\contentsline {section}{\numberline {10.11}Word Count Tables}{126}{section.10.11}%
+\contentsline {section}{\numberline {10.12}Wordcloud Package}{128}{section.10.12}%
+\contentsline {chapter}{\numberline {11}Base R Plotting}{133}{chapter.11}%
+\contentsline {section}{\numberline {11.1}Load A Big Data Set}{133}{section.11.1}%
+\contentsline {section}{\numberline {11.2}Histograms}{135}{section.11.2}%
+\contentsline {section}{\numberline {11.3}Boxplot}{140}{section.11.3}%
+\contentsline {section}{\numberline {11.4}Scatter Plot}{142}{section.11.4}%
+\contentsline {section}{\numberline {11.5}Pie Charts}{145}{section.11.5}%
+\contentsline {section}{\numberline {11.6}Adding Straight Lines}{147}{section.11.6}%
+\contentsline {section}{\numberline {11.7}Adding Lines Between Points}{149}{section.11.7}%
+\contentsline {section}{\numberline {11.8}Adding Individual Points}{150}{section.11.8}%
+\contentsline {section}{\numberline {11.9}The par() Help File}{151}{section.11.9}%
+\contentsline {section}{\numberline {11.10}Adding Legends}{152}{section.11.10}%
+\contentsline {section}{\numberline {11.11}What makes a good plot?}{154}{section.11.11}%
+\contentsline {chapter}{\numberline {12}Packages}{157}{chapter.12}%
+\contentsline {section}{\numberline {12.1}Namespace Collisions}{158}{section.12.1}%
+\contentsline {chapter}{\numberline {13}Extending Base R Graphics}{161}{chapter.13}%
+\contentsline {section}{\numberline {13.1}The ``maps'' Package}{161}{section.13.1}%
+\contentsline {section}{\numberline {13.2}Some additional Packages to consider}{166}{section.13.2}%
+\contentsline {chapter}{\numberline {14}Loops}{169}{chapter.14}%
+\contentsline {section}{\numberline {14.1}While Loop}{169}{section.14.1}%
+\contentsline {section}{\numberline {14.2}For Loops}{171}{section.14.2}%
+\contentsline {section}{\numberline {14.3}Break}{172}{section.14.3}%
+\contentsline {section}{\numberline {14.4}Next}{173}{section.14.4}%
+\contentsline {section}{\numberline {14.5}Nested Loops}{174}{section.14.5}%
+\contentsline {section}{\numberline {14.6}Examples}{175}{section.14.6}%
+\contentsline {subsection}{\numberline {14.6.1}Example 1}{175}{subsection.14.6.1}%
+\contentsline {subsection}{\numberline {14.6.2}Example 2}{176}{subsection.14.6.2}%
+\contentsline {section}{\numberline {14.7}Additional Resources}{177}{section.14.7}%
+\contentsline {chapter}{\numberline {15}Simulation}{179}{chapter.15}%
+\contentsline {section}{\numberline {15.1}What Are Simulation Studies}{179}{section.15.1}%
+\contentsline {section}{\numberline {15.2}Review Random Variables}{180}{section.15.2}%
+\contentsline {section}{\numberline {15.3}Generating Random Variables}{183}{section.15.3}%
+\contentsline {section}{\numberline {15.4}Setting a Seed}{184}{section.15.4}%
+\contentsline {section}{\numberline {15.5}sample()}{185}{section.15.5}%
+\contentsline {section}{\numberline {15.6}Cumulative-Proportion/Cumulative-Win Plots}{186}{section.15.6}%
+\contentsline {section}{\numberline {15.7}replicate()}{186}{section.15.7}%
+\contentsline {section}{\numberline {15.8}Adding curves to graphs}{187}{section.15.8}%
+\contentsline {section}{\numberline {15.9}Example: Central Limit Theorem (CLT)}{191}{section.15.9}%
+\contentsline {subsection}{\numberline {15.9.1}Recall CLT}{191}{subsection.15.9.1}%
+\contentsline {subsection}{\numberline {15.9.2}Assumption Violations of CLT}{192}{subsection.15.9.2}%
+\contentsline {subsection}{\numberline {15.9.3}The Data}{192}{subsection.15.9.3}%
+\contentsline {section}{\numberline {15.10}Example: Coin Flips}{194}{section.15.10}%
+\contentsline {chapter}{\numberline {16}Tidyverse}{195}{chapter.16}%
+\contentsline {section}{\numberline {16.1}Piping Operator}{195}{section.16.1}%
+\contentsline {section}{\numberline {16.2}Tibbles vs Data Frames}{196}{section.16.2}%
+\contentsline {section}{\numberline {16.3}Key Functions}{197}{section.16.3}%
+\contentsline {subsection}{\numberline {16.3.1}General properties}{198}{subsection.16.3.1}%
+\contentsline {subsection}{\numberline {16.3.2}select()}{198}{subsection.16.3.2}%
+\contentsline {subsection}{\numberline {16.3.3}filter()}{200}{subsection.16.3.3}%
+\contentsline {subsection}{\numberline {16.3.4}arrange()}{201}{subsection.16.3.4}%
+\contentsline {subsection}{\numberline {16.3.5}rename()}{201}{subsection.16.3.5}%
+\contentsline {subsection}{\numberline {16.3.6}mutate()}{202}{subsection.16.3.6}%
+\contentsline {subsection}{\numberline {16.3.7}group\_by()}{204}{subsection.16.3.7}%
+\contentsline {subsection}{\numberline {16.3.8}summarize()/summarise()}{204}{subsection.16.3.8}%
+\contentsline {section}{\numberline {16.4}Examples}{205}{section.16.4}%
+\contentsline {subsection}{\numberline {16.4.1}Example 1}{205}{subsection.16.4.1}%
+\contentsline {subsection}{\numberline {16.4.2}Example 2}{206}{subsection.16.4.2}%
+\contentsline {subsection}{\numberline {16.4.3}Example 3}{206}{subsection.16.4.3}%
+\contentsline {section}{Additional Resources}{207}{section*.42}%
+\contentsline {chapter}{\numberline {17}ggplot2}{209}{chapter.17}%
+\contentsline {section}{\numberline {17.1}Tidyverse and ggplot2}{209}{section.17.1}%
+\contentsline {section}{\numberline {17.2}Intro to ggplot2}{209}{section.17.2}%
+\contentsline {subsection}{What is the grammar of graphics?}{209}{section*.43}%
+\contentsline {subsection}{ggplot2 versus other R Graphics}{210}{section*.44}%
+\contentsline {section}{\numberline {17.3}Getting started: Kep Components}{210}{section.17.3}%
+\contentsline {section}{\numberline {17.4}Adjust aesthetic attributes by variable}{211}{section.17.4}%
+\contentsline {section}{\numberline {17.5}Adjust aesthetic attributes for the entire plot}{214}{section.17.5}%
+\contentsline {section}{\numberline {17.6}Faceting}{216}{section.17.6}%
+\contentsline {section}{\numberline {17.7}Some example plots}{217}{section.17.7}%
+\contentsline {section}{\numberline {17.8}Where can I learn more?}{223}{section.17.8}%
+\contentsline {chapter}{\numberline {18}Regular Expressions}{225}{chapter.18}%
+\contentsline {section}{\numberline {18.1}Ranges, Escaping}{227}{section.18.1}%
+\contentsline {section}{\numberline {18.2}Metacharacters}{228}{section.18.2}%
+\contentsline {section}{\numberline {18.3}Quantifiers}{229}{section.18.3}%
+\contentsline {section}{\numberline {18.4}Anchoring}{230}{section.18.4}%
+\contentsline {section}{\numberline {18.5}Splitting on a Regexp}{231}{section.18.5}%
+\contentsline {section}{\numberline {18.6}Stringr Package}{232}{section.18.6}%
+\contentsline {section}{\numberline {18.7}Wordcloud Package}{233}{section.18.7}%
+\contentsline {section}{\numberline {18.8}Replacements}{235}{section.18.8}%
+\contentsline {section}{Additional Resources}{235}{section*.45}%
+\contentsline {chapter}{\numberline {19}Debugging}{237}{chapter.19}%
+\contentsline {section}{\numberline {19.1}Debugging Background (History, Types of Bugs, Challenges to Consider)}{237}{section.19.1}%
+\contentsline {subsection}{Types of bugs}{238}{section*.46}%
+\contentsline {subsection}{Debugging Process Difficulties}{238}{section*.47}%
+\contentsline {section}{\numberline {19.2}Debugging Strategies In General}{239}{section.19.2}%
+\contentsline {subsection}{\numberline {19.2.1}Example of the Binary Search Algorithm}{240}{subsection.19.2.1}%
+\contentsline {section}{\numberline {19.3}Using Debuggers}{242}{section.19.3}%
+\contentsline {subsection}{\numberline {19.3.1}traceback()}{242}{subsection.19.3.1}%
+\contentsline {subsection}{Example with traceback()}{243}{section*.48}%
+\contentsline {subsection}{Unfamiliar function with traceback()}{243}{section*.49}%
+\contentsline {subsection}{\numberline {19.3.2}browswer()}{243}{subsection.19.3.2}%
+\contentsline {subsection}{\numberline {19.3.3}debug()}{243}{subsection.19.3.3}%
+\contentsline {section}{\numberline {19.4}More options to consider}{243}{section.19.4}%
+\contentsline {section}{\numberline {19.5}Important Takeaways}{244}{section.19.5}%
+\contentsline {subsection}{Tips for Writing good code}{244}{section*.50}%
+\contentsline {subsection}{Steps to Reduce the Number of Bugs}{244}{section*.51}%
+\contentsline {subsection}{After You Located the Error}{245}{section*.52}%
+\contentsline {section}{\numberline {19.6}Resources}{245}{section.19.6}%

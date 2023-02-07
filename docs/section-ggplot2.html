@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 17 ggplot2 | STAT 107 Outline of Class Notes</title>
+  <meta name="description" content="Course notes for UCR’s STAT 107. An introduction to programming in R." />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 17 ggplot2 | STAT 107 Outline of Class Notes" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://rpkgarcia.github.io/stat107_summer2022notes/" />
+  
+  <meta property="og:description" content="Course notes for UCR’s STAT 107. An introduction to programming in R." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 17 ggplot2 | STAT 107 Outline of Class Notes" />
+  
+  <meta name="twitter:description" content="Course notes for UCR’s STAT 107. An introduction to programming in R." />
+  
+
+<meta name="author" content="Rebecca Kurtz-Garcia" />
+
+
+<meta name="date" content="2023-02-06" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="section-tidyverse.html"/>
+<link rel="next" href="section-apply.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="assets/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">STAT 107 Notes</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#section-welcome">Welcome<span></span></a></li>
+<li class="chapter" data-level="1" data-path="section-introduction-to-r.html"><a href="section-introduction-to-r.html"><i class="fa fa-check"></i><b>1</b> Introduction to R<span></span></a><ul>
+<li class="chapter" data-level="1.1" data-path="section-introduction-to-r.html"><a href="section-introduction-to-r.html#section-download-and-install-r-and-rstudio"><i class="fa fa-check"></i><b>1.1</b> Download and Install R and Rstudio<span></span></a></li>
+<li class="chapter" data-level="1.2" data-path="section-introduction-to-r.html"><a href="section-introduction-to-r.html#section-the-rstudio-interface"><i class="fa fa-check"></i><b>1.2</b> The <strong>RStudio</strong> Interface<span></span></a><ul>
+<li><a href="section-introduction-to-r.html#section-bottom-left-pane">Bottom Left Pane<span></span></a></li>
+<li><a href="section-introduction-to-r.html#section-bottom-right-pane">Bottom Right Pane<span></span></a></li>
+<li><a href="section-introduction-to-r.html#section-top-right-pane">Top Right Pane<span></span></a></li>
+<li><a href="section-introduction-to-r.html#section-top-left-pane">Top Left Pane<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="section-introduction-to-r.html"><a href="section-introduction-to-r.html#section-comments"><i class="fa fa-check"></i><b>1.3</b> Comments<span></span></a></li>
+<li class="chapter" data-level="1.4" data-path="section-introduction-to-r.html"><a href="section-introduction-to-r.html#section-operators"><i class="fa fa-check"></i><b>1.4</b> Operators<span></span></a><ul>
+<li><a href="section-introduction-to-r.html#section-arithmetic-operators">Arithmetic Operators<span></span></a></li>
+<li><a href="section-introduction-to-r.html#section-relational-operators">Relational Operators<span></span></a></li>
+<li><a href="section-introduction-to-r.html#section-logical-operators">Logical operators<span></span></a></li>
+<li><a href="section-introduction-to-r.html#section-assignment-operators">Assignment Operators<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="section-introduction-to-r.html"><a href="section-introduction-to-r.html#section-naming-conventions"><i class="fa fa-check"></i><b>1.5</b> Naming Conventions<span></span></a></li>
+<li class="chapter" data-level="1.6" data-path="section-introduction-to-r.html"><a href="section-introduction-to-r.html#section-basic-calculations"><i class="fa fa-check"></i><b>1.6</b> Basic Calculations<span></span></a></li>
+<li class="chapter" data-level="1.7" data-path="section-introduction-to-r.html"><a href="section-introduction-to-r.html#section-floating-point-error"><i class="fa fa-check"></i><b>1.7</b> Floating Point Error<span></span></a></li>
+<li><a href="section-introduction-to-r.html#section-additional-resources">Additional Resources<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="section-atomic-vectors.html"><a href="section-atomic-vectors.html"><i class="fa fa-check"></i><b>2</b> Atomic Vectors<span></span></a><ul>
+<li class="chapter" data-level="2.1" data-path="section-atomic-vectors.html"><a href="section-atomic-vectors.html#section-examples"><i class="fa fa-check"></i><b>2.1</b> Examples<span></span></a><ul>
+<li><a href="section-atomic-vectors.html#section-double">Double<span></span></a></li>
+<li><a href="section-atomic-vectors.html#section-integer">Integer<span></span></a></li>
+<li><a href="section-atomic-vectors.html#section-logical">Logical<span></span></a></li>
+<li><a href="section-atomic-vectors.html#section-character">Character<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="section-atomic-vectors.html"><a href="section-atomic-vectors.html#section-basic-features"><i class="fa fa-check"></i><b>2.2</b> Basic Features<span></span></a><ul>
+<li class="chapter" data-level="2.2.1" data-path="section-atomic-vectors.html"><a href="section-atomic-vectors.html#section-length"><i class="fa fa-check"></i><b>2.2.1</b> Length<span></span></a></li>
+<li class="chapter" data-level="2.2.2" data-path="section-atomic-vectors.html"><a href="section-atomic-vectors.html#section-vecoperators"><i class="fa fa-check"></i><b>2.2.2</b> Vectorized Operations and Recylcing<span></span></a></li>
+<li class="chapter" data-level="2.2.3" data-path="section-atomic-vectors.html"><a href="section-atomic-vectors.html#section-coercion"><i class="fa fa-check"></i><b>2.2.3</b> Coercion<span></span></a></li>
+<li class="chapter" data-level="2.2.4" data-path="section-atomic-vectors.html"><a href="section-atomic-vectors.html#section-testing"><i class="fa fa-check"></i><b>2.2.4</b> Testing<span></span></a></li>
+<li class="chapter" data-level="2.2.5" data-path="section-atomic-vectors.html"><a href="section-atomic-vectors.html#section-names"><i class="fa fa-check"></i><b>2.2.5</b> Names<span></span></a></li>
+<li class="chapter" data-level="2.2.6" data-path="section-atomic-vectors.html"><a href="section-atomic-vectors.html#section-typeof-and-class"><i class="fa fa-check"></i><b>2.2.6</b> typeof() and class()<span></span></a></li>
+<li class="chapter" data-level="2.2.7" data-path="section-atomic-vectors.html"><a href="section-atomic-vectors.html#section-index"><i class="fa fa-check"></i><b>2.2.7</b> Accessing Elements of a Vector<span></span></a></li>
+</ul></li>
+<li><a href="section-atomic-vectors.html#section-summary">Summary<span></span></a></li>
+<li><a href="section-atomic-vectors.html#section-additional-resources-1">Additional Resources<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html"><i class="fa fa-check"></i><b>3</b> Factors and Lists<span></span></a><ul>
+<li class="chapter" data-level="3.1" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-factors"><i class="fa fa-check"></i><b>3.1</b> Factors<span></span></a><ul>
+<li class="chapter" data-level="3.1.1" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-levels"><i class="fa fa-check"></i><b>3.1.1</b> Levels<span></span></a></li>
+<li class="chapter" data-level="3.1.2" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-ordered-factor"><i class="fa fa-check"></i><b>3.1.2</b> Ordered Factor<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-factors---basic-features"><i class="fa fa-check"></i><b>3.2</b> Factors - Basic Features<span></span></a><ul>
+<li class="chapter" data-level="3.2.1" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-length-1"><i class="fa fa-check"></i><b>3.2.1</b> Length<span></span></a></li>
+<li class="chapter" data-level="3.2.2" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-coercion-1"><i class="fa fa-check"></i><b>3.2.2</b> Coercion<span></span></a></li>
+<li class="chapter" data-level="3.2.3" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-testingclass"><i class="fa fa-check"></i><b>3.2.3</b> Testing/Class<span></span></a></li>
+<li class="chapter" data-level="3.2.4" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-names-1"><i class="fa fa-check"></i><b>3.2.4</b> Names<span></span></a></li>
+<li class="chapter" data-level="3.2.5" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-accessing-elements"><i class="fa fa-check"></i><b>3.2.5</b> Accessing Elements<span></span></a></li>
+<li class="chapter" data-level="3.2.6" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-frequency-tables"><i class="fa fa-check"></i><b>3.2.6</b> Frequency Tables<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-lists"><i class="fa fa-check"></i><b>3.3</b> Lists<span></span></a><ul>
+<li class="chapter" data-level="3.3.1" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-nested-lists"><i class="fa fa-check"></i><b>3.3.1</b> Nested Lists<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-list---basic-features"><i class="fa fa-check"></i><b>3.4</b> List - Basic Features<span></span></a><ul>
+<li class="chapter" data-level="3.4.1" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-length-2"><i class="fa fa-check"></i><b>3.4.1</b> Length<span></span></a></li>
+<li class="chapter" data-level="3.4.2" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-coercion-2"><i class="fa fa-check"></i><b>3.4.2</b> Coercion<span></span></a></li>
+<li class="chapter" data-level="3.4.3" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-testingclass-1"><i class="fa fa-check"></i><b>3.4.3</b> Testing/Class<span></span></a></li>
+<li class="chapter" data-level="3.4.4" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-names-2"><i class="fa fa-check"></i><b>3.4.4</b> Names<span></span></a></li>
+<li class="chapter" data-level="3.4.5" data-path="section-factors-and-lists.html"><a href="section-factors-and-lists.html#section-accessing-elements-1"><i class="fa fa-check"></i><b>3.4.5</b> Accessing Elements<span></span></a></li>
+</ul></li>
+<li><a href="section-factors-and-lists.html#section-summary-1">Summary<span></span></a></li>
+<li><a href="section-factors-and-lists.html#section-additional-resources-2">Additional Resources<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html"><i class="fa fa-check"></i><b>4</b> Matrices, Data Frames, and More<span></span></a><ul>
+<li class="chapter" data-level="4.1" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html#section-matrices"><i class="fa fa-check"></i><b>4.1</b> Matrices<span></span></a><ul>
+<li class="chapter" data-level="4.1.1" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html#section-vectorized-operations"><i class="fa fa-check"></i><b>4.1.1</b> Vectorized Operations<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html#section-data-frames"><i class="fa fa-check"></i><b>4.2</b> Data Frames<span></span></a><ul>
+<li class="chapter" data-level="4.2.1" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html#section-column-names"><i class="fa fa-check"></i><b>4.2.1</b> Column Names<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html#section-basic-features-of-matricesdata-frames"><i class="fa fa-check"></i><b>4.3</b> Basic Features of Matrices/Data-Frames<span></span></a><ul>
+<li class="chapter" data-level="4.3.1" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html#section-dimensions"><i class="fa fa-check"></i><b>4.3.1</b> Dimensions<span></span></a></li>
+<li class="chapter" data-level="4.3.2" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html#section-accesing-elements"><i class="fa fa-check"></i><b>4.3.2</b> Accesing Elements<span></span></a></li>
+<li class="chapter" data-level="4.3.3" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html#section-coercion-3"><i class="fa fa-check"></i><b>4.3.3</b> Coercion<span></span></a></li>
+<li class="chapter" data-level="4.3.4" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html#section-testingclass-2"><i class="fa fa-check"></i><b>4.3.4</b> Testing/Class<span></span></a></li>
+<li class="chapter" data-level="4.3.5" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html#section-names-3"><i class="fa fa-check"></i><b>4.3.5</b> Names<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="section-matrices-data-frames-and-more.html"><a href="section-matrices-data-frames-and-more.html#section-other-object-types-and-the-global-environment"><i class="fa fa-check"></i><b>4.4</b> Other Object Types and the Global Environment<span></span></a></li>
+<li><a href="section-matrices-data-frames-and-more.html#section-summary-2">Summary<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="section-indexing.html"><a href="section-indexing.html"><i class="fa fa-check"></i><b>5</b> Indexing<span></span></a><ul>
+<li class="chapter" data-level="5.1" data-path="section-indexing.html"><a href="section-indexing.html#section-VectorIndex"><i class="fa fa-check"></i><b>5.1</b> Atomic Vectors and Factors<span></span></a><ul>
+<li><a href="section-indexing.html#section-example-positive-integers">Example: Positive Integers<span></span></a></li>
+<li><a href="section-indexing.html#section-example-negative-integers">Example: Negative Integers<span></span></a></li>
+<li><a href="section-indexing.html#section-example-logical-values">Example: Logical Values<span></span></a></li>
+<li><a href="section-indexing.html#section-example-names">Example: Names<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="section-indexing.html"><a href="section-indexing.html#section-lists-1"><i class="fa fa-check"></i><b>5.2</b> Lists<span></span></a><ul>
+<li class="chapter" data-level="5.2.1" data-path="section-indexing.html"><a href="section-indexing.html#section-double-brackets"><i class="fa fa-check"></i><b>5.2.1</b> Double Brackets<span></span></a></li>
+<li class="chapter" data-level="5.2.2" data-path="section-indexing.html"><a href="section-indexing.html#section-dollar-sign"><i class="fa fa-check"></i><b>5.2.2</b> Dollar Sign<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="section-indexing.html"><a href="section-indexing.html#section-matrices-1"><i class="fa fa-check"></i><b>5.3</b> Matrices<span></span></a><ul>
+<li class="chapter" data-level="5.3.1" data-path="section-indexing.html"><a href="section-indexing.html#section-two-vectors"><i class="fa fa-check"></i><b>5.3.1</b> Two Vectors<span></span></a></li>
+<li class="chapter" data-level="5.3.2" data-path="section-indexing.html"><a href="section-indexing.html#section-single-vector"><i class="fa fa-check"></i><b>5.3.2</b> Single Vector<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="section-indexing.html"><a href="section-indexing.html#section-data-frames-1"><i class="fa fa-check"></i><b>5.4</b> Data frames<span></span></a><ul>
+<li><a href="section-indexing.html#section-example-double-brackets">Example: Double brackets<span></span></a></li>
+<li><a href="section-indexing.html#section-example-dollar-sign">Example: Dollar Sign<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="section-indexing.html"><a href="section-indexing.html#section-features-and-applications"><i class="fa fa-check"></i><b>5.5</b> Features and Applications<span></span></a><ul>
+<li class="chapter" data-level="5.5.1" data-path="section-indexing.html"><a href="section-indexing.html#section-indexing-and-reassignment"><i class="fa fa-check"></i><b>5.5.1</b> Indexing and Reassignment<span></span></a></li>
+<li class="chapter" data-level="5.5.2" data-path="section-indexing.html"><a href="section-indexing.html#section-orderinginteger-indexing"><i class="fa fa-check"></i><b>5.5.2</b> Ordering/Integer Indexing<span></span></a></li>
+<li class="chapter" data-level="5.5.3" data-path="section-indexing.html"><a href="section-indexing.html#section-adding-elementsrowscolumns"><i class="fa fa-check"></i><b>5.5.3</b> Adding Elements/Rows/Columns<span></span></a></li>
+<li class="chapter" data-level="5.5.4" data-path="section-indexing.html"><a href="section-indexing.html#section-delete-elementsrowscolumns"><i class="fa fa-check"></i><b>5.5.4</b> Delete Elements/Rows/Columns<span></span></a></li>
+<li class="chapter" data-level="5.5.5" data-path="section-indexing.html"><a href="section-indexing.html#section-select-based-on-condition"><i class="fa fa-check"></i><b>5.5.5</b> Select Based on Condition<span></span></a></li>
+<li class="chapter" data-level="5.5.6" data-path="section-indexing.html"><a href="section-indexing.html#section-convert-indexing-techniques"><i class="fa fa-check"></i><b>5.5.6</b> Convert Indexing Techniques<span></span></a></li>
+</ul></li>
+<li><a href="section-indexing.html#section-summary-3">Summary<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="section-working-with-data-sets.html"><a href="section-working-with-data-sets.html"><i class="fa fa-check"></i><b>6</b> Working with Data Sets<span></span></a><ul>
+<li class="chapter" data-level="6.1" data-path="section-working-with-data-sets.html"><a href="section-working-with-data-sets.html#section-LoadData"><i class="fa fa-check"></i><b>6.1</b> Getting Data Sets in Our Working Environment<span></span></a><ul>
+<li><a href="section-working-with-data-sets.html#section-built-in-data">Built-In Data<span></span></a></li>
+<li><a href="section-working-with-data-sets.html#section-importing-from-your-computer">Importing From Your Computer<span></span></a></li>
+<li><a href="section-working-with-data-sets.html#section-import-from-online">Import From Online<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="section-working-with-data-sets.html"><a href="section-working-with-data-sets.html#section-basic-data-manipulation"><i class="fa fa-check"></i><b>6.2</b> Basic Data Manipulation<span></span></a><ul>
+<li><a href="section-working-with-data-sets.html#section-subset">Subset<span></span></a></li>
+<li><a href="section-working-with-data-sets.html#section-adding-columns">Adding Columns<span></span></a></li>
+<li><a href="section-working-with-data-sets.html#section-na-values">NA values<span></span></a></li>
+<li><a href="section-working-with-data-sets.html#section-null">NULL<span></span></a></li>
+<li><a href="section-working-with-data-sets.html#section-adding-rows">Adding Rows<span></span></a></li>
+</ul></li>
+<li><a href="section-working-with-data-sets.html#section-summary-4">Summary<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="section-functions.html"><a href="section-functions.html"><i class="fa fa-check"></i><b>7</b> Functions<span></span></a><ul>
+<li class="chapter" data-level="7.1" data-path="section-functions.html"><a href="section-functions.html#section-build-your-own-function"><i class="fa fa-check"></i><b>7.1</b> Build Your Own Function<span></span></a></li>
+<li class="chapter" data-level="7.2" data-path="section-functions.html"><a href="section-functions.html#section-lexical-scoping"><i class="fa fa-check"></i><b>7.2</b> Lexical Scoping<span></span></a></li>
+<li class="chapter" data-level="7.3" data-path="section-functions.html"><a href="section-functions.html#section-built-in-functions"><i class="fa fa-check"></i><b>7.3</b> Built-In Functions<span></span></a></li>
+<li class="chapter" data-level="7.4" data-path="section-functions.html"><a href="section-functions.html#section-vectorization"><i class="fa fa-check"></i><b>7.4</b> Vectorization<span></span></a></li>
+<li class="chapter" data-level="7.5" data-path="section-functions.html"><a href="section-functions.html#section-help-files"><i class="fa fa-check"></i><b>7.5</b> Help Files<span></span></a></li>
+<li class="chapter" data-level="7.6" data-path="section-functions.html"><a href="section-functions.html#section-dots"><i class="fa fa-check"></i><b>7.6</b> The … Argument<span></span></a></li>
+<li class="chapter" data-level="7.7" data-path="section-functions.html"><a href="section-functions.html#section-generic-functions"><i class="fa fa-check"></i><b>7.7</b> Generic Functions<span></span></a></li>
+<li><a href="section-functions.html#section-additional-resources-3">Additional Resources<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="section-if-statements.html"><a href="section-if-statements.html"><i class="fa fa-check"></i><b>8</b> If Statements<span></span></a><ul>
+<li class="chapter" data-level="8.1" data-path="section-if-statements.html"><a href="section-if-statements.html#section-if"><i class="fa fa-check"></i><b>8.1</b> If<span></span></a></li>
+<li class="chapter" data-level="8.2" data-path="section-if-statements.html"><a href="section-if-statements.html#section-if-else"><i class="fa fa-check"></i><b>8.2</b> If Else<span></span></a></li>
+<li class="chapter" data-level="8.3" data-path="section-if-statements.html"><a href="section-if-statements.html#section-else-if"><i class="fa fa-check"></i><b>8.3</b> Else If<span></span></a></li>
+<li class="chapter" data-level="8.4" data-path="section-if-statements.html"><a href="section-if-statements.html#section-nested-if-chains"><i class="fa fa-check"></i><b>8.4</b> Nested If Chains<span></span></a></li>
+<li class="chapter" data-level="8.5" data-path="section-if-statements.html"><a href="section-if-statements.html#section-ifelse"><i class="fa fa-check"></i><b>8.5</b> Ifelse<span></span></a></li>
+<li class="chapter" data-level="8.6" data-path="section-if-statements.html"><a href="section-if-statements.html#section-vectorizeifelse"><i class="fa fa-check"></i><b>8.6</b> Vectorizing If-Statments<span></span></a></li>
+<li><a href="section-if-statements.html#section-additional-resources-4">Additional Resources<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="section-packages.html"><a href="section-packages.html"><i class="fa fa-check"></i><b>9</b> Packages<span></span></a><ul>
+<li class="chapter" data-level="9.1" data-path="section-packages.html"><a href="section-packages.html#section-namespace-collisions"><i class="fa fa-check"></i><b>9.1</b> Namespace Collisions<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="section-text-data.html"><a href="section-text-data.html"><i class="fa fa-check"></i><b>10</b> Text Data<span></span></a><ul>
+<li class="chapter" data-level="10.1" data-path="section-text-data.html"><a href="section-text-data.html#section-making-strings"><i class="fa fa-check"></i><b>10.1</b> Making Strings<span></span></a></li>
+<li class="chapter" data-level="10.2" data-path="section-text-data.html"><a href="section-text-data.html#section-substring-operations"><i class="fa fa-check"></i><b>10.2</b> Substring Operations<span></span></a></li>
+<li class="chapter" data-level="10.3" data-path="section-text-data.html"><a href="section-text-data.html#section-dividing-strings-into-vectors"><i class="fa fa-check"></i><b>10.3</b> Dividing Strings into Vectors<span></span></a></li>
+<li class="chapter" data-level="10.4" data-path="section-text-data.html"><a href="section-text-data.html#section-converting-objects-into-strings"><i class="fa fa-check"></i><b>10.4</b> Converting Objects into Strings<span></span></a></li>
+<li class="chapter" data-level="10.5" data-path="section-text-data.html"><a href="section-text-data.html#section-versatility-of-the-paste-function"><i class="fa fa-check"></i><b>10.5</b> Versatility of the paste() Function<span></span></a></li>
+<li class="chapter" data-level="10.6" data-path="section-text-data.html"><a href="section-text-data.html#section-substitution"><i class="fa fa-check"></i><b>10.6</b> Substitution<span></span></a></li>
+<li class="chapter" data-level="10.7" data-path="section-text-data.html"><a href="section-text-data.html#section-text-of-some-importance"><i class="fa fa-check"></i><b>10.7</b> Text of Some Importance<span></span></a></li>
+<li class="chapter" data-level="10.8" data-path="section-text-data.html"><a href="section-text-data.html#section-search"><i class="fa fa-check"></i><b>10.8</b> Search<span></span></a></li>
+<li class="chapter" data-level="10.9" data-path="section-text-data.html"><a href="section-text-data.html#section-vectorizing-text-functions"><i class="fa fa-check"></i><b>10.9</b> Vectorizing Text Functions<span></span></a></li>
+<li class="chapter" data-level="10.10" data-path="section-text-data.html"><a href="section-text-data.html#section-regular-expressions"><i class="fa fa-check"></i><b>10.10</b> Regular Expressions<span></span></a></li>
+<li class="chapter" data-level="10.11" data-path="section-text-data.html"><a href="section-text-data.html#section-word-count-tables"><i class="fa fa-check"></i><b>10.11</b> Word Count Tables<span></span></a></li>
+<li class="chapter" data-level="10.12" data-path="section-text-data.html"><a href="section-text-data.html#section-wordcloud-package"><i class="fa fa-check"></i><b>10.12</b> Wordcloud Package<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="section-Regex.html"><a href="section-Regex.html"><i class="fa fa-check"></i><b>11</b> Regular Expressions<span></span></a><ul>
+<li class="chapter" data-level="11.1" data-path="section-Regex.html"><a href="section-Regex.html#section-ranges-escaping"><i class="fa fa-check"></i><b>11.1</b> Ranges, Escaping<span></span></a></li>
+<li class="chapter" data-level="11.2" data-path="section-Regex.html"><a href="section-Regex.html#section-metacharacters"><i class="fa fa-check"></i><b>11.2</b> Metacharacters<span></span></a></li>
+<li class="chapter" data-level="11.3" data-path="section-Regex.html"><a href="section-Regex.html#section-quantifiers"><i class="fa fa-check"></i><b>11.3</b> Quantifiers<span></span></a></li>
+<li class="chapter" data-level="11.4" data-path="section-Regex.html"><a href="section-Regex.html#section-anchoring"><i class="fa fa-check"></i><b>11.4</b> Anchoring<span></span></a></li>
+<li class="chapter" data-level="11.5" data-path="section-Regex.html"><a href="section-Regex.html#section-splitting-on-a-regexp"><i class="fa fa-check"></i><b>11.5</b> Splitting on a Regexp<span></span></a></li>
+<li class="chapter" data-level="11.6" data-path="section-Regex.html"><a href="section-Regex.html#section-stringr-package"><i class="fa fa-check"></i><b>11.6</b> Stringr Package<span></span></a></li>
+<li class="chapter" data-level="11.7" data-path="section-Regex.html"><a href="section-Regex.html#section-wordcloud-package-1"><i class="fa fa-check"></i><b>11.7</b> Wordcloud Package<span></span></a></li>
+<li class="chapter" data-level="11.8" data-path="section-Regex.html"><a href="section-Regex.html#section-replacements"><i class="fa fa-check"></i><b>11.8</b> Replacements<span></span></a></li>
+<li><a href="section-Regex.html#section-additional-resources-5">Additional Resources<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html"><i class="fa fa-check"></i><b>12</b> Base R Plotting<span></span></a><ul>
+<li class="chapter" data-level="12.1" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html#section-load-a-big-data-set"><i class="fa fa-check"></i><b>12.1</b> Load A Big Data Set<span></span></a></li>
+<li class="chapter" data-level="12.2" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html#section-histograms"><i class="fa fa-check"></i><b>12.2</b> Histograms<span></span></a></li>
+<li class="chapter" data-level="12.3" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html#section-boxplot"><i class="fa fa-check"></i><b>12.3</b> Boxplot<span></span></a></li>
+<li class="chapter" data-level="12.4" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html#section-scatter-plot"><i class="fa fa-check"></i><b>12.4</b> Scatter Plot<span></span></a></li>
+<li class="chapter" data-level="12.5" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html#section-pie-charts"><i class="fa fa-check"></i><b>12.5</b> Pie Charts<span></span></a></li>
+<li class="chapter" data-level="12.6" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html#section-adding-straight-lines"><i class="fa fa-check"></i><b>12.6</b> Adding Straight Lines<span></span></a></li>
+<li class="chapter" data-level="12.7" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html#section-adding-lines-between-points"><i class="fa fa-check"></i><b>12.7</b> Adding Lines Between Points<span></span></a></li>
+<li class="chapter" data-level="12.8" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html#section-adding-individual-points"><i class="fa fa-check"></i><b>12.8</b> Adding Individual Points<span></span></a></li>
+<li class="chapter" data-level="12.9" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html#section-the-par-help-file"><i class="fa fa-check"></i><b>12.9</b> The par() Help File<span></span></a></li>
+<li class="chapter" data-level="12.10" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html#section-adding-legends"><i class="fa fa-check"></i><b>12.10</b> Adding Legends<span></span></a></li>
+<li class="chapter" data-level="12.11" data-path="section-base-r-plotting.html"><a href="section-base-r-plotting.html#section-what-makes-a-good-plot"><i class="fa fa-check"></i><b>12.11</b> What makes a good plot?<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="section-extending-base-r-graphics.html"><a href="section-extending-base-r-graphics.html"><i class="fa fa-check"></i><b>13</b> Extending Base R Graphics<span></span></a><ul>
+<li class="chapter" data-level="13.1" data-path="section-extending-base-r-graphics.html"><a href="section-extending-base-r-graphics.html#section-the-maps-package"><i class="fa fa-check"></i><b>13.1</b> The “maps” Package<span></span></a></li>
+<li class="chapter" data-level="13.2" data-path="section-extending-base-r-graphics.html"><a href="section-extending-base-r-graphics.html#section-some-additional-packages-to-consider"><i class="fa fa-check"></i><b>13.2</b> Some additional Packages to consider<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="section-loops.html"><a href="section-loops.html"><i class="fa fa-check"></i><b>14</b> Loops<span></span></a><ul>
+<li class="chapter" data-level="14.1" data-path="section-loops.html"><a href="section-loops.html#section-while-loop"><i class="fa fa-check"></i><b>14.1</b> While Loop<span></span></a></li>
+<li class="chapter" data-level="14.2" data-path="section-loops.html"><a href="section-loops.html#section-for-loops"><i class="fa fa-check"></i><b>14.2</b> For Loops<span></span></a></li>
+<li class="chapter" data-level="14.3" data-path="section-loops.html"><a href="section-loops.html#section-break"><i class="fa fa-check"></i><b>14.3</b> Break<span></span></a></li>
+<li class="chapter" data-level="14.4" data-path="section-loops.html"><a href="section-loops.html#section-next"><i class="fa fa-check"></i><b>14.4</b> Next<span></span></a></li>
+<li class="chapter" data-level="14.5" data-path="section-loops.html"><a href="section-loops.html#section-nested-loops"><i class="fa fa-check"></i><b>14.5</b> Nested Loops<span></span></a></li>
+<li class="chapter" data-level="14.6" data-path="section-loops.html"><a href="section-loops.html#section-examples-1"><i class="fa fa-check"></i><b>14.6</b> Examples<span></span></a><ul>
+<li class="chapter" data-level="14.6.1" data-path="section-loops.html"><a href="section-loops.html#section-example-1"><i class="fa fa-check"></i><b>14.6.1</b> Example 1<span></span></a></li>
+<li class="chapter" data-level="14.6.2" data-path="section-loops.html"><a href="section-loops.html#section-example-2"><i class="fa fa-check"></i><b>14.6.2</b> Example 2<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="14.7" data-path="section-loops.html"><a href="section-loops.html#section-additional-resources-6"><i class="fa fa-check"></i><b>14.7</b> Additional Resources<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="section-simulation.html"><a href="section-simulation.html"><i class="fa fa-check"></i><b>15</b> Simulation<span></span></a><ul>
+<li class="chapter" data-level="15.1" data-path="section-simulation.html"><a href="section-simulation.html#section-what-are-simulation-studies"><i class="fa fa-check"></i><b>15.1</b> What Are Simulation Studies<span></span></a></li>
+<li class="chapter" data-level="15.2" data-path="section-simulation.html"><a href="section-simulation.html#section-review-random-variables"><i class="fa fa-check"></i><b>15.2</b> Review Random Variables<span></span></a></li>
+<li class="chapter" data-level="15.3" data-path="section-simulation.html"><a href="section-simulation.html#section-generating-random-variables"><i class="fa fa-check"></i><b>15.3</b> Generating Random Variables<span></span></a></li>
+<li class="chapter" data-level="15.4" data-path="section-simulation.html"><a href="section-simulation.html#section-setting-a-seed"><i class="fa fa-check"></i><b>15.4</b> Setting a Seed<span></span></a></li>
+<li class="chapter" data-level="15.5" data-path="section-simulation.html"><a href="section-simulation.html#section-sample"><i class="fa fa-check"></i><b>15.5</b> sample()<span></span></a></li>
+<li class="chapter" data-level="15.6" data-path="section-simulation.html"><a href="section-simulation.html#section-cumulative-proportioncumulative-win-plots"><i class="fa fa-check"></i><b>15.6</b> Cumulative-Proportion/Cumulative-Win Plots<span></span></a></li>
+<li class="chapter" data-level="15.7" data-path="section-simulation.html"><a href="section-simulation.html#section-replicate"><i class="fa fa-check"></i><b>15.7</b> replicate()<span></span></a></li>
+<li class="chapter" data-level="15.8" data-path="section-simulation.html"><a href="section-simulation.html#section-adding-curves-to-graphs"><i class="fa fa-check"></i><b>15.8</b> Adding curves to graphs<span></span></a></li>
+<li class="chapter" data-level="15.9" data-path="section-simulation.html"><a href="section-simulation.html#section-example-central-limit-theorem-clt"><i class="fa fa-check"></i><b>15.9</b> Example: Central Limit Theorem (CLT)<span></span></a><ul>
+<li class="chapter" data-level="15.9.1" data-path="section-simulation.html"><a href="section-simulation.html#section-recall-clt"><i class="fa fa-check"></i><b>15.9.1</b> Recall CLT<span></span></a></li>
+<li class="chapter" data-level="15.9.2" data-path="section-simulation.html"><a href="section-simulation.html#section-assumption-violations-of-clt"><i class="fa fa-check"></i><b>15.9.2</b> Assumption Violations of CLT<span></span></a></li>
+<li class="chapter" data-level="15.9.3" data-path="section-simulation.html"><a href="section-simulation.html#section-the-data"><i class="fa fa-check"></i><b>15.9.3</b> The Data<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="15.10" data-path="section-simulation.html"><a href="section-simulation.html#section-example-coin-flips"><i class="fa fa-check"></i><b>15.10</b> Example: Coin Flips<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="section-tidyverse.html"><a href="section-tidyverse.html"><i class="fa fa-check"></i><b>16</b> Tidyverse<span></span></a><ul>
+<li class="chapter" data-level="16.1" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-piping-operator"><i class="fa fa-check"></i><b>16.1</b> Piping Operator<span></span></a></li>
+<li class="chapter" data-level="16.2" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-tibbles-vs-data-frames"><i class="fa fa-check"></i><b>16.2</b> Tibbles vs Data Frames<span></span></a></li>
+<li class="chapter" data-level="16.3" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-key-functions"><i class="fa fa-check"></i><b>16.3</b> Key Functions<span></span></a><ul>
+<li class="chapter" data-level="16.3.1" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-general-properties"><i class="fa fa-check"></i><b>16.3.1</b> General properties<span></span></a></li>
+<li class="chapter" data-level="16.3.2" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-select"><i class="fa fa-check"></i><b>16.3.2</b> select()<span></span></a></li>
+<li class="chapter" data-level="16.3.3" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-filter"><i class="fa fa-check"></i><b>16.3.3</b> filter()<span></span></a></li>
+<li class="chapter" data-level="16.3.4" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-arrange"><i class="fa fa-check"></i><b>16.3.4</b> arrange()<span></span></a></li>
+<li class="chapter" data-level="16.3.5" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-rename"><i class="fa fa-check"></i><b>16.3.5</b> rename()<span></span></a></li>
+<li class="chapter" data-level="16.3.6" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-mutate"><i class="fa fa-check"></i><b>16.3.6</b> mutate()<span></span></a></li>
+<li class="chapter" data-level="16.3.7" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-group_by"><i class="fa fa-check"></i><b>16.3.7</b> group_by()<span></span></a></li>
+<li class="chapter" data-level="16.3.8" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-summarizesummarise"><i class="fa fa-check"></i><b>16.3.8</b> summarize()/summarise()<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-examples-2"><i class="fa fa-check"></i><b>16.4</b> Examples<span></span></a><ul>
+<li class="chapter" data-level="16.4.1" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-example-1-1"><i class="fa fa-check"></i><b>16.4.1</b> Example 1<span></span></a></li>
+<li class="chapter" data-level="16.4.2" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-example-2-1"><i class="fa fa-check"></i><b>16.4.2</b> Example 2<span></span></a></li>
+<li class="chapter" data-level="16.4.3" data-path="section-tidyverse.html"><a href="section-tidyverse.html#section-example-3"><i class="fa fa-check"></i><b>16.4.3</b> Example 3<span></span></a></li>
+</ul></li>
+<li><a href="section-tidyverse.html#section-additional-resources-7">Additional Resources<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="section-ggplot2.html"><a href="section-ggplot2.html"><i class="fa fa-check"></i><b>17</b> ggplot2<span></span></a><ul>
+<li class="chapter" data-level="17.1" data-path="section-ggplot2.html"><a href="section-ggplot2.html#section-tidyverse-and-ggplot2"><i class="fa fa-check"></i><b>17.1</b> Tidyverse and ggplot2<span></span></a></li>
+<li class="chapter" data-level="17.2" data-path="section-ggplot2.html"><a href="section-ggplot2.html#section-intro-to-ggplot2"><i class="fa fa-check"></i><b>17.2</b> Intro to ggplot2<span></span></a><ul>
+<li><a href="section-ggplot2.html#section-what-is-the-grammar-of-graphics">What is the grammar of graphics?<span></span></a></li>
+<li><a href="section-ggplot2.html#section-ggplot2-versus-other-r-graphics">ggplot2 versus other R Graphics<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="section-ggplot2.html"><a href="section-ggplot2.html#section-getting-started-kep-components"><i class="fa fa-check"></i><b>17.3</b> Getting started: Kep Components<span></span></a></li>
+<li class="chapter" data-level="17.4" data-path="section-ggplot2.html"><a href="section-ggplot2.html#section-adjust-aesthetic-attributes-by-variable"><i class="fa fa-check"></i><b>17.4</b> Adjust aesthetic attributes by variable<span></span></a></li>
+<li class="chapter" data-level="17.5" data-path="section-ggplot2.html"><a href="section-ggplot2.html#section-adjust-aesthetic-attributes-for-the-entire-plot"><i class="fa fa-check"></i><b>17.5</b> Adjust aesthetic attributes for the entire plot<span></span></a></li>
+<li class="chapter" data-level="17.6" data-path="section-ggplot2.html"><a href="section-ggplot2.html#section-faceting"><i class="fa fa-check"></i><b>17.6</b> Faceting<span></span></a></li>
+<li class="chapter" data-level="17.7" data-path="section-ggplot2.html"><a href="section-ggplot2.html#section-some-example-plots"><i class="fa fa-check"></i><b>17.7</b> Some example plots<span></span></a></li>
+<li class="chapter" data-level="17.8" data-path="section-ggplot2.html"><a href="section-ggplot2.html#section-where-can-i-learn-more"><i class="fa fa-check"></i><b>17.8</b> Where can I learn more?<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="section-apply.html"><a href="section-apply.html"><i class="fa fa-check"></i><b>18</b> Apply Family of Functions<span></span></a><ul>
+<li class="chapter" data-level="18.1" data-path="section-apply.html"><a href="section-apply.html#section-apply-1"><i class="fa fa-check"></i><b>18.1</b> apply()<span></span></a><ul>
+<li><a href="section-apply.html#section-example-built-in-function">Example: Built In Function<span></span></a></li>
+<li><a href="section-apply.html#section-example-user-defined-function">Example: User Defined Function<span></span></a></li>
+<li class="chapter" data-level="18.1.1" data-path="section-apply.html"><a href="section-apply.html#section-returned-objects"><i class="fa fa-check"></i><b>18.1.1</b> Returned Objects<span></span></a></li>
+<li class="chapter" data-level="18.1.2" data-path="section-apply.html"><a href="section-apply.html#section-example-extra-arguments-array-output"><i class="fa fa-check"></i><b>18.1.2</b> Example: Extra Arguments, Array Output<span></span></a></li>
+<li class="chapter" data-level="18.1.3" data-path="section-apply.html"><a href="section-apply.html#section-example-list-output"><i class="fa fa-check"></i><b>18.1.3</b> Example: List Output<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="section-apply.html"><a href="section-apply.html#section-lapply"><i class="fa fa-check"></i><b>18.2</b> lapply()<span></span></a></li>
+<li class="chapter" data-level="18.3" data-path="section-apply.html"><a href="section-apply.html#section-sapply"><i class="fa fa-check"></i><b>18.3</b> sapply()<span></span></a></li>
+<li class="chapter" data-level="18.4" data-path="section-apply.html"><a href="section-apply.html#section-tapply"><i class="fa fa-check"></i><b>18.4</b> tapply()<span></span></a></li>
+<li class="chapter" data-level="18.5" data-path="section-apply.html"><a href="section-apply.html#section-mapply"><i class="fa fa-check"></i><b>18.5</b> mapply()<span></span></a></li>
+<li class="chapter" data-level="18.6" data-path="section-apply.html"><a href="section-apply.html#section-replicate-1"><i class="fa fa-check"></i><b>18.6</b> replicate()<span></span></a></li>
+<li class="chapter" data-level="18.7" data-path="section-apply.html"><a href="section-apply.html#section-how-to-pick-a-method"><i class="fa fa-check"></i><b>18.7</b> How to Pick a Method<span></span></a></li>
+<li class="chapter" data-level="18.8" data-path="section-apply.html"><a href="section-apply.html#section-more-examples"><i class="fa fa-check"></i><b>18.8</b> More Examples<span></span></a><ul>
+<li class="chapter" data-level="18.8.1" data-path="section-apply.html"><a href="section-apply.html#section-create-a-new-variable"><i class="fa fa-check"></i><b>18.8.1</b> Create a New Variable<span></span></a></li>
+</ul></li>
+<li><a href="section-apply.html#section-additional-resources-8">Additional Resources<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="section-debugging.html"><a href="section-debugging.html"><i class="fa fa-check"></i><b>19</b> Debugging<span></span></a><ul>
+<li class="chapter" data-level="19.1" data-path="section-debugging.html"><a href="section-debugging.html#section-debugging-background-history-types-of-bugs-challenges-to-consider"><i class="fa fa-check"></i><b>19.1</b> Debugging Background (History, Types of Bugs, Challenges to Consider)<span></span></a><ul>
+<li><a href="section-debugging.html#section-types-of-bugs">Types of bugs<span></span></a></li>
+<li><a href="section-debugging.html#section-debugging-process-difficulties">Debugging Process Difficulties<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="19.2" data-path="section-debugging.html"><a href="section-debugging.html#section-debugging-strategies-in-general"><i class="fa fa-check"></i><b>19.2</b> Debugging Strategies In General<span></span></a><ul>
+<li class="chapter" data-level="19.2.1" data-path="section-debugging.html"><a href="section-debugging.html#section-example-of-the-binary-search-algorithm"><i class="fa fa-check"></i><b>19.2.1</b> Example of the Binary Search Algorithm<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="19.3" data-path="section-debugging.html"><a href="section-debugging.html#section-using-debuggers"><i class="fa fa-check"></i><b>19.3</b> Using Debuggers<span></span></a><ul>
+<li class="chapter" data-level="19.3.1" data-path="section-debugging.html"><a href="section-debugging.html#section-traceback"><i class="fa fa-check"></i><b>19.3.1</b> traceback()<span></span></a></li>
+<li><a href="section-debugging.html#section-example-with-traceback">Example with traceback()<span></span></a></li>
+<li><a href="section-debugging.html#section-unfamiliar-function-with-traceback">Unfamiliar function with traceback()<span></span></a></li>
+<li class="chapter" data-level="19.3.2" data-path="section-debugging.html"><a href="section-debugging.html#section-browswer"><i class="fa fa-check"></i><b>19.3.2</b> browswer()<span></span></a></li>
+<li class="chapter" data-level="19.3.3" data-path="section-debugging.html"><a href="section-debugging.html#section-debug"><i class="fa fa-check"></i><b>19.3.3</b> debug()<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="section-debugging.html"><a href="section-debugging.html#section-more-options-to-consider"><i class="fa fa-check"></i><b>19.4</b> More options to consider<span></span></a></li>
+<li class="chapter" data-level="19.5" data-path="section-debugging.html"><a href="section-debugging.html#section-important-takeaways"><i class="fa fa-check"></i><b>19.5</b> Important Takeaways<span></span></a><ul>
+<li><a href="section-debugging.html#section-tips-for-writing-good-code">Tips for Writing good code<span></span></a></li>
+<li><a href="section-debugging.html#section-steps-to-reduce-the-number-of-bugs">Steps to Reduce the Number of Bugs<span></span></a></li>
+<li><a href="section-debugging.html#section-after-you-located-the-error">After You Located the Error<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="19.6" data-path="section-debugging.html"><a href="section-debugging.html#section-resources"><i class="fa fa-check"></i><b>19.6</b> Resources<span></span></a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STAT 107 Outline of Class Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="section-ggplot2" class="section level1 hasAnchor">
+<h1><span class="header-section-number">Chapter 17</span> ggplot2<a href="section-ggplot2.html#section-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="section-tidyverse-and-ggplot2" class="section level2 hasAnchor">
+<h2><span class="header-section-number">17.1</span> Tidyverse and ggplot2<a href="section-ggplot2.html#section-tidyverse-and-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For this document you will need to install and load the package <code>ggplot2</code> which is part of <code>tidyverse</code>. To install the package refer to Section <a href="section-packages.html#section-packages">9</a>.</p>
+<div class="sourceCode" id="section-cb910"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb910-1"><a href="section-ggplot2.html#cb910-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<p>The tidyverse is a collection of packages that share a unique underlying philosophy, frame work, and syntax. There are approximately 20 tidyverse packages, but the core ones are <code>ggplot2</code>, <code>dplyr</code>, <code>tidyr</code>, <code>readr</code>, <code>purr</code>, <code>tibble</code>, <code>stringr</code>, and <code>forcats</code>. You can install these packages individually or all at once using by simply using the command <code>install.packages("tidyverse")</code>.</p>
+<p>We will be focusing on the <code>ggplot2</code> package for now. The functions and topics that we that we will be covering can be found in <span class="citation">Wickham and others (<a href="section-debugging.html#section-ref-wickham2009elegant" role="doc-biblioref">2009</a>)</span>.</p>
+</div>
+<div id="section-intro-to-ggplot2" class="section level2 hasAnchor">
+<h2><span class="header-section-number">17.2</span> Intro to ggplot2<a href="section-ggplot2.html#section-intro-to-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The package <code>ggplot2</code> is used to produce graphics using a different system then traditional “Base R”. It has an underlying grammar or style that is different that is based on the “grammar of graphics”.</p>
+<div id="section-what-is-the-grammar-of-graphics" class="section level3 unnumbered hasAnchor">
+<h3>What is the grammar of graphics?<a href="section-ggplot2.html#section-what-is-the-grammar-of-graphics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The structure of the “grammar of graphics” aims to create graphics using different layers. The grammar tells us how to map aesthetic attributes (color, shape, size) of a geometric object (points, lines, bars). We might also have a statistical transformation of the data and information about the coordinate system. Faceting is also considered. The combination of these elements make up a “graphic”.</p>
+<p>All plots are composed of <strong>data</strong> and a <strong>mapping</strong>.</p>
+<ul>
+<li><p>data: information you want to visualize</p></li>
+<li><p>mapping: description of how the variables are mapped to aesthetic attributes.</p></li>
+</ul>
+<p>There are five mapping components:</p>
+<ul>
+<li><p><strong>Layer</strong>: a collect of geometric elements and statistical transformations.</p>
+<ul>
+<li><p>Geometric elements are called <strong>geoms</strong>, they are what you see (points, lines, etc.)</p></li>
+<li><p>Statistical transformations are called <strong>stats</strong>, they summarize the data (counting observations, makeing models)</p></li>
+</ul></li>
+<li><p><strong>Scales</strong>: a map of the values in the data space to the aesthetic space.</p>
+<ul>
+<li><p>Modifications of the color, shape, size</p></li>
+<li><p>How to draw legends and axes</p></li>
+</ul></li>
+<li><p><strong>Coordinate</strong> System: called <strong>coord</strong>, describe how data coordinates are mapped to the plane of the graphic.</p>
+<ul>
+<li>Usually use Cartesian coordinate system.</li>
+</ul></li>
+<li><p><strong>Facet</strong>: How to break up and display subsets of data as small multiples.</p></li>
+<li><p><strong>Theme</strong>: control other points of display, like font size, and background color.</p></li>
+</ul>
+</div>
+<div id="section-ggplot2-versus-other-r-graphics" class="section level3 unnumbered hasAnchor">
+<h3>ggplot2 versus other R Graphics<a href="section-ggplot2.html#section-ggplot2-versus-other-r-graphics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Base R: graphics work like a “pen on paper”</p></li>
+<li><p>Grid: started in 2000, provided a richer system of graphics tools that are more complex.</p></li>
+<li><p>Lattice: a new system proposed (2008ish). Uses grid graphics to implement a trellis system that populates more plotting details automatically</p></li>
+<li><p>ggplot2: started 2005, an attempt to combine the good things about lattice and base R together using the “grammar of graphics”</p></li>
+</ul>
+</div>
+</div>
+<div id="section-getting-started-kep-components" class="section level2 hasAnchor">
+<h2><span class="header-section-number">17.3</span> Getting started: Kep Components<a href="section-ggplot2.html#section-getting-started-kep-components" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Every ggplot2 plot has 3 key components:</p>
+<ol style="list-style-type: decimal">
+<li><p>Data</p></li>
+<li><p>A set of <strong>aes</strong>thetic mappings between variables in the data and visual properties</p></li>
+<li><p>At least one layer which described how to render each observation. Layers are usually created with a <strong>geom</strong> function.</p></li>
+</ol>
+<p>A Basic Example:</p>
+<div class="sourceCode" id="section-cb911"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb911-1"><a href="section-ggplot2.html#cb911-1"></a><span class="kw">ggplot</span>(mpg,                        <span class="co"># Data</span></span>
+<span id="cb911-2"><a href="section-ggplot2.html#cb911-2"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy))<span class="op">+</span><span class="st">   </span><span class="co"># aesthetic mapping</span></span>
+<span id="cb911-3"><a href="section-ggplot2.html#cb911-3"></a><span class="st">  </span><span class="kw">geom_point</span>()                     <span class="co"># geom layer </span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-314-1.png" width="672" /></p>
+</div>
+<div id="section-adjust-aesthetic-attributes-by-variable" class="section level2 hasAnchor">
+<h2><span class="header-section-number">17.4</span> Adjust aesthetic attributes by variable<a href="section-ggplot2.html#section-adjust-aesthetic-attributes-by-variable" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We can adjust aesthetic attributes by variable using the <code>aes()</code> function and the <code>mapping</code> argument.</p>
+<div class="sourceCode" id="section-cb912"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb912-1"><a href="section-ggplot2.html#cb912-1"></a><span class="co"># Adjust the color for each point by class</span></span>
+<span id="cb912-2"><a href="section-ggplot2.html#cb912-2"></a><span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">color =</span> class)</span>
+<span id="cb912-3"><a href="section-ggplot2.html#cb912-3"></a></span>
+<span id="cb912-4"><a href="section-ggplot2.html#cb912-4"></a><span class="co"># Adjust the shape for each point by drv</span></span>
+<span id="cb912-5"><a href="section-ggplot2.html#cb912-5"></a><span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">shape =</span> drv)</span>
+<span id="cb912-6"><a href="section-ggplot2.html#cb912-6"></a></span>
+<span id="cb912-7"><a href="section-ggplot2.html#cb912-7"></a><span class="co"># Adjust the size of each point by cyl</span></span>
+<span id="cb912-8"><a href="section-ggplot2.html#cb912-8"></a><span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">shape =</span> cyl)</span></code></pre></div>
+<div class="sourceCode" id="section-cb913"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb913-1"><a href="section-ggplot2.html#cb913-1"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">color =</span> class)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-316-1.png" width="672" /></p>
+<div class="sourceCode" id="section-cb914"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb914-1"><a href="section-ggplot2.html#cb914-1"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">shape =</span> drv)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-316-2.png" width="672" /></p>
+<div class="sourceCode" id="section-cb915"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb915-1"><a href="section-ggplot2.html#cb915-1"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">shape =</span> <span class="kw">factor</span>(cyl))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-316-3.png" width="672" /></p>
+</div>
+<div id="section-adjust-aesthetic-attributes-for-the-entire-plot" class="section level2 hasAnchor">
+<h2><span class="header-section-number">17.5</span> Adjust aesthetic attributes for the entire plot<a href="section-ggplot2.html#section-adjust-aesthetic-attributes-for-the-entire-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Notice that the plot changes based on if the <code>color</code> is assigned outside or inside of the <code>aes()</code> function. This is because the <code>aes()</code> function is used to map the data to an aesthetic property of the map. Inside of <code>aes()</code> we let the aesthetic argument (color, shape, etc) equal a variable in the data set. The different values for that variable control what happens to that aesthetic. If we assign aesthetic value outside of the <code>aes()</code> function then we are just assigning a value for the entire data set and do not use column names of the data.</p>
+<div class="sourceCode" id="section-cb916"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb916-1"><a href="section-ggplot2.html#cb916-1"></a><span class="co"># Change aesthetic attributes according to some variable</span></span>
+<span id="cb916-2"><a href="section-ggplot2.html#cb916-2"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(displ, hwy)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> class))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-317-1.png" width="672" /></p>
+<div class="sourceCode" id="section-cb917"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb917-1"><a href="section-ggplot2.html#cb917-1"></a><span class="co"># Attempt to change all points to blue Will not run</span></span>
+<span id="cb917-2"><a href="section-ggplot2.html#cb917-2"></a><span class="co"># correctly because colour = &#39;blue&#39; is inside aes()</span></span>
+<span id="cb917-3"><a href="section-ggplot2.html#cb917-3"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(displ, hwy)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-317-2.png" width="672" /></p>
+<div class="sourceCode" id="section-cb918"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb918-1"><a href="section-ggplot2.html#cb918-1"></a><span class="co"># Change all points to blue, works correctly</span></span>
+<span id="cb918-2"><a href="section-ggplot2.html#cb918-2"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(displ, hwy)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-317-3.png" width="672" /></p>
+</div>
+<div id="section-faceting" class="section level2 hasAnchor">
+<h2><span class="header-section-number">17.6</span> Faceting<a href="section-ggplot2.html#section-faceting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Faceting creates tables of graphics by splitting the data into subsets and displaying the same graph for each subset. You can faceting using <code>facet_wrap()</code> which is more flexible and automatically determines how to organize the data. Or, you can manually determine the facet structure using <code>facet_grid()</code>.</p>
+<div class="sourceCode" id="section-cb919"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb919-1"><a href="section-ggplot2.html#cb919-1"></a><span class="co"># Facet Wrap: Let ggplot decide how many rows and columns</span></span>
+<span id="cb919-2"><a href="section-ggplot2.html#cb919-2"></a><span class="co"># to make Only give one variable to break data up by ~</span></span>
+<span id="cb919-3"><a href="section-ggplot2.html#cb919-3"></a><span class="co"># Variable</span></span>
+<span id="cb919-4"><a href="section-ggplot2.html#cb919-4"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(displ, hwy)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>class)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-318-1.png" width="672" /></p>
+<div class="sourceCode" id="section-cb920"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb920-1"><a href="section-ggplot2.html#cb920-1"></a><span class="co"># Facet Grid: Number of rows and columns by number of</span></span>
+<span id="cb920-2"><a href="section-ggplot2.html#cb920-2"></a><span class="co"># unique values for variable 1 and variable 2 Row variable</span></span>
+<span id="cb920-3"><a href="section-ggplot2.html#cb920-3"></a><span class="co"># ~ Column variable.</span></span>
+<span id="cb920-4"><a href="section-ggplot2.html#cb920-4"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(displ, hwy)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid</span>(drv <span class="op">~</span></span>
+<span id="cb920-5"><a href="section-ggplot2.html#cb920-5"></a><span class="st">    </span>class)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-318-2.png" width="672" /></p>
+</div>
+<div id="section-some-example-plots" class="section level2 hasAnchor">
+<h2><span class="header-section-number">17.7</span> Some example plots<a href="section-ggplot2.html#section-some-example-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="section-cb921"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb921-1"><a href="section-ggplot2.html#cb921-1"></a><span class="co"># Example 1</span></span>
+<span id="cb921-2"><a href="section-ggplot2.html#cb921-2"></a><span class="kw">ggplot</span>(diamonds) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">y =</span> price, <span class="dt">x =</span> cut,</span>
+<span id="cb921-3"><a href="section-ggplot2.html#cb921-3"></a>    <span class="dt">color =</span> cut))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-319-1.png" width="672" /></p>
+<div class="sourceCode" id="section-cb922"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb922-1"><a href="section-ggplot2.html#cb922-1"></a><span class="co"># Example 2</span></span>
+<span id="cb922-2"><a href="section-ggplot2.html#cb922-2"></a><span class="kw">ggplot</span>(diamonds) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">y =</span> price, <span class="dt">x =</span> depth,</span>
+<span id="cb922-3"><a href="section-ggplot2.html#cb922-3"></a>    <span class="dt">size =</span> carat, <span class="dt">color =</span> cut), <span class="dt">pch =</span> <span class="dv">1</span>) <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;A Title is On This Plot&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-319-2.png" width="672" /></p>
+<div class="sourceCode" id="section-cb923"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb923-1"><a href="section-ggplot2.html#cb923-1"></a><span class="co"># Example 3</span></span>
+<span id="cb923-2"><a href="section-ggplot2.html#cb923-2"></a>subgroups_diamonds &lt;-<span class="st"> </span>diamonds <span class="op">%&gt;%</span></span>
+<span id="cb923-3"><a href="section-ggplot2.html#cb923-3"></a><span class="st">    </span><span class="kw">group_by</span>(cut, clarity) <span class="op">%&gt;%</span></span>
+<span id="cb923-4"><a href="section-ggplot2.html#cb923-4"></a><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">n =</span> <span class="kw">length</span>(cut))</span></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;cut&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="section-cb925"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb925-1"><a href="section-ggplot2.html#cb925-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> subgroups_diamonds) <span class="op">+</span><span class="st"> </span><span class="kw">geom_tile</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> cut,</span>
+<span id="cb925-2"><a href="section-ggplot2.html#cb925-2"></a>    <span class="dt">y =</span> clarity, <span class="dt">fill =</span> n)) <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low =</span> <span class="st">&quot;white&quot;</span>,</span>
+<span id="cb925-3"><a href="section-ggplot2.html#cb925-3"></a>    <span class="dt">high =</span> <span class="st">&quot;purple&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-319-3.png" width="672" /></p>
+<div class="sourceCode" id="section-cb926"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb926-1"><a href="section-ggplot2.html#cb926-1"></a><span class="co"># Example 4: Method 1</span></span>
+<span id="cb926-2"><a href="section-ggplot2.html#cb926-2"></a>subgroups_diamonds2 &lt;-<span class="st"> </span>diamonds <span class="op">%&gt;%</span></span>
+<span id="cb926-3"><a href="section-ggplot2.html#cb926-3"></a><span class="st">    </span><span class="kw">group_by</span>(cut, color) <span class="op">%&gt;%</span></span>
+<span id="cb926-4"><a href="section-ggplot2.html#cb926-4"></a><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">n =</span> <span class="kw">length</span>(cut))</span></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;cut&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="section-cb928"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb928-1"><a href="section-ggplot2.html#cb928-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> subgroups_diamonds2) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> cut,</span>
+<span id="cb928-2"><a href="section-ggplot2.html#cb928-2"></a>    <span class="dt">y =</span> n, <span class="dt">fill =</span> color), <span class="dt">position =</span> <span class="st">&quot;fill&quot;</span>, <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-319-4.png" width="672" /></p>
+<div class="sourceCode" id="section-cb929"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb929-1"><a href="section-ggplot2.html#cb929-1"></a><span class="co"># Example 4: Method 2</span></span>
+<span id="cb929-2"><a href="section-ggplot2.html#cb929-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> diamonds) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> cut, <span class="dt">fill =</span> color),</span>
+<span id="cb929-3"><a href="section-ggplot2.html#cb929-3"></a>    <span class="dt">position =</span> <span class="st">&quot;fill&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-319-5.png" width="672" /></p>
+<div class="sourceCode" id="section-cb930"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb930-1"><a href="section-ggplot2.html#cb930-1"></a><span class="co"># Example 5</span></span>
+<span id="cb930-2"><a href="section-ggplot2.html#cb930-2"></a>plot_data &lt;-<span class="st"> </span>diamonds <span class="op">%&gt;%</span></span>
+<span id="cb930-3"><a href="section-ggplot2.html#cb930-3"></a><span class="st">    </span><span class="kw">group_by</span>(clarity) <span class="op">%&gt;%</span></span>
+<span id="cb930-4"><a href="section-ggplot2.html#cb930-4"></a><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">m =</span> <span class="kw">mean</span>(price))</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="section-cb932"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb932-1"><a href="section-ggplot2.html#cb932-1"></a><span class="kw">ggplot</span>(plot_data, <span class="kw">aes</span>(<span class="dt">x =</span> clarity, <span class="dt">y =</span> m)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>,</span>
+<span id="cb932-2"><a href="section-ggplot2.html#cb932-2"></a>    <span class="dt">show.legend =</span> <span class="ot">FALSE</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-319-6.png" width="672" /></p>
+<div class="sourceCode" id="section-cb933"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb933-1"><a href="section-ggplot2.html#cb933-1"></a><span class="co"># Example 6</span></span>
+<span id="cb933-2"><a href="section-ggplot2.html#cb933-2"></a><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(<span class="dt">x =</span> clarity, <span class="dt">group =</span> cut, <span class="dt">fill =</span> cut)) <span class="op">+</span></span>
+<span id="cb933-3"><a href="section-ggplot2.html#cb933-3"></a><span class="st">    </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-319-7.png" width="672" /></p>
+<div class="sourceCode" id="section-cb934"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb934-1"><a href="section-ggplot2.html#cb934-1"></a><span class="co"># Example 7 creating dataset #1</span></span>
+<span id="cb934-2"><a href="section-ggplot2.html#cb934-2"></a>data1 &lt;-<span class="st"> </span>diamonds <span class="op">%&gt;%</span></span>
+<span id="cb934-3"><a href="section-ggplot2.html#cb934-3"></a><span class="st">    </span><span class="kw">group_by</span>(clarity) <span class="op">%&gt;%</span></span>
+<span id="cb934-4"><a href="section-ggplot2.html#cb934-4"></a><span class="st">    </span><span class="kw">summarise</span>(<span class="dt">m =</span> <span class="kw">mean</span>(price))</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="section-cb936"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb936-1"><a href="section-ggplot2.html#cb936-1"></a><span class="co">## creating dataset #2</span></span>
+<span id="cb936-2"><a href="section-ggplot2.html#cb936-2"></a>data2 &lt;-<span class="st"> </span>diamonds <span class="op">%&gt;%</span></span>
+<span id="cb936-3"><a href="section-ggplot2.html#cb936-3"></a><span class="st">    </span><span class="kw">group_by</span>(cut, clarity) <span class="op">%&gt;%</span></span>
+<span id="cb936-4"><a href="section-ggplot2.html#cb936-4"></a><span class="st">    </span><span class="kw">summarise</span>(<span class="dt">m =</span> <span class="kw">mean</span>(price))</span></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;cut&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="section-cb938"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb938-1"><a href="section-ggplot2.html#cb938-1"></a><span class="co">## graphing data points from 2 different datasets on one</span></span>
+<span id="cb938-2"><a href="section-ggplot2.html#cb938-2"></a><span class="co">## graph</span></span>
+<span id="cb938-3"><a href="section-ggplot2.html#cb938-3"></a><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">data =</span> data1, <span class="kw">aes</span>(<span class="dt">x =</span> clarity, <span class="dt">y =</span> m),</span>
+<span id="cb938-4"><a href="section-ggplot2.html#cb938-4"></a>    <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">pch =</span> <span class="dv">8</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">data =</span> data2, <span class="kw">aes</span>(<span class="dt">x =</span> clarity,</span>
+<span id="cb938-5"><a href="section-ggplot2.html#cb938-5"></a>    <span class="dt">y =</span> m), <span class="dt">pch =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-319-8.png" width="672" /></p>
+</div>
+<div id="section-where-can-i-learn-more" class="section level2 hasAnchor">
+<h2><span class="header-section-number">17.8</span> Where can I learn more?<a href="section-ggplot2.html#section-where-can-i-learn-more" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p><a href="https://ggplot2-book.org/index.html" class="uri">https://ggplot2-book.org/index.html</a></p></li>
+<li><p><a href="https://www.stat.auckland.ac.nz/~ihaka/downloads/Interface98.pdf" class="uri">https://www.stat.auckland.ac.nz/~ihaka/downloads/Interface98.pdf</a></p></li>
+<li><p><a href="https://hbctraining.github.io/Intro-to-R-flipped/cheatsheets/data-visualization-2.1.pdf" class="uri">https://hbctraining.github.io/Intro-to-R-flipped/cheatsheets/data-visualization-2.1.pdf</a></p></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="section-tidyverse.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-apply.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/17-ggplot2.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

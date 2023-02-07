@@ -24,7 +24,7 @@
 <meta name="author" content="Rebecca Kurtz-Garcia" />
 
 
-<meta name="date" content="2022-10-20" />
+<meta name="date" content="2023-02-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="tidyverse.html"/>
-<link rel="next" href="apply.html"/>
+<link rel="next" href="Regex.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -278,14 +278,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8" data-path="if-statements.html"><a href="if-statements.html"><i class="fa fa-check"></i><b>8</b> If Statements<span></span></a><ul>
 <li class="chapter" data-level="8.1" data-path="if-statements.html"><a href="if-statements.html#if"><i class="fa fa-check"></i><b>8.1</b> If<span></span></a></li>
 <li class="chapter" data-level="8.2" data-path="if-statements.html"><a href="if-statements.html#if-else"><i class="fa fa-check"></i><b>8.2</b> If Else<span></span></a></li>
-<li class="chapter" data-level="8.3" data-path="if-statements.html"><a href="if-statements.html#else-if"><i class="fa fa-check"></i><b>8.3</b> Else If<span></span></a></li>
+<li class="chapter" data-level="8.3" data-path="if-statements.html"><a href="if-statements.html#elseif"><i class="fa fa-check"></i><b>8.3</b> Else If<span></span></a></li>
 <li class="chapter" data-level="8.4" data-path="if-statements.html"><a href="if-statements.html#nested-if-chains"><i class="fa fa-check"></i><b>8.4</b> Nested If Chains<span></span></a></li>
 <li class="chapter" data-level="8.5" data-path="if-statements.html"><a href="if-statements.html#ifelse"><i class="fa fa-check"></i><b>8.5</b> Ifelse<span></span></a></li>
-<li class="chapter" data-level="8.6" data-path="if-statements.html"><a href="if-statements.html#vectorizeifelse"><i class="fa fa-check"></i><b>8.6</b> Vectorizing If-Statments<span></span></a></li>
 <li><a href="if-statements.html#additional-resources-4">Additional Resources<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>9</b> Packages<span></span></a><ul>
-<li class="chapter" data-level="9.1" data-path="packages.html"><a href="packages.html#namespace-collisions"><i class="fa fa-check"></i><b>9.1</b> Namespace Collisions<span></span></a></li>
+<li class="chapter" data-level="9" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html"><i class="fa fa-check"></i><b>9</b> *apply Family of Functions<span></span></a><ul>
+<li class="chapter" data-level="9.1" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#introduction-to-the-apply-family"><i class="fa fa-check"></i><b>9.1</b> Introduction to the *apply family<span></span></a></li>
+<li class="chapter" data-level="9.2" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#apply"><i class="fa fa-check"></i><b>9.2</b> apply()<span></span></a><ul>
+<li><a href="apply-family-of-functions.html#example-built-in-function">Example: Built In Function<span></span></a></li>
+<li><a href="apply-family-of-functions.html#example-user-defined-function">Example: User Defined Function<span></span></a></li>
+<li class="chapter" data-level="9.2.1" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#returned-objects"><i class="fa fa-check"></i><b>9.2.1</b> Returned Objects<span></span></a></li>
+<li class="chapter" data-level="9.2.2" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#example-extra-arguments-array-output"><i class="fa fa-check"></i><b>9.2.2</b> Example: Extra Arguments, Array Output<span></span></a></li>
+<li class="chapter" data-level="9.2.3" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#example-list-output"><i class="fa fa-check"></i><b>9.2.3</b> Example: List Output<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#lapply"><i class="fa fa-check"></i><b>9.3</b> lapply()<span></span></a></li>
+<li class="chapter" data-level="9.4" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#sapply"><i class="fa fa-check"></i><b>9.4</b> sapply()<span></span></a></li>
+<li class="chapter" data-level="9.5" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#tapply"><i class="fa fa-check"></i><b>9.5</b> tapply()<span></span></a></li>
+<li class="chapter" data-level="9.6" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#mapply"><i class="fa fa-check"></i><b>9.6</b> mapply()<span></span></a></li>
+<li class="chapter" data-level="9.7" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#replicate"><i class="fa fa-check"></i><b>9.7</b> replicate()<span></span></a></li>
+<li class="chapter" data-level="9.8" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#how-to-pick-a-method"><i class="fa fa-check"></i><b>9.8</b> How to Pick a Method<span></span></a></li>
+<li class="chapter" data-level="9.9" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#vectorizeifelse"><i class="fa fa-check"></i><b>9.9</b> Vectorizing If-Statments<span></span></a></li>
+<li class="chapter" data-level="9.10" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#more-examples"><i class="fa fa-check"></i><b>9.10</b> More Examples<span></span></a><ul>
+<li class="chapter" data-level="9.10.1" data-path="apply-family-of-functions.html"><a href="apply-family-of-functions.html#create-a-new-variable"><i class="fa fa-check"></i><b>9.10.1</b> Create a New Variable<span></span></a></li>
+</ul></li>
+<li><a href="apply-family-of-functions.html#additional-resources-5">Additional Resources<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="text-data.html"><a href="text-data.html"><i class="fa fa-check"></i><b>10</b> Text Data<span></span></a><ul>
 <li class="chapter" data-level="10.1" data-path="text-data.html"><a href="text-data.html#making-strings"><i class="fa fa-check"></i><b>10.1</b> Making Strings<span></span></a></li>
@@ -301,29 +318,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.11" data-path="text-data.html"><a href="text-data.html#word-count-tables"><i class="fa fa-check"></i><b>10.11</b> Word Count Tables<span></span></a></li>
 <li class="chapter" data-level="10.12" data-path="text-data.html"><a href="text-data.html#wordcloud-package"><i class="fa fa-check"></i><b>10.12</b> Wordcloud Package<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="Regex.html"><a href="Regex.html"><i class="fa fa-check"></i><b>11</b> Regular Expressions<span></span></a><ul>
-<li class="chapter" data-level="11.1" data-path="Regex.html"><a href="Regex.html#ranges-escaping"><i class="fa fa-check"></i><b>11.1</b> Ranges, Escaping<span></span></a></li>
-<li class="chapter" data-level="11.2" data-path="Regex.html"><a href="Regex.html#metacharacters"><i class="fa fa-check"></i><b>11.2</b> Metacharacters<span></span></a></li>
-<li class="chapter" data-level="11.3" data-path="Regex.html"><a href="Regex.html#quantifiers"><i class="fa fa-check"></i><b>11.3</b> Quantifiers<span></span></a></li>
-<li class="chapter" data-level="11.4" data-path="Regex.html"><a href="Regex.html#anchoring"><i class="fa fa-check"></i><b>11.4</b> Anchoring<span></span></a></li>
-<li class="chapter" data-level="11.5" data-path="Regex.html"><a href="Regex.html#splitting-on-a-regexp"><i class="fa fa-check"></i><b>11.5</b> Splitting on a Regexp<span></span></a></li>
-<li class="chapter" data-level="11.6" data-path="Regex.html"><a href="Regex.html#stringr-package"><i class="fa fa-check"></i><b>11.6</b> Stringr Package<span></span></a></li>
-<li class="chapter" data-level="11.7" data-path="Regex.html"><a href="Regex.html#wordcloud-package-1"><i class="fa fa-check"></i><b>11.7</b> Wordcloud Package<span></span></a></li>
-<li class="chapter" data-level="11.8" data-path="Regex.html"><a href="Regex.html#replacements"><i class="fa fa-check"></i><b>11.8</b> Replacements<span></span></a></li>
-<li><a href="Regex.html#additional-resources-5">Additional Resources<span></span></a></li>
+<li class="chapter" data-level="11" data-path="base-r-plotting.html"><a href="base-r-plotting.html"><i class="fa fa-check"></i><b>11</b> Base R Plotting<span></span></a><ul>
+<li class="chapter" data-level="11.1" data-path="base-r-plotting.html"><a href="base-r-plotting.html#load-a-big-data-set"><i class="fa fa-check"></i><b>11.1</b> Load A Big Data Set<span></span></a></li>
+<li class="chapter" data-level="11.2" data-path="base-r-plotting.html"><a href="base-r-plotting.html#histograms"><i class="fa fa-check"></i><b>11.2</b> Histograms<span></span></a></li>
+<li class="chapter" data-level="11.3" data-path="base-r-plotting.html"><a href="base-r-plotting.html#boxplot"><i class="fa fa-check"></i><b>11.3</b> Boxplot<span></span></a></li>
+<li class="chapter" data-level="11.4" data-path="base-r-plotting.html"><a href="base-r-plotting.html#scatter-plot"><i class="fa fa-check"></i><b>11.4</b> Scatter Plot<span></span></a></li>
+<li class="chapter" data-level="11.5" data-path="base-r-plotting.html"><a href="base-r-plotting.html#pie-charts"><i class="fa fa-check"></i><b>11.5</b> Pie Charts<span></span></a></li>
+<li class="chapter" data-level="11.6" data-path="base-r-plotting.html"><a href="base-r-plotting.html#adding-straight-lines"><i class="fa fa-check"></i><b>11.6</b> Adding Straight Lines<span></span></a></li>
+<li class="chapter" data-level="11.7" data-path="base-r-plotting.html"><a href="base-r-plotting.html#adding-lines-between-points"><i class="fa fa-check"></i><b>11.7</b> Adding Lines Between Points<span></span></a></li>
+<li class="chapter" data-level="11.8" data-path="base-r-plotting.html"><a href="base-r-plotting.html#adding-individual-points"><i class="fa fa-check"></i><b>11.8</b> Adding Individual Points<span></span></a></li>
+<li class="chapter" data-level="11.9" data-path="base-r-plotting.html"><a href="base-r-plotting.html#the-par-help-file"><i class="fa fa-check"></i><b>11.9</b> The par() Help File<span></span></a></li>
+<li class="chapter" data-level="11.10" data-path="base-r-plotting.html"><a href="base-r-plotting.html#adding-legends"><i class="fa fa-check"></i><b>11.10</b> Adding Legends<span></span></a></li>
+<li class="chapter" data-level="11.11" data-path="base-r-plotting.html"><a href="base-r-plotting.html#what-makes-a-good-plot"><i class="fa fa-check"></i><b>11.11</b> What makes a good plot?<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="base-r-plotting.html"><a href="base-r-plotting.html"><i class="fa fa-check"></i><b>12</b> Base R Plotting<span></span></a><ul>
-<li class="chapter" data-level="12.1" data-path="base-r-plotting.html"><a href="base-r-plotting.html#load-a-big-data-set"><i class="fa fa-check"></i><b>12.1</b> Load A Big Data Set<span></span></a></li>
-<li class="chapter" data-level="12.2" data-path="base-r-plotting.html"><a href="base-r-plotting.html#histograms"><i class="fa fa-check"></i><b>12.2</b> Histograms<span></span></a></li>
-<li class="chapter" data-level="12.3" data-path="base-r-plotting.html"><a href="base-r-plotting.html#boxplot"><i class="fa fa-check"></i><b>12.3</b> Boxplot<span></span></a></li>
-<li class="chapter" data-level="12.4" data-path="base-r-plotting.html"><a href="base-r-plotting.html#scatter-plot"><i class="fa fa-check"></i><b>12.4</b> Scatter Plot<span></span></a></li>
-<li class="chapter" data-level="12.5" data-path="base-r-plotting.html"><a href="base-r-plotting.html#pie-charts"><i class="fa fa-check"></i><b>12.5</b> Pie Charts<span></span></a></li>
-<li class="chapter" data-level="12.6" data-path="base-r-plotting.html"><a href="base-r-plotting.html#adding-straight-lines"><i class="fa fa-check"></i><b>12.6</b> Adding Straight Lines<span></span></a></li>
-<li class="chapter" data-level="12.7" data-path="base-r-plotting.html"><a href="base-r-plotting.html#adding-lines-between-points"><i class="fa fa-check"></i><b>12.7</b> Adding Lines Between Points<span></span></a></li>
-<li class="chapter" data-level="12.8" data-path="base-r-plotting.html"><a href="base-r-plotting.html#adding-individual-points"><i class="fa fa-check"></i><b>12.8</b> Adding Individual Points<span></span></a></li>
-<li class="chapter" data-level="12.9" data-path="base-r-plotting.html"><a href="base-r-plotting.html#the-par-help-file"><i class="fa fa-check"></i><b>12.9</b> The par() Help File<span></span></a></li>
-<li class="chapter" data-level="12.10" data-path="base-r-plotting.html"><a href="base-r-plotting.html#adding-legends"><i class="fa fa-check"></i><b>12.10</b> Adding Legends<span></span></a></li>
-<li class="chapter" data-level="12.11" data-path="base-r-plotting.html"><a href="base-r-plotting.html#what-makes-a-good-plot"><i class="fa fa-check"></i><b>12.11</b> What makes a good plot?<span></span></a></li>
+<li class="chapter" data-level="12" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>12</b> Packages<span></span></a><ul>
+<li class="chapter" data-level="12.1" data-path="packages.html"><a href="packages.html#namespace-collisions"><i class="fa fa-check"></i><b>12.1</b> Namespace Collisions<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="extending-base-r-graphics.html"><a href="extending-base-r-graphics.html"><i class="fa fa-check"></i><b>13</b> Extending Base R Graphics<span></span></a><ul>
 <li class="chapter" data-level="13.1" data-path="extending-base-r-graphics.html"><a href="extending-base-r-graphics.html#the-maps-package"><i class="fa fa-check"></i><b>13.1</b> The “maps” Package<span></span></a></li>
@@ -347,13 +356,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.3" data-path="simulation.html"><a href="simulation.html#generating-random-variables"><i class="fa fa-check"></i><b>15.3</b> Generating Random Variables<span></span></a></li>
 <li class="chapter" data-level="15.4" data-path="simulation.html"><a href="simulation.html#setting-a-seed"><i class="fa fa-check"></i><b>15.4</b> Setting a Seed<span></span></a></li>
 <li class="chapter" data-level="15.5" data-path="simulation.html"><a href="simulation.html#sample"><i class="fa fa-check"></i><b>15.5</b> sample()<span></span></a></li>
-<li class="chapter" data-level="15.6" data-path="simulation.html"><a href="simulation.html#replicate"><i class="fa fa-check"></i><b>15.6</b> replicate()<span></span></a></li>
-<li class="chapter" data-level="15.7" data-path="simulation.html"><a href="simulation.html#adding-curves-to-graphs"><i class="fa fa-check"></i><b>15.7</b> Adding curves to graphs<span></span></a></li>
-<li class="chapter" data-level="15.8" data-path="simulation.html"><a href="simulation.html#example-central-limit-theorem-clt"><i class="fa fa-check"></i><b>15.8</b> Example: Central Limit Theorem (CLT)<span></span></a><ul>
-<li class="chapter" data-level="15.8.1" data-path="simulation.html"><a href="simulation.html#recall-clt"><i class="fa fa-check"></i><b>15.8.1</b> Recall CLT<span></span></a></li>
-<li class="chapter" data-level="15.8.2" data-path="simulation.html"><a href="simulation.html#assumption-violations-of-clt"><i class="fa fa-check"></i><b>15.8.2</b> Assumption Violations of CLT<span></span></a></li>
-<li class="chapter" data-level="15.8.3" data-path="simulation.html"><a href="simulation.html#the-data"><i class="fa fa-check"></i><b>15.8.3</b> The Data<span></span></a></li>
+<li class="chapter" data-level="15.6" data-path="simulation.html"><a href="simulation.html#cumulative-proportioncumulative-win-plots"><i class="fa fa-check"></i><b>15.6</b> Cumulative-Proportion/Cumulative-Win Plots<span></span></a></li>
+<li class="chapter" data-level="15.7" data-path="simulation.html"><a href="simulation.html#replicate-1"><i class="fa fa-check"></i><b>15.7</b> replicate()<span></span></a></li>
+<li class="chapter" data-level="15.8" data-path="simulation.html"><a href="simulation.html#adding-curves-to-graphs"><i class="fa fa-check"></i><b>15.8</b> Adding curves to graphs<span></span></a></li>
+<li class="chapter" data-level="15.9" data-path="simulation.html"><a href="simulation.html#example-central-limit-theorem-clt"><i class="fa fa-check"></i><b>15.9</b> Example: Central Limit Theorem (CLT)<span></span></a><ul>
+<li class="chapter" data-level="15.9.1" data-path="simulation.html"><a href="simulation.html#recall-clt"><i class="fa fa-check"></i><b>15.9.1</b> Recall CLT<span></span></a></li>
+<li class="chapter" data-level="15.9.2" data-path="simulation.html"><a href="simulation.html#assumption-violations-of-clt"><i class="fa fa-check"></i><b>15.9.2</b> Assumption Violations of CLT<span></span></a></li>
+<li class="chapter" data-level="15.9.3" data-path="simulation.html"><a href="simulation.html#the-data"><i class="fa fa-check"></i><b>15.9.3</b> The Data<span></span></a></li>
 </ul></li>
+<li class="chapter" data-level="15.10" data-path="simulation.html"><a href="simulation.html#example-coin-flips"><i class="fa fa-check"></i><b>15.10</b> Example: Coin Flips<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>16</b> Tidyverse<span></span></a><ul>
 <li class="chapter" data-level="16.1" data-path="tidyverse.html"><a href="tidyverse.html#piping-operator"><i class="fa fa-check"></i><b>16.1</b> Piping Operator<span></span></a></li>
@@ -388,24 +399,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="17.7" data-path="ggplot2.html"><a href="ggplot2.html#some-example-plots"><i class="fa fa-check"></i><b>17.7</b> Some example plots<span></span></a></li>
 <li class="chapter" data-level="17.8" data-path="ggplot2.html"><a href="ggplot2.html#where-can-i-learn-more"><i class="fa fa-check"></i><b>17.8</b> Where can I learn more?<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="apply.html"><a href="apply.html"><i class="fa fa-check"></i><b>18</b> Apply Family of Functions<span></span></a><ul>
-<li class="chapter" data-level="18.1" data-path="apply.html"><a href="apply.html#apply-1"><i class="fa fa-check"></i><b>18.1</b> apply()<span></span></a><ul>
-<li><a href="apply.html#example-built-in-function">Example: Built In Function<span></span></a></li>
-<li><a href="apply.html#example-user-defined-function">Example: User Defined Function<span></span></a></li>
-<li class="chapter" data-level="18.1.1" data-path="apply.html"><a href="apply.html#returned-objects"><i class="fa fa-check"></i><b>18.1.1</b> Returned Objects<span></span></a></li>
-<li class="chapter" data-level="18.1.2" data-path="apply.html"><a href="apply.html#example-extra-arguments-array-output"><i class="fa fa-check"></i><b>18.1.2</b> Example: Extra Arguments, Array Output<span></span></a></li>
-<li class="chapter" data-level="18.1.3" data-path="apply.html"><a href="apply.html#example-list-output"><i class="fa fa-check"></i><b>18.1.3</b> Example: List Output<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="18.2" data-path="apply.html"><a href="apply.html#lapply"><i class="fa fa-check"></i><b>18.2</b> lapply()<span></span></a></li>
-<li class="chapter" data-level="18.3" data-path="apply.html"><a href="apply.html#sapply"><i class="fa fa-check"></i><b>18.3</b> sapply()<span></span></a></li>
-<li class="chapter" data-level="18.4" data-path="apply.html"><a href="apply.html#tapply"><i class="fa fa-check"></i><b>18.4</b> tapply()<span></span></a></li>
-<li class="chapter" data-level="18.5" data-path="apply.html"><a href="apply.html#mapply"><i class="fa fa-check"></i><b>18.5</b> mapply()<span></span></a></li>
-<li class="chapter" data-level="18.6" data-path="apply.html"><a href="apply.html#replicate-1"><i class="fa fa-check"></i><b>18.6</b> replicate()<span></span></a></li>
-<li class="chapter" data-level="18.7" data-path="apply.html"><a href="apply.html#how-to-pick-a-method"><i class="fa fa-check"></i><b>18.7</b> How to Pick a Method<span></span></a></li>
-<li class="chapter" data-level="18.8" data-path="apply.html"><a href="apply.html#more-examples"><i class="fa fa-check"></i><b>18.8</b> More Examples<span></span></a><ul>
-<li class="chapter" data-level="18.8.1" data-path="apply.html"><a href="apply.html#create-a-new-variable"><i class="fa fa-check"></i><b>18.8.1</b> Create a New Variable<span></span></a></li>
-</ul></li>
-<li><a href="apply.html#additional-resources-8">Additional Resources<span></span></a></li>
+<li class="chapter" data-level="18" data-path="Regex.html"><a href="Regex.html"><i class="fa fa-check"></i><b>18</b> Regular Expressions<span></span></a><ul>
+<li class="chapter" data-level="18.1" data-path="Regex.html"><a href="Regex.html#ranges-escaping"><i class="fa fa-check"></i><b>18.1</b> Ranges, Escaping<span></span></a></li>
+<li class="chapter" data-level="18.2" data-path="Regex.html"><a href="Regex.html#metacharacters"><i class="fa fa-check"></i><b>18.2</b> Metacharacters<span></span></a></li>
+<li class="chapter" data-level="18.3" data-path="Regex.html"><a href="Regex.html#quantifiers"><i class="fa fa-check"></i><b>18.3</b> Quantifiers<span></span></a></li>
+<li class="chapter" data-level="18.4" data-path="Regex.html"><a href="Regex.html#anchoring"><i class="fa fa-check"></i><b>18.4</b> Anchoring<span></span></a></li>
+<li class="chapter" data-level="18.5" data-path="Regex.html"><a href="Regex.html#splitting-on-a-regexp"><i class="fa fa-check"></i><b>18.5</b> Splitting on a Regexp<span></span></a></li>
+<li class="chapter" data-level="18.6" data-path="Regex.html"><a href="Regex.html#stringr-package"><i class="fa fa-check"></i><b>18.6</b> Stringr Package<span></span></a></li>
+<li class="chapter" data-level="18.7" data-path="Regex.html"><a href="Regex.html#wordcloud-package-1"><i class="fa fa-check"></i><b>18.7</b> Wordcloud Package<span></span></a></li>
+<li class="chapter" data-level="18.8" data-path="Regex.html"><a href="Regex.html#replacements"><i class="fa fa-check"></i><b>18.8</b> Replacements<span></span></a></li>
+<li><a href="Regex.html#additional-resources-8">Additional Resources<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="19" data-path="debugging.html"><a href="debugging.html"><i class="fa fa-check"></i><b>19</b> Debugging<span></span></a><ul>
 <li class="chapter" data-level="19.1" data-path="debugging.html"><a href="debugging.html#debugging-background-history-types-of-bugs-challenges-to-consider"><i class="fa fa-check"></i><b>19.1</b> Debugging Background (History, Types of Bugs, Challenges to Consider)<span></span></a><ul>
@@ -454,8 +457,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 17</span> ggplot2<a href="ggplot2.html#ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="tidyverse-and-ggplot2" class="section level2 hasAnchor">
 <h2><span class="header-section-number">17.1</span> Tidyverse and ggplot2<a href="ggplot2.html#tidyverse-and-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>For this document you will need to install and load the package <code>ggplot2</code> which is part of <code>tidyverse</code>. To install the package refer to Section <a href="packages.html#packages">9</a>.</p>
-<div class="sourceCode" id="cb910"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb910-1"><a href="ggplot2.html#cb910-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<p>For this document you will need to install and load the package <code>ggplot2</code> which is part of <code>tidyverse</code>. To install the package refer to Section <a href="packages.html#packages">12</a>.</p>
+<div class="sourceCode" id="cb894"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb894-1"><a href="ggplot2.html#cb894-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
 <p>The tidyverse is a collection of packages that share a unique underlying philosophy, frame work, and syntax. There are approximately 20 tidyverse packages, but the core ones are <code>ggplot2</code>, <code>dplyr</code>, <code>tidyr</code>, <code>readr</code>, <code>purr</code>, <code>tibble</code>, <code>stringr</code>, and <code>forcats</code>. You can install these packages individually or all at once using by simply using the command <code>install.packages("tidyverse")</code>.</p>
 <p>We will be focusing on the <code>ggplot2</code> package for now. The functions and topics that we that we will be covering can be found in <span class="citation">Wickham and others (<a href="#ref-wickham2009elegant" role="doc-biblioref">2009</a>)</span>.</p>
 </div>
@@ -509,116 +512,116 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>At least one layer which described how to render each observation. Layers are usually created with a <strong>geom</strong> function.</p></li>
 </ol>
 <p>A Basic Example:</p>
-<div class="sourceCode" id="cb911"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb911-1"><a href="ggplot2.html#cb911-1"></a><span class="kw">ggplot</span>(mpg,                        <span class="co"># Data</span></span>
-<span id="cb911-2"><a href="ggplot2.html#cb911-2"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy))<span class="op">+</span><span class="st">   </span><span class="co"># aesthetic mapping</span></span>
-<span id="cb911-3"><a href="ggplot2.html#cb911-3"></a><span class="st">  </span><span class="kw">geom_point</span>()                     <span class="co"># geom layer </span></span></code></pre></div>
+<div class="sourceCode" id="cb895"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb895-1"><a href="ggplot2.html#cb895-1"></a><span class="kw">ggplot</span>(mpg,                        <span class="co"># Data</span></span>
+<span id="cb895-2"><a href="ggplot2.html#cb895-2"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy))<span class="op">+</span><span class="st">   </span><span class="co"># aesthetic mapping</span></span>
+<span id="cb895-3"><a href="ggplot2.html#cb895-3"></a><span class="st">  </span><span class="kw">geom_point</span>()                     <span class="co"># geom layer </span></span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-314-1.png" width="672" /></p>
 </div>
 <div id="adjust-aesthetic-attributes-by-variable" class="section level2 hasAnchor">
 <h2><span class="header-section-number">17.4</span> Adjust aesthetic attributes by variable<a href="ggplot2.html#adjust-aesthetic-attributes-by-variable" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We can adjust aesthetic attributes by variable using the <code>aes()</code> function and the <code>mapping</code> argument.</p>
-<div class="sourceCode" id="cb912"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb912-1"><a href="ggplot2.html#cb912-1"></a><span class="co"># Adjust the color for each point by class</span></span>
-<span id="cb912-2"><a href="ggplot2.html#cb912-2"></a><span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">color =</span> class)</span>
-<span id="cb912-3"><a href="ggplot2.html#cb912-3"></a></span>
-<span id="cb912-4"><a href="ggplot2.html#cb912-4"></a><span class="co"># Adjust the shape for each point by drv</span></span>
-<span id="cb912-5"><a href="ggplot2.html#cb912-5"></a><span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">shape =</span> drv)</span>
-<span id="cb912-6"><a href="ggplot2.html#cb912-6"></a></span>
-<span id="cb912-7"><a href="ggplot2.html#cb912-7"></a><span class="co"># Adjust the size of each point by cyl</span></span>
-<span id="cb912-8"><a href="ggplot2.html#cb912-8"></a><span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">shape =</span> cyl)</span></code></pre></div>
-<div class="sourceCode" id="cb913"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb913-1"><a href="ggplot2.html#cb913-1"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">color =</span> class)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb896"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb896-1"><a href="ggplot2.html#cb896-1"></a><span class="co"># Adjust the color for each point by class</span></span>
+<span id="cb896-2"><a href="ggplot2.html#cb896-2"></a><span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">color =</span> class)</span>
+<span id="cb896-3"><a href="ggplot2.html#cb896-3"></a></span>
+<span id="cb896-4"><a href="ggplot2.html#cb896-4"></a><span class="co"># Adjust the shape for each point by drv</span></span>
+<span id="cb896-5"><a href="ggplot2.html#cb896-5"></a><span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">shape =</span> drv)</span>
+<span id="cb896-6"><a href="ggplot2.html#cb896-6"></a></span>
+<span id="cb896-7"><a href="ggplot2.html#cb896-7"></a><span class="co"># Adjust the size of each point by cyl</span></span>
+<span id="cb896-8"><a href="ggplot2.html#cb896-8"></a><span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">shape =</span> cyl)</span></code></pre></div>
+<div class="sourceCode" id="cb897"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb897-1"><a href="ggplot2.html#cb897-1"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">color =</span> class)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-316-1.png" width="672" /></p>
-<div class="sourceCode" id="cb914"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb914-1"><a href="ggplot2.html#cb914-1"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">shape =</span> drv)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb898"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb898-1"><a href="ggplot2.html#cb898-1"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">shape =</span> drv)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-316-2.png" width="672" /></p>
-<div class="sourceCode" id="cb915"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb915-1"><a href="ggplot2.html#cb915-1"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">shape =</span> <span class="kw">factor</span>(cyl))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb899"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb899-1"><a href="ggplot2.html#cb899-1"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">shape =</span> <span class="kw">factor</span>(cyl))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-316-3.png" width="672" /></p>
 </div>
 <div id="adjust-aesthetic-attributes-for-the-entire-plot" class="section level2 hasAnchor">
 <h2><span class="header-section-number">17.5</span> Adjust aesthetic attributes for the entire plot<a href="ggplot2.html#adjust-aesthetic-attributes-for-the-entire-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Notice that the plot changes based on if the <code>color</code> is assigned outside or inside of the <code>aes()</code> function. This is because the <code>aes()</code> function is used to map the data to an aesthetic property of the map. Inside of <code>aes()</code> we let the aesthetic argument (color, shape, etc) equal a variable in the data set. The different values for that variable control what happens to that aesthetic. If we assign aesthetic value outside of the <code>aes()</code> function then we are just assigning a value for the entire data set and do not use column names of the data.</p>
-<div class="sourceCode" id="cb916"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb916-1"><a href="ggplot2.html#cb916-1"></a><span class="co"># Change aesthetic attributes according to some variable</span></span>
-<span id="cb916-2"><a href="ggplot2.html#cb916-2"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(displ, hwy)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> class))</span></code></pre></div>
+<div class="sourceCode" id="cb900"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb900-1"><a href="ggplot2.html#cb900-1"></a><span class="co"># Change aesthetic attributes according to some variable</span></span>
+<span id="cb900-2"><a href="ggplot2.html#cb900-2"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(displ, hwy)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> class))</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-317-1.png" width="672" /></p>
-<div class="sourceCode" id="cb917"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb917-1"><a href="ggplot2.html#cb917-1"></a><span class="co"># Attempt to change all points to blue Will not run</span></span>
-<span id="cb917-2"><a href="ggplot2.html#cb917-2"></a><span class="co"># correctly because colour = &#39;blue&#39; is inside aes()</span></span>
-<span id="cb917-3"><a href="ggplot2.html#cb917-3"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(displ, hwy)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb901"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb901-1"><a href="ggplot2.html#cb901-1"></a><span class="co"># Attempt to change all points to blue Will not run</span></span>
+<span id="cb901-2"><a href="ggplot2.html#cb901-2"></a><span class="co"># correctly because colour = &#39;blue&#39; is inside aes()</span></span>
+<span id="cb901-3"><a href="ggplot2.html#cb901-3"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(displ, hwy)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>))</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-317-2.png" width="672" /></p>
-<div class="sourceCode" id="cb918"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb918-1"><a href="ggplot2.html#cb918-1"></a><span class="co"># Change all points to blue, works correctly</span></span>
-<span id="cb918-2"><a href="ggplot2.html#cb918-2"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(displ, hwy)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb902"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb902-1"><a href="ggplot2.html#cb902-1"></a><span class="co"># Change all points to blue, works correctly</span></span>
+<span id="cb902-2"><a href="ggplot2.html#cb902-2"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(displ, hwy)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-317-3.png" width="672" /></p>
 </div>
 <div id="faceting" class="section level2 hasAnchor">
 <h2><span class="header-section-number">17.6</span> Faceting<a href="ggplot2.html#faceting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Faceting creates tables of graphics by splitting the data into subsets and displaying the same graph for each subset. You can faceting using <code>facet_wrap()</code> which is more flexible and automatically determines how to organize the data. Or, you can manually determine the facet structure using <code>facet_grid()</code>.</p>
-<div class="sourceCode" id="cb919"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb919-1"><a href="ggplot2.html#cb919-1"></a><span class="co"># Facet Wrap: Let ggplot decide how many rows and columns</span></span>
-<span id="cb919-2"><a href="ggplot2.html#cb919-2"></a><span class="co"># to make Only give one variable to break data up by ~</span></span>
-<span id="cb919-3"><a href="ggplot2.html#cb919-3"></a><span class="co"># Variable</span></span>
-<span id="cb919-4"><a href="ggplot2.html#cb919-4"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(displ, hwy)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>class)</span></code></pre></div>
+<div class="sourceCode" id="cb903"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb903-1"><a href="ggplot2.html#cb903-1"></a><span class="co"># Facet Wrap: Let ggplot decide how many rows and columns</span></span>
+<span id="cb903-2"><a href="ggplot2.html#cb903-2"></a><span class="co"># to make Only give one variable to break data up by ~</span></span>
+<span id="cb903-3"><a href="ggplot2.html#cb903-3"></a><span class="co"># Variable</span></span>
+<span id="cb903-4"><a href="ggplot2.html#cb903-4"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(displ, hwy)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>class)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-318-1.png" width="672" /></p>
-<div class="sourceCode" id="cb920"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb920-1"><a href="ggplot2.html#cb920-1"></a><span class="co"># Facet Grid: Number of rows and columns by number of</span></span>
-<span id="cb920-2"><a href="ggplot2.html#cb920-2"></a><span class="co"># unique values for variable 1 and variable 2 Row variable</span></span>
-<span id="cb920-3"><a href="ggplot2.html#cb920-3"></a><span class="co"># ~ Column variable.</span></span>
-<span id="cb920-4"><a href="ggplot2.html#cb920-4"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(displ, hwy)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid</span>(drv <span class="op">~</span></span>
-<span id="cb920-5"><a href="ggplot2.html#cb920-5"></a><span class="st">    </span>class)</span></code></pre></div>
+<div class="sourceCode" id="cb904"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb904-1"><a href="ggplot2.html#cb904-1"></a><span class="co"># Facet Grid: Number of rows and columns by number of</span></span>
+<span id="cb904-2"><a href="ggplot2.html#cb904-2"></a><span class="co"># unique values for variable 1 and variable 2 Row variable</span></span>
+<span id="cb904-3"><a href="ggplot2.html#cb904-3"></a><span class="co"># ~ Column variable.</span></span>
+<span id="cb904-4"><a href="ggplot2.html#cb904-4"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(displ, hwy)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid</span>(drv <span class="op">~</span></span>
+<span id="cb904-5"><a href="ggplot2.html#cb904-5"></a><span class="st">    </span>class)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-318-2.png" width="672" /></p>
 </div>
 <div id="some-example-plots" class="section level2 hasAnchor">
 <h2><span class="header-section-number">17.7</span> Some example plots<a href="ggplot2.html#some-example-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb921"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb921-1"><a href="ggplot2.html#cb921-1"></a><span class="co"># Example 1</span></span>
-<span id="cb921-2"><a href="ggplot2.html#cb921-2"></a><span class="kw">ggplot</span>(diamonds) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">y =</span> price, <span class="dt">x =</span> cut,</span>
-<span id="cb921-3"><a href="ggplot2.html#cb921-3"></a>    <span class="dt">color =</span> cut))</span></code></pre></div>
+<div class="sourceCode" id="cb905"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb905-1"><a href="ggplot2.html#cb905-1"></a><span class="co"># Example 1</span></span>
+<span id="cb905-2"><a href="ggplot2.html#cb905-2"></a><span class="kw">ggplot</span>(diamonds) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">y =</span> price, <span class="dt">x =</span> cut,</span>
+<span id="cb905-3"><a href="ggplot2.html#cb905-3"></a>    <span class="dt">color =</span> cut))</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-319-1.png" width="672" /></p>
-<div class="sourceCode" id="cb922"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb922-1"><a href="ggplot2.html#cb922-1"></a><span class="co"># Example 2</span></span>
-<span id="cb922-2"><a href="ggplot2.html#cb922-2"></a><span class="kw">ggplot</span>(diamonds) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">y =</span> price, <span class="dt">x =</span> depth,</span>
-<span id="cb922-3"><a href="ggplot2.html#cb922-3"></a>    <span class="dt">size =</span> carat, <span class="dt">color =</span> cut), <span class="dt">pch =</span> <span class="dv">1</span>) <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;A Title is On This Plot&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb906"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb906-1"><a href="ggplot2.html#cb906-1"></a><span class="co"># Example 2</span></span>
+<span id="cb906-2"><a href="ggplot2.html#cb906-2"></a><span class="kw">ggplot</span>(diamonds) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">y =</span> price, <span class="dt">x =</span> depth,</span>
+<span id="cb906-3"><a href="ggplot2.html#cb906-3"></a>    <span class="dt">size =</span> carat, <span class="dt">color =</span> cut), <span class="dt">pch =</span> <span class="dv">1</span>) <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;A Title is On This Plot&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-319-2.png" width="672" /></p>
-<div class="sourceCode" id="cb923"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb923-1"><a href="ggplot2.html#cb923-1"></a><span class="co"># Example 3</span></span>
-<span id="cb923-2"><a href="ggplot2.html#cb923-2"></a>subgroups_diamonds &lt;-<span class="st"> </span>diamonds <span class="op">%&gt;%</span></span>
-<span id="cb923-3"><a href="ggplot2.html#cb923-3"></a><span class="st">    </span><span class="kw">group_by</span>(cut, clarity) <span class="op">%&gt;%</span></span>
-<span id="cb923-4"><a href="ggplot2.html#cb923-4"></a><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">n =</span> <span class="kw">length</span>(cut))</span></code></pre></div>
+<div class="sourceCode" id="cb907"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb907-1"><a href="ggplot2.html#cb907-1"></a><span class="co"># Example 3</span></span>
+<span id="cb907-2"><a href="ggplot2.html#cb907-2"></a>subgroups_diamonds &lt;-<span class="st"> </span>diamonds <span class="op">%&gt;%</span></span>
+<span id="cb907-3"><a href="ggplot2.html#cb907-3"></a><span class="st">    </span><span class="kw">group_by</span>(cut, clarity) <span class="op">%&gt;%</span></span>
+<span id="cb907-4"><a href="ggplot2.html#cb907-4"></a><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">n =</span> <span class="kw">length</span>(cut))</span></code></pre></div>
 <pre><code>## `summarise()` regrouping output by &#39;cut&#39; (override with `.groups` argument)</code></pre>
-<div class="sourceCode" id="cb925"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb925-1"><a href="ggplot2.html#cb925-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> subgroups_diamonds) <span class="op">+</span><span class="st"> </span><span class="kw">geom_tile</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> cut,</span>
-<span id="cb925-2"><a href="ggplot2.html#cb925-2"></a>    <span class="dt">y =</span> clarity, <span class="dt">fill =</span> n)) <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low =</span> <span class="st">&quot;white&quot;</span>,</span>
-<span id="cb925-3"><a href="ggplot2.html#cb925-3"></a>    <span class="dt">high =</span> <span class="st">&quot;purple&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb909"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb909-1"><a href="ggplot2.html#cb909-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> subgroups_diamonds) <span class="op">+</span><span class="st"> </span><span class="kw">geom_tile</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> cut,</span>
+<span id="cb909-2"><a href="ggplot2.html#cb909-2"></a>    <span class="dt">y =</span> clarity, <span class="dt">fill =</span> n)) <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low =</span> <span class="st">&quot;white&quot;</span>,</span>
+<span id="cb909-3"><a href="ggplot2.html#cb909-3"></a>    <span class="dt">high =</span> <span class="st">&quot;purple&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-319-3.png" width="672" /></p>
-<div class="sourceCode" id="cb926"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb926-1"><a href="ggplot2.html#cb926-1"></a><span class="co"># Example 4: Method 1</span></span>
-<span id="cb926-2"><a href="ggplot2.html#cb926-2"></a>subgroups_diamonds2 &lt;-<span class="st"> </span>diamonds <span class="op">%&gt;%</span></span>
-<span id="cb926-3"><a href="ggplot2.html#cb926-3"></a><span class="st">    </span><span class="kw">group_by</span>(cut, color) <span class="op">%&gt;%</span></span>
-<span id="cb926-4"><a href="ggplot2.html#cb926-4"></a><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">n =</span> <span class="kw">length</span>(cut))</span></code></pre></div>
+<div class="sourceCode" id="cb910"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb910-1"><a href="ggplot2.html#cb910-1"></a><span class="co"># Example 4: Method 1</span></span>
+<span id="cb910-2"><a href="ggplot2.html#cb910-2"></a>subgroups_diamonds2 &lt;-<span class="st"> </span>diamonds <span class="op">%&gt;%</span></span>
+<span id="cb910-3"><a href="ggplot2.html#cb910-3"></a><span class="st">    </span><span class="kw">group_by</span>(cut, color) <span class="op">%&gt;%</span></span>
+<span id="cb910-4"><a href="ggplot2.html#cb910-4"></a><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">n =</span> <span class="kw">length</span>(cut))</span></code></pre></div>
 <pre><code>## `summarise()` regrouping output by &#39;cut&#39; (override with `.groups` argument)</code></pre>
-<div class="sourceCode" id="cb928"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb928-1"><a href="ggplot2.html#cb928-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> subgroups_diamonds2) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> cut,</span>
-<span id="cb928-2"><a href="ggplot2.html#cb928-2"></a>    <span class="dt">y =</span> n, <span class="dt">fill =</span> color), <span class="dt">position =</span> <span class="st">&quot;fill&quot;</span>, <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb912"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb912-1"><a href="ggplot2.html#cb912-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> subgroups_diamonds2) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> cut,</span>
+<span id="cb912-2"><a href="ggplot2.html#cb912-2"></a>    <span class="dt">y =</span> n, <span class="dt">fill =</span> color), <span class="dt">position =</span> <span class="st">&quot;fill&quot;</span>, <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-319-4.png" width="672" /></p>
-<div class="sourceCode" id="cb929"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb929-1"><a href="ggplot2.html#cb929-1"></a><span class="co"># Example 4: Method 2</span></span>
-<span id="cb929-2"><a href="ggplot2.html#cb929-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> diamonds) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> cut, <span class="dt">fill =</span> color),</span>
-<span id="cb929-3"><a href="ggplot2.html#cb929-3"></a>    <span class="dt">position =</span> <span class="st">&quot;fill&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb913"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb913-1"><a href="ggplot2.html#cb913-1"></a><span class="co"># Example 4: Method 2</span></span>
+<span id="cb913-2"><a href="ggplot2.html#cb913-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> diamonds) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> cut, <span class="dt">fill =</span> color),</span>
+<span id="cb913-3"><a href="ggplot2.html#cb913-3"></a>    <span class="dt">position =</span> <span class="st">&quot;fill&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-319-5.png" width="672" /></p>
-<div class="sourceCode" id="cb930"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb930-1"><a href="ggplot2.html#cb930-1"></a><span class="co"># Example 5</span></span>
-<span id="cb930-2"><a href="ggplot2.html#cb930-2"></a>plot_data &lt;-<span class="st"> </span>diamonds <span class="op">%&gt;%</span></span>
-<span id="cb930-3"><a href="ggplot2.html#cb930-3"></a><span class="st">    </span><span class="kw">group_by</span>(clarity) <span class="op">%&gt;%</span></span>
-<span id="cb930-4"><a href="ggplot2.html#cb930-4"></a><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">m =</span> <span class="kw">mean</span>(price))</span></code></pre></div>
+<div class="sourceCode" id="cb914"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb914-1"><a href="ggplot2.html#cb914-1"></a><span class="co"># Example 5</span></span>
+<span id="cb914-2"><a href="ggplot2.html#cb914-2"></a>plot_data &lt;-<span class="st"> </span>diamonds <span class="op">%&gt;%</span></span>
+<span id="cb914-3"><a href="ggplot2.html#cb914-3"></a><span class="st">    </span><span class="kw">group_by</span>(clarity) <span class="op">%&gt;%</span></span>
+<span id="cb914-4"><a href="ggplot2.html#cb914-4"></a><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">m =</span> <span class="kw">mean</span>(price))</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
-<div class="sourceCode" id="cb932"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb932-1"><a href="ggplot2.html#cb932-1"></a><span class="kw">ggplot</span>(plot_data, <span class="kw">aes</span>(<span class="dt">x =</span> clarity, <span class="dt">y =</span> m)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>,</span>
-<span id="cb932-2"><a href="ggplot2.html#cb932-2"></a>    <span class="dt">show.legend =</span> <span class="ot">FALSE</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb916"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb916-1"><a href="ggplot2.html#cb916-1"></a><span class="kw">ggplot</span>(plot_data, <span class="kw">aes</span>(<span class="dt">x =</span> clarity, <span class="dt">y =</span> m)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>,</span>
+<span id="cb916-2"><a href="ggplot2.html#cb916-2"></a>    <span class="dt">show.legend =</span> <span class="ot">FALSE</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-319-6.png" width="672" /></p>
-<div class="sourceCode" id="cb933"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb933-1"><a href="ggplot2.html#cb933-1"></a><span class="co"># Example 6</span></span>
-<span id="cb933-2"><a href="ggplot2.html#cb933-2"></a><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(<span class="dt">x =</span> clarity, <span class="dt">group =</span> cut, <span class="dt">fill =</span> cut)) <span class="op">+</span></span>
-<span id="cb933-3"><a href="ggplot2.html#cb933-3"></a><span class="st">    </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb917"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb917-1"><a href="ggplot2.html#cb917-1"></a><span class="co"># Example 6</span></span>
+<span id="cb917-2"><a href="ggplot2.html#cb917-2"></a><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(<span class="dt">x =</span> clarity, <span class="dt">group =</span> cut, <span class="dt">fill =</span> cut)) <span class="op">+</span></span>
+<span id="cb917-3"><a href="ggplot2.html#cb917-3"></a><span class="st">    </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-319-7.png" width="672" /></p>
-<div class="sourceCode" id="cb934"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb934-1"><a href="ggplot2.html#cb934-1"></a><span class="co"># Example 7 creating dataset #1</span></span>
-<span id="cb934-2"><a href="ggplot2.html#cb934-2"></a>data1 &lt;-<span class="st"> </span>diamonds <span class="op">%&gt;%</span></span>
-<span id="cb934-3"><a href="ggplot2.html#cb934-3"></a><span class="st">    </span><span class="kw">group_by</span>(clarity) <span class="op">%&gt;%</span></span>
-<span id="cb934-4"><a href="ggplot2.html#cb934-4"></a><span class="st">    </span><span class="kw">summarise</span>(<span class="dt">m =</span> <span class="kw">mean</span>(price))</span></code></pre></div>
+<div class="sourceCode" id="cb918"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb918-1"><a href="ggplot2.html#cb918-1"></a><span class="co"># Example 7 creating dataset #1</span></span>
+<span id="cb918-2"><a href="ggplot2.html#cb918-2"></a>data1 &lt;-<span class="st"> </span>diamonds <span class="op">%&gt;%</span></span>
+<span id="cb918-3"><a href="ggplot2.html#cb918-3"></a><span class="st">    </span><span class="kw">group_by</span>(clarity) <span class="op">%&gt;%</span></span>
+<span id="cb918-4"><a href="ggplot2.html#cb918-4"></a><span class="st">    </span><span class="kw">summarise</span>(<span class="dt">m =</span> <span class="kw">mean</span>(price))</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
-<div class="sourceCode" id="cb936"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb936-1"><a href="ggplot2.html#cb936-1"></a><span class="co">## creating dataset #2</span></span>
-<span id="cb936-2"><a href="ggplot2.html#cb936-2"></a>data2 &lt;-<span class="st"> </span>diamonds <span class="op">%&gt;%</span></span>
-<span id="cb936-3"><a href="ggplot2.html#cb936-3"></a><span class="st">    </span><span class="kw">group_by</span>(cut, clarity) <span class="op">%&gt;%</span></span>
-<span id="cb936-4"><a href="ggplot2.html#cb936-4"></a><span class="st">    </span><span class="kw">summarise</span>(<span class="dt">m =</span> <span class="kw">mean</span>(price))</span></code></pre></div>
+<div class="sourceCode" id="cb920"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb920-1"><a href="ggplot2.html#cb920-1"></a><span class="co">## creating dataset #2</span></span>
+<span id="cb920-2"><a href="ggplot2.html#cb920-2"></a>data2 &lt;-<span class="st"> </span>diamonds <span class="op">%&gt;%</span></span>
+<span id="cb920-3"><a href="ggplot2.html#cb920-3"></a><span class="st">    </span><span class="kw">group_by</span>(cut, clarity) <span class="op">%&gt;%</span></span>
+<span id="cb920-4"><a href="ggplot2.html#cb920-4"></a><span class="st">    </span><span class="kw">summarise</span>(<span class="dt">m =</span> <span class="kw">mean</span>(price))</span></code></pre></div>
 <pre><code>## `summarise()` regrouping output by &#39;cut&#39; (override with `.groups` argument)</code></pre>
-<div class="sourceCode" id="cb938"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb938-1"><a href="ggplot2.html#cb938-1"></a><span class="co">## graphing data points from 2 different datasets on one</span></span>
-<span id="cb938-2"><a href="ggplot2.html#cb938-2"></a><span class="co">## graph</span></span>
-<span id="cb938-3"><a href="ggplot2.html#cb938-3"></a><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">data =</span> data1, <span class="kw">aes</span>(<span class="dt">x =</span> clarity, <span class="dt">y =</span> m),</span>
-<span id="cb938-4"><a href="ggplot2.html#cb938-4"></a>    <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">pch =</span> <span class="dv">8</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">data =</span> data2, <span class="kw">aes</span>(<span class="dt">x =</span> clarity,</span>
-<span id="cb938-5"><a href="ggplot2.html#cb938-5"></a>    <span class="dt">y =</span> m), <span class="dt">pch =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb922"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb922-1"><a href="ggplot2.html#cb922-1"></a><span class="co">## graphing data points from 2 different datasets on one</span></span>
+<span id="cb922-2"><a href="ggplot2.html#cb922-2"></a><span class="co">## graph</span></span>
+<span id="cb922-3"><a href="ggplot2.html#cb922-3"></a><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">data =</span> data1, <span class="kw">aes</span>(<span class="dt">x =</span> clarity, <span class="dt">y =</span> m),</span>
+<span id="cb922-4"><a href="ggplot2.html#cb922-4"></a>    <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">pch =</span> <span class="dv">8</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">data =</span> data2, <span class="kw">aes</span>(<span class="dt">x =</span> clarity,</span>
+<span id="cb922-5"><a href="ggplot2.html#cb922-5"></a>    <span class="dt">y =</span> m), <span class="dt">pch =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-319-8.png" width="672" /></p>
 </div>
 <div id="where-can-i-learn-more" class="section level2 hasAnchor">
@@ -643,7 +646,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="tidyverse.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="apply.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="Regex.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
