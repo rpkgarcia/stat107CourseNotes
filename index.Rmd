@@ -13,6 +13,7 @@ link-citations: yes
 github-repo: rstudio/bookdown-demo
 mainfont: Arial
 monofont: "Courier New"
+runtime: shiny
 #monotonoptions: "Scale =0.7"
 ---
 
