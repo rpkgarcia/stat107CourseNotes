@@ -135,33 +135,33 @@
 \contentsline {section}{\numberline {9.10}More Examples}{109}{section.9.10}%
 \contentsline {subsection}{\numberline {9.10.1}Create a New Variable}{114}{subsection.9.10.1}%
 \contentsline {section}{Additional Resources}{115}{section*.41}%
-\contentsline {chapter}{\numberline {10}Text Data}{117}{chapter.10}%
-\contentsline {section}{\numberline {10.1}Making Strings}{118}{section.10.1}%
-\contentsline {section}{\numberline {10.2}Substring Operations}{119}{section.10.2}%
-\contentsline {section}{\numberline {10.3}Dividing Strings into Vectors}{120}{section.10.3}%
-\contentsline {section}{\numberline {10.4}Converting Objects into Strings}{121}{section.10.4}%
-\contentsline {section}{\numberline {10.5}Versatility of the paste() Function}{121}{section.10.5}%
-\contentsline {section}{\numberline {10.6}Substitution}{122}{section.10.6}%
-\contentsline {section}{\numberline {10.7}Text of Some Importance}{122}{section.10.7}%
-\contentsline {section}{\numberline {10.8}Search}{123}{section.10.8}%
-\contentsline {section}{\numberline {10.9}Vectorizing Text Functions}{124}{section.10.9}%
-\contentsline {section}{\numberline {10.10}Regular Expressions}{126}{section.10.10}%
-\contentsline {section}{\numberline {10.11}Word Count Tables}{126}{section.10.11}%
-\contentsline {section}{\numberline {10.12}Wordcloud Package}{128}{section.10.12}%
-\contentsline {chapter}{\numberline {11}Base R Plotting}{133}{chapter.11}%
-\contentsline {section}{\numberline {11.1}Load A Big Data Set}{133}{section.11.1}%
-\contentsline {section}{\numberline {11.2}Histograms}{135}{section.11.2}%
-\contentsline {section}{\numberline {11.3}Boxplot}{140}{section.11.3}%
-\contentsline {section}{\numberline {11.4}Scatter Plot}{142}{section.11.4}%
-\contentsline {section}{\numberline {11.5}Pie Charts}{145}{section.11.5}%
-\contentsline {section}{\numberline {11.6}Adding Straight Lines}{147}{section.11.6}%
-\contentsline {section}{\numberline {11.7}Adding Lines Between Points}{149}{section.11.7}%
-\contentsline {section}{\numberline {11.8}Adding Individual Points}{150}{section.11.8}%
-\contentsline {section}{\numberline {11.9}The par() Help File}{151}{section.11.9}%
-\contentsline {section}{\numberline {11.10}Adding Legends}{152}{section.11.10}%
-\contentsline {section}{\numberline {11.11}What makes a good plot?}{154}{section.11.11}%
-\contentsline {chapter}{\numberline {12}Packages}{157}{chapter.12}%
-\contentsline {section}{\numberline {12.1}Namespace Collisions}{158}{section.12.1}%
+\contentsline {chapter}{\numberline {10}Packages}{117}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Namespace Collisions}{118}{section.10.1}%
+\contentsline {chapter}{\numberline {11}Text Data}{121}{chapter.11}%
+\contentsline {section}{\numberline {11.1}Making Strings}{122}{section.11.1}%
+\contentsline {section}{\numberline {11.2}Substring Operations}{123}{section.11.2}%
+\contentsline {section}{\numberline {11.3}Dividing Strings into Vectors}{124}{section.11.3}%
+\contentsline {section}{\numberline {11.4}Converting Objects into Strings}{125}{section.11.4}%
+\contentsline {section}{\numberline {11.5}Versatility of the paste() Function}{125}{section.11.5}%
+\contentsline {section}{\numberline {11.6}Substitution}{126}{section.11.6}%
+\contentsline {section}{\numberline {11.7}Text of Some Importance}{126}{section.11.7}%
+\contentsline {section}{\numberline {11.8}Search}{127}{section.11.8}%
+\contentsline {section}{\numberline {11.9}Vectorizing Text Functions}{128}{section.11.9}%
+\contentsline {section}{\numberline {11.10}Regular Expressions}{130}{section.11.10}%
+\contentsline {section}{\numberline {11.11}Word Count Tables}{130}{section.11.11}%
+\contentsline {section}{\numberline {11.12}Wordcloud Package}{132}{section.11.12}%
+\contentsline {chapter}{\numberline {12}Base R Plotting}{137}{chapter.12}%
+\contentsline {section}{\numberline {12.1}Load A Big Data Set}{137}{section.12.1}%
+\contentsline {section}{\numberline {12.2}Histograms}{139}{section.12.2}%
+\contentsline {section}{\numberline {12.3}Boxplot}{144}{section.12.3}%
+\contentsline {section}{\numberline {12.4}Scatter Plot}{146}{section.12.4}%
+\contentsline {section}{\numberline {12.5}Pie Charts}{149}{section.12.5}%
+\contentsline {section}{\numberline {12.6}Adding Straight Lines}{151}{section.12.6}%
+\contentsline {section}{\numberline {12.7}Adding Lines Between Points}{153}{section.12.7}%
+\contentsline {section}{\numberline {12.8}Adding Individual Points}{154}{section.12.8}%
+\contentsline {section}{\numberline {12.9}The par() Help File}{155}{section.12.9}%
+\contentsline {section}{\numberline {12.10}Adding Legends}{156}{section.12.10}%
+\contentsline {section}{\numberline {12.11}What makes a good plot?}{158}{section.12.11}%
 \contentsline {chapter}{\numberline {13}Extending Base R Graphics}{161}{chapter.13}%
 \contentsline {section}{\numberline {13.1}The ``maps'' Package}{161}{section.13.1}%
 \contentsline {section}{\numberline {13.2}Some additional Packages to consider}{166}{section.13.2}%

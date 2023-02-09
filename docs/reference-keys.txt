@@ -95,6 +95,8 @@ how-to-pick-a-method
 vectorizeifelse
 more-examples
 create-a-new-variable
+packages
+namespace-collisions
 text-data
 making-strings
 substring-operations
@@ -120,8 +122,6 @@ adding-individual-points
 the-par-help-file
 adding-legends
 what-makes-a-good-plot
-packages
-namespace-collisions
 extending-base-r-graphics
 the-maps-package
 some-additional-packages-to-consider
