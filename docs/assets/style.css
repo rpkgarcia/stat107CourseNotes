@@ -72,10 +72,10 @@ pre code {
   position: absolute;
 }
 .webnots-information {
-  background-color: #3498db;
+  background-color: #ADD8E6;
 }
 .webnots-information:before {
-  content: "\f129";
+  content: "\f006";
   margin-left: 4px;
 }
 .webnots-question {

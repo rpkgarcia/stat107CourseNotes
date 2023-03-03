@@ -3,40 +3,290 @@
 
 ## What Are Simulation Studies
 
-Simulation studies are used in statistics to verify theoretical results, and to do "what-if" experiments.  The are commonly used in a variety of applications and fields.  Often times we have a particular theory or an idea about how things work.  In order to verify that our theory is correct we can simulate a data set with known properties, and then check if the data set matches our theory. For example, suppose you want to calculate a 95\% confidence interval for the heights of all college students. Our theory on confidence intervals says that we expect that a 95\% confidence interval will capture the true mean about 95\% of the time. If we simply go out and take a sample of data from "real-life" and then calculate the a confidence interval we have no idea if that confidence interval captures the truth because the true average height of all college students is unknown!  It is not feasible to sample every college students, so we will never know if the true mean actually falls within our interval. Furthermore, in this example we only calculated one confidence interval.  If we did know the true mean then our results would simply indicate that the confidence interval captured the mean or not, but nothing about the *rate* that confidence intervals capture the mean, which should be 95\%. What we can do instead is simulate this process.  We can randomly generate data that has a true mean of $\mu$ using a computer.  Then we can estimate a 95\% confidence interval using the appropriate methods and see if this confidence interval contains $\mu$.  We then can repeat this process as many times as we would like because we are using a computer, which makes the process much simpler.  If our theory about confidence intervals is correct we would expect that 95\% of our confidence intervals captured the true mean ($\mu$), and the rest did not. 
+Simulation studies are used in statistics to verify theoretical results, and to do "what-if" experiments.  The are commonly used in a variety of applications and fields.  Often times we have a particular theory or an idea about how things work.  In order to verify that our theory is correct we can simulate a data set with known properties, and then check if the data set matches our theory. In short, a simulation study is a computer experiment that involves creating data that is used to estimate probabilities, densities, statistics, and compare performance of methods.  
 
-Simulations are very important, and can range greatly in complexity.  We will focus on simple techniques in this section. For a more complete discussion on simulation studies in statistics, and best practices see this freely available online at [https://onlinelibrary.wiley.com/doi/10.1002/sim.8086](https://onlinelibrary.wiley.com/doi/10.1002/sim.8086).  
 
-## Review Random Variables 
+Simulations are very important, and can range greatly in complexity.  We will focus on simple techniques in this section. For a more complete discussion on simulation studies in statistics, and best practices see this freely available article online at [https://onlinelibrary.wiley.com/doi/10.1002/sim.8086](https://onlinelibrary.wiley.com/doi/10.1002/sim.8086).  
 
-Before discussing how to simulate data with specific properties we review the concept of a random variable.  This discussion is adapted primarily from Chapter 3 and 4 of @OpenIntro.  A **random variable** is a random process or variable with a numeric outcome. Random variables in general have a typical value which is called the **expected value**.  However, in practice random variables also have variability, that is we do not expect to obtain the expected value for every random variable.  Instead we expect to observe a range of values according to some sort of pattern, which is usually centered around the expected value. 
+## Review Random Variables and Probability 
 
-For example, in Yellowstone National Park, Wyoming there is a famous geyser called Old Faithful.  A geyser is a natural hot spring that periodically erupts water.  The amount of time (in minutes) the eruption lasts varies each time, but not by a dramatic amount.  The eruption time in minutes is the random variable, and the expected value is the average eruption length, and we can measure the variability using a measure of dispersion, like the variance.  Below is a histogram of a random sample of eruptions times of 272 different eruptions. 
+Before discussing how to simulate data with specific properties we review the concept of a random variable.  This discussion is adapted primarily from Chapter 3 and 4 of @OpenIntro.  A **random variable** is a random process or variable with a numeric outcome. Each outcome is associated with a particular probability. The **distribution** of a random variable is a map for the possible outcomes and the respective probabilities. Distributions can be in the form of tables, histograms, and formulas. Random variables in general have a typical value which is called the **expected value**, this is the most common value we would expect the random variable to be.  However, in practice random variables also have variability, so we do not expect to obtain the expected value for every random variable.
+
+Some examples of random variables include: what side a fair sided coin lands on, what side a dice lands on, and how tall an adult bison is. We can ask about specific probabilities associated with this random variables.  Some probabilities are easier to find than others: 
+
+- Suppose we flip a fair sided coin. What is the probability we land on a head?
+
+- Suppose we role a fair d6. What is the probability we land on a 5 or a 6?
+
+- Suppose we measure the height of an adult bison (in feet). What is the probability the height is between 4ft and 6ft?
+
+
+
+### Probability 
+
+We like to analyze random variables and study the probability of a particular set of outcomes, an **event**. There are two types of probabilities we can think of.  
+
+- **Empirical Probability**: a probability based on, concerned with, or verifiable by observation or experience
+
+  - Based on observed/sample data
+      
+  - Let $X=$ the number of times we observe an event, and $n=$ the number of trials
+      
+  - The empirical probability of an event is $\hat{p} = \frac{X}{n}$
+  
+  - Also known as the sample estimate
+
+- **Theoretical Probability**: a probability based on a system of ideas intended to explain something, especially one based on general principles independent of the thing to be explained.
+
+  - Based on a statistical, physical, or biological principals.
+
+  - It is a probability we would expect “in theory”.
+       
+  - Denoted by $p$
+       
+  - Sometimes called the hypothesized probability
+
+
+In real life we do not know the true probability, instead we have a probability we expect *in theory*, and we estimate a probability using *empirical/sample* data.  Then we check if our estimate and theory are similar.  Both types of probabilities follow the same rules and axioms we learn in introductory statistics courses. 
+
+
+
+### Fundamental Theorem of Statistics
+
+<center>
+![](images/super.png){hieght=200%}
+</center>
+
+The fundamental theorem of statistics (FTS) connects empirical probabilities and theoretical probabilities together.  This theorem goes by many names: *Central Limit Theorem* , *Law of Large Numbers*, etc.  It is the "Superman" of statistical theories, and is HUGELY important in statistics. For many statistical inference methods (confidence intervals, p-values, hypothesis tests), we have a theory (theoretical probability), we get a sample and calculate an estimate (empirical probability), and then we check if the two types are similar to each other and make a conclusion. The FTS says that our empirical probability eventually will converge to the true probability as the sample size gets larger.  So if our empirical probability and theoretical probability are close together, then are theory is likely to be correct.  In contrast, if they are not close together, are theory is likely to be wrong. 
+
+
+<div class="webnots-information webnots-notification-box">
+
+By the ***Fundamental Theorem of Statistics***, we expect that our empirical probabilities converge to the theoretical/true probabilities as the sample size increases.
+
+$$\hat{p} \rightarrow p$$
+
+</div>
+
+
+Many different versions of this theorem, and different names for the theorem. We have discussed this theorem in terms of probabilities, but we can also talk about it in terms of statistics, like the arithmetic mean. The principal is the same though, the empirical estimate will eventually converge to the true value as the sample size increases.  This means bigger samples are more likely to converge to the truth, but how big should it be?
+
+## Simulating an Event
+
+Suppose we have a fair sided coin and want to know the probability of flipping a heads.  Our knowledge about coins tells us that the probability should be 0.5.  This is the probability we expect **in theory** based on outside knowledge.  However, we can also simulate flipping a coin, and estimating the probability of getting a head. Suppose we flip a coin 10 times and count how many heads we observe: H, H, T, T, T, T, H, T, T, T
+
+We can create a data frame which shows are estimated probability based on the number of simulations we have. 
 
 ```{r}
-hist(faithful$eruptions, 
-     main = "Eruption Times of Old Faithful", 
-     xlab = "Time (in minutes)", 
-     breaks = seq(0, 7, by = .5))
+NumHeads <- c(1, 1, 0, 0, 0, 0, 1, 0, 0, 0)
+CumHeads <- cumsum(NumHeads)
+EstHeads <- CumHeads/1:length(NumHeads)
+
+results <- data.frame(NumHeads, CumHeads, EstHeads)
+results
 ```
 
 
-As mentioned previously, random variables generate observations according to some sort of pattern.  These patterns are referred to as **densities**, and can be analyzed visually, and analytically (i.e. through formulas).  One of the most common ways to look at how often we would expect certain values for data that we find from the "real-world" is to use a histogram.  Histogram order observations into mutually exclusive bins, where the height of each bin indicates how common a particular range of values is.  For example, in the histogram above each bin is a 30 second (0.5 minute) range, and we can see the frequency of observations within the data set that are in this range on the y-axis.  When thinking about random variables though, it is often more helpful to look at the proportion of observed values within a bin, instead of the frequency.  We can modify our histogram to accomplish this. 
+Each row $i$ of the data frame represents simulation $i$.  The first column denotes when a head was observed, using a 1 for head and 0 for tails. The second column has the number of heads by simulation $i$, this is known as the *cumulative number of heads*. The third column has the estimated/empirical probability of observing a heads using all the information up to simulation $i$, which we can denote as $\hat{p}_i$. Our final estimate for probability of observing a heads using this simulation study is $\hat{p}_{10} = 0.3$. Is this a good simulation study?
+
+### Running Average Plot 
+
+If we only flip the coin a few times, then the estimated probability that may not be accurate due to random fluctuation.  However, the more coin flips we consider the more likely the estimated probability approaches the truth (which we known due to FTS).  A fair question to ask with simulations is: "how many simulations do we need?". There are rigorous rules that we can use to determine how many simulations we need until our estimate converges to the truth; however, we will focus on summary tables and visualization tools for now.  We know we have enough simulations when our estimate seems to "stabilize". We can track the statistics or the estimated probability as we consider more simulations. We can visualize this using a **running average plot**, also known as a **cumulative proportion plot**.  In a running average plot we have the number of trials on the x-axis, and the estimated probability using all data up to trial $i$ on the y-axis. For example, consider the first five coin flips above: 1, 1, 0, 0, 0.  Then the estimated probability of successes using "n" number of trials is the following.
+
+- When the number of trials is $n = 1$, the estimated probability of a head is $\hat{p}_1 = (1)/1 = 1$
+- When the number of trials is $n = 2$, the estimated probability of a head is $\hat{p}_2 = (1+1)/2 = 1$
+- When the number of trials is $n = 3$, the estimated probability of a head is $\hat{p}_3 = (1+1+0)/3 = 2/3$
+- When the number of trials is $n = 4$, the estimated probability of a head is $\hat{p}_4 = (1+1+0+0)/4 = 2/4$
+- When the number of trials is $n = 5$, the estimated probability of a head is$\hat{p}_5 = (1+1+0+0+0)/5 = 2/5$
+
 
 
 ```{r}
-hist(faithful$eruptions, 
-     main = "Eruption Times of Old Faithful", 
-     xlab = "Time (in minutes)", 
-     breaks = seq(0, 7, by = .5), 
-     freq = FALSE)
+plot(1:length(NumHeads), results$EstHeads, 
+     main = "Running Average Plot", 
+     xlab = "Simulation", 
+     ylab = "Estimated Probability", 
+     type = "b", 
+     ylim = c(0, 1))
 ```
 
 
-Notice that the y-axis now says "Density".  This is the relative probability that an observed data point will be a particular value.  In "real-world" data, we can only estimate the density.  We will never know the truth.  Hence, we will never know the true expected value, or the true variance.  This is why we have statistics!!  We have statistics in order to make educated guesses about these values and properties from which the data arises from.  
+
+Clearly, 10 coin flips is not enough. The plot is a bit erratic, and our final estimate is 0.3. We know we have not done enough simulations because we know the probability of getting a head is 0.5. 
+
+### Set Seed 
+
+Another problem is the simulation itself.  If you repeated this simulation you would get a very different answer. Often times when running a simulation we will want to use the same numbers over and over again.  The function `sample()` generates values randomly though, which means each time we call this function we will get new and different values.  In order to make sure our values are consistent each time we run R, or across computers we can set the seed.  The seed determines the way the computer generates our random numbers. Normally the seed is random, so each time `sample()` is called we get a new random sequence.  Using the `set.seed()` function will make sure that the sequence stays the same. Notice with different seeds we get different results.
 
 
-Analyzing the density or pattern of a random variable visually with histograms is intuitive, but limiting.  Using a formula as a representation for a density is much more versatile and useful. For these functions we have **parameters** which are values that let us further customize the function representation of a density to the specific random variable that we have. Let $X$ be a random variable, and $x$ be some observed value. In practice, if $X$ is a random variable that can only take on values that are discrete (usually integers) then we say the probability of observing some a particular value, say $x$, is denoted $p(x)$. There are extremely well known discrete densities that random variables tend to follow and that are available in R.   A few of them are listed below. 
+```{r, echo = F}
+
+par(mfrow= c(2, 2))
+
+set.seed(1)
+NumHeads <- sample(c(1,0), 10, replace = T) 
+CumHeads <- cumsum(NumHeads)
+EstHeads <- CumHeads/1:length(NumHeads)
+
+plot(1:length(NumHeads), EstHeads , 
+     main = "Running Average Plot (Seed = 1)", 
+     xlab = "Simulation", 
+     ylab = "Estimated Probability", 
+     type = "b", 
+     ylim = c(0, 1))
+
+
+set.seed(26)
+NumHeads <- sample(c(1,0), 10, replace = T) 
+CumHeads <- cumsum(NumHeads)
+EstHeads <- CumHeads/1:length(NumHeads)
+
+plot(1:length(NumHeads), EstHeads , 
+     main = "Running Average Plot (Seed = 26)", 
+     xlab = "Simulation", 
+     ylab = "Estimated Probability", 
+     type = "b", 
+     ylim = c(0, 1))
+
+
+set.seed(100)
+NumHeads <- sample(c(1,0), 10, replace = T) 
+CumHeads <- cumsum(NumHeads)
+EstHeads <- CumHeads/1:length(NumHeads)
+
+plot(1:length(NumHeads), EstHeads , 
+     main = "Running Average Plot (Seed = 100)", 
+     xlab = "Simulation", 
+     ylab = "Estimated Probability", 
+     type = "b", 
+     ylim = c(0, 1))
+
+
+set.seed(321)
+NumHeads <- sample(c(1,0), 10, replace = T) 
+CumHeads <- cumsum(NumHeads)
+EstHeads <- CumHeads/1:length(NumHeads)
+
+plot(1:length(NumHeads), EstHeads , 
+     main = "Running Average Plot (Seed = 321)", 
+     xlab = "Simulation", 
+     ylab = "Estimated Probability", 
+     type = "b", 
+     ylim = c(0, 1))
+par(mfrow= c(1, 1))
+```
+
+### Stopping Rules
+
+It can be difficult to know when to stop the simulation. In general we need enough simulations so that way the estimate becomes *stable*.  That is, until the plot stops behaving erratically regardless of the seed.  [You can try this simulation on your own, and see when how many simulations you need for the estimate to become stable and try different seeds](https://rpgarcia.shinyapps.io/Coin1/).  
+
+
+Some simulations studies implement an **stopping rule**.  A common stopping rule is to stop the simulation when $|p_i - p_{i-1}| < c$, where $c$ is some small number like 0.001. When using a stopping rule like this it is a good idea to initialize your simulations with a few trials to prevent stopping really early. 
+
+```{r}
+# Initialize results with 10 simulations 
+set.seed(1)
+NumHeads <- sample(c(1,0), 10, replace = T) 
+CumHeads <- cumsum(NumHeads)
+EstHeads <- CumHeads/1:length(NumHeads)
+results <- data.frame(NumHeads, CumHeads, EstHeads)
+i <- nrow(results)
+
+# Make a while loop that stops once estimate stablizes 
+while(abs(results$EstHeads[i] - results$EstHeads[i-1])> 0.001){
+  new_sim <- sample(c(1,0), 1, replace = T) 
+  new_cum_sum <- sum(results$NumHeads, new_sim)
+  new_est_prob <- new_cum_sum/i
+  new_row <- c(new_sim, new_cum_sum, new_est_prob)
+  
+  results <- rbind(results, new_row) 
+  
+  i <- i + 1
+
+  # Safety precaution to prevent loop running forever
+  if(i >10000){
+      break
+  }
+}
+
+tail(results)
+```
+
+It looks like it took 489 simulations to stabilize. 
+
+```{r}
+plot(1:nrow(results), results$EstHeads, 
+     main = "Running Average Plot", 
+     xlab = "Simulation", 
+     ylab = "Estimated Probability", 
+     type = "b", 
+     ylim = c(0, 1))
+```
+
+
+### Another Example
+
+We can also look at more complicated examples.  For example, consider flipping 10 coins for each simulation and we want to know the probability getting three heads or less. This is a harder question, so we might consider creating a function to generate the results more succinctly. The function below returns a 1 if there are less than `less_than_value` heads out of ten coin flips. 
+
+```{r}
+heads_to_check <- function(less_than_value){
+  flip_results <- sample(c("Heads", "Tails"), 10, replace = T)
+  index_heads <- which(flip_results== "Heads")
+  num_heads <- length(index_heads)
+  
+  if(num_heads<=less_than_value){
+    heads_less_than_value <- 1
+  } else {
+    heads_less_than_value <- 0
+  }
+  
+  return(heads_less_than_value)
+}
+```
+
+
+Now each time we call this function it generates the random data for us. The following code generates three simulations.
+
+```{r}
+heads_to_check(3)
+heads_to_check(3)
+heads_to_check(3)
+```
+
+
+This is useful, but it is impractical to call this function hundreds of times.  Instead, we can use a loop to repeatedly call the function until the probability of observing less than three heads out of ten stabilizes.  If we also have a general idea of how many simulations we want already, we can use the `replicate()` function.
+
+```{r}
+# Calling this function 1000 times is easier with replicate()
+set.seed(26)
+results <- replicate(1000, heads_to_check(3))
+
+# Store Data
+results <- data.frame(results, cum_sum = cumsum(results))
+results$est_prob <- results$cum_sum/1:nrow(results)
+
+head(results)
+
+# Make running average plot
+plot(1:nrow(results), results$est_prob, 
+     ylab = "Estimated Prob", 
+     xlab = "Simulation", 
+     main = "Running average plot: 3 or less heads, from 10 flips")
+
+```
+
+[To play with this simulation on your own click here.](https://rpgarcia.shinyapps.io/coin10/) 
+
+## Working with Known Distributions
+
+
+We can do simulation studies on more than just a single probability. We can also do simulation studies to learn about the distribution of a random variable. Random variables generate observations according to some sort of pattern. These patterns are referred to as distributions, and can be analyzed visually, and analytically (i.e. through formulas).
+
+
+Using a formula as a representation for a density is very versatile and useful. For these functions we have **parameters** which are values that let us further customize the function representation of a density to the specific random variable that we have. Let $X$ be a random variable, and $x$ be some observed value. 
+
+
+If $X$ is a random variable that can only take on values that are discrete (usually integers) then we say the probability of observing some a particular value, say $x$, is denoted $p(x)$. There are extremely well known discrete densities that random variables tend to follow and that are available in R.   A few of them are listed below. 
 
 - **Binomial**: 
 
@@ -49,7 +299,7 @@ $$p(x) = λ^x exp(-λ)/x! \hspace{1cm} x = 0, ..., n$$
 
 $$Γ(x+n)/(Γ(n) x!) p^n (1-p)^x   \hspace{1cm} x = 0, ..., $$
 
-If $X$ is a random variable that can be any value within a range of numbers then we denote the density function of this random variable by $f(x)$. As with discrete random variables, there are extremely well known continuous densities that random variables tend to follow and that are available in R.   A few of them are listed below. 
+If $X$ is a random variable that can be any value within a range of numbers then we denote the density function of this random variable by $f(x)$, this is a continuous random variable. As with discrete random variables, there are extremely well known continuous densities that random variables tend to follow and that are available in R.   A few of them are listed below. 
 
 
 - **Uniform:**
@@ -74,7 +324,7 @@ $$f(x) = Γ((n+1)/2) / (√(n π) Γ(n/2)) (1 + x^2/n)^-((n+1)/2)\hspace{1cm} -\
 
 To see a complete list of well known distribution functions (or densities) that R already has see the help file `?Distributions`. 
 
-## Generating Random Variables
+### Generating Random Variables
 
 Each distribution available in base R is listed in `?Distributions`.  Each of the distributions has a link to their corresponding help file which lists four main functions: `dxxx()`, `pxxx()`, `qxxx()` and `rxxx()`. These are the density function, cumulative distribution function, quantile function, and a random number generator for the particular random variable of interest.  The letters `xxx` are replaced by an code for the particular random variable. The density function (`dxxx()`) generates the relative probability of observing a particular value. The cumulative distribution function (`pxxx()`) generates the probability of observing a particular value, and anything smaller than this value.  The quantile function (`qxxx()`) generates what value corresponds to a given percentile.  Lastly, the random number generator (`rxxx()`) will generate a random variable according to the given distribuiton/density. We will focus only on `dxxx()` and `rxxx()`. 
 
@@ -115,23 +365,112 @@ dnorm(0.25)
 dnorm(c(0.25, -0.5, 2))
 ```
 
-
-## Setting a Seed
-
-Often times when running a simulation we will want to use the same numbers over and over again.  The function `rxxx()` generates values randomly though, which means each time we call this function we will get new and different values.  In order to make sure our values are consistent each time we run R, or across computers we can set the seed.  The seed determines the way the computer generates our random numbers. Normally the seed is random, so each time `rxxx()` is called we get a new random sequence.  Using the `set.seed()` function will make sure that the sequence stays the same each time we run `rxxx()`. 
-
-See the example below were generate a sequence of 10 uniform random variables that are between -5 and 5. If you copy this code directly into your computer you will get the same sequence.  However, if you do not set the seed you will get a different sequence. 
+## Simulating a Distribution
 
 
-```{r}
-set.seed(1)
-runif(10, min = -5, max = 5)
+Recall a binomial random variable $x$. The random variable denotes the number of "successes", where there are $n$ trials.  Each trial has the same probability of success, $p$.  Each trial is also independent.  The probability of failure is $(1-p)$. 
+
+
+The *analytical* expression for the probability of the random variable having *exactly* $x$ successes from $n$ trials is below.
+
+$$ p(x) = \frac{n!}{(n-x)!x!} p^x (1-p)^{(n-x)}$$
+
+Simulating a distribution is similar to simulating event.  However, instead of looking at one probability (say $x\leq3$) we look at the probability of all possible outcomes of the random variable. This is a very similar process as before, but now we have a lot more outcomes to consider. Below we have a simulation for a binomial random variable where $n= 10$, and $p = 0.25$.
+
+```{r, echo = F}
+
+par(mfrow = c(1, 2))
+set.seed(62)
+num_sims <- 100
+parameter_n <- 10
+parameter_p <- 0.25
+
+results <- rbinom(num_sims, parameter_n,  parameter_p)
+hist(results, breaks = -1:(parameter_n), main = "100 Simulations", xlab = "X", freq = F,ylim = c(0, .30))
+
+# True probability denoted   
+for(i in 0:parameter_n){
+    lines(c(i-1, i), 
+          c(dbinom(i, parameter_n, parameter_p),
+            dbinom(i, parameter_n, parameter_p)), col = "red", lwd = 2)
+}
+
+
+set.seed(62)
+num_sims <- 3000
+parameter_n <- 10
+parameter_p <- 0.25
+
+results <- rbinom(num_sims, parameter_n,  parameter_p)
+hist(results, breaks = -1:(parameter_n), main = "3000 Simulations", xlab = "X", freq = F, 
+     ylim = c(0, .30))
+
+# True probability denoted   
+# True probability denoted   
+for(i in 0:parameter_n){
+    lines(c(i-1, i), 
+          c(dbinom(i, parameter_n, parameter_p),
+            dbinom(i, parameter_n, parameter_p)), col = "red", lwd = 2)
+}
+
+par(mfrow = c(1, 1))
 ```
 
 
-## sample()
 
-The `sample()` function is a powerful tool that can let you create your own unique random sequence.  You can sample values with replacement, or without replacement.  You can also assign certain probabilities to certain events.  This is a particularly helpful function for rearranging rows, and for generating a sequence of categorical variables. For example, we can simulate a coin flip. 
+
+
+For this example we know what the true probabilities should be because binomial random variables are very well studied.  The red lines indicate the truth.  How would we know when to stop if we didn't know the truth?  Again, we look for stability.  Just as before, we can pick a particular probability (or column in the histogram) and observes when it starts to stabilize. 
+
+If we want, we can even go a step further and look at *all* probabilities (or columns in the histogram) and check when it starts to stabilize.  [To play with this simulation click here](https://rpgarcia.shinyapps.io/binomial/).  
+
+Caution! Our rule will change based on the situation!  Even with the binomial distribution, we may find different stopping rules depending on $n$ and $p$. Without seeing the "true probability". Try different values of $n$ and $p$, and see at what point you think the histogram becomes "stable". How different where your answers? Did your histogram ever appear stable before it converged to the truth?
+
+## Simulating a Statistic/Mean
+
+We already saw a simulation study based on a single probability, and for a distribution. Simulation studies also apply to certain statistics, like the (arithmetic) mean. Just like probabilities, we have two versions of the mean.
+
+- The theoretical/true/population mean 
+$$\mu$$
+- The sample/empirical/estimated mean 
+
+$$\hat{\mu} \text{   or   } \overline{x}$$
+
+ Examples 
+
+- The average number of cars that go through an intersection an hour. 
+
+- The average height of an adult bison (in feet).
+
+
+
+
+<div class="webnots-information webnots-notification-box">
+The FTS applies to means, just like it applies to probabilities of an event.  That is, as our sample size increases, are empirical mean should converge to the theoretical mean. 
+
+$$\hat{\mu} \rightarrow \mu$$
+</div>
+
+
+For example, it well known that mean for the binomial distribution is $np$, which we can solve with algebra.  We can verify our algebra with a simulation study. [Click here to see see an example of this in action.](https://rpgarcia.shinyapps.io/means_running_binomial/)
+
+
+
+
+
+
+
+
+
+
+
+## Some More Tools 
+
+
+
+### sample()
+
+The `sample()` function is a powerful tool that can let you create your own unique random sequence. We have already used it several times. You can sample values with replacement, or without replacement.  You can also assign certain probabilities to certain events.  This is a particularly helpful function for rearranging rows, and for generating a sequence of categorical variables. For example, we can simulate a coin flip. 
 
 
 ```{r}
@@ -151,65 +490,17 @@ set.seed(1)
 sample(c("Heads", "Tails"), size=10 , prob = c(0.5, 0.5), replace = TRUE)
 ```
 
-
-## Cumulative-Proportion/Cumulative-Win Plots
-
-A fair question to ask with simulations is: "how many simulations do we need for our data to representative?". There are rigorous rules that we can use to determine how many simulations we need until our data set starts to represent the truth; however, we will focus on summary tables and visualization tools for now.  We know we have enough simulations when our data set seems to "stabilize". We track statistics or estimated probability of an event changes as we consider more data. We can visualize this using a cumulative proportion plot.  For example, suppose we want to estimate how often we can expect a coin to land on a "head". We can flip a coin multiple times and record a "1" if it land on a head, and "0" otherwise.  Then we can calculate the proportion of the times that the coin landed on a head, which is the (arithmetic) mean of the 0s and 1s.  If we only flip the coin a few times, then the proportion that we calculate may not be accurate due to random fluctuation.  However, the more coin flips we consider the more likely the proportion we calculate approaches the truth.  We can observe this using a cumulative proportion plot.  In a cumulative proportion plot we have the number of trials on the x-axis, and the estimated proportion of successes using all data up to trial "x" on the y-axis. For example, suppose we flip one coin five times and obtain the results 1, 1, 0, 1, 0.  Then the proportion of successes using "x" number of trials is the following.
-
-- When the number of trials is x = 1, the proportion of times we observe a head is y = (1)/1 = 1
-- When the number of trials is x = 2, the proportion of times we observe a head is y = (1+1)/2 = 1
-- When the number of trials is x = 3, the proportion of times we observe a head is y = (1+1+0)/3 = 2/3
-- When the number of trials is x = 4, the proportion of times we observe a head is y = (1+1+0+1)/4 = 3/4
-- When the number of trials is x = 5, the proportion of times we observe a head is y = (1+1+0+1+0)/5 = 3/5
-
-
-<!-- ```{r} -->
-<!-- library(shiny) -->
-<!-- shinyAppFile( -->
-<!--   "shiny/one_coin/app.R", -->
-<!--   options = list(width = "100%", height = 700) -->
-<!-- ) -->
-<!-- ``` -->
-
-
-## replicate() 
-
-The `replicate()` function repeats a function call `n` times in a very efficient way.  Suppose we wish to find the probability we get exactly 3 heads if we flip a coin 10 times.  We can replicate flipping a coin 10 times, and count how many of these times we see exactly 3 heads. 
+We can also change the probabilities of observing certain events. 
 
 
 ```{r}
-coin_flip_heads3 <- function(){
-        coin_flip <- sample(c("Heads", "Tails"), size=10 , 
-                           prob = c(0.5, 0.5), replace = TRUE)
-        num_heads <- length(which(coin_flip == "Heads"))
-        
-        if(num_heads == 3){
-                heads3 = TRUE
-        } else{
-                heads3 = FALSE
-        }
-        return(heads3)
-}
-
-
-
-# Generates flipping a coin 3 times
-# Returns TRUE if exactly 3 flips resulted in heads
-# Returns FALSE if otherwise 
-coin_flip_heads3()
-
-
-
-# Replicate the experiment 10,000 times
-see_heads3 <- replicate(10000, coin_flip_heads3())
-
-# How many of these experiments results in 3 heads???
-# Probability of seeing exactly 3 heads is approximately 12%
-table(see_heads3)/10000
+set.seed(1)
+sample(c("Heads", "Tails"), size=10 , prob = c(0.1, 0.90), replace = TRUE)
 ```
 
 
-## Adding curves to graphs
+
+### Adding curves to graphs
 
 Often times when generating data or using a real-world data set we might want to see how well a well known distribution fits a particular data set.  We can do so by adding the proposed density function on to a histogram which contains the data set of interest.  For example, suppose we wish to see if a normal distribution with mean of 3.5 and standard deviation of 1.14 fits the old faithful data set for eruption times. We can add this density function on top and see if it approximately fits the data. 
 
@@ -259,9 +550,10 @@ curve(my_fun(x), -10, 10)
 ```
 
 
-## Example: Central Limit Theorem (CLT)
+## Example: Fundamental Theorem of Statistics 
 
-### Recall CLT 
+
+### More Rigorous version of FTS
 
 Let $X_1, ..., X_n$ be independent and identically distributed random variables with mean and variance, $\mu$ and $\sigma^2$. If the sample size is sufficiently large ($n \geq 30$), the sample mean $\bar{x}$ will tend to follow a normal distribution with mean $\mu$ and standard deviation $\frac{\sigma}{\sqrt{n}}$.
 
@@ -269,11 +561,11 @@ In other words, for any set of data $X_1, ..., X_n$ that is independent and come
 
 $$\bar{x} \sim N \left ( \mu, \frac{\sigma}{\sqrt{n}} \right ) $$
 
-The distribution above is a *sampling distribution*.  It is the distribution of a *sample mean*.  That is, if we take $k$ samples, and for each sample we calculated the mean, the central limit theorem tells us about the distribution of these means ($\bar{x}_1, \dots, \bar{x}_k$). 
+The distribution above is a *sampling distribution*.  It is the distribution of a *sample mean*.  That is, if we take $k$ samples, and for each sample we calculated the mean, the FTS tells us about the distribution of these means ($\bar{x}_1, \dots, \bar{x}_k$). 
 
-###  Assumption Violations of CLT 
+###  Assumption Violations of FTS 
 
-The central limit theorem has a few key assumptions.  Some of these assumptions are fairly easy to meet, and others are more susceptible to being violated. For example, typically it is reasonable to assume that mean and variance are finite. Other assumptions are easier to violate, and the consequences of violating these assumptions vary greatly.  Sometimes we may have data that comes from a mix of multiple distributions, this violate the assumption that data is identically distributed.  Another assumption violation could be independence.  For example, in time series data we typically observe a random variable over a sequence of time and measure it repeatedly. This would violate the independence assumption because earlier observations are typically related to future observations. Another assumption that is often violated is the minimum sample size. The central limit theorem says we need at least 30 observations, or else we should use the t-distribution instead. Historically this is usually not a very big problem. The requirement that our sample size is at least 30 is a "rule of thumb" and not based on rigorous statistical theory. 
+The FTS has a few key assumptions.  Some of these assumptions are fairly easy to meet, and others are more susceptible to being violated. For example, typically it is reasonable to assume that mean and variance are finite. Other assumptions are easier to violate, and the consequences of violating these assumptions vary greatly.  Sometimes we may have data that comes from a mix of multiple distributions, this violate the assumption that data is identically distributed.  Another assumption violation could be independence.  For example, in time series data we typically observe a random variable over a sequence of time and measure it repeatedly. This would violate the independence assumption because earlier observations are typically related to future observations. Another assumption that is often violated is the minimum sample size. The FTS says we need at least 30 observations, or else we should use the t-distribution instead. Historically this is usually not a very big problem. The requirement that our sample size is at least 30 is a "rule of thumb" and not based on rigorous statistical theory. 
 
 Below are a summary of these assumptions restated: 
 
@@ -289,7 +581,7 @@ Once we have verified these assumptions, we still need to determine what the mea
 ### The Data 
 
 
-We will see how well the CLT theorem applies to a data set that has a uniform distribution.  That is, say we have a sample of 50 observations which we believe are all uniformly distributed between -5 and 5. We want to determine if the mean of a sample of this type would be normally distributed according to the CLT.  To do so, we simulate a sample of this type 10,000 times and assess if it matches the CLT results. 
+We will see how well the FTS theorem applies to a data set that has a uniform distribution.  That is, say we have a sample of 50 observations which we believe are all uniformly distributed between -5 and 5. We want to determine if the mean of a sample of this type would be normally distributed according to the FTS.  To do so, we simulate a sample of this type 10,000 times and assess if it matches the FTS results. 
 
 ```{r}
 # Simulate a sample of 50 observations that are uniformly distributed 
@@ -313,7 +605,7 @@ hist(sim_means, freq = FALSE)
 ```
 
 
-To add a curve to the graph we need to know the mean and the standard deviation of the data we generated.  For a uniform distribution with a minimum of -5 and a maximum of 5, the mean is 0 and the standard deviation is $10/\sqrt{12} \approx 2.89$.  Thus according to CLT, we expect our histogram above to correspond to a normal density with mean 0 and standard deviation $2.89/\sqrt{50} \approx 0.41$. 
+To add a curve to the graph we need to know the mean and the standard deviation of the data we generated.  For a uniform distribution with a minimum of -5 and a maximum of 5, the mean is 0 and the standard deviation is $10/\sqrt{12} \approx 2.89$.  Thus according to FTS, we expect our histogram above to correspond to a normal density with mean 0 and standard deviation $2.89/\sqrt{50} \approx 0.41$. 
 
 
 ```{r}
@@ -321,26 +613,26 @@ To add a curve to the graph we need to know the mean and the standard deviation 
 # histogram of results
 hist(sim_means, freq = FALSE)
 
-# Add normal curve according to CLT
+# Add normal curve according to FTS
 curve(dnorm(x, mean = 0, sd = 0.41), add = TRUE)
 ```
 
 
-## Example: Coin Flips 
-
-Suppose we are interested in the proportion of times we observe a head if we flip a fair sided coin.  A fair question to ask: "how many simulations do we need to do this?".  There are rigorous rules that we can use to determine how many simulations we need until our data set starts to represent the truth; however, we will focus on summary tables and visualization tools for now.  We know we have enough simulations when our data set seems to "stabilize".  
 
 
+## Simulation Stuides for Statistical Methods 
 
 
+Simulation methods are also used as impartial way to check our theories.
 
-Suppose we flip a coin 10 times and we observe the following results.  
+- Does the central limit theorem really work?
 
-- Heads, Heads, Tails, Tails, Tails, Tails, Heads, Tails, Tails, Tails 
+- Does are method for finding outliers seem good?
 
-With simulation studies we often want to visualize are results using summary tables and graphs.  Lets create a table of the proportion of heads vs the number of trials.
+- Do our confidence intervals make sense?
 
-- Create a plot of the proportion of heads vs the number of trials 
+Simulation studies are useful for more difficult things to calculate or learn about.
 
 
+For example, suppose you want to calculate a 95\% confidence interval for the heights of all college students. Our theory on confidence intervals says that we expect that a 95\% confidence interval will capture the true mean about 95\% of the time. If we simply go out and take a sample of data from "real-life" and then calculate the a confidence interval we have no idea if that confidence interval captures the truth because the true average height of all college students is unknown!  It is not feasible to sample every college students, so we will never know if the true mean actually falls within our interval. Furthermore, in this example we only calculated one confidence interval.  If we did know the true mean then our results would simply indicate that the confidence interval captured the mean or not, but nothing about the *rate* that confidence intervals capture the mean, which should be 95\%. What we can do instead is simulate this process.  We can randomly generate data that has a true mean of $\mu$ using a computer.  Then we can estimate a 95\% confidence interval using the appropriate methods and see if this confidence interval contains $\mu$.  We then can repeat this process as many times as we would like because we are using a computer, which makes the process much simpler.  If our theory about confidence intervals is correct we would expect that 95\% of our confidence intervals captured the true mean ($\mu$), and the rest did not. 
 

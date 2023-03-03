@@ -93,6 +93,7 @@ More Plot Formats
 For even more packages that extend Base R graphics: https://blog.insileco.io/wiki/rgraphpkgs/
 
 
+
 ```{r, eval = F, include = F}
 library("emojifont")
 set.seed(123)

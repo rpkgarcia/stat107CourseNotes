@@ -115,7 +115,7 @@
 
 \title{STAT 107 Outline of Class Notes}
 \author{Rebecca Kurtz-Garcia}
-\date{2023-02-08}
+\date{2023-03-03}
 
 \begin{document}
 \maketitle
@@ -4804,8 +4804,8 @@ One of the critical things about if-statements is that they require that we use 
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in if (x > 0) {: the condition has length > 1 and only the first element
-## will be used
+## Warning in if (x > 0) {: the condition has length > 1 and only the first
+## element will be used
 \end{verbatim}
 
 \begin{Shaded}
@@ -5506,8 +5506,8 @@ Let us consider a more complicated example where we might want to consider an \t
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in if (x > 0) {: the condition has length > 1 and only the first element
-## will be used
+## Warning in if (x > 0) {: the condition has length > 1 and only the first
+## element will be used
 \end{verbatim}
 
 With the above code we have an warning message because if-statements can only accept logical vectors of length 1, and our expression is generating a logical vector of length greater than 1. To use \texttt{sapply()} to vectorized this operation we need to change this chain of if-statements into a function.
@@ -7983,41 +7983,309 @@ Below we create a function that has only one argument, \texttt{bound}, a numeric
 \hypertarget{what-are-simulation-studies}{%
 \section{What Are Simulation Studies}\label{what-are-simulation-studies}}
 
-Simulation studies are used in statistics to verify theoretical results, and to do ``what-if'' experiments. The are commonly used in a variety of applications and fields. Often times we have a particular theory or an idea about how things work. In order to verify that our theory is correct we can simulate a data set with known properties, and then check if the data set matches our theory. For example, suppose you want to calculate a 95\% confidence interval for the heights of all college students. Our theory on confidence intervals says that we expect that a 95\% confidence interval will capture the true mean about 95\% of the time. If we simply go out and take a sample of data from ``real-life'' and then calculate the a confidence interval we have no idea if that confidence interval captures the truth because the true average height of all college students is unknown! It is not feasible to sample every college students, so we will never know if the true mean actually falls within our interval. Furthermore, in this example we only calculated one confidence interval. If we did know the true mean then our results would simply indicate that the confidence interval captured the mean or not, but nothing about the \emph{rate} that confidence intervals capture the mean, which should be 95\%. What we can do instead is simulate this process. We can randomly generate data that has a true mean of \(\mu\) using a computer. Then we can estimate a 95\% confidence interval using the appropriate methods and see if this confidence interval contains \(\mu\). We then can repeat this process as many times as we would like because we are using a computer, which makes the process much simpler. If our theory about confidence intervals is correct we would expect that 95\% of our confidence intervals captured the true mean (\(\mu\)), and the rest did not.
+Simulation studies are used in statistics to verify theoretical results, and to do ``what-if'' experiments. The are commonly used in a variety of applications and fields. Often times we have a particular theory or an idea about how things work. In order to verify that our theory is correct we can simulate a data set with known properties, and then check if the data set matches our theory. In short, a simulation study is a computer experiment that involves creating data that is used to estimate probabilities, densities, statistics, and compare performance of methods.
 
-Simulations are very important, and can range greatly in complexity. We will focus on simple techniques in this section. For a more complete discussion on simulation studies in statistics, and best practices see this freely available online at \url{https://onlinelibrary.wiley.com/doi/10.1002/sim.8086}.
+Simulations are very important, and can range greatly in complexity. We will focus on simple techniques in this section. For a more complete discussion on simulation studies in statistics, and best practices see this freely available article online at \url{https://onlinelibrary.wiley.com/doi/10.1002/sim.8086}.
 
-\hypertarget{review-random-variables}{%
-\section{Review Random Variables}\label{review-random-variables}}
+\hypertarget{review-random-variables-and-probability}{%
+\section{Review Random Variables and Probability}\label{review-random-variables-and-probability}}
 
-Before discussing how to simulate data with specific properties we review the concept of a random variable. This discussion is adapted primarily from Chapter 3 and 4 of \citet{OpenIntro}. A \textbf{random variable} is a random process or variable with a numeric outcome. Random variables in general have a typical value which is called the \textbf{expected value}. However, in practice random variables also have variability, that is we do not expect to obtain the expected value for every random variable. Instead we expect to observe a range of values according to some sort of pattern, which is usually centered around the expected value.
+Before discussing how to simulate data with specific properties we review the concept of a random variable. This discussion is adapted primarily from Chapter 3 and 4 of \citet{OpenIntro}. A \textbf{random variable} is a random process or variable with a numeric outcome. Each outcome is associated with a particular probability. The \textbf{distribution} of a random variable is a map for the possible outcomes and the respective probabilities. Distributions can be in the form of tables, histograms, and formulas. Random variables in general have a typical value which is called the \textbf{expected value}, this is the most common value we would expect the random variable to be. However, in practice random variables also have variability, so we do not expect to obtain the expected value for every random variable.
 
-For example, in Yellowstone National Park, Wyoming there is a famous geyser called Old Faithful. A geyser is a natural hot spring that periodically erupts water. The amount of time (in minutes) the eruption lasts varies each time, but not by a dramatic amount. The eruption time in minutes is the random variable, and the expected value is the average eruption length, and we can measure the variability using a measure of dispersion, like the variance. Below is a histogram of a random sample of eruptions times of 272 different eruptions.
+Some examples of random variables include: what side a fair sided coin lands on, what side a dice lands on, and how tall an adult bison is. We can ask about specific probabilities associated with this random variables. Some probabilities are easier to find than others:
+
+\begin{itemize}
+\item
+  Suppose we flip a fair sided coin. What is the probability we land on a head?
+\item
+  Suppose we role a fair d6. What is the probability we land on a 5 or a 6?
+\item
+  Suppose we measure the height of an adult bison (in feet). What is the probability the height is between 4ft and 6ft?
+\end{itemize}
+
+\hypertarget{probability}{%
+\subsection{Probability}\label{probability}}
+
+We like to analyze random variables and study the probability of a particular set of outcomes, an \textbf{event}. There are two types of probabilities we can think of.
+
+\begin{itemize}
+\item
+  \textbf{Empirical Probability}: a probability based on, concerned with, or verifiable by observation or experience
+
+  \begin{itemize}
+  \item
+    Based on observed/sample data
+  \item
+    Let \(X=\) the number of times we observe an event, and \(n=\) the number of trials
+  \item
+    The empirical probability of an event is \(\hat{p} = \frac{X}{n}\)
+  \item
+    Also known as the sample estimate
+  \end{itemize}
+\item
+  \textbf{Theoretical Probability}: a probability based on a system of ideas intended to explain something, especially one based on general principles independent of the thing to be explained.
+
+  \begin{itemize}
+  \item
+    Based on a statistical, physical, or biological principals.
+  \item
+    It is a probability we would expect ``in theory''.
+  \item
+    Denoted by \(p\)
+  \item
+    Sometimes called the hypothesized probability
+  \end{itemize}
+\end{itemize}
+
+In real life we do not know the true probability, instead we have a probability we expect \emph{in theory}, and we estimate a probability using \emph{empirical/sample} data. Then we check if our estimate and theory are similar. Both types of probabilities follow the same rules and axioms we learn in introductory statistics courses.
+
+\hypertarget{fundamental-theorem-of-statistics}{%
+\subsection{Fundamental Theorem of Statistics}\label{fundamental-theorem-of-statistics}}
+
+\includegraphics{images/super.png}
+
+The fundamental theorem of statistics (FTS) connects empirical probabilities and theoretical probabilities together. This theorem goes by many names: \emph{Central Limit Theorem} , \emph{Law of Large Numbers}, etc. It is the ``Superman'' of statistical theories, and is HUGELY important in statistics. For many statistical inference methods (confidence intervals, p-values, hypothesis tests), we have a theory (theoretical probability), we get a sample and calculate an estimate (empirical probability), and then we check if the two types are similar to each other and make a conclusion. The FTS says that our empirical probability eventually will converge to the true probability as the sample size gets larger. So if our empirical probability and theoretical probability are close together, then are theory is likely to be correct. In contrast, if they are not close together, are theory is likely to be wrong.
+
+By the \textbf{\emph{Fundamental Theorem of Statistics}}, we expect that our empirical probabilities converge to the theoretical/true probabilities as the sample size increases.
+
+\[\hat{p} \rightarrow p\]
+
+Many different versions of this theorem, and different names for the theorem. We have discussed this theorem in terms of probabilities, but we can also talk about it in terms of statistics, like the arithmetic mean. The principal is the same though, the empirical estimate will eventually converge to the true value as the sample size increases. This means bigger samples are more likely to converge to the truth, but how big should it be?
+
+\hypertarget{simulating-an-event}{%
+\section{Simulating an Event}\label{simulating-an-event}}
+
+Suppose we have a fair sided coin and want to know the probability of flipping a heads. Our knowledge about coins tells us that the probability should be 0.5. This is the probability we expect \textbf{in theory} based on outside knowledge. However, we can also simulate flipping a coin, and estimating the probability of getting a head. Suppose we flip a coin 10 times and count how many heads we observe: H, H, T, T, T, T, H, T, T, T
+
+We can create a data frame which shows are estimated probability based on the number of simulations we have.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{hist}\NormalTok{(faithful}\OperatorTok{$}\NormalTok{eruptions, }\DataTypeTok{main =} \StringTok{"Eruption Times of Old Faithful"}\NormalTok{,}
-    \DataTypeTok{xlab =} \StringTok{"Time (in minutes)"}\NormalTok{, }\DataTypeTok{breaks =} \KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DataTypeTok{by =} \FloatTok{0.5}\NormalTok{))}
+\NormalTok{NumHeads <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+\NormalTok{CumHeads <-}\StringTok{ }\KeywordTok{cumsum}\NormalTok{(NumHeads)}
+\NormalTok{EstHeads <-}\StringTok{ }\NormalTok{CumHeads}\OperatorTok{/}\DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(NumHeads)}
+
+\NormalTok{results <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(NumHeads, CumHeads, EstHeads)}
+\NormalTok{results}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-276-1.pdf}
+\begin{verbatim}
+##    NumHeads CumHeads  EstHeads
+## 1         1        1 1.0000000
+## 2         1        2 1.0000000
+## 3         0        2 0.6666667
+## 4         0        2 0.5000000
+## 5         0        2 0.4000000
+## 6         0        2 0.3333333
+## 7         1        3 0.4285714
+## 8         0        3 0.3750000
+## 9         0        3 0.3333333
+## 10        0        3 0.3000000
+\end{verbatim}
 
-As mentioned previously, random variables generate observations according to some sort of pattern. These patterns are referred to as \textbf{densities}, and can be analyzed visually, and analytically (i.e.~through formulas). One of the most common ways to look at how often we would expect certain values for data that we find from the ``real-world'' is to use a histogram. Histogram order observations into mutually exclusive bins, where the height of each bin indicates how common a particular range of values is. For example, in the histogram above each bin is a 30 second (0.5 minute) range, and we can see the frequency of observations within the data set that are in this range on the y-axis. When thinking about random variables though, it is often more helpful to look at the proportion of observed values within a bin, instead of the frequency. We can modify our histogram to accomplish this.
+Each row \(i\) of the data frame represents simulation \(i\). The first column denotes when a head was observed, using a 1 for head and 0 for tails. The second column has the number of heads by simulation \(i\), this is known as the \emph{cumulative number of heads}. The third column has the estimated/empirical probability of observing a heads using all the information up to simulation \(i\), which we can denote as \(\hat{p}_i\). Our final estimate for probability of observing a heads using this simulation study is \(\hat{p}_{10} = 0.3\). Is this a good simulation study?
+
+\hypertarget{running-average-plot}{%
+\subsection{Running Average Plot}\label{running-average-plot}}
+
+If we only flip the coin a few times, then the estimated probability that may not be accurate due to random fluctuation. However, the more coin flips we consider the more likely the estimated probability approaches the truth (which we known due to FTS). A fair question to ask with simulations is: ``how many simulations do we need?''. There are rigorous rules that we can use to determine how many simulations we need until our estimate converges to the truth; however, we will focus on summary tables and visualization tools for now. We know we have enough simulations when our estimate seems to ``stabilize''. We can track the statistics or the estimated probability as we consider more simulations. We can visualize this using a \textbf{running average plot}, also known as a \textbf{cumulative proportion plot}. In a running average plot we have the number of trials on the x-axis, and the estimated probability using all data up to trial \(i\) on the y-axis. For example, consider the first five coin flips above: 1, 1, 0, 0, 0. Then the estimated probability of successes using ``n'' number of trials is the following.
+
+\begin{itemize}
+\tightlist
+\item
+  When the number of trials is \(n = 1\), the estimated probability of a head is \(\hat{p}_1 = (1)/1 = 1\)
+\item
+  When the number of trials is \(n = 2\), the estimated probability of a head is \(\hat{p}_2 = (1+1)/2 = 1\)
+\item
+  When the number of trials is \(n = 3\), the estimated probability of a head is \(\hat{p}_3 = (1+1+0)/3 = 2/3\)
+\item
+  When the number of trials is \(n = 4\), the estimated probability of a head is \(\hat{p}_4 = (1+1+0+0)/4 = 2/4\)
+\item
+  When the number of trials is \(n = 5\), the estimated probability of a head is\(\hat{p}_5 = (1+1+0+0+0)/5 = 2/5\)
+\end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{hist}\NormalTok{(faithful}\OperatorTok{$}\NormalTok{eruptions, }\DataTypeTok{main =} \StringTok{"Eruption Times of Old Faithful"}\NormalTok{,}
-    \DataTypeTok{xlab =} \StringTok{"Time (in minutes)"}\NormalTok{, }\DataTypeTok{breaks =} \KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DataTypeTok{by =} \FloatTok{0.5}\NormalTok{),}
-    \DataTypeTok{freq =} \OtherTok{FALSE}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(NumHeads), results}\OperatorTok{$}\NormalTok{EstHeads, }\DataTypeTok{main =} \StringTok{"Running Average Plot"}\NormalTok{,}
+    \DataTypeTok{xlab =} \StringTok{"Simulation"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Estimated Probability"}\NormalTok{, }\DataTypeTok{type =} \StringTok{"b"}\NormalTok{,}
+    \DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-277-1.pdf}
 
-Notice that the y-axis now says ``Density''. This is the relative probability that an observed data point will be a particular value. In ``real-world'' data, we can only estimate the density. We will never know the truth. Hence, we will never know the true expected value, or the true variance. This is why we have statistics!! We have statistics in order to make educated guesses about these values and properties from which the data arises from.
+Clearly, 10 coin flips is not enough. The plot is a bit erratic, and our final estimate is 0.3. We know we have not done enough simulations because we know the probability of getting a head is 0.5.
 
-Analyzing the density or pattern of a random variable visually with histograms is intuitive, but limiting. Using a formula as a representation for a density is much more versatile and useful. For these functions we have \textbf{parameters} which are values that let us further customize the function representation of a density to the specific random variable that we have. Let \(X\) be a random variable, and \(x\) be some observed value. In practice, if \(X\) is a random variable that can only take on values that are discrete (usually integers) then we say the probability of observing some a particular value, say \(x\), is denoted \(p(x)\). There are extremely well known discrete densities that random variables tend to follow and that are available in R. A few of them are listed below.
+\hypertarget{set-seed}{%
+\subsection{Set Seed}\label{set-seed}}
+
+Another problem is the simulation itself. If you repeated this simulation you would get a very different answer. Often times when running a simulation we will want to use the same numbers over and over again. The function \texttt{sample()} generates values randomly though, which means each time we call this function we will get new and different values. In order to make sure our values are consistent each time we run R, or across computers we can set the seed. The seed determines the way the computer generates our random numbers. Normally the seed is random, so each time \texttt{sample()} is called we get a new random sequence. Using the \texttt{set.seed()} function will make sure that the sequence stays the same. Notice with different seeds we get different results.
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-278-1.pdf}
+
+\hypertarget{stopping-rules}{%
+\subsection{Stopping Rules}\label{stopping-rules}}
+
+It can be difficult to know when to stop the simulation. In general we need enough simulations so that way the estimate becomes \emph{stable}. That is, until the plot stops behaving erratically regardless of the seed. \href{https://rpgarcia.shinyapps.io/Coin1/}{You can try this simulation on your own, and see when how many simulations you need for the estimate to become stable and try different seeds}.
+
+Some simulations studies implement an \textbf{stopping rule}. A common stopping rule is to stop the simulation when \(|p_i - p_{i-1}| < c\), where \(c\) is some small number like 0.001. When using a stopping rule like this it is a good idea to initialize your simulations with a few trials to prevent stopping really early.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Initialize results with 10 simulations}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\NormalTok{NumHeads <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{), }\DecValTok{10}\NormalTok{, }\DataTypeTok{replace =}\NormalTok{ T)}
+\NormalTok{CumHeads <-}\StringTok{ }\KeywordTok{cumsum}\NormalTok{(NumHeads)}
+\NormalTok{EstHeads <-}\StringTok{ }\NormalTok{CumHeads}\OperatorTok{/}\DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(NumHeads)}
+\NormalTok{results <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(NumHeads, CumHeads, EstHeads)}
+\NormalTok{i <-}\StringTok{ }\KeywordTok{nrow}\NormalTok{(results)}
+
+\CommentTok{# Make a while loop that stops once estimate stablizes}
+\ControlFlowTok{while}\NormalTok{ (}\KeywordTok{abs}\NormalTok{(results}\OperatorTok{$}\NormalTok{EstHeads[i] }\OperatorTok{-}\StringTok{ }\NormalTok{results}\OperatorTok{$}\NormalTok{EstHeads[i }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{]) }\OperatorTok{>}\StringTok{ }\FloatTok{0.001}\NormalTok{) \{}
+\NormalTok{    new_sim <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{), }\DecValTok{1}\NormalTok{, }\DataTypeTok{replace =}\NormalTok{ T)}
+\NormalTok{    new_cum_sum <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(results}\OperatorTok{$}\NormalTok{NumHeads, new_sim)}
+\NormalTok{    new_est_prob <-}\StringTok{ }\NormalTok{new_cum_sum}\OperatorTok{/}\NormalTok{i}
+\NormalTok{    new_row <-}\StringTok{ }\KeywordTok{c}\NormalTok{(new_sim, new_cum_sum, new_est_prob)}
+
+\NormalTok{    results <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(results, new_row)}
+
+\NormalTok{    i <-}\StringTok{ }\NormalTok{i }\OperatorTok{+}\StringTok{ }\DecValTok{1}
+
+    \CommentTok{# Safety precaution to prevent loop running forever}
+    \ControlFlowTok{if}\NormalTok{ (i }\OperatorTok{>}\StringTok{ }\DecValTok{10000}\NormalTok{) \{}
+        \ControlFlowTok{break}
+\NormalTok{    \}}
+\NormalTok{\}}
+
+\KeywordTok{tail}\NormalTok{(results)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     NumHeads CumHeads  EstHeads
+## 484        1      248 0.5134576
+## 485        1      249 0.5144628
+## 486        0      249 0.5134021
+## 487        0      249 0.5123457
+## 488        1      250 0.5133470
+## 489        1      251 0.5143443
+\end{verbatim}
+
+It looks like it took 489 simulations to stabilize.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(results), results}\OperatorTok{$}\NormalTok{EstHeads, }\DataTypeTok{main =} \StringTok{"Running Average Plot"}\NormalTok{,}
+    \DataTypeTok{xlab =} \StringTok{"Simulation"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Estimated Probability"}\NormalTok{, }\DataTypeTok{type =} \StringTok{"b"}\NormalTok{,}
+    \DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-280-1.pdf}
+
+\hypertarget{another-example}{%
+\subsection{Another Example}\label{another-example}}
+
+We can also look at more complicated examples. For example, consider flipping 10 coins for each simulation and we want to know the probability getting three heads or less. This is a harder question, so we might consider creating a function to generate the results more succinctly. The function below returns a 1 if there are less than \texttt{less\_than\_value} heads out of ten coin flips.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{heads_to_check <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(less_than_value) \{}
+\NormalTok{    flip_results <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"Heads"}\NormalTok{, }\StringTok{"Tails"}\NormalTok{), }\DecValTok{10}\NormalTok{, }\DataTypeTok{replace =}\NormalTok{ T)}
+\NormalTok{    index_heads <-}\StringTok{ }\KeywordTok{which}\NormalTok{(flip_results }\OperatorTok{==}\StringTok{ "Heads"}\NormalTok{)}
+\NormalTok{    num_heads <-}\StringTok{ }\KeywordTok{length}\NormalTok{(index_heads)}
+
+    \ControlFlowTok{if}\NormalTok{ (num_heads }\OperatorTok{<=}\StringTok{ }\NormalTok{less_than_value) \{}
+\NormalTok{        heads_less_than_value <-}\StringTok{ }\DecValTok{1}
+\NormalTok{    \} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{        heads_less_than_value <-}\StringTok{ }\DecValTok{0}
+\NormalTok{    \}}
+
+    \KeywordTok{return}\NormalTok{(heads_less_than_value)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Now each time we call this function it generates the random data for us. The following code generates three simulations.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{heads_to_check}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{heads_to_check}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{heads_to_check}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+This is useful, but it is impractical to call this function hundreds of times. Instead, we can use a loop to repeatedly call the function until the probability of observing less than three heads out of ten stabilizes. If we also have a general idea of how many simulations we want already, we can use the \texttt{replicate()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Calling this function 1000 times is easier with}
+\CommentTok{# replicate()}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{26}\NormalTok{)}
+\NormalTok{results <-}\StringTok{ }\KeywordTok{replicate}\NormalTok{(}\DecValTok{1000}\NormalTok{, }\KeywordTok{heads_to_check}\NormalTok{(}\DecValTok{3}\NormalTok{))}
+
+\CommentTok{# Store Data}
+\NormalTok{results <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(results, }\DataTypeTok{cum_sum =} \KeywordTok{cumsum}\NormalTok{(results))}
+\NormalTok{results}\OperatorTok{$}\NormalTok{est_prob <-}\StringTok{ }\NormalTok{results}\OperatorTok{$}\NormalTok{cum_sum}\OperatorTok{/}\DecValTok{1}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(results)}
+
+\KeywordTok{head}\NormalTok{(results)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   results cum_sum  est_prob
+## 1       0       0 0.0000000
+## 2       1       1 0.5000000
+## 3       0       1 0.3333333
+## 4       0       1 0.2500000
+## 5       0       1 0.2000000
+## 6       0       1 0.1666667
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Make running average plot}
+\KeywordTok{plot}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(results), results}\OperatorTok{$}\NormalTok{est_prob, }\DataTypeTok{ylab =} \StringTok{"Estimated Prob"}\NormalTok{,}
+    \DataTypeTok{xlab =} \StringTok{"Simulation"}\NormalTok{, }\DataTypeTok{main =} \StringTok{"Running average plot: 3 or less heads, from 10 flips"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-283-1.pdf}
+
+\href{https://rpgarcia.shinyapps.io/coin10/}{To play with this simulation on your own click here.}
+
+\hypertarget{working-with-known-distributions}{%
+\section{Working with Known Distributions}\label{working-with-known-distributions}}
+
+We can do simulation studies on more than just a single probability. We can also do simulation studies to learn about the distribution of a random variable. Random variables generate observations according to some sort of pattern. These patterns are referred to as distributions, and can be analyzed visually, and analytically (i.e.~through formulas).
+
+Using a formula as a representation for a density is very versatile and useful. For these functions we have \textbf{parameters} which are values that let us further customize the function representation of a density to the specific random variable that we have. Let \(X\) be a random variable, and \(x\) be some observed value.
+
+If \(X\) is a random variable that can only take on values that are discrete (usually integers) then we say the probability of observing some a particular value, say \(x\), is denoted \(p(x)\). There are extremely well known discrete densities that random variables tend to follow and that are available in R. A few of them are listed below.
 
 \begin{itemize}
 \tightlist
@@ -8037,7 +8305,7 @@ Analyzing the density or pattern of a random variable visually with histograms i
 
 \[Γ(x+n)/(Γ(n) x!) p^n (1-p)^x   \hspace{1cm} x = 0, ..., \]
 
-If \(X\) is a random variable that can be any value within a range of numbers then we denote the density function of this random variable by \(f(x)\). As with discrete random variables, there are extremely well known continuous densities that random variables tend to follow and that are available in R. A few of them are listed below.
+If \(X\) is a random variable that can be any value within a range of numbers then we denote the density function of this random variable by \(f(x)\), this is a continuous random variable. As with discrete random variables, there are extremely well known continuous densities that random variables tend to follow and that are available in R. A few of them are listed below.
 
 \begin{itemize}
 \tightlist
@@ -8076,7 +8344,7 @@ If \(X\) is a random variable that can be any value within a range of numbers th
 To see a complete list of well known distribution functions (or densities) that R already has see the help file \texttt{?Distributions}.
 
 \hypertarget{generating-random-variables}{%
-\section{Generating Random Variables}\label{generating-random-variables}}
+\subsection{Generating Random Variables}\label{generating-random-variables}}
 
 Each distribution available in base R is listed in \texttt{?Distributions}. Each of the distributions has a link to their corresponding help file which lists four main functions: \texttt{dxxx()}, \texttt{pxxx()}, \texttt{qxxx()} and \texttt{rxxx()}. These are the density function, cumulative distribution function, quantile function, and a random number generator for the particular random variable of interest. The letters \texttt{xxx} are replaced by an code for the particular random variable. The density function (\texttt{dxxx()}) generates the relative probability of observing a particular value. The cumulative distribution function (\texttt{pxxx()}) generates the probability of observing a particular value, and anything smaller than this value. The quantile function (\texttt{qxxx()}) generates what value corresponds to a given percentile. Lastly, the random number generator (\texttt{rxxx()}) will generate a random variable according to the given distribuiton/density. We will focus only on \texttt{dxxx()} and \texttt{rxxx()}.
 
@@ -8091,7 +8359,7 @@ For example, go to \texttt{?Distributions} and click on \texttt{dnorm} which cor
 \end{Shaded}
 
 \begin{verbatim}
-## [1] -0.9734186
+## [1] -0.1545059
 \end{verbatim}
 
 \begin{Shaded}
@@ -8103,10 +8371,10 @@ For example, go to \texttt{?Distributions} and click on \texttt{dnorm} which cor
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] -0.044839783  1.100497403  0.643893414  1.158084038 -0.104914360
-##  [6] -1.392449727  1.018245804  0.826401081  1.289595050 -0.643231482
-## [11] -0.001173311 -1.948468606  0.680949495  0.274233523 -1.905682922
-## [16] -1.207395634  0.379645715 -0.832700980 -1.480467865  1.045205002
+##  [1] -1.73183694 -1.17100630 -0.14981662 -0.10343645  0.63199579  0.48543427
+##  [7]  0.04936201  0.92111550 -0.25092886 -0.86457930 -1.52886442 -0.02578830
+## [13] -0.87182251 -1.56344137 -2.64338842 -0.10758754  0.28252965 -0.46907419
+## [19] -0.36083998  1.29157163
 \end{verbatim}
 
 However, as we saw in the previous section, these common distribution functions have parameters which let us further customize the behavior of the random variable. We can change the parameters of any of the distributions in R using the function arguments.
@@ -8120,7 +8388,7 @@ However, as we saw in the previous section, these common distribution functions 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 10.60169
+## [1] 10.72924
 \end{verbatim}
 
 \begin{Shaded}
@@ -8132,9 +8400,9 @@ However, as we saw in the previous section, these common distribution functions 
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 10.571749  9.600775 10.356771 10.007255 10.532656  9.918810  9.633491
-##  [8] 10.141749  9.903283 10.774333 10.138772  9.615449 10.785818 10.650341
-## [15] 10.024944  9.791361 10.094124 10.505912 10.409901 10.263248
+##  [1] 10.057270 10.838536 10.778326 10.028733  9.411916 10.676765  9.968147
+##  [8] 10.144458  9.480794 10.211399 10.513579 10.003038  9.445457  9.698689
+## [15]  9.477504 10.463018 10.279815 10.548096 10.006456  9.745363
 \end{verbatim}
 
 To find the relative probability of observing a particular value for a normal distribution we use \texttt{dnorm()}.
@@ -8165,29 +8433,63 @@ To find the relative probability of observing a particular value for a normal di
 ## [1] 0.38666812 0.35206533 0.05399097
 \end{verbatim}
 
-\hypertarget{setting-a-seed}{%
-\section{Setting a Seed}\label{setting-a-seed}}
+\hypertarget{simulating-a-distribution}{%
+\section{Simulating a Distribution}\label{simulating-a-distribution}}
 
-Often times when running a simulation we will want to use the same numbers over and over again. The function \texttt{rxxx()} generates values randomly though, which means each time we call this function we will get new and different values. In order to make sure our values are consistent each time we run R, or across computers we can set the seed. The seed determines the way the computer generates our random numbers. Normally the seed is random, so each time \texttt{rxxx()} is called we get a new random sequence. Using the \texttt{set.seed()} function will make sure that the sequence stays the same each time we run \texttt{rxxx()}.
+Recall a binomial random variable \(x\). The random variable denotes the number of ``successes'', where there are \(n\) trials. Each trial has the same probability of success, \(p\). Each trial is also independent. The probability of failure is \((1-p)\).
 
-See the example below were generate a sequence of 10 uniform random variables that are between -5 and 5. If you copy this code directly into your computer you will get the same sequence. However, if you do not set the seed you will get a different sequence.
+The \emph{analytical} expression for the probability of the random variable having \emph{exactly} \(x\) successes from \(n\) trials is below.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
-\KeywordTok{runif}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DataTypeTok{min =} \DecValTok{-5}\NormalTok{, }\DataTypeTok{max =} \DecValTok{5}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\[ p(x) = \frac{n!}{(n-x)!x!} p^x (1-p)^{(n-x)}\]
 
-\begin{verbatim}
-##  [1] -2.3449134 -1.2787610  0.7285336  4.0820779 -2.9831807  3.9838968
-##  [7]  4.4467527  1.6079779  1.2911404 -4.3821373
-\end{verbatim}
+Simulating a distribution is similar to simulating event. However, instead of looking at one probability (say \(x\leq3\)) we look at the probability of all possible outcomes of the random variable. This is a very similar process as before, but now we have a lot more outcomes to consider. Below we have a simulation for a binomial random variable where \(n= 10\), and \(p = 0.25\).
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-287-1.pdf}
+
+For this example we know what the true probabilities should be because binomial random variables are very well studied. The red lines indicate the truth. How would we know when to stop if we didn't know the truth? Again, we look for stability. Just as before, we can pick a particular probability (or column in the histogram) and observes when it starts to stabilize.
+
+If we want, we can even go a step further and look at \emph{all} probabilities (or columns in the histogram) and check when it starts to stabilize. \href{https://rpgarcia.shinyapps.io/binomial/}{To play with this simulation click here}.
+
+Caution! Our rule will change based on the situation! Even with the binomial distribution, we may find different stopping rules depending on \(n\) and \(p\). Without seeing the ``true probability''. Try different values of \(n\) and \(p\), and see at what point you think the histogram becomes ``stable''. How different where your answers? Did your histogram ever appear stable before it converged to the truth?
+
+\hypertarget{simulating-a-statisticmean}{%
+\section{Simulating a Statistic/Mean}\label{simulating-a-statisticmean}}
+
+We already saw a simulation study based on a single probability, and for a distribution. Simulation studies also apply to certain statistics, like the (arithmetic) mean. Just like probabilities, we have two versions of the mean.
+
+\begin{itemize}
+\tightlist
+\item
+  The theoretical/true/population mean
+  \[\mu\]
+\item
+  The sample/empirical/estimated mean
+\end{itemize}
+
+\[\hat{\mu} \text{   or   } \overline{x}\]
+
+Examples
+
+\begin{itemize}
+\item
+  The average number of cars that go through an intersection an hour.
+\item
+  The average height of an adult bison (in feet).
+\end{itemize}
+
+The FTS applies to means, just like it applies to probabilities of an event. That is, as our sample size increases, are empirical mean should converge to the theoretical mean.
+
+\[\hat{\mu} \rightarrow \mu\]
+
+For example, it well known that mean for the binomial distribution is \(np\), which we can solve with algebra. We can verify our algebra with a simulation study. \href{https://rpgarcia.shinyapps.io/means_running_binomial/}{Click here to see see an example of this in action.}
+
+\hypertarget{some-more-tools}{%
+\section{Some More Tools}\label{some-more-tools}}
 
 \hypertarget{sample}{%
-\section{sample()}\label{sample}}
+\subsection{sample()}\label{sample}}
 
-The \texttt{sample()} function is a powerful tool that can let you create your own unique random sequence. You can sample values with replacement, or without replacement. You can also assign certain probabilities to certain events. This is a particularly helpful function for rearranging rows, and for generating a sequence of categorical variables. For example, we can simulate a coin flip.
+The \texttt{sample()} function is a powerful tool that can let you create your own unique random sequence. We have already used it several times. You can sample values with replacement, or without replacement. You can also assign certain probabilities to certain events. This is a particularly helpful function for rearranging rows, and for generating a sequence of categorical variables. For example, we can simulate a coin flip.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8208,8 +8510,8 @@ Below is the code for simulating 10 coin flips.
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "Tails" "Heads" "Tails" "Heads" "Tails" "Heads" "Heads" "Tails" "Heads"
-## [10] "Heads"
+##  [1] "Tails" "Heads" "Heads" "Tails" "Heads" "Tails" "Heads" "Heads" "Tails"
+## [10] "Tails"
 \end{verbatim}
 
 We can set the seed like we did before in order to insure we keep getting the same sample each time we run this code.
@@ -8226,77 +8528,22 @@ We can set the seed like we did before in order to insure we keep getting the sa
 ## [10] "Tails"
 \end{verbatim}
 
-\hypertarget{cumulative-proportioncumulative-win-plots}{%
-\section{Cumulative-Proportion/Cumulative-Win Plots}\label{cumulative-proportioncumulative-win-plots}}
-
-A fair question to ask with simulations is: ``how many simulations do we need for our data to representative?''. There are rigorous rules that we can use to determine how many simulations we need until our data set starts to represent the truth; however, we will focus on summary tables and visualization tools for now. We know we have enough simulations when our data set seems to ``stabilize''. We track statistics or estimated probability of an event changes as we consider more data. We can visualize this using a cumulative proportion plot. For example, suppose we want to estimate how often we can expect a coin to land on a ``head''. We can flip a coin multiple times and record a ``1'' if it land on a head, and ``0'' otherwise. Then we can calculate the proportion of the times that the coin landed on a head, which is the (arithmetic) mean of the 0s and 1s. If we only flip the coin a few times, then the proportion that we calculate may not be accurate due to random fluctuation. However, the more coin flips we consider the more likely the proportion we calculate approaches the truth. We can observe this using a cumulative proportion plot. In a cumulative proportion plot we have the number of trials on the x-axis, and the estimated proportion of successes using all data up to trial ``x'' on the y-axis. For example, suppose we flip one coin five times and obtain the results 1, 1, 0, 1, 0. Then the proportion of successes using ``x'' number of trials is the following.
-
-\begin{itemize}
-\tightlist
-\item
-  When the number of trials is x = 1, the proportion of times we observe a head is y = (1)/1 = 1
-\item
-  When the number of trials is x = 2, the proportion of times we observe a head is y = (1+1)/2 = 1
-\item
-  When the number of trials is x = 3, the proportion of times we observe a head is y = (1+1+0)/3 = 2/3
-\item
-  When the number of trials is x = 4, the proportion of times we observe a head is y = (1+1+0+1)/4 = 3/4
-\item
-  When the number of trials is x = 5, the proportion of times we observe a head is y = (1+1+0+1+0)/5 = 3/5
-\end{itemize}
-
-\hypertarget{replicate-1}{%
-\section{replicate()}\label{replicate-1}}
-
-The \texttt{replicate()} function repeats a function call \texttt{n} times in a very efficient way. Suppose we wish to find the probability we get exactly 3 heads if we flip a coin 10 times. We can replicate flipping a coin 10 times, and count how many of these times we see exactly 3 heads.
+We can also change the probabilities of observing certain events.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{coin_flip_heads3 <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{() \{}
-\NormalTok{    coin_flip <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"Heads"}\NormalTok{, }\StringTok{"Tails"}\NormalTok{), }\DataTypeTok{size =} \DecValTok{10}\NormalTok{, }\DataTypeTok{prob =} \KeywordTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{,}
-        \FloatTok{0.5}\NormalTok{), }\DataTypeTok{replace =} \OtherTok{TRUE}\NormalTok{)}
-\NormalTok{    num_heads <-}\StringTok{ }\KeywordTok{length}\NormalTok{(}\KeywordTok{which}\NormalTok{(coin_flip }\OperatorTok{==}\StringTok{ "Heads"}\NormalTok{))}
-
-    \ControlFlowTok{if}\NormalTok{ (num_heads }\OperatorTok{==}\StringTok{ }\DecValTok{3}\NormalTok{) \{}
-\NormalTok{        heads3 =}\StringTok{ }\OtherTok{TRUE}
-\NormalTok{    \} }\ControlFlowTok{else}\NormalTok{ \{}
-\NormalTok{        heads3 =}\StringTok{ }\OtherTok{FALSE}
-\NormalTok{    \}}
-    \KeywordTok{return}\NormalTok{(heads3)}
-\NormalTok{\}}
-
-
-
-\CommentTok{# Generates flipping a coin 3 times Returns TRUE if exactly}
-\CommentTok{# 3 flips resulted in heads Returns FALSE if otherwise}
-\KeywordTok{coin_flip_heads3}\NormalTok{()}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"Heads"}\NormalTok{, }\StringTok{"Tails"}\NormalTok{), }\DataTypeTok{size =} \DecValTok{10}\NormalTok{, }\DataTypeTok{prob =} \KeywordTok{c}\NormalTok{(}\FloatTok{0.1}\NormalTok{, }\FloatTok{0.9}\NormalTok{), }\DataTypeTok{replace =} \OtherTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] FALSE
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Replicate the experiment 10,000 times}
-\NormalTok{see_heads3 <-}\StringTok{ }\KeywordTok{replicate}\NormalTok{(}\DecValTok{10000}\NormalTok{, }\KeywordTok{coin_flip_heads3}\NormalTok{())}
-
-\CommentTok{# How many of these experiments results in 3 heads???}
-\CommentTok{# Probability of seeing exactly 3 heads is approximately}
-\CommentTok{# 12%}
-\KeywordTok{table}\NormalTok{(see_heads3)}\OperatorTok{/}\DecValTok{10000}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## see_heads3
-##  FALSE   TRUE 
-## 0.8861 0.1139
+##  [1] "Tails" "Tails" "Tails" "Heads" "Tails" "Tails" "Heads" "Tails" "Tails"
+## [10] "Tails"
 \end{verbatim}
 
 \hypertarget{adding-curves-to-graphs}{%
-\section{Adding curves to graphs}\label{adding-curves-to-graphs}}
+\subsection{Adding curves to graphs}\label{adding-curves-to-graphs}}
 
 Often times when generating data or using a real-world data set we might want to see how well a well known distribution fits a particular data set. We can do so by adding the proposed density function on to a histogram which contains the data set of interest. For example, suppose we wish to see if a normal distribution with mean of 3.5 and standard deviation of 1.14 fits the old faithful data set for eruption times. We can add this density function on top and see if it approximately fits the data.
 
@@ -8310,7 +8557,7 @@ Often times when generating data or using a real-world data set we might want to
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-286-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-292-1.pdf}
 
 Now lets generate 272 normal random variables with mean 3.5 and standard deviation of 1.14 and see how well are generated data matches the density function.
 
@@ -8325,7 +8572,7 @@ Now lets generate 272 normal random variables with mean 3.5 and standard deviati
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-287-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-293-1.pdf}
 
 We do not see a perfect fit, but this is what happens with random samples. The fit for the simulated data is what we expect approximately if we had a sample with this distribution. It should be approximately the same as the curve, which we see for the simulated data. Our old faithful data is significantly less fitted the simulated data. Thus it appears that the old faithful eruption times is probably not normally distributed with mean 3.5 and standard deviation 1.14. How similar is ``similar enough'' is not a hard and fast rule, and it is ultimately up to the researcher. The simulated data set gives us a general idea of what is ``similar enough''.
 
@@ -8337,7 +8584,7 @@ Note that the \texttt{curve()} function does not need to be added to graph but c
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-288-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-294-1.pdf}
 
 In addition, we can make our own functions to plot using \texttt{curve()}.
 
@@ -8352,13 +8599,13 @@ In addition, we can make our own functions to plot using \texttt{curve()}.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-289-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-295-1.pdf}
 
-\hypertarget{example-central-limit-theorem-clt}{%
-\section{Example: Central Limit Theorem (CLT)}\label{example-central-limit-theorem-clt}}
+\hypertarget{example-fundamental-theorem-of-statistics}{%
+\section{Example: Fundamental Theorem of Statistics}\label{example-fundamental-theorem-of-statistics}}
 
-\hypertarget{recall-clt}{%
-\subsection{Recall CLT}\label{recall-clt}}
+\hypertarget{more-rigorous-version-of-fts}{%
+\subsection{More Rigorous version of FTS}\label{more-rigorous-version-of-fts}}
 
 Let \(X_1, ..., X_n\) be independent and identically distributed random variables with mean and variance, \(\mu\) and \(\sigma^2\). If the sample size is sufficiently large (\(n \geq 30\)), the sample mean \(\bar{x}\) will tend to follow a normal distribution with mean \(\mu\) and standard deviation \(\frac{\sigma}{\sqrt{n}}\).
 
@@ -8366,12 +8613,12 @@ In other words, for any set of data \(X_1, ..., X_n\) that is independent and co
 
 \[\bar{x} \sim N \left ( \mu, \frac{\sigma}{\sqrt{n}} \right ) \]
 
-The distribution above is a \emph{sampling distribution}. It is the distribution of a \emph{sample mean}. That is, if we take \(k\) samples, and for each sample we calculated the mean, the central limit theorem tells us about the distribution of these means (\(\bar{x}_1, \dots, \bar{x}_k\)).
+The distribution above is a \emph{sampling distribution}. It is the distribution of a \emph{sample mean}. That is, if we take \(k\) samples, and for each sample we calculated the mean, the FTS tells us about the distribution of these means (\(\bar{x}_1, \dots, \bar{x}_k\)).
 
-\hypertarget{assumption-violations-of-clt}{%
-\subsection{Assumption Violations of CLT}\label{assumption-violations-of-clt}}
+\hypertarget{assumption-violations-of-fts}{%
+\subsection{Assumption Violations of FTS}\label{assumption-violations-of-fts}}
 
-The central limit theorem has a few key assumptions. Some of these assumptions are fairly easy to meet, and others are more susceptible to being violated. For example, typically it is reasonable to assume that mean and variance are finite. Other assumptions are easier to violate, and the consequences of violating these assumptions vary greatly. Sometimes we may have data that comes from a mix of multiple distributions, this violate the assumption that data is identically distributed. Another assumption violation could be independence. For example, in time series data we typically observe a random variable over a sequence of time and measure it repeatedly. This would violate the independence assumption because earlier observations are typically related to future observations. Another assumption that is often violated is the minimum sample size. The central limit theorem says we need at least 30 observations, or else we should use the t-distribution instead. Historically this is usually not a very big problem. The requirement that our sample size is at least 30 is a ``rule of thumb'' and not based on rigorous statistical theory.
+The FTS has a few key assumptions. Some of these assumptions are fairly easy to meet, and others are more susceptible to being violated. For example, typically it is reasonable to assume that mean and variance are finite. Other assumptions are easier to violate, and the consequences of violating these assumptions vary greatly. Sometimes we may have data that comes from a mix of multiple distributions, this violate the assumption that data is identically distributed. Another assumption violation could be independence. For example, in time series data we typically observe a random variable over a sequence of time and measure it repeatedly. This would violate the independence assumption because earlier observations are typically related to future observations. Another assumption that is often violated is the minimum sample size. The FTS says we need at least 30 observations, or else we should use the t-distribution instead. Historically this is usually not a very big problem. The requirement that our sample size is at least 30 is a ``rule of thumb'' and not based on rigorous statistical theory.
 
 Below are a summary of these assumptions restated:
 
@@ -8389,7 +8636,7 @@ Once we have verified these assumptions, we still need to determine what the mea
 \hypertarget{the-data}{%
 \subsection{The Data}\label{the-data}}
 
-We will see how well the CLT theorem applies to a data set that has a uniform distribution. That is, say we have a sample of 50 observations which we believe are all uniformly distributed between -5 and 5. We want to determine if the mean of a sample of this type would be normally distributed according to the CLT. To do so, we simulate a sample of this type 10,000 times and assess if it matches the CLT results.
+We will see how well the FTS theorem applies to a data set that has a uniform distribution. That is, say we have a sample of 50 observations which we believe are all uniformly distributed between -5 and 5. We want to determine if the mean of a sample of this type would be normally distributed according to the FTS. To do so, we simulate a sample of this type 10,000 times and assess if it matches the FTS results.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8415,42 +8662,39 @@ We will see how well the CLT theorem applies to a data set that has a uniform di
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-290-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-296-1.pdf}
 
-To add a curve to the graph we need to know the mean and the standard deviation of the data we generated. For a uniform distribution with a minimum of -5 and a maximum of 5, the mean is 0 and the standard deviation is \(10/\sqrt{12} \approx 2.89\). Thus according to CLT, we expect our histogram above to correspond to a normal density with mean 0 and standard deviation \(2.89/\sqrt{50} \approx 0.41\).
+To add a curve to the graph we need to know the mean and the standard deviation of the data we generated. For a uniform distribution with a minimum of -5 and a maximum of 5, the mean is 0 and the standard deviation is \(10/\sqrt{12} \approx 2.89\). Thus according to FTS, we expect our histogram above to correspond to a normal density with mean 0 and standard deviation \(2.89/\sqrt{50} \approx 0.41\).
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# histogram of results}
 \KeywordTok{hist}\NormalTok{(sim_means, }\DataTypeTok{freq =} \OtherTok{FALSE}\NormalTok{)}
 
-\CommentTok{# Add normal curve according to CLT}
+\CommentTok{# Add normal curve according to FTS}
 \KeywordTok{curve}\NormalTok{(}\KeywordTok{dnorm}\NormalTok{(x, }\DataTypeTok{mean =} \DecValTok{0}\NormalTok{, }\DataTypeTok{sd =} \FloatTok{0.41}\NormalTok{), }\DataTypeTok{add =} \OtherTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-291-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-297-1.pdf}
 
-\hypertarget{example-coin-flips}{%
-\section{Example: Coin Flips}\label{example-coin-flips}}
+\hypertarget{simulation-stuides-for-statistical-methods}{%
+\section{Simulation Stuides for Statistical Methods}\label{simulation-stuides-for-statistical-methods}}
 
-Suppose we are interested in the proportion of times we observe a head if we flip a fair sided coin. A fair question to ask: ``how many simulations do we need to do this?''. There are rigorous rules that we can use to determine how many simulations we need until our data set starts to represent the truth; however, we will focus on summary tables and visualization tools for now. We know we have enough simulations when our data set seems to ``stabilize''.
-
-Suppose we flip a coin 10 times and we observe the following results.
+Simulation methods are also used as impartial way to check our theories.
 
 \begin{itemize}
-\tightlist
 \item
-  Heads, Heads, Tails, Tails, Tails, Tails, Heads, Tails, Tails, Tails
+  Does the central limit theorem really work?
+\item
+  Does are method for finding outliers seem good?
+\item
+  Do our confidence intervals make sense?
 \end{itemize}
 
-With simulation studies we often want to visualize are results using summary tables and graphs. Lets create a table of the proportion of heads vs the number of trials.
+Simulation studies are useful for more difficult things to calculate or learn about.
 
-\begin{itemize}
-\tightlist
-\item
-  Create a plot of the proportion of heads vs the number of trials
-\end{itemize}
+For example, suppose you want to calculate a 95\% confidence interval for the heights of all college students. Our theory on confidence intervals says that we expect that a 95\% confidence interval will capture the true mean about 95\% of the time. If we simply go out and take a sample of data from ``real-life'' and then calculate the a confidence interval we have no idea if that confidence interval captures the truth because the true average height of all college students is unknown! It is not feasible to sample every college students, so we will never know if the true mean actually falls within our interval. Furthermore, in this example we only calculated one confidence interval. If we did know the true mean then our results would simply indicate that the confidence interval captured the mean or not, but nothing about the \emph{rate} that confidence intervals capture the mean, which should be 95\%. What we can do instead is simulate this process. We can randomly generate data that has a true mean of \(\mu\) using a computer. Then we can estimate a 95\% confidence interval using the appropriate methods and see if this confidence interval contains \(\mu\). We then can repeat this process as many times as we would like because we are using a computer, which makes the process much simpler. If our theory about confidence intervals is correct we would expect that 95\% of our confidence intervals captured the true mean (\(\mu\)), and the rest did not.
 
 \hypertarget{tidyverse}{%
 \chapter{Tidyverse}\label{tidyverse}}
@@ -9253,7 +9497,7 @@ A Basic Example:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-314-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-320-1.pdf}
 
 \hypertarget{adjust-aesthetic-attributes-by-variable}{%
 \section{Adjust aesthetic attributes by variable}\label{adjust-aesthetic-attributes-by-variable}}
@@ -9279,7 +9523,7 @@ We can adjust aesthetic attributes by variable using the \texttt{aes()} function
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-316-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-322-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9287,7 +9531,7 @@ We can adjust aesthetic attributes by variable using the \texttt{aes()} function
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-316-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-322-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9295,7 +9539,7 @@ We can adjust aesthetic attributes by variable using the \texttt{aes()} function
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-316-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-322-3.pdf}
 
 \hypertarget{adjust-aesthetic-attributes-for-the-entire-plot}{%
 \section{Adjust aesthetic attributes for the entire plot}\label{adjust-aesthetic-attributes-for-the-entire-plot}}
@@ -9309,7 +9553,7 @@ Notice that the plot changes based on if the \texttt{color} is assigned outside 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-317-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-323-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9319,7 +9563,7 @@ Notice that the plot changes based on if the \texttt{color} is assigned outside 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-317-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-323-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9328,7 +9572,7 @@ Notice that the plot changes based on if the \texttt{color} is assigned outside 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-317-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-323-3.pdf}
 
 \hypertarget{faceting}{%
 \section{Faceting}\label{faceting}}
@@ -9344,7 +9588,7 @@ Faceting creates tables of graphics by splitting the data into subsets and displ
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-318-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-324-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9356,7 +9600,7 @@ Faceting creates tables of graphics by splitting the data into subsets and displ
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-318-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-324-2.pdf}
 
 \hypertarget{some-example-plots}{%
 \section{Some example plots}\label{some-example-plots}}
@@ -9369,7 +9613,7 @@ Faceting creates tables of graphics by splitting the data into subsets and displ
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-319-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-325-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9379,7 +9623,7 @@ Faceting creates tables of graphics by splitting the data into subsets and displ
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-319-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-325-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9402,7 +9646,7 @@ Faceting creates tables of graphics by splitting the data into subsets and displ
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-319-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-325-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9424,7 +9668,7 @@ Faceting creates tables of graphics by splitting the data into subsets and displ
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-319-4.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-325-4.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9434,7 +9678,7 @@ Faceting creates tables of graphics by splitting the data into subsets and displ
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-319-5.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-325-5.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9456,7 +9700,7 @@ Faceting creates tables of graphics by splitting the data into subsets and displ
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-319-6.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-325-6.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9466,7 +9710,7 @@ Faceting creates tables of graphics by splitting the data into subsets and displ
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-319-7.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-325-7.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9504,7 +9748,7 @@ Faceting creates tables of graphics by splitting the data into subsets and displ
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-319-8.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-325-8.pdf}
 
 \hypertarget{where-can-i-learn-more}{%
 \section{Where can I learn more?}\label{where-can-i-learn-more}}
@@ -10141,7 +10385,7 @@ Lets use the same Abraham Lincoln speech from the previous section. This time we
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-342-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-348-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10152,7 +10396,7 @@ Lets use the same Abraham Lincoln speech from the previous section. This time we
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-342-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-348-2.pdf}
 
 \hypertarget{replacements}{%
 \section{Replacements}\label{replacements}}
