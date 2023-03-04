@@ -115,7 +115,7 @@
 
 \title{STAT 107 Outline of Class Notes}
 \author{Rebecca Kurtz-Garcia}
-\date{2023-03-03}
+\date{2023-03-04}
 
 \begin{document}
 \maketitle
@@ -8481,7 +8481,155 @@ The FTS applies to means, just like it applies to probabilities of an event. Tha
 
 \[\hat{\mu} \rightarrow \mu\]
 
-For example, it well known that mean for the binomial distribution is \(np\), which we can solve with algebra. We can verify our algebra with a simulation study. \href{https://rpgarcia.shinyapps.io/means_running_binomial/}{Click here to see see an example of this in action.}
+For example, it well known that mean for the binomial distribution is \(np\), which we can solve with algebra. We can verify our algebra with a simulation study.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Parameters}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\NormalTok{parameter_n <-}\StringTok{ }\DecValTok{10}
+\NormalTok{parameter_p <-}\StringTok{ }\FloatTok{0.5}
+
+
+\CommentTok{# max_sims : maximumm number of simulations you want to}
+\CommentTok{# consider before terminating}
+\NormalTok{max_sims <-}\StringTok{ }\FloatTok{1e+05}
+
+\CommentTok{# Initialize values before the loop}
+\NormalTok{results <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{obs_value =} \KeywordTok{rep}\NormalTok{(}\OtherTok{NA}\NormalTok{, max_sims), }\DataTypeTok{cum_results =} \KeywordTok{rep}\NormalTok{(}\OtherTok{NA}\NormalTok{,}
+\NormalTok{    max_sims), }\DataTypeTok{est_value =} \KeywordTok{rep}\NormalTok{(}\OtherTok{NA}\NormalTok{, max_sims))}
+\NormalTok{cumulative_results <-}\StringTok{ }\DecValTok{0}
+
+
+\CommentTok{# Conduct simulations with a stopping rule stop between 25}
+\CommentTok{# and max_sims}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{max_sims) \{}
+\NormalTok{    obs_value <-}\StringTok{ }\KeywordTok{rbinom}\NormalTok{(}\DecValTok{1}\NormalTok{, parameter_n, parameter_p)}
+\NormalTok{    cumulative_results <-}\StringTok{ }\NormalTok{cumulative_results }\OperatorTok{+}\StringTok{ }\NormalTok{obs_value}
+\NormalTok{    est_value <-}\StringTok{ }\NormalTok{cumulative_results}\OperatorTok{/}\NormalTok{i  }\CommentTok{# Average value at this point }
+
+\NormalTok{    results[i, ] <-}\StringTok{ }\KeywordTok{c}\NormalTok{(obs_value, cumulative_results, est_value)}
+
+    \CommentTok{# If you have at least 25 simulations, now begin}
+    \CommentTok{# checking if you should stop}
+    \ControlFlowTok{if}\NormalTok{ (i }\OperatorTok{>}\StringTok{ }\DecValTok{25}\NormalTok{) \{}
+        \ControlFlowTok{if}\NormalTok{ (}\KeywordTok{abs}\NormalTok{(results}\OperatorTok{$}\NormalTok{est_value[i] }\OperatorTok{-}\StringTok{ }\NormalTok{results}\OperatorTok{$}\NormalTok{est_value[i }\OperatorTok{-}
+\StringTok{            }\DecValTok{1}\NormalTok{]) }\OperatorTok{<}\StringTok{ }\FloatTok{0.001}\NormalTok{) \{}
+            \ControlFlowTok{break}
+\NormalTok{        \}}
+\NormalTok{    \}}
+\NormalTok{\}}
+
+\CommentTok{# Remove rows we did not need}
+\NormalTok{results <-}\StringTok{ }\KeywordTok{na.omit}\NormalTok{(results)}
+
+\CommentTok{# Loop that stops once estimate stablizes}
+\KeywordTok{tail}\NormalTok{(results)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     obs_value cum_results est_value
+## 114         5         590  5.175439
+## 115         3         593  5.156522
+## 116         2         595  5.129310
+## 117         6         601  5.136752
+## 118         3         604  5.118644
+## 119         5         609  5.117647
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Plot Results Make running average plot}
+\KeywordTok{plot}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(results), results}\OperatorTok{$}\NormalTok{est_value, }\DataTypeTok{ylab =} \StringTok{"Estimated Prob"}\NormalTok{,}
+    \DataTypeTok{xlab =} \StringTok{"Simulation"}\NormalTok{, }\DataTypeTok{main =} \StringTok{"Running average plot: Mean Value"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-288-1.pdf}
+
+\href{https://rpgarcia.shinyapps.io/means_running_binomial/}{Click here to see see an example of this in action.}
+
+\hypertarget{another-statistic}{%
+\section{Another Statistic}\label{another-statistic}}
+
+What if we were interested in another statistic besides the mean? It is the same process! We conduct the simulation. The value \(p_i\) is the average value of the statistic for each simulation. For example, suppose we wanted to find out how many flips it takes for a fair sided coin to land on a head? Then for each simulation we find \(X_i\), the number of flips for that simulation. Then \(p_i\) is the average value of all the \(X\)'s: \(p_i = \sum_{j=1}^i X_j/i\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Support function}
+\NormalTok{first_heads <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{() \{}
+    \CommentTok{# First sample}
+\NormalTok{    j =}\StringTok{ }\DecValTok{1}
+\NormalTok{    coin_result <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"Tails"}\NormalTok{, }\StringTok{"Heads"}\NormalTok{), }\DecValTok{1}\NormalTok{)}
+
+    \ControlFlowTok{while}\NormalTok{ (coin_result }\OperatorTok{!=}\StringTok{ "Heads"}\NormalTok{) \{}
+\NormalTok{        coin_result <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"Tails"}\NormalTok{, }\StringTok{"Heads"}\NormalTok{), }\DecValTok{1}\NormalTok{)}
+\NormalTok{        j <-}\StringTok{ }\NormalTok{j }\OperatorTok{+}\StringTok{ }\DecValTok{1}
+\NormalTok{    \}}
+    \KeywordTok{return}\NormalTok{(j)}
+\NormalTok{\}}
+
+
+
+
+\CommentTok{# max_sims : maximumm number of simulations you want to}
+\CommentTok{# consider before terminating}
+\NormalTok{max_sims <-}\StringTok{ }\FloatTok{1e+05}
+
+\CommentTok{# Initialize values before the loop}
+\NormalTok{results <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{obs_value =} \KeywordTok{rep}\NormalTok{(}\OtherTok{NA}\NormalTok{, max_sims), }\DataTypeTok{cum_results =} \KeywordTok{rep}\NormalTok{(}\OtherTok{NA}\NormalTok{,}
+\NormalTok{    max_sims), }\DataTypeTok{est_value =} \KeywordTok{rep}\NormalTok{(}\OtherTok{NA}\NormalTok{, max_sims))}
+\NormalTok{cumulative_results <-}\StringTok{ }\DecValTok{0}
+
+
+\CommentTok{# Conduct simulations with a stopping rule stop between 25}
+\CommentTok{# and max_sims}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{max_sims) \{}
+\NormalTok{    obs_value <-}\StringTok{ }\KeywordTok{first_heads}\NormalTok{()}
+\NormalTok{    cumulative_results <-}\StringTok{ }\NormalTok{cumulative_results }\OperatorTok{+}\StringTok{ }\NormalTok{obs_value}
+\NormalTok{    est_value <-}\StringTok{ }\NormalTok{cumulative_results}\OperatorTok{/}\NormalTok{i  }\CommentTok{# Average value at this point }
+
+\NormalTok{    results[i, ] <-}\StringTok{ }\KeywordTok{c}\NormalTok{(obs_value, cumulative_results, est_value)}
+
+    \CommentTok{# If you have at least 25 simulations, now begin}
+    \CommentTok{# checking if you should stop}
+    \ControlFlowTok{if}\NormalTok{ (i }\OperatorTok{>}\StringTok{ }\DecValTok{25}\NormalTok{) \{}
+        \ControlFlowTok{if}\NormalTok{ (}\KeywordTok{abs}\NormalTok{(results}\OperatorTok{$}\NormalTok{est_value[i] }\OperatorTok{-}\StringTok{ }\NormalTok{results}\OperatorTok{$}\NormalTok{est_value[i }\OperatorTok{-}
+\StringTok{            }\DecValTok{1}\NormalTok{]) }\OperatorTok{<}\StringTok{ }\FloatTok{0.001}\NormalTok{) \{}
+            \ControlFlowTok{break}
+\NormalTok{        \}}
+\NormalTok{    \}}
+\NormalTok{\}}
+
+\CommentTok{# Remove rows we did not need}
+\NormalTok{results <-}\StringTok{ }\KeywordTok{na.omit}\NormalTok{(results)}
+
+\CommentTok{# Loop that stops once estimate stablizes}
+\KeywordTok{tail}\NormalTok{(results)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    obs_value cum_results est_value
+## 26         3          54  2.076923
+## 27         3          57  2.111111
+## 28         1          58  2.071429
+## 29         1          59  2.034483
+## 30         1          60  2.000000
+## 31         2          62  2.000000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Plot Results Make running average plot}
+\KeywordTok{plot}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(results), results}\OperatorTok{$}\NormalTok{est_value, }\DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{10}\NormalTok{), }\DataTypeTok{ylab =} \StringTok{"Estimated Prob"}\NormalTok{,}
+    \DataTypeTok{xlab =} \StringTok{"Simulation"}\NormalTok{, }\DataTypeTok{main =} \StringTok{"Running average plot: How many flips to land on heads"}\NormalTok{,}
+    \DataTypeTok{type =} \StringTok{"b"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-289-1.pdf}
 
 \hypertarget{some-more-tools}{%
 \section{Some More Tools}\label{some-more-tools}}
@@ -8510,7 +8658,7 @@ Below is the code for simulating 10 coin flips.
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "Tails" "Heads" "Heads" "Tails" "Heads" "Tails" "Heads" "Heads" "Tails"
+##  [1] "Heads" "Heads" "Heads" "Tails" "Heads" "Heads" "Heads" "Heads" "Heads"
 ## [10] "Tails"
 \end{verbatim}
 
@@ -8557,7 +8705,7 @@ Often times when generating data or using a real-world data set we might want to
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-292-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-294-1.pdf}
 
 Now lets generate 272 normal random variables with mean 3.5 and standard deviation of 1.14 and see how well are generated data matches the density function.
 
@@ -8572,7 +8720,7 @@ Now lets generate 272 normal random variables with mean 3.5 and standard deviati
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-293-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-295-1.pdf}
 
 We do not see a perfect fit, but this is what happens with random samples. The fit for the simulated data is what we expect approximately if we had a sample with this distribution. It should be approximately the same as the curve, which we see for the simulated data. Our old faithful data is significantly less fitted the simulated data. Thus it appears that the old faithful eruption times is probably not normally distributed with mean 3.5 and standard deviation 1.14. How similar is ``similar enough'' is not a hard and fast rule, and it is ultimately up to the researcher. The simulated data set gives us a general idea of what is ``similar enough''.
 
@@ -8584,7 +8732,7 @@ Note that the \texttt{curve()} function does not need to be added to graph but c
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-294-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-296-1.pdf}
 
 In addition, we can make our own functions to plot using \texttt{curve()}.
 
@@ -8599,7 +8747,7 @@ In addition, we can make our own functions to plot using \texttt{curve()}.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-295-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-297-1.pdf}
 
 \hypertarget{example-fundamental-theorem-of-statistics}{%
 \section{Example: Fundamental Theorem of Statistics}\label{example-fundamental-theorem-of-statistics}}
@@ -8662,7 +8810,7 @@ We will see how well the FTS theorem applies to a data set that has a uniform di
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-296-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-298-1.pdf}
 
 To add a curve to the graph we need to know the mean and the standard deviation of the data we generated. For a uniform distribution with a minimum of -5 and a maximum of 5, the mean is 0 and the standard deviation is \(10/\sqrt{12} \approx 2.89\). Thus according to FTS, we expect our histogram above to correspond to a normal density with mean 0 and standard deviation \(2.89/\sqrt{50} \approx 0.41\).
 
@@ -8676,7 +8824,7 @@ To add a curve to the graph we need to know the mean and the standard deviation 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-297-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-299-1.pdf}
 
 \hypertarget{simulation-stuides-for-statistical-methods}{%
 \section{Simulation Stuides for Statistical Methods}\label{simulation-stuides-for-statistical-methods}}
@@ -9497,7 +9645,7 @@ A Basic Example:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-320-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-322-1.pdf}
 
 \hypertarget{adjust-aesthetic-attributes-by-variable}{%
 \section{Adjust aesthetic attributes by variable}\label{adjust-aesthetic-attributes-by-variable}}
@@ -9523,7 +9671,7 @@ We can adjust aesthetic attributes by variable using the \texttt{aes()} function
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-322-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-324-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9531,7 +9679,7 @@ We can adjust aesthetic attributes by variable using the \texttt{aes()} function
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-322-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-324-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9539,7 +9687,7 @@ We can adjust aesthetic attributes by variable using the \texttt{aes()} function
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-322-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-324-3.pdf}
 
 \hypertarget{adjust-aesthetic-attributes-for-the-entire-plot}{%
 \section{Adjust aesthetic attributes for the entire plot}\label{adjust-aesthetic-attributes-for-the-entire-plot}}
@@ -9553,7 +9701,7 @@ Notice that the plot changes based on if the \texttt{color} is assigned outside 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-323-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-325-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9563,7 +9711,7 @@ Notice that the plot changes based on if the \texttt{color} is assigned outside 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-323-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-325-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9572,7 +9720,7 @@ Notice that the plot changes based on if the \texttt{color} is assigned outside 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-323-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-325-3.pdf}
 
 \hypertarget{faceting}{%
 \section{Faceting}\label{faceting}}
@@ -9588,7 +9736,7 @@ Faceting creates tables of graphics by splitting the data into subsets and displ
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-324-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-326-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9600,7 +9748,7 @@ Faceting creates tables of graphics by splitting the data into subsets and displ
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-324-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-326-2.pdf}
 
 \hypertarget{some-example-plots}{%
 \section{Some example plots}\label{some-example-plots}}
@@ -9613,7 +9761,7 @@ Faceting creates tables of graphics by splitting the data into subsets and displ
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-325-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-327-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9623,7 +9771,7 @@ Faceting creates tables of graphics by splitting the data into subsets and displ
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-325-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-327-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9646,7 +9794,7 @@ Faceting creates tables of graphics by splitting the data into subsets and displ
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-325-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-327-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9668,7 +9816,7 @@ Faceting creates tables of graphics by splitting the data into subsets and displ
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-325-4.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-327-4.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9678,7 +9826,7 @@ Faceting creates tables of graphics by splitting the data into subsets and displ
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-325-5.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-327-5.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9700,7 +9848,7 @@ Faceting creates tables of graphics by splitting the data into subsets and displ
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-325-6.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-327-6.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9710,7 +9858,7 @@ Faceting creates tables of graphics by splitting the data into subsets and displ
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-325-7.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-327-7.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9748,7 +9896,7 @@ Faceting creates tables of graphics by splitting the data into subsets and displ
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-325-8.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-327-8.pdf}
 
 \hypertarget{where-can-i-learn-more}{%
 \section{Where can I learn more?}\label{where-can-i-learn-more}}
@@ -10385,7 +10533,7 @@ Lets use the same Abraham Lincoln speech from the previous section. This time we
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-348-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-350-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10396,7 +10544,7 @@ Lets use the same Abraham Lincoln speech from the previous section. This time we
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-348-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-350-2.pdf}
 
 \hypertarget{replacements}{%
 \section{Replacements}\label{replacements}}

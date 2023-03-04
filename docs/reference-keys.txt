@@ -149,6 +149,7 @@ working-with-known-distributions
 generating-random-variables
 simulating-a-distribution
 simulating-a-statisticmean
+another-statistic
 some-more-tools
 sample
 adding-curves-to-graphs

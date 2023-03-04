@@ -24,7 +24,7 @@
 <meta name="author" content="Rebecca Kurtz-Garcia" />
 
 
-<meta name="date" content="2023-03-03" />
+<meta name="date" content="2023-03-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -367,16 +367,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="15.5" data-path="simulation.html"><a href="simulation.html#simulating-a-distribution"><i class="fa fa-check"></i><b>15.5</b> Simulating a Distribution<span></span></a></li>
 <li class="chapter" data-level="15.6" data-path="simulation.html"><a href="simulation.html#simulating-a-statisticmean"><i class="fa fa-check"></i><b>15.6</b> Simulating a Statistic/Mean<span></span></a></li>
-<li class="chapter" data-level="15.7" data-path="simulation.html"><a href="simulation.html#some-more-tools"><i class="fa fa-check"></i><b>15.7</b> Some More Tools<span></span></a><ul>
-<li class="chapter" data-level="15.7.1" data-path="simulation.html"><a href="simulation.html#sample"><i class="fa fa-check"></i><b>15.7.1</b> sample()<span></span></a></li>
-<li class="chapter" data-level="15.7.2" data-path="simulation.html"><a href="simulation.html#adding-curves-to-graphs"><i class="fa fa-check"></i><b>15.7.2</b> Adding curves to graphs<span></span></a></li>
+<li class="chapter" data-level="15.7" data-path="simulation.html"><a href="simulation.html#another-statistic"><i class="fa fa-check"></i><b>15.7</b> Another Statistic<span></span></a></li>
+<li class="chapter" data-level="15.8" data-path="simulation.html"><a href="simulation.html#some-more-tools"><i class="fa fa-check"></i><b>15.8</b> Some More Tools<span></span></a><ul>
+<li class="chapter" data-level="15.8.1" data-path="simulation.html"><a href="simulation.html#sample"><i class="fa fa-check"></i><b>15.8.1</b> sample()<span></span></a></li>
+<li class="chapter" data-level="15.8.2" data-path="simulation.html"><a href="simulation.html#adding-curves-to-graphs"><i class="fa fa-check"></i><b>15.8.2</b> Adding curves to graphs<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="15.8" data-path="simulation.html"><a href="simulation.html#example-fundamental-theorem-of-statistics"><i class="fa fa-check"></i><b>15.8</b> Example: Fundamental Theorem of Statistics<span></span></a><ul>
-<li class="chapter" data-level="15.8.1" data-path="simulation.html"><a href="simulation.html#more-rigorous-version-of-fts"><i class="fa fa-check"></i><b>15.8.1</b> More Rigorous version of FTS<span></span></a></li>
-<li class="chapter" data-level="15.8.2" data-path="simulation.html"><a href="simulation.html#assumption-violations-of-fts"><i class="fa fa-check"></i><b>15.8.2</b> Assumption Violations of FTS<span></span></a></li>
-<li class="chapter" data-level="15.8.3" data-path="simulation.html"><a href="simulation.html#the-data"><i class="fa fa-check"></i><b>15.8.3</b> The Data<span></span></a></li>
+<li class="chapter" data-level="15.9" data-path="simulation.html"><a href="simulation.html#example-fundamental-theorem-of-statistics"><i class="fa fa-check"></i><b>15.9</b> Example: Fundamental Theorem of Statistics<span></span></a><ul>
+<li class="chapter" data-level="15.9.1" data-path="simulation.html"><a href="simulation.html#more-rigorous-version-of-fts"><i class="fa fa-check"></i><b>15.9.1</b> More Rigorous version of FTS<span></span></a></li>
+<li class="chapter" data-level="15.9.2" data-path="simulation.html"><a href="simulation.html#assumption-violations-of-fts"><i class="fa fa-check"></i><b>15.9.2</b> Assumption Violations of FTS<span></span></a></li>
+<li class="chapter" data-level="15.9.3" data-path="simulation.html"><a href="simulation.html#the-data"><i class="fa fa-check"></i><b>15.9.3</b> The Data<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="15.9" data-path="simulation.html"><a href="simulation.html#simulation-stuides-for-statistical-methods"><i class="fa fa-check"></i><b>15.9</b> Simulation Stuides for Statistical Methods<span></span></a></li>
+<li class="chapter" data-level="15.10" data-path="simulation.html"><a href="simulation.html#simulation-stuides-for-statistical-methods"><i class="fa fa-check"></i><b>15.10</b> Simulation Stuides for Statistical Methods<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>16</b> Tidyverse<span></span></a><ul>
 <li class="chapter" data-level="16.1" data-path="tidyverse.html"><a href="tidyverse.html#piping-operator"><i class="fa fa-check"></i><b>16.1</b> Piping Operator<span></span></a></li>
@@ -752,72 +753,190 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The FTS applies to means, just like it applies to probabilities of an event. That is, as our sample size increases, are empirical mean should converge to the theoretical mean.</p>
 <p><span class="math display">\[\hat{\mu} \rightarrow \mu\]</span></p>
 </div>
-<p>For example, it well known that mean for the binomial distribution is <span class="math inline">\(np\)</span>, which we can solve with algebra. We can verify our algebra with a simulation study. <a href="https://rpgarcia.shinyapps.io/means_running_binomial/">Click here to see see an example of this in action.</a></p>
+<p>For example, it well known that mean for the binomial distribution is <span class="math inline">\(np\)</span>, which we can solve with algebra. We can verify our algebra with a simulation study.</p>
+<div class="sourceCode" id="cb837"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb837-1"><a href="simulation.html#cb837-1"></a><span class="co"># Parameters</span></span>
+<span id="cb837-2"><a href="simulation.html#cb837-2"></a><span class="kw">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb837-3"><a href="simulation.html#cb837-3"></a>parameter_n &lt;-<span class="st"> </span><span class="dv">10</span></span>
+<span id="cb837-4"><a href="simulation.html#cb837-4"></a>parameter_p &lt;-<span class="st"> </span><span class="fl">0.5</span></span>
+<span id="cb837-5"><a href="simulation.html#cb837-5"></a></span>
+<span id="cb837-6"><a href="simulation.html#cb837-6"></a></span>
+<span id="cb837-7"><a href="simulation.html#cb837-7"></a><span class="co"># max_sims : maximumm number of simulations you want to</span></span>
+<span id="cb837-8"><a href="simulation.html#cb837-8"></a><span class="co"># consider before terminating</span></span>
+<span id="cb837-9"><a href="simulation.html#cb837-9"></a>max_sims &lt;-<span class="st"> </span><span class="fl">1e+05</span></span>
+<span id="cb837-10"><a href="simulation.html#cb837-10"></a></span>
+<span id="cb837-11"><a href="simulation.html#cb837-11"></a><span class="co"># Initialize values before the loop</span></span>
+<span id="cb837-12"><a href="simulation.html#cb837-12"></a>results &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">obs_value =</span> <span class="kw">rep</span>(<span class="ot">NA</span>, max_sims), <span class="dt">cum_results =</span> <span class="kw">rep</span>(<span class="ot">NA</span>,</span>
+<span id="cb837-13"><a href="simulation.html#cb837-13"></a>    max_sims), <span class="dt">est_value =</span> <span class="kw">rep</span>(<span class="ot">NA</span>, max_sims))</span>
+<span id="cb837-14"><a href="simulation.html#cb837-14"></a>cumulative_results &lt;-<span class="st"> </span><span class="dv">0</span></span>
+<span id="cb837-15"><a href="simulation.html#cb837-15"></a></span>
+<span id="cb837-16"><a href="simulation.html#cb837-16"></a></span>
+<span id="cb837-17"><a href="simulation.html#cb837-17"></a><span class="co"># Conduct simulations with a stopping rule stop between 25</span></span>
+<span id="cb837-18"><a href="simulation.html#cb837-18"></a><span class="co"># and max_sims</span></span>
+<span id="cb837-19"><a href="simulation.html#cb837-19"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>max_sims) {</span>
+<span id="cb837-20"><a href="simulation.html#cb837-20"></a>    obs_value &lt;-<span class="st"> </span><span class="kw">rbinom</span>(<span class="dv">1</span>, parameter_n, parameter_p)</span>
+<span id="cb837-21"><a href="simulation.html#cb837-21"></a>    cumulative_results &lt;-<span class="st"> </span>cumulative_results <span class="op">+</span><span class="st"> </span>obs_value</span>
+<span id="cb837-22"><a href="simulation.html#cb837-22"></a>    est_value &lt;-<span class="st"> </span>cumulative_results<span class="op">/</span>i  <span class="co"># Average value at this point </span></span>
+<span id="cb837-23"><a href="simulation.html#cb837-23"></a></span>
+<span id="cb837-24"><a href="simulation.html#cb837-24"></a>    results[i, ] &lt;-<span class="st"> </span><span class="kw">c</span>(obs_value, cumulative_results, est_value)</span>
+<span id="cb837-25"><a href="simulation.html#cb837-25"></a></span>
+<span id="cb837-26"><a href="simulation.html#cb837-26"></a>    <span class="co"># If you have at least 25 simulations, now begin</span></span>
+<span id="cb837-27"><a href="simulation.html#cb837-27"></a>    <span class="co"># checking if you should stop</span></span>
+<span id="cb837-28"><a href="simulation.html#cb837-28"></a>    <span class="cf">if</span> (i <span class="op">&gt;</span><span class="st"> </span><span class="dv">25</span>) {</span>
+<span id="cb837-29"><a href="simulation.html#cb837-29"></a>        <span class="cf">if</span> (<span class="kw">abs</span>(results<span class="op">$</span>est_value[i] <span class="op">-</span><span class="st"> </span>results<span class="op">$</span>est_value[i <span class="op">-</span></span>
+<span id="cb837-30"><a href="simulation.html#cb837-30"></a><span class="st">            </span><span class="dv">1</span>]) <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.001</span>) {</span>
+<span id="cb837-31"><a href="simulation.html#cb837-31"></a>            <span class="cf">break</span></span>
+<span id="cb837-32"><a href="simulation.html#cb837-32"></a>        }</span>
+<span id="cb837-33"><a href="simulation.html#cb837-33"></a>    }</span>
+<span id="cb837-34"><a href="simulation.html#cb837-34"></a>}</span>
+<span id="cb837-35"><a href="simulation.html#cb837-35"></a></span>
+<span id="cb837-36"><a href="simulation.html#cb837-36"></a><span class="co"># Remove rows we did not need</span></span>
+<span id="cb837-37"><a href="simulation.html#cb837-37"></a>results &lt;-<span class="st"> </span><span class="kw">na.omit</span>(results)</span>
+<span id="cb837-38"><a href="simulation.html#cb837-38"></a></span>
+<span id="cb837-39"><a href="simulation.html#cb837-39"></a><span class="co"># Loop that stops once estimate stablizes</span></span>
+<span id="cb837-40"><a href="simulation.html#cb837-40"></a><span class="kw">tail</span>(results)</span></code></pre></div>
+<pre><code>##     obs_value cum_results est_value
+## 114         5         590  5.175439
+## 115         3         593  5.156522
+## 116         2         595  5.129310
+## 117         6         601  5.136752
+## 118         3         604  5.118644
+## 119         5         609  5.117647</code></pre>
+<div class="sourceCode" id="cb839"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb839-1"><a href="simulation.html#cb839-1"></a><span class="co"># Plot Results Make running average plot</span></span>
+<span id="cb839-2"><a href="simulation.html#cb839-2"></a><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(results), results<span class="op">$</span>est_value, <span class="dt">ylab =</span> <span class="st">&quot;Estimated Prob&quot;</span>,</span>
+<span id="cb839-3"><a href="simulation.html#cb839-3"></a>    <span class="dt">xlab =</span> <span class="st">&quot;Simulation&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Running average plot: Mean Value&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-288-1.png" width="672" /></p>
+<p><a href="https://rpgarcia.shinyapps.io/means_running_binomial/">Click here to see see an example of this in action.</a></p>
+</div>
+<div id="another-statistic" class="section level2 hasAnchor">
+<h2><span class="header-section-number">15.7</span> Another Statistic<a href="simulation.html#another-statistic" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>What if we were interested in another statistic besides the mean? It is the same process! We conduct the simulation. The value <span class="math inline">\(p_i\)</span> is the average value of the statistic for each simulation. For example, suppose we wanted to find out how many flips it takes for a fair sided coin to land on a head? Then for each simulation we find <span class="math inline">\(X_i\)</span>, the number of flips for that simulation. Then <span class="math inline">\(p_i\)</span> is the average value of all the <span class="math inline">\(X\)</span>’s: <span class="math inline">\(p_i = \sum_{j=1}^i X_j/i\)</span></p>
+<div class="sourceCode" id="cb840"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb840-1"><a href="simulation.html#cb840-1"></a><span class="co"># Support function</span></span>
+<span id="cb840-2"><a href="simulation.html#cb840-2"></a>first_heads &lt;-<span class="st"> </span><span class="cf">function</span>() {</span>
+<span id="cb840-3"><a href="simulation.html#cb840-3"></a>    <span class="co"># First sample</span></span>
+<span id="cb840-4"><a href="simulation.html#cb840-4"></a>    j =<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb840-5"><a href="simulation.html#cb840-5"></a>    coin_result &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;Tails&quot;</span>, <span class="st">&quot;Heads&quot;</span>), <span class="dv">1</span>)</span>
+<span id="cb840-6"><a href="simulation.html#cb840-6"></a></span>
+<span id="cb840-7"><a href="simulation.html#cb840-7"></a>    <span class="cf">while</span> (coin_result <span class="op">!=</span><span class="st"> &quot;Heads&quot;</span>) {</span>
+<span id="cb840-8"><a href="simulation.html#cb840-8"></a>        coin_result &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;Tails&quot;</span>, <span class="st">&quot;Heads&quot;</span>), <span class="dv">1</span>)</span>
+<span id="cb840-9"><a href="simulation.html#cb840-9"></a>        j &lt;-<span class="st"> </span>j <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb840-10"><a href="simulation.html#cb840-10"></a>    }</span>
+<span id="cb840-11"><a href="simulation.html#cb840-11"></a>    <span class="kw">return</span>(j)</span>
+<span id="cb840-12"><a href="simulation.html#cb840-12"></a>}</span>
+<span id="cb840-13"><a href="simulation.html#cb840-13"></a></span>
+<span id="cb840-14"><a href="simulation.html#cb840-14"></a></span>
+<span id="cb840-15"><a href="simulation.html#cb840-15"></a></span>
+<span id="cb840-16"><a href="simulation.html#cb840-16"></a></span>
+<span id="cb840-17"><a href="simulation.html#cb840-17"></a><span class="co"># max_sims : maximumm number of simulations you want to</span></span>
+<span id="cb840-18"><a href="simulation.html#cb840-18"></a><span class="co"># consider before terminating</span></span>
+<span id="cb840-19"><a href="simulation.html#cb840-19"></a>max_sims &lt;-<span class="st"> </span><span class="fl">1e+05</span></span>
+<span id="cb840-20"><a href="simulation.html#cb840-20"></a></span>
+<span id="cb840-21"><a href="simulation.html#cb840-21"></a><span class="co"># Initialize values before the loop</span></span>
+<span id="cb840-22"><a href="simulation.html#cb840-22"></a>results &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">obs_value =</span> <span class="kw">rep</span>(<span class="ot">NA</span>, max_sims), <span class="dt">cum_results =</span> <span class="kw">rep</span>(<span class="ot">NA</span>,</span>
+<span id="cb840-23"><a href="simulation.html#cb840-23"></a>    max_sims), <span class="dt">est_value =</span> <span class="kw">rep</span>(<span class="ot">NA</span>, max_sims))</span>
+<span id="cb840-24"><a href="simulation.html#cb840-24"></a>cumulative_results &lt;-<span class="st"> </span><span class="dv">0</span></span>
+<span id="cb840-25"><a href="simulation.html#cb840-25"></a></span>
+<span id="cb840-26"><a href="simulation.html#cb840-26"></a></span>
+<span id="cb840-27"><a href="simulation.html#cb840-27"></a><span class="co"># Conduct simulations with a stopping rule stop between 25</span></span>
+<span id="cb840-28"><a href="simulation.html#cb840-28"></a><span class="co"># and max_sims</span></span>
+<span id="cb840-29"><a href="simulation.html#cb840-29"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>max_sims) {</span>
+<span id="cb840-30"><a href="simulation.html#cb840-30"></a>    obs_value &lt;-<span class="st"> </span><span class="kw">first_heads</span>()</span>
+<span id="cb840-31"><a href="simulation.html#cb840-31"></a>    cumulative_results &lt;-<span class="st"> </span>cumulative_results <span class="op">+</span><span class="st"> </span>obs_value</span>
+<span id="cb840-32"><a href="simulation.html#cb840-32"></a>    est_value &lt;-<span class="st"> </span>cumulative_results<span class="op">/</span>i  <span class="co"># Average value at this point </span></span>
+<span id="cb840-33"><a href="simulation.html#cb840-33"></a></span>
+<span id="cb840-34"><a href="simulation.html#cb840-34"></a>    results[i, ] &lt;-<span class="st"> </span><span class="kw">c</span>(obs_value, cumulative_results, est_value)</span>
+<span id="cb840-35"><a href="simulation.html#cb840-35"></a></span>
+<span id="cb840-36"><a href="simulation.html#cb840-36"></a>    <span class="co"># If you have at least 25 simulations, now begin</span></span>
+<span id="cb840-37"><a href="simulation.html#cb840-37"></a>    <span class="co"># checking if you should stop</span></span>
+<span id="cb840-38"><a href="simulation.html#cb840-38"></a>    <span class="cf">if</span> (i <span class="op">&gt;</span><span class="st"> </span><span class="dv">25</span>) {</span>
+<span id="cb840-39"><a href="simulation.html#cb840-39"></a>        <span class="cf">if</span> (<span class="kw">abs</span>(results<span class="op">$</span>est_value[i] <span class="op">-</span><span class="st"> </span>results<span class="op">$</span>est_value[i <span class="op">-</span></span>
+<span id="cb840-40"><a href="simulation.html#cb840-40"></a><span class="st">            </span><span class="dv">1</span>]) <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.001</span>) {</span>
+<span id="cb840-41"><a href="simulation.html#cb840-41"></a>            <span class="cf">break</span></span>
+<span id="cb840-42"><a href="simulation.html#cb840-42"></a>        }</span>
+<span id="cb840-43"><a href="simulation.html#cb840-43"></a>    }</span>
+<span id="cb840-44"><a href="simulation.html#cb840-44"></a>}</span>
+<span id="cb840-45"><a href="simulation.html#cb840-45"></a></span>
+<span id="cb840-46"><a href="simulation.html#cb840-46"></a><span class="co"># Remove rows we did not need</span></span>
+<span id="cb840-47"><a href="simulation.html#cb840-47"></a>results &lt;-<span class="st"> </span><span class="kw">na.omit</span>(results)</span>
+<span id="cb840-48"><a href="simulation.html#cb840-48"></a></span>
+<span id="cb840-49"><a href="simulation.html#cb840-49"></a><span class="co"># Loop that stops once estimate stablizes</span></span>
+<span id="cb840-50"><a href="simulation.html#cb840-50"></a><span class="kw">tail</span>(results)</span></code></pre></div>
+<pre><code>##    obs_value cum_results est_value
+## 26         3          54  2.076923
+## 27         3          57  2.111111
+## 28         1          58  2.071429
+## 29         1          59  2.034483
+## 30         1          60  2.000000
+## 31         2          62  2.000000</code></pre>
+<div class="sourceCode" id="cb842"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb842-1"><a href="simulation.html#cb842-1"></a><span class="co"># Plot Results Make running average plot</span></span>
+<span id="cb842-2"><a href="simulation.html#cb842-2"></a><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(results), results<span class="op">$</span>est_value, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">10</span>), <span class="dt">ylab =</span> <span class="st">&quot;Estimated Prob&quot;</span>,</span>
+<span id="cb842-3"><a href="simulation.html#cb842-3"></a>    <span class="dt">xlab =</span> <span class="st">&quot;Simulation&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Running average plot: How many flips to land on heads&quot;</span>,</span>
+<span id="cb842-4"><a href="simulation.html#cb842-4"></a>    <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-289-1.png" width="672" /></p>
 </div>
 <div id="some-more-tools" class="section level2 hasAnchor">
-<h2><span class="header-section-number">15.7</span> Some More Tools<a href="simulation.html#some-more-tools" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">15.8</span> Some More Tools<a href="simulation.html#some-more-tools" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="sample" class="section level3 hasAnchor">
-<h3><span class="header-section-number">15.7.1</span> sample()<a href="simulation.html#sample" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">15.8.1</span> sample()<a href="simulation.html#sample" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The <code>sample()</code> function is a powerful tool that can let you create your own unique random sequence. We have already used it several times. You can sample values with replacement, or without replacement. You can also assign certain probabilities to certain events. This is a particularly helpful function for rearranging rows, and for generating a sequence of categorical variables. For example, we can simulate a coin flip.</p>
-<div class="sourceCode" id="cb837"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb837-1"><a href="simulation.html#cb837-1"></a><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;Heads&quot;</span>, <span class="st">&quot;Tails&quot;</span>), <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb843"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb843-1"><a href="simulation.html#cb843-1"></a><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;Heads&quot;</span>, <span class="st">&quot;Tails&quot;</span>), <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>))</span></code></pre></div>
 <pre><code>## [1] &quot;Tails&quot;</code></pre>
 <p>Below is the code for simulating 10 coin flips.</p>
-<div class="sourceCode" id="cb839"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb839-1"><a href="simulation.html#cb839-1"></a><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;Heads&quot;</span>, <span class="st">&quot;Tails&quot;</span>), <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>), <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<pre><code>##  [1] &quot;Tails&quot; &quot;Heads&quot; &quot;Heads&quot; &quot;Tails&quot; &quot;Heads&quot; &quot;Tails&quot; &quot;Heads&quot; &quot;Heads&quot; &quot;Tails&quot;
+<div class="sourceCode" id="cb845"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb845-1"><a href="simulation.html#cb845-1"></a><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;Heads&quot;</span>, <span class="st">&quot;Tails&quot;</span>), <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>), <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>##  [1] &quot;Heads&quot; &quot;Heads&quot; &quot;Heads&quot; &quot;Tails&quot; &quot;Heads&quot; &quot;Heads&quot; &quot;Heads&quot; &quot;Heads&quot; &quot;Heads&quot;
 ## [10] &quot;Tails&quot;</code></pre>
 <p>We can set the seed like we did before in order to insure we keep getting the same sample each time we run this code.</p>
-<div class="sourceCode" id="cb841"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb841-1"><a href="simulation.html#cb841-1"></a><span class="kw">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb841-2"><a href="simulation.html#cb841-2"></a><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;Heads&quot;</span>, <span class="st">&quot;Tails&quot;</span>), <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>), <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb847"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb847-1"><a href="simulation.html#cb847-1"></a><span class="kw">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb847-2"><a href="simulation.html#cb847-2"></a><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;Heads&quot;</span>, <span class="st">&quot;Tails&quot;</span>), <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>), <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>##  [1] &quot;Tails&quot; &quot;Tails&quot; &quot;Heads&quot; &quot;Heads&quot; &quot;Tails&quot; &quot;Heads&quot; &quot;Heads&quot; &quot;Heads&quot; &quot;Heads&quot;
 ## [10] &quot;Tails&quot;</code></pre>
 <p>We can also change the probabilities of observing certain events.</p>
-<div class="sourceCode" id="cb843"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb843-1"><a href="simulation.html#cb843-1"></a><span class="kw">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb843-2"><a href="simulation.html#cb843-2"></a><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;Heads&quot;</span>, <span class="st">&quot;Tails&quot;</span>), <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>), <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb849"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb849-1"><a href="simulation.html#cb849-1"></a><span class="kw">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb849-2"><a href="simulation.html#cb849-2"></a><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;Heads&quot;</span>, <span class="st">&quot;Tails&quot;</span>), <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>), <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>##  [1] &quot;Tails&quot; &quot;Tails&quot; &quot;Tails&quot; &quot;Heads&quot; &quot;Tails&quot; &quot;Tails&quot; &quot;Heads&quot; &quot;Tails&quot; &quot;Tails&quot;
 ## [10] &quot;Tails&quot;</code></pre>
 </div>
 <div id="adding-curves-to-graphs" class="section level3 hasAnchor">
-<h3><span class="header-section-number">15.7.2</span> Adding curves to graphs<a href="simulation.html#adding-curves-to-graphs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">15.8.2</span> Adding curves to graphs<a href="simulation.html#adding-curves-to-graphs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Often times when generating data or using a real-world data set we might want to see how well a well known distribution fits a particular data set. We can do so by adding the proposed density function on to a histogram which contains the data set of interest. For example, suppose we wish to see if a normal distribution with mean of 3.5 and standard deviation of 1.14 fits the old faithful data set for eruption times. We can add this density function on top and see if it approximately fits the data.</p>
-<div class="sourceCode" id="cb845"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb845-1"><a href="simulation.html#cb845-1"></a><span class="kw">hist</span>(faithful<span class="op">$</span>eruptions, <span class="dt">main =</span> <span class="st">&quot;Eruption Times of Old Faithful&quot;</span>,</span>
-<span id="cb845-2"><a href="simulation.html#cb845-2"></a>    <span class="dt">xlab =</span> <span class="st">&quot;Time (in minutes)&quot;</span>, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">7</span>, <span class="dt">by =</span> <span class="fl">0.5</span>),</span>
-<span id="cb845-3"><a href="simulation.html#cb845-3"></a>    <span class="dt">freq =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb845-4"><a href="simulation.html#cb845-4"></a></span>
-<span id="cb845-5"><a href="simulation.html#cb845-5"></a><span class="kw">curve</span>(<span class="kw">dnorm</span>(x, <span class="fl">3.5</span>, <span class="fl">1.14</span>), <span class="dt">add =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-292-1.png" width="672" /></p>
+<div class="sourceCode" id="cb851"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb851-1"><a href="simulation.html#cb851-1"></a><span class="kw">hist</span>(faithful<span class="op">$</span>eruptions, <span class="dt">main =</span> <span class="st">&quot;Eruption Times of Old Faithful&quot;</span>,</span>
+<span id="cb851-2"><a href="simulation.html#cb851-2"></a>    <span class="dt">xlab =</span> <span class="st">&quot;Time (in minutes)&quot;</span>, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">7</span>, <span class="dt">by =</span> <span class="fl">0.5</span>),</span>
+<span id="cb851-3"><a href="simulation.html#cb851-3"></a>    <span class="dt">freq =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb851-4"><a href="simulation.html#cb851-4"></a></span>
+<span id="cb851-5"><a href="simulation.html#cb851-5"></a><span class="kw">curve</span>(<span class="kw">dnorm</span>(x, <span class="fl">3.5</span>, <span class="fl">1.14</span>), <span class="dt">add =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-294-1.png" width="672" /></p>
 <p>Now lets generate 272 normal random variables with mean 3.5 and standard deviation of 1.14 and see how well are generated data matches the density function.</p>
-<div class="sourceCode" id="cb846"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb846-1"><a href="simulation.html#cb846-1"></a>gen_data &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">272</span>, <span class="dt">mean =</span> <span class="fl">3.5</span>, <span class="dt">sd =</span> <span class="fl">1.14</span>)</span>
-<span id="cb846-2"><a href="simulation.html#cb846-2"></a></span>
-<span id="cb846-3"><a href="simulation.html#cb846-3"></a><span class="kw">hist</span>(gen_data, <span class="dt">main =</span> <span class="st">&quot;Simulated Data&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;X&quot;</span>, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="op">-</span><span class="fl">0.5</span>,</span>
-<span id="cb846-4"><a href="simulation.html#cb846-4"></a>    <span class="dv">7</span>, <span class="dt">by =</span> <span class="fl">0.5</span>), <span class="dt">freq =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb846-5"><a href="simulation.html#cb846-5"></a></span>
-<span id="cb846-6"><a href="simulation.html#cb846-6"></a><span class="kw">curve</span>(<span class="kw">dnorm</span>(x, <span class="fl">3.5</span>, <span class="fl">1.14</span>), <span class="dt">add =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-293-1.png" width="672" /></p>
+<div class="sourceCode" id="cb852"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb852-1"><a href="simulation.html#cb852-1"></a>gen_data &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">272</span>, <span class="dt">mean =</span> <span class="fl">3.5</span>, <span class="dt">sd =</span> <span class="fl">1.14</span>)</span>
+<span id="cb852-2"><a href="simulation.html#cb852-2"></a></span>
+<span id="cb852-3"><a href="simulation.html#cb852-3"></a><span class="kw">hist</span>(gen_data, <span class="dt">main =</span> <span class="st">&quot;Simulated Data&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;X&quot;</span>, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="op">-</span><span class="fl">0.5</span>,</span>
+<span id="cb852-4"><a href="simulation.html#cb852-4"></a>    <span class="dv">7</span>, <span class="dt">by =</span> <span class="fl">0.5</span>), <span class="dt">freq =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb852-5"><a href="simulation.html#cb852-5"></a></span>
+<span id="cb852-6"><a href="simulation.html#cb852-6"></a><span class="kw">curve</span>(<span class="kw">dnorm</span>(x, <span class="fl">3.5</span>, <span class="fl">1.14</span>), <span class="dt">add =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-295-1.png" width="672" /></p>
 <p>We do not see a perfect fit, but this is what happens with random samples. The fit for the simulated data is what we expect approximately if we had a sample with this distribution. It should be approximately the same as the curve, which we see for the simulated data. Our old faithful data is significantly less fitted the simulated data. Thus it appears that the old faithful eruption times is probably not normally distributed with mean 3.5 and standard deviation 1.14. How similar is “similar enough” is not a hard and fast rule, and it is ultimately up to the researcher. The simulated data set gives us a general idea of what is “similar enough”.</p>
 <p>Note that the <code>curve()</code> function does not need to be added to graph but can stand alone.</p>
-<div class="sourceCode" id="cb847"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb847-1"><a href="simulation.html#cb847-1"></a><span class="kw">curve</span>(<span class="kw">dnorm</span>(x, <span class="fl">3.5</span>, <span class="fl">1.14</span>), <span class="dv">0</span>, <span class="dv">7</span>, <span class="dt">add =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-294-1.png" width="672" /></p>
+<div class="sourceCode" id="cb853"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb853-1"><a href="simulation.html#cb853-1"></a><span class="kw">curve</span>(<span class="kw">dnorm</span>(x, <span class="fl">3.5</span>, <span class="fl">1.14</span>), <span class="dv">0</span>, <span class="dv">7</span>, <span class="dt">add =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-296-1.png" width="672" /></p>
 <p>In addition, we can make our own functions to plot using <code>curve()</code>.</p>
-<div class="sourceCode" id="cb848"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb848-1"><a href="simulation.html#cb848-1"></a>my_fun &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb848-2"><a href="simulation.html#cb848-2"></a>    y =<span class="st"> </span>x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>x <span class="op">-</span><span class="st"> </span><span class="dv">3</span></span>
-<span id="cb848-3"><a href="simulation.html#cb848-3"></a>    <span class="kw">return</span>(y)</span>
-<span id="cb848-4"><a href="simulation.html#cb848-4"></a>}</span>
-<span id="cb848-5"><a href="simulation.html#cb848-5"></a></span>
-<span id="cb848-6"><a href="simulation.html#cb848-6"></a><span class="kw">curve</span>(<span class="kw">my_fun</span>(x), <span class="dv">-10</span>, <span class="dv">10</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-295-1.png" width="672" /></p>
+<div class="sourceCode" id="cb854"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb854-1"><a href="simulation.html#cb854-1"></a>my_fun &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb854-2"><a href="simulation.html#cb854-2"></a>    y =<span class="st"> </span>x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>x <span class="op">-</span><span class="st"> </span><span class="dv">3</span></span>
+<span id="cb854-3"><a href="simulation.html#cb854-3"></a>    <span class="kw">return</span>(y)</span>
+<span id="cb854-4"><a href="simulation.html#cb854-4"></a>}</span>
+<span id="cb854-5"><a href="simulation.html#cb854-5"></a></span>
+<span id="cb854-6"><a href="simulation.html#cb854-6"></a><span class="kw">curve</span>(<span class="kw">my_fun</span>(x), <span class="dv">-10</span>, <span class="dv">10</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-297-1.png" width="672" /></p>
 </div>
 </div>
 <div id="example-fundamental-theorem-of-statistics" class="section level2 hasAnchor">
-<h2><span class="header-section-number">15.8</span> Example: Fundamental Theorem of Statistics<a href="simulation.html#example-fundamental-theorem-of-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">15.9</span> Example: Fundamental Theorem of Statistics<a href="simulation.html#example-fundamental-theorem-of-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="more-rigorous-version-of-fts" class="section level3 hasAnchor">
-<h3><span class="header-section-number">15.8.1</span> More Rigorous version of FTS<a href="simulation.html#more-rigorous-version-of-fts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">15.9.1</span> More Rigorous version of FTS<a href="simulation.html#more-rigorous-version-of-fts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let <span class="math inline">\(X_1, ..., X_n\)</span> be independent and identically distributed random variables with mean and variance, <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span>. If the sample size is sufficiently large (<span class="math inline">\(n \geq 30\)</span>), the sample mean <span class="math inline">\(\bar{x}\)</span> will tend to follow a normal distribution with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\frac{\sigma}{\sqrt{n}}\)</span>.</p>
 <p>In other words, for any set of data <span class="math inline">\(X_1, ..., X_n\)</span> that is independent and comes from the same distribution, and that distribution has a finite mean and variance, <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span>. Then</p>
 <p><span class="math display">\[\bar{x} \sim N \left ( \mu, \frac{\sigma}{\sqrt{n}} \right ) \]</span></p>
 <p>The distribution above is a <em>sampling distribution</em>. It is the distribution of a <em>sample mean</em>. That is, if we take <span class="math inline">\(k\)</span> samples, and for each sample we calculated the mean, the FTS tells us about the distribution of these means (<span class="math inline">\(\bar{x}_1, \dots, \bar{x}_k\)</span>).</p>
 </div>
 <div id="assumption-violations-of-fts" class="section level3 hasAnchor">
-<h3><span class="header-section-number">15.8.2</span> Assumption Violations of FTS<a href="simulation.html#assumption-violations-of-fts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">15.9.2</span> Assumption Violations of FTS<a href="simulation.html#assumption-violations-of-fts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The FTS has a few key assumptions. Some of these assumptions are fairly easy to meet, and others are more susceptible to being violated. For example, typically it is reasonable to assume that mean and variance are finite. Other assumptions are easier to violate, and the consequences of violating these assumptions vary greatly. Sometimes we may have data that comes from a mix of multiple distributions, this violate the assumption that data is identically distributed. Another assumption violation could be independence. For example, in time series data we typically observe a random variable over a sequence of time and measure it repeatedly. This would violate the independence assumption because earlier observations are typically related to future observations. Another assumption that is often violated is the minimum sample size. The FTS says we need at least 30 observations, or else we should use the t-distribution instead. Historically this is usually not a very big problem. The requirement that our sample size is at least 30 is a “rule of thumb” and not based on rigorous statistical theory.</p>
 <p>Below are a summary of these assumptions restated:</p>
 <ul>
@@ -828,39 +947,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Once we have verified these assumptions, we still need to determine what the mean (<span class="math inline">\(\mu\)</span>) and variance (<span class="math inline">\(\sigma^2\)</span>) are. If we know that our distribution is one of the really common ones above, then this task becomes much eaiser.</p>
 </div>
 <div id="the-data" class="section level3 hasAnchor">
-<h3><span class="header-section-number">15.8.3</span> The Data<a href="simulation.html#the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">15.9.3</span> The Data<a href="simulation.html#the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We will see how well the FTS theorem applies to a data set that has a uniform distribution. That is, say we have a sample of 50 observations which we believe are all uniformly distributed between -5 and 5. We want to determine if the mean of a sample of this type would be normally distributed according to the FTS. To do so, we simulate a sample of this type 10,000 times and assess if it matches the FTS results.</p>
-<div class="sourceCode" id="cb849"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb849-1"><a href="simulation.html#cb849-1"></a><span class="co"># Simulate a sample of 50 observations that are uniformly</span></span>
-<span id="cb849-2"><a href="simulation.html#cb849-2"></a><span class="co"># distributed</span></span>
-<span id="cb849-3"><a href="simulation.html#cb849-3"></a>gen_unif_mean =<span class="st"> </span><span class="cf">function</span>(the_min, the_max) {</span>
-<span id="cb849-4"><a href="simulation.html#cb849-4"></a>    gen_data =<span class="st"> </span><span class="kw">runif</span>(<span class="dv">50</span>, the_min, the_max)</span>
-<span id="cb849-5"><a href="simulation.html#cb849-5"></a>    the_mean =<span class="st"> </span><span class="kw">mean</span>(gen_data)</span>
-<span id="cb849-6"><a href="simulation.html#cb849-6"></a>    the_parameters =<span class="st"> </span><span class="kw">c</span>(the_min, the_max)</span>
-<span id="cb849-7"><a href="simulation.html#cb849-7"></a>    results =<span class="st"> </span><span class="kw">list</span>(the_mean, the_parameters)</span>
-<span id="cb849-8"><a href="simulation.html#cb849-8"></a>    <span class="kw">names</span>(results) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;mean&quot;</span>, <span class="st">&quot;parameters&quot;</span>)</span>
-<span id="cb849-9"><a href="simulation.html#cb849-9"></a>    <span class="kw">return</span>(results)</span>
-<span id="cb849-10"><a href="simulation.html#cb849-10"></a>}</span>
-<span id="cb849-11"><a href="simulation.html#cb849-11"></a></span>
-<span id="cb849-12"><a href="simulation.html#cb849-12"></a><span class="co"># Simulate 10000 samples, each of size 50, where the</span></span>
-<span id="cb849-13"><a href="simulation.html#cb849-13"></a><span class="co"># minumum value is -5 And the maximum value is 5</span></span>
-<span id="cb849-14"><a href="simulation.html#cb849-14"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb849-15"><a href="simulation.html#cb849-15"></a>sim_means &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">10000</span>, <span class="kw">gen_unif_mean</span>(<span class="dt">the_min =</span> <span class="dv">-5</span>, <span class="dt">the_max =</span> <span class="dv">5</span>)<span class="op">$</span>mean)</span>
-<span id="cb849-16"><a href="simulation.html#cb849-16"></a></span>
-<span id="cb849-17"><a href="simulation.html#cb849-17"></a></span>
-<span id="cb849-18"><a href="simulation.html#cb849-18"></a><span class="co"># histogram of results</span></span>
-<span id="cb849-19"><a href="simulation.html#cb849-19"></a><span class="kw">hist</span>(sim_means, <span class="dt">freq =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-296-1.png" width="672" /></p>
+<div class="sourceCode" id="cb855"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb855-1"><a href="simulation.html#cb855-1"></a><span class="co"># Simulate a sample of 50 observations that are uniformly</span></span>
+<span id="cb855-2"><a href="simulation.html#cb855-2"></a><span class="co"># distributed</span></span>
+<span id="cb855-3"><a href="simulation.html#cb855-3"></a>gen_unif_mean =<span class="st"> </span><span class="cf">function</span>(the_min, the_max) {</span>
+<span id="cb855-4"><a href="simulation.html#cb855-4"></a>    gen_data =<span class="st"> </span><span class="kw">runif</span>(<span class="dv">50</span>, the_min, the_max)</span>
+<span id="cb855-5"><a href="simulation.html#cb855-5"></a>    the_mean =<span class="st"> </span><span class="kw">mean</span>(gen_data)</span>
+<span id="cb855-6"><a href="simulation.html#cb855-6"></a>    the_parameters =<span class="st"> </span><span class="kw">c</span>(the_min, the_max)</span>
+<span id="cb855-7"><a href="simulation.html#cb855-7"></a>    results =<span class="st"> </span><span class="kw">list</span>(the_mean, the_parameters)</span>
+<span id="cb855-8"><a href="simulation.html#cb855-8"></a>    <span class="kw">names</span>(results) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;mean&quot;</span>, <span class="st">&quot;parameters&quot;</span>)</span>
+<span id="cb855-9"><a href="simulation.html#cb855-9"></a>    <span class="kw">return</span>(results)</span>
+<span id="cb855-10"><a href="simulation.html#cb855-10"></a>}</span>
+<span id="cb855-11"><a href="simulation.html#cb855-11"></a></span>
+<span id="cb855-12"><a href="simulation.html#cb855-12"></a><span class="co"># Simulate 10000 samples, each of size 50, where the</span></span>
+<span id="cb855-13"><a href="simulation.html#cb855-13"></a><span class="co"># minumum value is -5 And the maximum value is 5</span></span>
+<span id="cb855-14"><a href="simulation.html#cb855-14"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb855-15"><a href="simulation.html#cb855-15"></a>sim_means &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">10000</span>, <span class="kw">gen_unif_mean</span>(<span class="dt">the_min =</span> <span class="dv">-5</span>, <span class="dt">the_max =</span> <span class="dv">5</span>)<span class="op">$</span>mean)</span>
+<span id="cb855-16"><a href="simulation.html#cb855-16"></a></span>
+<span id="cb855-17"><a href="simulation.html#cb855-17"></a></span>
+<span id="cb855-18"><a href="simulation.html#cb855-18"></a><span class="co"># histogram of results</span></span>
+<span id="cb855-19"><a href="simulation.html#cb855-19"></a><span class="kw">hist</span>(sim_means, <span class="dt">freq =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-298-1.png" width="672" /></p>
 <p>To add a curve to the graph we need to know the mean and the standard deviation of the data we generated. For a uniform distribution with a minimum of -5 and a maximum of 5, the mean is 0 and the standard deviation is <span class="math inline">\(10/\sqrt{12} \approx 2.89\)</span>. Thus according to FTS, we expect our histogram above to correspond to a normal density with mean 0 and standard deviation <span class="math inline">\(2.89/\sqrt{50} \approx 0.41\)</span>.</p>
-<div class="sourceCode" id="cb850"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb850-1"><a href="simulation.html#cb850-1"></a><span class="co"># histogram of results</span></span>
-<span id="cb850-2"><a href="simulation.html#cb850-2"></a><span class="kw">hist</span>(sim_means, <span class="dt">freq =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb850-3"><a href="simulation.html#cb850-3"></a></span>
-<span id="cb850-4"><a href="simulation.html#cb850-4"></a><span class="co"># Add normal curve according to FTS</span></span>
-<span id="cb850-5"><a href="simulation.html#cb850-5"></a><span class="kw">curve</span>(<span class="kw">dnorm</span>(x, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="fl">0.41</span>), <span class="dt">add =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-297-1.png" width="672" /></p>
+<div class="sourceCode" id="cb856"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb856-1"><a href="simulation.html#cb856-1"></a><span class="co"># histogram of results</span></span>
+<span id="cb856-2"><a href="simulation.html#cb856-2"></a><span class="kw">hist</span>(sim_means, <span class="dt">freq =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb856-3"><a href="simulation.html#cb856-3"></a></span>
+<span id="cb856-4"><a href="simulation.html#cb856-4"></a><span class="co"># Add normal curve according to FTS</span></span>
+<span id="cb856-5"><a href="simulation.html#cb856-5"></a><span class="kw">curve</span>(<span class="kw">dnorm</span>(x, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="fl">0.41</span>), <span class="dt">add =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-299-1.png" width="672" /></p>
 </div>
 </div>
 <div id="simulation-stuides-for-statistical-methods" class="section level2 hasAnchor">
-<h2><span class="header-section-number">15.9</span> Simulation Stuides for Statistical Methods<a href="simulation.html#simulation-stuides-for-statistical-methods" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">15.10</span> Simulation Stuides for Statistical Methods<a href="simulation.html#simulation-stuides-for-statistical-methods" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Simulation methods are also used as impartial way to check our theories.</p>
 <ul>
 <li><p>Does the central limit theorem really work?</p></li>

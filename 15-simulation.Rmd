@@ -452,7 +452,126 @@ $$\hat{\mu} \rightarrow \mu$$
 </div>
 
 
-For example, it well known that mean for the binomial distribution is $np$, which we can solve with algebra.  We can verify our algebra with a simulation study. [Click here to see see an example of this in action.](https://rpgarcia.shinyapps.io/means_running_binomial/)
+For example, it well known that mean for the binomial distribution is $np$, which we can solve with algebra.  We can verify our algebra with a simulation study. 
+
+
+```{r}
+# Parameters 
+set.seed(1)
+parameter_n <- 10 
+parameter_p <- 0.5
+
+
+# max_sims : maximumm number of simulations you want to consider before terminating
+max_sims <- 100000
+
+# Initialize values before the loop 
+results <- data.frame(obs_value = rep(NA, max_sims), 
+                      cum_results  = rep(NA, max_sims), 
+                      est_value = rep(NA, max_sims))
+cumulative_results <- 0 
+
+
+# Conduct simulations with a stopping rule
+# stop between 25 and max_sims 
+for(i in 1:max_sims){
+  obs_value <- rbinom(1, parameter_n,  parameter_p)
+  cumulative_results <- cumulative_results + obs_value
+  est_value <- cumulative_results/i      # Average value at this point 
+  
+  results[i,] <- c(obs_value, cumulative_results, est_value)
+  
+  # If you have at least 25 simulations, now begin checking if you should stop 
+  if(i >25){
+    if(abs(results$est_value[i] - results$est_value[i-1])< 0.001){
+      break 
+    }
+  }
+}
+
+# Remove rows we did not need
+results <- na.omit(results)
+
+# Loop that stops once estimate stablizes 
+tail(results)
+
+# Plot Results
+# Make running average plot
+plot(1:nrow(results), results$est_value, 
+     ylab = "Estimated Prob", 
+     xlab = "Simulation", 
+     main = "Running average plot: Mean Value")
+```
+
+[Click here to see see an example of this in action.](https://rpgarcia.shinyapps.io/means_running_binomial/)
+
+
+## Another Statistic
+
+What if we were interested in another statistic besides the mean?  It is the same process!  We conduct the simulation.  The value $p_i$ is the average value of the statistic for each simulation.  For example, suppose we wanted to find out how many flips it takes for a fair sided coin to land on a head?  Then for each simulation we find $X_i$, the number of flips for that simulation.  Then $p_i$ is the average value of all the $X$'s: $p_i = \sum_{j=1}^i X_j/i$
+
+```{r}
+
+# Support function 
+first_heads <- function(){
+  # First sample 
+  j = 1
+  coin_result <- sample(c("Tails", "Heads"), 1)
+  
+  while(coin_result != "Heads"){
+    coin_result <- sample(c("Tails", "Heads"), 1)
+    j <- j + 1
+  }
+  return(j)
+}
+
+
+
+
+# max_sims : maximumm number of simulations you want to consider before terminating
+max_sims <- 100000
+
+# Initialize values before the loop 
+results <- data.frame(obs_value = rep(NA, max_sims), 
+                      cum_results  = rep(NA, max_sims), 
+                      est_value = rep(NA, max_sims))
+cumulative_results <- 0 
+
+
+# Conduct simulations with a stopping rule
+# stop between 25 and max_sims 
+for(i in 1:max_sims){
+  obs_value <- first_heads()
+  cumulative_results <- cumulative_results + obs_value
+  est_value <- cumulative_results/i      # Average value at this point 
+  
+  results[i,] <- c(obs_value, cumulative_results, est_value)
+  
+  # If you have at least 25 simulations, now begin checking if you should stop 
+  if(i >25){
+    if(abs(results$est_value[i] - results$est_value[i-1])< 0.001){
+      break 
+    }
+  }
+}
+
+# Remove rows we did not need
+results <- na.omit(results)
+
+# Loop that stops once estimate stablizes 
+tail(results)
+
+
+# Plot Results
+# Make running average plot
+plot(1:nrow(results), results$est_value, 
+     ylim = c(0, 10),
+     ylab = "Estimated Prob", 
+     xlab = "Simulation", 
+     main = "Running average plot: How many flips to land on heads", type = "b")
+```
+
+
 
 
 
